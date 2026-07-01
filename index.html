@@ -1677,17 +1677,6 @@
 </head>
 <body>
 
-<!-- Netlify Forms detection (hidden, required for form processing) -->
-<form name="lead" netlify netlify-honeypot="bot-field" hidden>
-  <input name="bot-field" />
-  <input name="name" />
-  <input name="phone" />
-  <input name="email" />
-  <input name="area" />
-  <input name="timeline" />
-  <input name="budget" />
-  <input name="bedrooms" />
-</form>
 
 <!-- NAV -->
 <nav>
@@ -2375,17 +2364,16 @@
     var btn = document.getElementById('btn-step2');
     btn.classList.add('btn-loading');
     btn.textContent = 'Sending...';
-    var params = new URLSearchParams({
-      'form-name': 'lead',
-      'name':      window.leadName || '',
-      'phone':     window.leadPhone || '',
-      'email':     document.getElementById('s2-email').value,
-      'area':      document.getElementById('s2-area').value,
-      'timeline':  document.getElementById('s2-time').value,
-      'budget':    document.getElementById('s2-budget').value,
-      'bedrooms':  document.getElementById('s2-beds').value
-    });
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() })
+    var data = {
+      name:     window.leadName || '',
+      phone:    window.leadPhone || '',
+      email:    document.getElementById('s2-email').value,
+      area:     document.getElementById('s2-area').value,
+      timeline: document.getElementById('s2-time').value,
+      budget:   document.getElementById('s2-budget').value,
+      bedrooms: document.getElementById('s2-beds').value
+    };
+    fetch('https://formspree.io/f/xrewybvz', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(showSuccess)
       .catch(showSuccess);
   }
