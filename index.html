@@ -483,6 +483,21 @@
     }
     .btn-back:hover { color: var(--text); }
 
+    .intent-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+    .intent-card {
+      width: 100%; background: var(--cream); border: 1.5px solid var(--border);
+      border-radius: var(--r-lg); padding: 16px 18px; cursor: pointer;
+      text-align: left; display: flex; flex-direction: column; gap: 3px;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      font-family: var(--sans);
+    }
+    .intent-card:hover {
+      border-color: var(--gold); background: var(--white);
+      box-shadow: 0 4px 16px rgba(168,120,40,0.12);
+    }
+    .intent-label { font-size: 15px; font-weight: 700; color: var(--text); }
+    .intent-sub { font-size: 11px; color: var(--muted); }
+
     .tcpa-note {
       font-size: 9px;
       color: var(--subtle);
@@ -1762,14 +1777,16 @@
 
     <div class="hfc-outer">
       <div class="hfc">
-        <!-- Step 1 -->
+
+        <!-- Step 1: Name + Phone -->
         <div class="hfc-step active" id="step1">
           <div class="step-progress">
             <div class="sp-dot active"></div>
             <div class="sp-dot"></div>
-            <span class="sp-label">Step 1 of 2</span>
+            <div class="sp-dot"></div>
+            <span class="sp-label">Step 1 of 3</span>
           </div>
-          <p class="hfc-title">Get Started, Free</p>
+          <p class="hfc-title">Get Started</p>
           <p class="hfc-sub">Takes 60 seconds. I'll respond within the hour.</p>
           <div class="fg">
             <label for="s1-name">Your Name</label>
@@ -1784,7 +1801,7 @@
           <div class="trust-row">
             <span class="tr-item">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              100% Free
+              Licensed Agent
             </span>
             <span class="tr-item">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1797,28 +1814,62 @@
           </div>
         </div>
 
-        <!-- Step 2 -->
+        <!-- Step 2: Rent / Buy / Sell -->
         <div class="hfc-step" id="step2">
           <div class="step-progress">
             <div class="sp-dot done"></div>
             <div class="sp-dot active"></div>
-            <span class="sp-label">Step 2 of 2</span>
+            <div class="sp-dot"></div>
+            <span class="sp-label">Step 2 of 3</span>
+          </div>
+          <p class="hfc-title">What can I help with?</p>
+          <p class="hfc-sub">Choose the option that fits your situation.</p>
+          <div class="intent-cards">
+            <button class="intent-card" onclick="goStep3('rent')">
+              <span class="intent-label">Find an Apartment to Rent</span>
+              <span class="intent-sub">Free service, no fee to you ever</span>
+            </button>
+            <button class="intent-card" onclick="goStep3('buy')">
+              <span class="intent-label">Buy a Home</span>
+              <span class="intent-sub">Buyer representation in Central Florida</span>
+            </button>
+            <button class="intent-card" onclick="goStep3('sell')">
+              <span class="intent-label">Sell My Home</span>
+              <span class="intent-sub">Licensed listing agent, Central Florida</span>
+            </button>
+          </div>
+          <button class="btn-back" onclick="goStep1()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+        </div>
+
+        <!-- Step 3a: Rent questions -->
+        <div class="hfc-step" id="step3-rent">
+          <div class="step-progress">
+            <div class="sp-dot done"></div>
+            <div class="sp-dot done"></div>
+            <div class="sp-dot active"></div>
+            <span class="sp-label">Step 3 of 3</span>
           </div>
           <p class="hfc-title">Almost Done</p>
-          <p class="hfc-sub">A few more details so I can find the right options for you.</p>
+          <p class="hfc-sub">A few details so I can find the right apartments for you.</p>
           <div class="fg-row">
             <div class="fg">
-              <label for="s2-area">Area</label>
-              <select id="s2-area">
+              <label for="r-area">Area</label>
+              <select id="r-area">
                 <option value="" disabled selected>Where?</option>
                 <option>Orlando</option>
                 <option>Ocala</option>
+                <option>Lake Nona</option>
+                <option>Kissimmee</option>
+                <option>Davenport</option>
                 <option>Not sure yet</option>
               </select>
             </div>
             <div class="fg">
-              <label for="s2-time">Move-In</label>
-              <select id="s2-time">
+              <label for="r-time">Move-In</label>
+              <select id="r-time">
                 <option value="" disabled selected>When?</option>
                 <option>ASAP</option>
                 <option>Within 30 days</option>
@@ -1829,8 +1880,8 @@
           </div>
           <div class="fg-row">
             <div class="fg">
-              <label for="s2-budget">Max Budget</label>
-              <select id="s2-budget">
+              <label for="r-budget">Max Monthly Budget</label>
+              <select id="r-budget">
                 <option value="" disabled selected>Budget</option>
                 <option>Under $1,000</option>
                 <option>$1,000 to $1,400</option>
@@ -1840,8 +1891,8 @@
               </select>
             </div>
             <div class="fg">
-              <label for="s2-beds">Bedrooms</label>
-              <select id="s2-beds">
+              <label for="r-beds">Bedrooms</label>
+              <select id="r-beds">
                 <option value="" disabled selected>Beds</option>
                 <option>Studio</option>
                 <option>1 Bedroom</option>
@@ -1851,11 +1902,124 @@
             </div>
           </div>
           <div class="fg">
-            <label for="s2-email">Email (optional)</label>
-            <input type="email" id="s2-email" placeholder="you@email.com" autocomplete="email" />
+            <label for="r-email">Email</label>
+            <input type="email" id="r-email" placeholder="you@email.com" autocomplete="email" />
           </div>
-          <button class="btn-main" id="btn-step2" onclick="submitForm()">Find My Apartment &rarr;</button>
-          <button class="btn-back" onclick="goStep1()">
+          <button class="btn-main" id="btn-rent" onclick="submitForm('rent')">Find My Apartment &rarr;</button>
+          <button class="btn-back" onclick="goStep2FromStep3()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+        </div>
+
+        <!-- Step 3b: Buy questions -->
+        <div class="hfc-step" id="step3-buy">
+          <div class="step-progress">
+            <div class="sp-dot done"></div>
+            <div class="sp-dot done"></div>
+            <div class="sp-dot active"></div>
+            <span class="sp-label">Step 3 of 3</span>
+          </div>
+          <p class="hfc-title">Tell Me About Your Search</p>
+          <p class="hfc-sub">I'll reach out to discuss your options and next steps.</p>
+          <div class="fg-row">
+            <div class="fg">
+              <label for="b-area">Area</label>
+              <select id="b-area">
+                <option value="" disabled selected>Where?</option>
+                <option>Orlando</option>
+                <option>Ocala</option>
+                <option>Lake Nona</option>
+                <option>Kissimmee</option>
+                <option>Davenport</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label for="b-time">Timeline</label>
+              <select id="b-time">
+                <option value="" disabled selected>When?</option>
+                <option>ASAP</option>
+                <option>1 to 3 months</option>
+                <option>3 to 6 months</option>
+                <option>6 or more months</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label for="b-price">Purchase Budget</label>
+              <select id="b-price">
+                <option value="" disabled selected>Price range</option>
+                <option>Under $200,000</option>
+                <option>$200,000 to $300,000</option>
+                <option>$300,000 to $400,000</option>
+                <option>$400,000 to $500,000</option>
+                <option>$500,000 or more</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label for="b-type">Home Type</label>
+              <select id="b-type">
+                <option value="" disabled selected>Type</option>
+                <option>Single Family</option>
+                <option>Townhouse</option>
+                <option>Condo</option>
+                <option>Any</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg">
+            <label for="b-email">Email</label>
+            <input type="email" id="b-email" placeholder="you@email.com" autocomplete="email" />
+          </div>
+          <button class="btn-main" id="btn-buy" onclick="submitForm('buy')">Get Started &rarr;</button>
+          <button class="btn-back" onclick="goStep2FromStep3()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+        </div>
+
+        <!-- Step 3c: Sell questions -->
+        <div class="hfc-step" id="step3-sell">
+          <div class="step-progress">
+            <div class="sp-dot done"></div>
+            <div class="sp-dot done"></div>
+            <div class="sp-dot active"></div>
+            <span class="sp-label">Step 3 of 3</span>
+          </div>
+          <p class="hfc-title">Tell Me About Your Property</p>
+          <p class="hfc-sub">I'll reach out to discuss pricing and next steps.</p>
+          <div class="fg-row">
+            <div class="fg">
+              <label for="s-area">Area</label>
+              <select id="s-area">
+                <option value="" disabled selected>Where?</option>
+                <option>Orlando</option>
+                <option>Ocala</option>
+                <option>Lake Nona</option>
+                <option>Kissimmee</option>
+                <option>Davenport</option>
+                <option>Other Central FL</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label for="s-time">Timeline to Sell</label>
+              <select id="s-time">
+                <option value="" disabled selected>When?</option>
+                <option>ASAP</option>
+                <option>1 to 3 months</option>
+                <option>3 to 6 months</option>
+                <option>Just exploring</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg">
+            <label for="s-email">Email</label>
+            <input type="email" id="s-email" placeholder="you@email.com" autocomplete="email" />
+          </div>
+          <button class="btn-main" id="btn-sell" onclick="submitForm('sell')">Request a Consultation &rarr;</button>
+          <button class="btn-back" onclick="goStep2FromStep3()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
             Back
           </button>
@@ -1867,9 +2031,10 @@
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <p style="font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:#1C1916;margin-bottom:8px;letter-spacing:-0.3px;">You're all set!</p>
-          <p style="font-size:13px;color:#7A7060;line-height:1.7;margin-bottom:16px;">I'll text you within the hour with your personalized options. Keep an eye on your phone.</p>
+          <p style="font-size:13px;color:#7A7060;line-height:1.7;margin-bottom:16px;">I'll be in touch within the hour. Keep an eye on your phone.</p>
           <p style="font-size:11px;color:#B0A490;">Questions? Text or call <a href="tel:+17186350140" style="color:#7A7060;font-weight:500;">(718) 635-0140</a></p>
         </div>
+
       </div>
     </div>
   </div>
@@ -2392,26 +2557,55 @@
     document.getElementById('step1').classList.add('active');
   }
 
-  function submitForm() {
-    var btn = document.getElementById('btn-step2');
+  function goStep3(type) {
+    window.leadType = type;
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('step3-' + type).classList.add('active');
+  }
+
+  function goStep2FromStep3() {
+    ['rent','buy','sell'].forEach(function(t) {
+      document.getElementById('step3-' + t).classList.remove('active');
+    });
+    document.getElementById('step2').classList.add('active');
+  }
+
+  function submitForm(type) {
+    var emailId = type === 'rent' ? 'r-email' : type === 'buy' ? 'b-email' : 's-email';
+    var email = document.getElementById(emailId).value.trim();
+    if (!email) { shake(emailId); return; }
+
+    var btnId = type === 'rent' ? 'btn-rent' : type === 'buy' ? 'btn-buy' : 'btn-sell';
+    var btn = document.getElementById(btnId);
     btn.classList.add('btn-loading');
     btn.textContent = 'Sending...';
-    var data = {
-      name:     window.leadName || '',
-      phone:    window.leadPhone || '',
-      email:    document.getElementById('s2-email').value,
-      area:     document.getElementById('s2-area').value,
-      timeline: document.getElementById('s2-time').value,
-      budget:   document.getElementById('s2-budget').value,
-      bedrooms: document.getElementById('s2-beds').value
-    };
+
+    var data = { name: window.leadName || '', phone: window.leadPhone || '', email: email, lead_type: type };
+
+    if (type === 'rent') {
+      data.area     = document.getElementById('r-area').value;
+      data.timeline = document.getElementById('r-time').value;
+      data.budget   = document.getElementById('r-budget').value;
+      data.bedrooms = document.getElementById('r-beds').value;
+    } else if (type === 'buy') {
+      data.area          = document.getElementById('b-area').value;
+      data.timeline      = document.getElementById('b-time').value;
+      data.price_range   = document.getElementById('b-price').value;
+      data.home_type     = document.getElementById('b-type').value;
+    } else {
+      data.area     = document.getElementById('s-area').value;
+      data.timeline = document.getElementById('s-time').value;
+    }
+
     fetch('https://formspree.io/f/xrewybvz', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(showSuccess)
       .catch(showSuccess);
   }
 
   function showSuccess() {
-    document.getElementById('step2').classList.remove('active');
+    ['rent','buy','sell'].forEach(function(t) {
+      document.getElementById('step3-' + t).classList.remove('active');
+    });
     document.getElementById('hfc-ok').classList.add('on');
   }
 
