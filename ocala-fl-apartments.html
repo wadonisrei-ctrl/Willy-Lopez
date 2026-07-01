@@ -23,10 +23,20 @@
   "author": {
     "@type": "Person",
     "name": "Willy Lopez",
-    "jobTitle": "Licensed Apartment Locator",
+    "jobTitle": "Licensed Real Estate Agent",
+    "description": "Licensed apartment locator and buyer's agent serving Greater Orlando and Ocala, FL. Lic. SL3617612. Taylor Apartment Locator.",
+    "telephone": "+17186350140",
+    "email": "wadonisrei@gmail.com",
+    "url": "https://willy-lopez.vercel.app",
     "worksFor": {
       "@type": "Organization",
       "name": "Taylor Apartment Locator"
+    },
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Real Estate License",
+      "name": "Florida Real Estate Sales Associate",
+      "identifier": "SL3617612"
     }
   },
   "publisher": {
@@ -37,6 +47,28 @@
   "url": "https://willy-lopez.vercel.app/ocala-fl-apartments",
   "description": "Looking for apartments in Ocala, FL? I am a free apartment locator serving Marion County. I search my network and send you the best options. No fees ever.",
   "dateModified": "2026-07-01"
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Willy Lopez",
+  "jobTitle": "Licensed Real Estate Agent",
+  "description": "Licensed apartment locator and buyer's agent serving Greater Orlando and Ocala, FL. Lic. SL3617612. Taylor Apartment Locator.",
+  "telephone": "+17186350140",
+  "email": "wadonisrei@gmail.com",
+  "url": "https://willy-lopez.vercel.app",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Taylor Apartment Locator"
+  },
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "Real Estate License",
+    "name": "Florida Real Estate Sales Associate",
+    "identifier": "SL3617612"
+  }
 }
   </script>
 
@@ -276,6 +308,30 @@
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
+    /* AUTHOR BIO */
+    .author-section {
+      background: var(--cream);
+      padding: 48px 40px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .author-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      padding: 28px; background: var(--white);
+      border: 1px solid var(--border); border-radius: var(--r-lg);
+      border-left: 4px solid var(--gold);
+    }
+    .author-name {
+      font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
+    }
+    .author-creds {
+      font-size: 12px; font-weight: 600; color: var(--gold);
+      letter-spacing: 0.3px; margin-bottom: 12px;
+    }
+    .author-bio {
+      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+    }
+
     /* FOOTER */
     footer {
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
@@ -292,6 +348,7 @@
       .breadcrumb { padding: 10px 20px; }
       .content { padding: 48px 20px; }
       .faq-section { padding: 48px 20px; }
+      .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
@@ -322,7 +379,7 @@
       <div class="hero-tag reveal">Free Service for Renters</div>
       <h1 class="reveal reveal-d1">Free Apartment Locator in Ocala, FL</h1>
       <p class="hero-sub reveal reveal-d2">I search my network of Ocala apartment communities and send you the best options for your budget. No fees, no pressure.</p>
-      <a href="/#home" class="hero-cta reveal reveal-d3">Find My Apartment Free</a>
+      <a href="/#home" class="hero-cta reveal reveal-d3">Start For Free</a>
     </div>
   </section>
 
@@ -423,6 +480,19 @@
           </div>
         </div>
       </section>
+
+  <!-- AUTHOR BIO (E-E-A-T signal for YMYL real estate content) -->
+  <section class="author-section">
+    <div class="inner">
+      <div class="author-card reveal">
+        <div class="author-info">
+          <div class="author-name">Written by Willy Lopez</div>
+          <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator</div>
+          <p class="author-bio">Willy Lopez is a licensed real estate agent serving Greater Orlando and Ocala, FL. He specializes in helping renters find apartments virtually and helping buyers navigate the Central Florida and Marion County markets. Taylor Apartment Locator has been in the market for over 12 years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA STRIP -->
   <section class="cta-strip">
