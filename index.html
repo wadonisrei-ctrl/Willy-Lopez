@@ -2440,9 +2440,9 @@
       <p class="buyer-strip-title">Thinking about buying instead of renting?</p>
       <p class="buyer-strip-body">I'm a licensed real estate agent, not just an apartment locator. A good number of my renters eventually become buyers, and when that time comes, I can help with that too. No pressure, no rush.</p>
     </div>
-    <a href="tel:+17186350140" class="buyer-strip-cta">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      Let's talk
+    <a href="#home" onclick="window.preselectedType='buy'" class="buyer-strip-cta">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Get Started
     </a>
   </div>
 </div>
@@ -2549,7 +2549,13 @@
     window.leadName = name;
     window.leadPhone = phone;
     document.getElementById('step1').classList.remove('active');
-    document.getElementById('step2').classList.add('active');
+    if (window.preselectedType) {
+      var t = window.preselectedType;
+      window.preselectedType = null;
+      goStep3(t);
+    } else {
+      document.getElementById('step2').classList.add('active');
+    }
   }
 
   function goStep1() {
