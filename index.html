@@ -2598,8 +2598,22 @@
     }
 
     fetch('https://formspree.io/f/xrewybvz', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-      .then(showSuccess)
-      .catch(showSuccess);
+      .then(function(res) {
+        if (res.ok) {
+          showSuccess();
+        } else {
+          res.json().then(function(err) { console.error('Formspree error:', err); });
+          btn.classList.remove('btn-loading');
+          btn.textContent = 'Try Again';
+          alert('Something went wrong. Please try again or call/text directly.');
+        }
+      })
+      .catch(function(err) {
+        console.error('Network error:', err);
+        btn.classList.remove('btn-loading');
+        btn.textContent = 'Try Again';
+        alert('Something went wrong. Please try again or call/text directly.');
+      });
   }
 
   function showSuccess() {
