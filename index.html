@@ -491,7 +491,7 @@
       transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
       font-family: var(--sans);
     }
-    .intent-card:hover {
+    .intent-card:hover, .intent-card--active {
       border-color: var(--gold); background: var(--white);
       box-shadow: 0 4px 16px rgba(168,120,40,0.12);
     }
@@ -2549,12 +2549,13 @@
     window.leadName = name;
     window.leadPhone = phone;
     document.getElementById('step1').classList.remove('active');
+    document.getElementById('step2').classList.add('active');
     if (window.preselectedType) {
-      var t = window.preselectedType;
+      document.querySelectorAll('.intent-card').forEach(function(c) { c.classList.remove('intent-card--active'); });
+      var cards = document.querySelectorAll('.intent-card');
+      var idx = window.preselectedType === 'rent' ? 0 : window.preselectedType === 'buy' ? 1 : 2;
+      cards[idx].classList.add('intent-card--active');
       window.preselectedType = null;
-      goStep3(t);
-    } else {
-      document.getElementById('step2').classList.add('active');
     }
   }
 
