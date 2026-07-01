@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FSBO vs Real Estate Agent in Florida | Willy Lopez</title>
+  <meta name="description" content="Thinking about selling your Florida home without an agent? Here is an honest comparison of FSBO vs hiring a real estate agent in Central Florida." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="FSBO vs Real Estate Agent in Florida | Willy Lopez" />
+  <meta property="og:description" content="Thinking about selling your Florida home without an agent? Here is an honest comparison of FSBO vs hiring a real estate agent in Central Florida." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://willy-lopez.vercel.app/fsbo-vs-real-estate-agent-florida" />
+  <link rel="canonical" href="https://willy-lopez.vercel.app/fsbo-vs-real-estate-agent-florida" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do FSBO homes sell for less than agent-listed homes in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Research consistently shows FSBO homes sell for less, typically 5 to 15% below comparable agent-listed homes. On a $300,000 home, a 5% gap is $15,000, which exceeds most listing commission costs. The gap is driven by limited marketing reach, pricing errors, and weaker negotiating position."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I still have to pay a buyer's agent if I sell FSBO in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You are not legally required to, but refusing to offer buyer's agent compensation significantly shrinks your buyer pool. Most buyers working with an agent expect their agent to be compensated. Many buyer's agents will not show FSBO homes that offer no compensation, which means less competition and typically a lower final sale price."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What disclosures are required when selling a home in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Florida requires sellers to disclose known material defects that affect the value or desirability of the property. This includes roof condition, plumbing issues, flooding history, structural problems, pest damage, and HOA issues. Disclosure is mandatory whether you use an agent or sell FSBO. Many FSBO sellers hire a real estate attorney to review their disclosure documents."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it actually cost to sell FSBO in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beyond no listing commission, FSBO sellers typically pay $300 to $500 for a flat-fee MLS listing, $150 to $400 for photography, $500 to $1,500 for attorney or disclosure review, plus their own time. Buyer's agent compensation, if offered, is a separate negotiated cost. Total FSBO overhead before accounting for lost sale price typically runs $1,500 to $4,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is FSBO a good idea in the current Ocala or Orlando market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most sellers it is not, unless you already have a known buyer. The market is more balanced than it was in 2021-2022, which means proper pricing and MLS exposure matter more than they did when anything sold quickly regardless of marketing. The commission savings are real but often offset by lower sale prices and higher stress."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I start FSBO and switch to an agent if it does not work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and many sellers do. The risk is that an extended FSBO period accumulates days on market, which buyers use as negotiating leverage when you eventually list with an agent. If you go FSBO, give it a defined timeframe (30 to 45 days) before deciding to list with an agent."
+      }
+    }
+  ]
+}
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:    #FFFFFF;
+      --cream:    #FAF8F4;
+      --cream-2:  #F2EBE0;
+      --char:     #0B1628;
+      --char-2:   #102035;
+      --char-3:   #172B46;
+      --gold:     #C8943A;
+      --gold-lt:  #E8B870;
+      --gold-dk:  #A07828;
+      --text:     #1A1F2E;
+      --muted:    #6A7080;
+      --subtle:   #9AA0B0;
+      --border:   #E2E6EE;
+      --r:        8px;
+      --r-lg:     14px;
+      --serif:    'Playfair Display', Georgia, serif;
+      --sans:     'Inter', -apple-system, sans-serif;
+      --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
+      --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.40s; }
+    .reveal-d6 { transition-delay: 0.48s; }
+
+    .gt {
+      background: var(--g-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 400;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-in {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-family: var(--serif); font-size: 19px; font-weight: 700;
+      color: var(--text); text-decoration: none; letter-spacing: 0.2px;
+    }
+    .logo b {
+      background: var(--g-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+    .nav-btn {
+      background: var(--g-gold); color: white;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 9px 20px;
+      border-radius: var(--r); border: none; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      transition: opacity 0.15s, transform 0.1s; display: inline-block;
+    }
+    .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      background: var(--g-hero);
+      padding: 80px 40px 80px;
+      text-align: center;
+    }
+    .inner { max-width: 800px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold-lt);
+      border: 1px solid rgba(200,148,58,0.3);
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: var(--serif); font-size: clamp(30px, 5vw, 52px);
+      font-weight: 800; color: white; line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: rgba(255,255,255,0.72);
+      max-width: 600px; margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--g-gold); color: white;
+      font-weight: 700; font-size: 13px;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 16px 36px; border-radius: var(--r);
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(168,120,40,0.4);
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .hero-cta:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      background: var(--cream); border-bottom: 1px solid var(--border);
+      padding: 10px 40px;
+    }
+    .breadcrumb-in {
+      max-width: 800px; margin: 0 auto;
+      font-size: 12px; color: var(--muted);
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* CONTENT */
+    .content {
+      background: var(--white);
+      padding: 64px 40px;
+    }
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-h2 {
+      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800; color: var(--text); line-height: 1.2;
+      margin-bottom: 40px;
+    }
+    .section-block {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-block:last-child { border-bottom: none; }
+    .section-block h2 {
+      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 700; color: var(--text); line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-block p {
+      font-size: 16px; color: #374151;
+      line-height: 1.75; margin-bottom: 16px;
+    }
+    .section-block p:last-child { margin-bottom: 0; }
+
+    /* BULLETS */
+    .benefit-list {
+      list-style: none;
+      margin: 24px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .benefit-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 15px; color: var(--text); line-height: 1.5;
+      padding: 14px 16px;
+      background: var(--cream); border-radius: var(--r);
+      border: 1px solid var(--border);
+    }
+    .benefit-list li::before {
+      content: "";
+      width: 6px; height: 6px; min-width: 6px;
+      background: var(--g-gold); border-radius: 50%;
+      margin-top: 6px;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: var(--cream);
+      padding: 64px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .faq-list { margin-top: 32px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0; cursor: pointer;
+      font-family: var(--sans); font-size: 16px; font-weight: 600;
+      color: var(--text); text-align: left; gap: 16px;
+    }
+    .faq-icon {
+      font-size: 20px; font-weight: 400; color: var(--gold);
+      min-width: 20px; transition: transform 0.2s;
+    }
+    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      display: none; padding-bottom: 20px;
+    }
+    .faq-a.on { display: block; }
+    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+    /* CTA STRIP */
+    .cta-strip {
+      background: var(--g-hero);
+      padding: 64px 40px;
+      text-align: center;
+    }
+    .cta-strip h2 {
+      font-family: var(--serif); font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800; color: white; margin-bottom: 14px;
+    }
+    .cta-strip p {
+      font-size: 16px; color: rgba(255,255,255,0.65);
+      max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 40px; text-align: center;
+    }
+    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    footer p { font-size: 11px; color: rgba(255,255,255,0.25); line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .nav-in { padding: 0 20px; }
+      .hero { padding: 60px 20px; }
+      .breadcrumb { padding: 10px 20px; }
+      .content { padding: 48px 20px; }
+      .faq-section { padding: 48px 20px; }
+      .cta-strip { padding: 48px 20px; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-in">
+      <a href="/" class="logo">Willy <b>Lopez</b></a>
+      <a href="/#home" class="nav-btn">Get Started Free</a>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-in">
+      <a href="/">Home</a>
+      <span>/</span>
+      FSBO vs Real Estate Agent in Florida: An Honest Comparison
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="inner">
+      <div class="hero-tag reveal">Free Service for Renters</div>
+      <h1 class="reveal reveal-d1">FSBO vs Real Estate Agent in Florida: An Honest Comparison</h1>
+      <p class="hero-sub reveal reveal-d2">Most FSBO sellers save less than they expect. Here is why, and when it might still make sense.</p>
+      <a href="/#home" class="hero-cta reveal reveal-d3">Find My Apartment Free</a>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="content" id="content">
+    <div class="inner">
+      <div class="section-label reveal">Guide</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2>Why People Try FSBO in Florida</h2>
+          <p>The appeal of selling your home without an agent is straightforward: you avoid paying listing commission. On a $300,000 home with a 3% listing commission, that is $9,000 you keep.</p><p>That is real money. The question is what you give up to keep it, and whether the tradeoff works out in your favor.</p><p>FSBO is most common when sellers know their buyer (a family member, neighbor, or existing tenant buying the property), when the market is so hot that anything sells regardless of marketing, or when the seller has significant real estate experience themselves.</p><p>For everyone else, the math usually comes out closer than sellers expect.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2>What FSBO Actually Costs in Florida</h2>
+          <p>Selling without an agent does not mean selling without costs. Here is what FSBO sellers in Florida still pay.</p><p>Florida disclosure requirements are mandatory regardless of whether you have an agent. You are legally required to disclose known material defects. If you miss something and the buyer finds out after closing, you are exposed to legal action. Many FSBO sellers hire a real estate attorney to review their disclosures, which runs $500 to $1,500.</p><p>Marketing costs are real. Without MLS access, FSBO homes get significantly less exposure. You can pay $300 to $500 for a flat-fee MLS listing service, plus photography ($150 to $400), a yard sign, and your own time for showings and follow-up.</p><p>Buyer's agent commission is still expected in most Florida transactions. Even post-NAR settlement, most buyers working with an agent expect their agent to be compensated. If you refuse to offer buyer's agent compensation, you shrink your buyer pool significantly, which reduces competition and typically your final sale price.</p><p>Florida requires a closing agent (title company or attorney). This cost is the same whether you have an agent or not.</p><p>Total FSBO overhead: $1,500 to $4,000 before accounting for time, pricing errors, and lost sale price.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2>What You Actually Give Up Without an Agent</h2>
+          <p>The commission savings only make sense if you sell for the same price you would have gotten with an agent. Research consistently shows FSBO homes sell for less than agent-listed homes, with the gap typically running 5 to 15% depending on the study and the market.</p><p>On a $300,000 home, a 5% gap is $15,000. That exceeds what you would have paid in listing commission.</p><p>FSBO sellers face several real disadvantages beyond marketing reach.</p><p>Pricing is hard without access to the right tools. Automated estimates like Zillow's Zestimate are notoriously inaccurate. Many FSBO sellers overprice initially (because they are emotionally attached to the home) and then chase the market down with price reductions. Homes with price reductions attract lower offers and longer days on market.</p><p>Negotiation is harder without a professional buffer. Buyers and their agents know how to negotiate. Most sellers are doing it once. Having an experienced agent in the middle changes the dynamic in your favor.</p><p>Inspection negotiations catch many FSBO sellers off guard. When the inspector finds issues (and they always find something), buyers submit repair requests. Knowing what to accept, what to counter, and what to push back on takes experience.</p><p>Transaction management has a lot of moving parts. Deadlines, contingencies, title issues, HOA approvals, and last-minute lender requests all need coordination. Missing a deadline can kill a deal.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2>When FSBO Actually Makes Sense</h2>
+          <p>There are situations where FSBO is reasonable.</p><p>You already know your buyer. If a family member, neighbor, friend, or tenant wants to buy your property, FSBO makes sense. You still need a title company and a real estate attorney to review the contract and disclosures, but the marketing problem is already solved.</p><p>The market is extremely hot and anything sells. In a true seller's market with multiple offers on every home, the agent's marketing advantage matters less. This was more true in 2021 and 2022 than it is now.</p><p>You have real estate experience. If you work in real estate, have sold homes before, or understand contracts and negotiations, you can manage the process yourself. Most people do not have this background.</p><p>For most sellers in Ocala and Orlando right now, the math favors an agent, particularly when you factor in proper pricing, MLS exposure, and negotiation support.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2>The NAR Settlement Changed Some of the Equation</h2>
+          <p>In August 2024, the National Association of Realtors settled a lawsuit that changed how buyer agent compensation works. Under the old model, sellers typically paid a total commission that covered both the listing agent and the buyer's agent. Under the new rules, buyer agent compensation is negotiated separately.</p><p>This does not make FSBO meaningfully easier or cheaper. Buyers working with agents still expect their agent to be paid, and the negotiation around that still happens. FSBO sellers still face this conversation.</p><p>What the settlement did change is that commission structures are now more explicitly negotiable for all sellers, whether they use an agent or not. This is worth a conversation before you list.</p>
+        </div>
+              <ul class='benefit-list'>
+          <li>Honest breakdown of real FSBO costs vs agent costs</li>
+          <li>Florida-specific disclosure and legal requirements covered</li>
+          <li>NAR settlement context included (commission rules changed in 2024)</li>
+          <li>No pressure pitch, just the actual tradeoffs</li>
+          <li>Licensed agent, Central Florida (Orlando and Ocala)</li>
+          <li>Licensed with Taylor Apartment Locator (12 years in the market)</li>
+        </ul>
+    </div>
+  </main>
+
+  
+      <section class="faq-section">
+        <div class="inner">
+          <div class="section-label reveal">FAQ</div>
+          <h2 class="section-h2 reveal">Common Questions</h2>
+          <div class="faq-list">
+          <div class="faq-item reveal reveal-d1">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Do FSBO homes sell for less than agent-listed homes in Florida?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Research consistently shows FSBO homes sell for less, typically 5 to 15% below comparable agent-listed homes. On a $300,000 home, a 5% gap is $15,000, which exceeds most listing commission costs. The gap is driven by limited marketing reach, pricing errors, and weaker negotiating position.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d2">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Do I still have to pay a buyer's agent if I sell FSBO in Florida?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>You are not legally required to, but refusing to offer buyer's agent compensation significantly shrinks your buyer pool. Most buyers working with an agent expect their agent to be compensated. Many buyer's agents will not show FSBO homes that offer no compensation, which means less competition and typically a lower final sale price.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d3">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              What disclosures are required when selling a home in Florida?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Florida requires sellers to disclose known material defects that affect the value or desirability of the property. This includes roof condition, plumbing issues, flooding history, structural problems, pest damage, and HOA issues. Disclosure is mandatory whether you use an agent or sell FSBO. Many FSBO sellers hire a real estate attorney to review their disclosure documents.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d4">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              How much does it actually cost to sell FSBO in Florida?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Beyond no listing commission, FSBO sellers typically pay $300 to $500 for a flat-fee MLS listing, $150 to $400 for photography, $500 to $1,500 for attorney or disclosure review, plus their own time. Buyer's agent compensation, if offered, is a separate negotiated cost. Total FSBO overhead before accounting for lost sale price typically runs $1,500 to $4,000.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d5">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Is FSBO a good idea in the current Ocala or Orlando market?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>For most sellers it is not, unless you already have a known buyer. The market is more balanced than it was in 2021-2022, which means proper pricing and MLS exposure matter more than they did when anything sold quickly regardless of marketing. The commission savings are real but often offset by lower sale prices and higher stress.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d6">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Can I start FSBO and switch to an agent if it does not work?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Yes, and many sellers do. The risk is that an extended FSBO period accumulates days on market, which buyers use as negotiating leverage when you eventually list with an agent. If you go FSBO, give it a defined timeframe (30 to 45 days) before deciding to list with an agent.</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div class="inner">
+      <h2 class="reveal">Ready to find your apartment?</h2>
+      <p class="reveal reveal-d1">It costs you nothing. I get paid by the property when you sign. Same-day responses.</p>
+      <a href="/#home" class="hero-cta reveal reveal-d2">Start For Free</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+    </div>
+    <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Serving Orlando &amp; Ocala, FL<br>
+    &copy; 2026 Willy Lopez. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = answer.classList.contains('on');
+      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
+      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      if (!isOpen) {
+        answer.classList.add('on');
+        btn.classList.add('open');
+      }
+    }
+  </script>
+</body>
+</html>
