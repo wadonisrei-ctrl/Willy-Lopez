@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How Does a Free Apartment Locator Work? | Willy Lopez</title>
+  <meta name="description" content="Wondering how a free apartment locator works? I search my network, match you to the right complex, and handle the legwork. You pay nothing. Here is how it works." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="How Does a Free Apartment Locator Work? | Willy Lopez" />
+  <meta property="og:description" content="Wondering how a free apartment locator works? I search my network, match you to the right complex, and handle the legwork. You pay nothing. Here is how it works." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://willy-lopez.netlify.app/how-free-apartment-locator-works" />
+  <link rel="canonical" href="https://willy-lopez.netlify.app/how-free-apartment-locator-works" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there any catch or hidden fee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No catch. No hidden fees. The property pays me a referral fee when you sign your lease. You pay the same rent you would pay if you found the apartment on your own. Sometimes I can get move-in specials that lower your first month."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to get options?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually the same day. Once I know your budget, move-in date, and requirements, I can send a curated shortlist within a few hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to sign anything to work with you?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No contract required to receive a shortlist. If you decide to apply at a community through me, there may be a standard referral form for the property's records, but there is no fee or obligation on your end."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I want to look at apartments not in your network?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can absolutely look on your own too. I am not exclusive. I just give you a faster, curated path to the properties I know well. The two approaches work well together."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with bad credit or low income applicants?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I can help find communities that are more flexible on credit requirements. Every property has its own approval criteria, and some are more lenient than others. Tell me your situation and I will be upfront about what is realistic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you help with Ocala apartments too?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. I serve both Greater Orlando and Ocala, FL. Ocala is a fast-growing market with lower rents than Orlando, and I have good coverage there."
+      }
+    }
+  ]
+}
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:    #FFFFFF;
+      --cream:    #FAF8F4;
+      --cream-2:  #F2EBE0;
+      --char:     #0B1628;
+      --char-2:   #102035;
+      --char-3:   #172B46;
+      --gold:     #C8943A;
+      --gold-lt:  #E8B870;
+      --gold-dk:  #A07828;
+      --text:     #1A1F2E;
+      --muted:    #6A7080;
+      --subtle:   #9AA0B0;
+      --border:   #E2E6EE;
+      --r:        8px;
+      --r-lg:     14px;
+      --serif:    'Playfair Display', Georgia, serif;
+      --sans:     'Inter', -apple-system, sans-serif;
+      --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
+      --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.40s; }
+    .reveal-d6 { transition-delay: 0.48s; }
+
+    .gt {
+      background: var(--g-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 400;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-in {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-family: var(--serif); font-size: 19px; font-weight: 700;
+      color: var(--text); text-decoration: none; letter-spacing: 0.2px;
+    }
+    .logo b {
+      background: var(--g-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 800;
+    }
+    .nav-btn {
+      background: var(--g-gold); color: white;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 9px 20px;
+      border-radius: var(--r); border: none; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      transition: opacity 0.15s, transform 0.1s; display: inline-block;
+    }
+    .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      background: var(--g-hero);
+      padding: 80px 40px 80px;
+      text-align: center;
+    }
+    .inner { max-width: 800px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold-lt);
+      border: 1px solid rgba(200,148,58,0.3);
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: var(--serif); font-size: clamp(30px, 5vw, 52px);
+      font-weight: 800; color: white; line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: rgba(255,255,255,0.72);
+      max-width: 600px; margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--g-gold); color: white;
+      font-weight: 700; font-size: 13px;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 16px 36px; border-radius: var(--r);
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(168,120,40,0.4);
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .hero-cta:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      background: var(--cream); border-bottom: 1px solid var(--border);
+      padding: 10px 40px;
+    }
+    .breadcrumb-in {
+      max-width: 800px; margin: 0 auto;
+      font-size: 12px; color: var(--muted);
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* CONTENT */
+    .content {
+      background: var(--white);
+      padding: 64px 40px;
+    }
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-h2 {
+      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800; color: var(--text); line-height: 1.2;
+      margin-bottom: 40px;
+    }
+    .section-block {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-block:last-child { border-bottom: none; }
+    .section-block h2 {
+      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 700; color: var(--text); line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-block p {
+      font-size: 16px; color: #374151;
+      line-height: 1.75; margin-bottom: 16px;
+    }
+    .section-block p:last-child { margin-bottom: 0; }
+
+    /* BULLETS */
+    .benefit-list {
+      list-style: none;
+      margin: 24px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .benefit-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 15px; color: var(--text); line-height: 1.5;
+      padding: 14px 16px;
+      background: var(--cream); border-radius: var(--r);
+      border: 1px solid var(--border);
+    }
+    .benefit-list li::before {
+      content: "";
+      width: 6px; height: 6px; min-width: 6px;
+      background: var(--g-gold); border-radius: 50%;
+      margin-top: 6px;
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: var(--cream);
+      padding: 64px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .faq-list { margin-top: 32px; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0; cursor: pointer;
+      font-family: var(--sans); font-size: 16px; font-weight: 600;
+      color: var(--text); text-align: left; gap: 16px;
+    }
+    .faq-icon {
+      font-size: 20px; font-weight: 400; color: var(--gold);
+      min-width: 20px; transition: transform 0.2s;
+    }
+    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      display: none; padding-bottom: 20px;
+    }
+    .faq-a.on { display: block; }
+    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+    /* CTA STRIP */
+    .cta-strip {
+      background: var(--g-hero);
+      padding: 64px 40px;
+      text-align: center;
+    }
+    .cta-strip h2 {
+      font-family: var(--serif); font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800; color: white; margin-bottom: 14px;
+    }
+    .cta-strip p {
+      font-size: 16px; color: rgba(255,255,255,0.65);
+      max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 40px; text-align: center;
+    }
+    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    footer p { font-size: 11px; color: rgba(255,255,255,0.25); line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .nav-in { padding: 0 20px; }
+      .hero { padding: 60px 20px; }
+      .breadcrumb { padding: 10px 20px; }
+      .content { padding: 48px 20px; }
+      .faq-section { padding: 48px 20px; }
+      .cta-strip { padding: 48px 20px; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-in">
+      <a href="/" class="logo">Willy <b>Lopez</b></a>
+      <a href="/#home" class="nav-btn">Get Started Free</a>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-in">
+      <a href="/">Home</a>
+      <span>/</span>
+      How Does a Free Apartment Locator Work?
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="inner">
+      <div class="hero-tag reveal">Free Service for Renters</div>
+      <h1 class="reveal reveal-d1">How Does a Free Apartment Locator Work?</h1>
+      <p class="hero-sub reveal reveal-d2">You pay nothing. I search every complex in my network and find the right fit for your budget and timeline.</p>
+      <a href="/#home" class="hero-cta reveal reveal-d3">Find My Apartment Free</a>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="content" id="content">
+    <div class="inner">
+      <div class="section-label reveal">Guide</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2>The Short Version</h2>
+          <p>A free apartment locator is a licensed real estate agent who searches the rental market on your behalf. You give me your budget, your ideal location, and a few must-haves. I search my network of 30+ apartment communities, filter out the ones that do not match, and send you the best options.</p><p>You tour. You decide. You sign. I get paid by the apartment community, not you. The property already budgets for locator fees because it costs them less than running their own ads.</p><p>You get expert help for free. The property fills a unit faster. Everyone wins.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2>Why Is It Actually Free?</h2>
+          <p>Florida landlords and property management companies pay apartment locators a referral fee when a tenant signs a lease. This is standard practice across Central Florida.</p><p>The fee comes from the property's marketing budget, not out of your pocket. You would pay the same rent whether you found the apartment yourself or came through me. In many cases, I can negotiate move-in specials and reduced fees that you would not find on your own.</p><p>In short: the service is free because the property pays for it. You benefit from the help with no added cost.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2>What I Actually Do For You</h2>
+          <p>Most people who search for apartments on their own spend 10 to 20 hours browsing listings, calling communities, and comparing options. I compress that into one conversation.</p><p>Here is what happens when you reach out:</p><p>1. I ask a few questions about your budget, move-in date, bedroom count, and any requirements (pets, parking, washer/dryer, etc.).
+2. I check availability across my network of communities in Orlando and Ocala.
+3. I send you a curated shortlist of 3 to 5 options that actually fit your criteria, with current pricing and availability.
+4. If you want, I schedule tours directly with the properties.
+5. When you find the right place, I help you through the application.</p><p>You do not spend hours on hold or drive around to communities with vacant signs. I handle that.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2>Who Should Use an Apartment Locator?</h2>
+          <p>You get the most value from a locator if any of these apply:</p><p>You are moving from out of state and cannot tour in person. I know which communities have good management, which ones have thin walls, and which ones look better in photos than they are in person.</p><p>You are on a tight timeline. Military PCS orders, job relocations, and lease expirations all create urgency. I can turn around a shortlist the same day.</p><p>You have specific requirements. Pets, income restrictions, short-term leases, furnished units, or accessibility needs. These filter out most of the market fast. I know which communities accommodate them.</p><p>You are overwhelmed by options. Orlando and Ocala have hundreds of apartment communities. Knowing which 5 to focus on is half the battle.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2>My Service Area</h2>
+          <p>I serve Greater Orlando and Ocala, FL. That includes neighborhoods across Orange, Osceola, Seminole, and Marion counties.</p><p>In Orlando: Downtown, Lake Nona, Celebration, Kissimmee, Altamonte Springs, Maitland, Oviedo, Dr. Phillips, Windermere, and more.</p><p>In Ocala: Marion County, Silver Springs Shores, SE Ocala, downtown Ocala, and surrounding areas.</p><p>If you are looking somewhere in Central Florida and are not sure if I cover it, just ask.</p>
+        </div>
+      
+    </div>
+  </main>
+
+  
+      <section class="faq-section">
+        <div class="inner">
+          <div class="section-label reveal">FAQ</div>
+          <h2 class="section-h2 reveal">Common Questions</h2>
+          <div class="faq-list">
+          <div class="faq-item reveal reveal-d1">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Is there any catch or hidden fee?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>No catch. No hidden fees. The property pays me a referral fee when you sign your lease. You pay the same rent you would pay if you found the apartment on your own. Sometimes I can get move-in specials that lower your first month.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d2">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              How long does it take to get options?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Usually the same day. Once I know your budget, move-in date, and requirements, I can send a curated shortlist within a few hours.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d3">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Do I have to sign anything to work with you?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>No contract required to receive a shortlist. If you decide to apply at a community through me, there may be a standard referral form for the property's records, but there is no fee or obligation on your end.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d4">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              What if I want to look at apartments not in your network?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>You can absolutely look on your own too. I am not exclusive. I just give you a faster, curated path to the properties I know well. The two approaches work well together.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d5">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Do you work with bad credit or low income applicants?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>I can help find communities that are more flexible on credit requirements. Every property has its own approval criteria, and some are more lenient than others. Tell me your situation and I will be upfront about what is realistic.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d6">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Do you help with Ocala apartments too?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Yes. I serve both Greater Orlando and Ocala, FL. Ocala is a fast-growing market with lower rents than Orlando, and I have good coverage there.</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div class="inner">
+      <h2 class="reveal">Ready to find your apartment?</h2>
+      <p class="reveal reveal-d1">It costs you nothing. I get paid by the property when you sign. Same-day responses.</p>
+      <a href="/#home" class="hero-cta reveal reveal-d2">Start For Free</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+    </div>
+    <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Serving Orlando &amp; Ocala, FL<br>
+    &copy; 2026 Willy Lopez. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = answer.classList.contains('on');
+      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
+      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      if (!isOpen) {
+        answer.classList.add('on');
+        btn.classList.add('open');
+      }
+    }
+  </script>
+</body>
+</html>
