@@ -31,6 +31,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://willy-lopez.vercel.app/disney-cast-member-apartments</loc>
+    <lastmod>2026-07-03</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://willy-lopez.vercel.app/apartments-downtown-orlando</loc>
     <lastmod>2026-07-02</lastmod>
     <priority>0.8</priority>
