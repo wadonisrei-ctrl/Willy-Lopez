@@ -176,24 +176,6 @@
           <option value="Just exploring">Just exploring</option>
         </select>
 
-        <div class="row2">
-          <div>
-            <label for="f-credit">Credit Range</label>
-            <select id="f-credit">
-              <option value="700+">700 or above</option>
-              <option value="660-699">660-699</option>
-              <option value="620-659">620-659</option>
-              <option value="580-619">580-619</option>
-              <option value="Below 580">Below 580</option>
-              <option value="not provided">Not sure</option>
-            </select>
-          </div>
-          <div>
-            <label for="f-income">Monthly Income</label>
-            <input type="number" id="f-income" placeholder="4000" />
-          </div>
-        </div>
-
         <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get Your Free List</button>
         <div class="err-msg" id="errMsg">Something went wrong. Please try again, or text/call (718) 635-0140 directly.</div>
         <div class="fineprint">Licensed Central Florida apartment locator. Paid by the complex, never by you.</div>
@@ -231,9 +213,7 @@
         budget_max: parseInt(budget, 10) || 0,
         bedrooms: document.getElementById('f-beds').value,
         area_pref: [document.getElementById('f-area').value],
-        move_in_date: document.getElementById('f-movein').value,
-        credit_range: document.getElementById('f-credit').value,
-        monthly_income: parseInt(document.getElementById('f-income').value, 10) || 0
+        move_in_date: document.getElementById('f-movein').value
       };
 
       fetch(INTAKE_URL, {
