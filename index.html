@@ -1525,7 +1525,7 @@
       padding-top: 32px;
       border-top: 1px solid rgba(240,232,216,0.06);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1.8fr 1fr 1fr;
       gap: 32px;
     }
     .foot-sitemap h4 {
@@ -1537,6 +1537,12 @@
       margin-bottom: 14px;
     }
     .foot-sitemap ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .foot-sitemap .rental-list {
+      display: block;
+      column-count: 2;
+      column-gap: 24px;
+    }
+    .foot-sitemap .rental-list li { break-inside: avoid-column; margin-bottom: 8px; }
     .foot-sitemap a {
       text-decoration: none;
       font-size: 11px;
@@ -1546,6 +1552,7 @@
     .foot-sitemap a:hover { color: rgba(240,232,216,0.6); }
     @media (max-width: 640px) {
       .foot-sitemap { grid-template-columns: 1fr; gap: 20px; }
+      .foot-sitemap .rental-list { column-count: 1; }
     }
 
     /* MOBILE STICKY */
@@ -2557,7 +2564,7 @@
     <div class="foot-sitemap">
       <div>
         <h4>Rental Areas</h4>
-        <ul>
+        <ul class="rental-list">
           <li><a href="/how-free-apartment-locator-works">How a Free Locator Works</a></li>
           <li><a href="/ocala-fl-apartments">Apartments in Ocala</a></li>
           <li><a href="/average-rent-ocala-fl">Average Rent in Ocala</a></li>
