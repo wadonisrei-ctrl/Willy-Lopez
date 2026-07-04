@@ -121,7 +121,8 @@
       padding: 20px 4px 4px;
     }
     .success h2 { font-family: var(--serif); font-size: 1.4rem; margin: 0 0 10px; }
-    .success p { color: var(--muted); line-height: 1.55; margin: 0; }
+    .success p { color: var(--muted); line-height: 1.55; margin: 0 0 10px; }
+    .success p:last-child { margin-bottom: 0; }
     .err-msg { display: none; color: #B3261E; font-size: 0.85rem; margin-top: 10px; text-align: center; }
   </style>
 </head>
@@ -191,8 +192,10 @@
       </form>
 
       <div class="success" id="successMsg">
-        <h2>You're all set!</h2>
-        <p>I'm personally matching you to the best available apartments right now. Check your inbox in the next few minutes, and check spam just in case. Questions? Text me directly: (718) 635-0140.</p>
+        <h2>Got it!</h2>
+        <p>Check your email, I just sent a quick confirmation (check spam just in case).</p>
+        <p>I'm putting your options together now and will call or text you shortly.</p>
+        <p>Questions before then? Text me directly: (718) 635-0140.</p>
         <p style="margin-top:14px;font-weight:600;color:var(--char-2);">Willy Lopez</p>
       </div>
     </div>
