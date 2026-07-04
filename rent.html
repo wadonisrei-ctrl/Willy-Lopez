@@ -122,9 +122,9 @@
   <div class="hero">
     <h1>You've probably messaged three or four listings this week.</h1>
     <p style="font-size:1.15rem;color:#fff;font-weight:600;">How many actually called you back?</p>
-    <p>Here's what I actually do: call the leasing office myself, ask about the special they don't post online, and confirm the unit in the photos is the one they'll actually show you.</p>
+    <p>Here's how it actually works: I check what you'll qualify for, send real options that fit, and get you scheduled to see the one you like.</p>
     <p>Tell me your budget and move-in date. I'll start today.</p>
-    <p>Free. The complex pays me when you sign. Not you.</p>
+    <p>Free. The complex pays me once you're approved. Not you.</p>
   </div>
 
   <div class="wrap">
@@ -194,7 +194,7 @@
           </div>
         </div>
 
-        <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get My Free List</button>
+        <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get Your Free List</button>
         <div class="err-msg" id="errMsg">Something went wrong. Please try again, or text/call (718) 635-0140 directly.</div>
         <div class="fineprint">Licensed Central Florida apartment locator. Paid by the complex, never by you.</div>
       </form>
@@ -248,7 +248,7 @@
         })
         .catch(function() {
           btn.disabled = false;
-          btn.textContent = 'Get My Free List';
+          btn.textContent = 'Get Your Free List';
           document.getElementById('errMsg').style.display = 'block';
         });
     }
