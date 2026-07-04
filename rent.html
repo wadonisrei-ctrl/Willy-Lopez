@@ -212,6 +212,12 @@
   <script>
     var INTAKE_URL = "https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake";
 
+    function sourceLabel() {
+      var src = new URLSearchParams(window.location.search).get('src');
+      var labels = { mp_qr: 'FB Marketplace QR', mp_dm: 'FB Marketplace DM', fb_group: 'FB Group' };
+      return src ? (labels[src] || src) : '';
+    }
+
     function submitIntake() {
       var name = document.getElementById('f-name').value.trim();
       var email = document.getElementById('f-email').value.trim();
@@ -234,7 +240,8 @@
         bedrooms: document.getElementById('f-beds').value,
         area_pref: [document.getElementById('f-area').value],
         move_in_date: document.getElementById('f-movein').value,
-        website: document.getElementById('f-website').value
+        website: document.getElementById('f-website').value,
+        source: sourceLabel()
       };
 
       fetch(INTAKE_URL, {
