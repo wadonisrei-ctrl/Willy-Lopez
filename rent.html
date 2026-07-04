@@ -120,10 +120,11 @@
 <body>
 
   <div class="hero">
-    <h1>Still scrolling apartment listings that never call you back?</h1>
-    <p>I'm Willy. I find apartments in Central Florida for a living.</p>
-    <p>Tell me your budget and move-in date. I'll send a shortlist that actually fits, today.</p>
-    <p>It's free. The complex pays me when you sign. Never you.</p>
+    <h1>You've probably messaged three or four listings this week.</h1>
+    <p style="font-size:1.15rem;color:#fff;font-weight:600;">How many actually called you back?</p>
+    <p>Here's what I actually do: call the leasing office myself, ask about the special they don't post online, and confirm the unit in the photos is the one they'll actually show you.</p>
+    <p>Tell me your budget and move-in date. I'll start today.</p>
+    <p>Free. The complex pays me when you sign. Not you.</p>
   </div>
 
   <div class="wrap">
@@ -193,9 +194,9 @@
           </div>
         </div>
 
-        <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get My Free Shortlist</button>
+        <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get My Free List</button>
         <div class="err-msg" id="errMsg">Something went wrong. Please try again, or text/call (718) 635-0140 directly.</div>
-        <div class="fineprint">Free, always. I'm a licensed apartment locator. The complex pays me, never you.</div>
+        <div class="fineprint">Licensed Central Florida apartment locator. Paid by the complex, never by you.</div>
       </form>
 
       <div class="success" id="successMsg">
@@ -247,7 +248,7 @@
         })
         .catch(function() {
           btn.disabled = false;
-          btn.textContent = 'Get My Free Shortlist';
+          btn.textContent = 'Get My Free List';
           document.getElementById('errMsg').style.display = 'block';
         });
     }
