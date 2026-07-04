@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Apartment Shortlist — Willy Lopez</title>
+  <meta name="description" content="Get a free personalized apartment shortlist for Central Florida. No cost to you, ever." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF8F4;
+      --char: #0B1628;
+      --char-2: #102035;
+      --gold: #C8943A;
+      --gold-lt: #E8B870;
+      --text: #1A1F2E;
+      --muted: #6A7080;
+      --border: #E2E6EE;
+      --r: 8px;
+      --r-lg: 14px;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+      --g-hero: linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+    .hero {
+      background: var(--g-hero);
+      color: #fff;
+      padding: 48px 20px 40px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 5vw, 2.3rem);
+      margin: 0 0 14px;
+      line-height: 1.25;
+    }
+    .hero p {
+      color: #C9D2E0;
+      max-width: 480px;
+      margin: 0 auto;
+      font-size: 1.02rem;
+      line-height: 1.55;
+    }
+    .wrap {
+      max-width: 480px;
+      margin: -28px auto 40px;
+      padding: 0 16px;
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--r-lg);
+      box-shadow: 0 10px 40px rgba(11,22,40,0.14);
+      padding: 28px 22px;
+    }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--char-2);
+      margin: 16px 0 6px;
+    }
+    label:first-of-type { margin-top: 0; }
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      font-family: var(--sans);
+      font-size: 0.98rem;
+      color: var(--text);
+      background: #fff;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    button.submit {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: none;
+      border-radius: var(--r);
+      background: linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
+      color: #0B1628;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1.02rem;
+      cursor: pointer;
+    }
+    button.submit:disabled { opacity: 0.7; cursor: default; }
+    .fineprint {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+    .success {
+      display: none;
+      text-align: center;
+      padding: 20px 4px 4px;
+    }
+    .success h2 { font-family: var(--serif); font-size: 1.4rem; margin: 0 0 10px; }
+    .success p { color: var(--muted); line-height: 1.55; margin: 0; }
+    .err-msg { display: none; color: #B3261E; font-size: 0.85rem; margin-top: 10px; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Still scrolling for a place that fits your budget?</h1>
+    <p>Calling complex after complex and getting ghosted or hit with hidden fees gets old fast. Tell me your budget, area, and move-in date and I'll send you a personalized shortlist, free, today.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="formCard">
+      <form id="intakeForm" onsubmit="return false;">
+        <label for="f-name">Full Name</label>
+        <input type="text" id="f-name" required autocomplete="name" />
+
+        <label for="f-email">Email</label>
+        <input type="email" id="f-email" required autocomplete="email" />
+
+        <label for="f-phone">Phone Number</label>
+        <input type="tel" id="f-phone" autocomplete="tel" placeholder="(optional, faster response)" />
+
+        <div class="row2">
+          <div>
+            <label for="f-budget">Max Monthly Budget</label>
+            <input type="number" id="f-budget" placeholder="1500" required />
+          </div>
+          <div>
+            <label for="f-beds">Bedrooms</label>
+            <select id="f-beds">
+              <option value="Studio">Studio</option>
+              <option value="1BR" selected>1 Bedroom</option>
+              <option value="2BR">2 Bedrooms</option>
+              <option value="3BR+">3+ Bedrooms</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="f-area">Area</label>
+        <select id="f-area">
+          <option value="No preference">No preference / show me everything</option>
+          <option>Downtown Orlando</option>
+          <option>Lake Nona</option>
+          <option>Winter Garden</option>
+          <option>Kissimmee/Davenport</option>
+          <option>Oviedo</option>
+          <option>Millenia/Sand Lake</option>
+          <option>Apopka</option>
+          <option>Ocala</option>
+        </select>
+
+        <label for="f-movein">When do you need to move in?</label>
+        <select id="f-movein">
+          <option value="ASAP">ASAP (within 30 days)</option>
+          <option value="1-2 months">1-2 months</option>
+          <option value="2-3 months">2-3 months</option>
+          <option value="Just exploring">Just exploring</option>
+        </select>
+
+        <div class="row2">
+          <div>
+            <label for="f-credit">Credit Range</label>
+            <select id="f-credit">
+              <option value="700+">700 or above</option>
+              <option value="660-699">660-699</option>
+              <option value="620-659">620-659</option>
+              <option value="580-619">580-619</option>
+              <option value="Below 580">Below 580</option>
+              <option value="not provided">Not sure</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-income">Monthly Income</label>
+            <input type="number" id="f-income" placeholder="4000" />
+          </div>
+        </div>
+
+        <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get My Free Shortlist</button>
+        <div class="err-msg" id="errMsg">Something went wrong. Please try again, or text/call (718) 635-0140 directly.</div>
+        <div class="fineprint">Completely free. I'm a licensed apartment locator, paid by the complex when you sign, not by you.</div>
+      </form>
+
+      <div class="success" id="successMsg">
+        <h2>You're all set!</h2>
+        <p>I'm already matching you to the best available apartments. Check your inbox in the next few minutes, and check spam just in case. Questions? Text (718) 635-0140.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var INTAKE_URL = "https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake";
+
+    function submitIntake() {
+      var name = document.getElementById('f-name').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      var budget = document.getElementById('f-budget').value;
+      if (!name || !email || !budget) {
+        document.getElementById('intakeForm').reportValidity();
+        return;
+      }
+
+      var btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      document.getElementById('errMsg').style.display = 'none';
+
+      var payload = {
+        name: name,
+        email: email,
+        phone: document.getElementById('f-phone').value.trim(),
+        budget_max: parseInt(budget, 10) || 0,
+        bedrooms: document.getElementById('f-beds').value,
+        area_pref: [document.getElementById('f-area').value],
+        move_in_date: document.getElementById('f-movein').value,
+        credit_range: document.getElementById('f-credit').value,
+        monthly_income: parseInt(document.getElementById('f-income').value, 10) || 0
+      };
+
+      fetch(INTAKE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function(res) {
+          if (!res.ok) throw new Error('bad response');
+          document.getElementById('intakeForm').style.display = 'none';
+          document.getElementById('successMsg').style.display = 'block';
+        })
+        .catch(function() {
+          btn.disabled = false;
+          btn.textContent = 'Get My Free Shortlist';
+          document.getElementById('errMsg').style.display = 'block';
+        });
+    }
+  </script>
+</body>
+</html>
