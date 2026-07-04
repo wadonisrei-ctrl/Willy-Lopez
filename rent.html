@@ -127,20 +127,120 @@
     .success p { color: var(--muted); line-height: 1.55; margin: 0 0 10px; }
     .success p:last-child { margin-bottom: 0; }
     .err-msg { display: none; color: #B3261E; font-size: 0.85rem; margin-top: 10px; text-align: center; }
+
+    .free-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200,148,58,0.14);
+      border: 1px solid rgba(232,184,112,0.4);
+      color: var(--gold-lt);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .how-list {
+      list-style: none;
+      margin: 0 auto 10px;
+      padding: 0;
+      max-width: 420px;
+      text-align: left;
+    }
+    .how-list li {
+      display: flex;
+      gap: 10px;
+      color: #C9D2E0;
+      font-size: 1.02rem;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .how-list li::before {
+      content: '✓';
+      color: var(--gold-lt);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .whoami {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .whoami img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .whoami p { margin: 0; font-size: 0.88rem; line-height: 1.4; color: var(--muted); }
+    .whoami p strong { color: var(--char); font-family: var(--serif); font-size: 1rem; }
+    .card { position: relative; }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: var(--r-lg) var(--r-lg) 0 0;
+      background: linear-gradient(90deg, #A07828, #E8B870, #A07828);
+    }
+    .talk-line {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+    .talk-line a { color: var(--char-2); font-weight: 600; text-decoration: none; }
+    .proof-wrap { max-width: 480px; margin: 8px auto 0; padding: 0 16px 8px; }
+    .proof-h { text-align: center; font-family: var(--serif); font-size: 1.1rem; color: var(--char); margin: 26px 0 14px; }
+    .rc-mini {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+    .rc-mini .stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 8px; }
+    .rc-mini p { font-size: 0.88rem; line-height: 1.6; color: var(--text); margin: 0 0 8px; }
+    .rc-mini .who { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+    .faq-mini { margin-top: 6px; }
+    .faq-mini details {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 12px 16px;
+      margin-bottom: 8px;
+    }
+    .faq-mini summary { font-size: 0.9rem; font-weight: 600; color: var(--char-2); cursor: pointer; }
+    .faq-mini p { font-size: 0.85rem; line-height: 1.55; color: var(--muted); margin: 8px 0 0; }
   </style>
 </head>
 <body>
 
   <div class="hero">
+    <div class="free-badge">100% FREE &middot; paid by the complex, never by you</div>
     <h1>You've probably messaged three or four listings this week.</h1>
     <p style="font-size:1.15rem;color:#fff;font-weight:600;">How many actually called you back?</p>
-    <p>Here's how it actually works: I check what you'll qualify for, send real options that fit, and get you scheduled to see the one you like.</p>
+    <ul class="how-list">
+      <li>I check what you'll qualify for</li>
+      <li>I send real options that fit your budget</li>
+      <li>I get you scheduled to see the one you like</li>
+    </ul>
     <p>Tell me your budget and move-in date. I'll start today.</p>
-    <p>Free. The complex pays me once you're approved. Not you.</p>
   </div>
 
   <div class="wrap">
     <div class="card" id="formCard">
+      <div class="whoami">
+        <img src="images/willy.jpg" alt="Willy Lopez, Licensed Apartment Locator" />
+        <p><strong>Willy Lopez</strong><br>I'll personally handle your search, no call center, no bot.</p>
+      </div>
       <form id="intakeForm" onsubmit="return false;">
         <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
           <label for="f-website">Website</label>
@@ -195,6 +295,7 @@
 
         <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get Your Free List</button>
         <div class="err-msg" id="errMsg">Something went wrong. Please try again, or text/call (718) 635-0140 directly.</div>
+        <p class="talk-line">Prefer to talk? Text or call <a href="tel:17186350140">(718) 635-0140</a>.</p>
         <div class="fineprint">Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator. Paid by the complex, never by you.</div>
         <p class="tcpa-note">By submitting, you agree to be contacted by Willy Lopez at the number provided, including by text. Msg &amp; data rates may apply. See our <a href="privacy.html">Privacy Policy</a>.</p>
       </form>
@@ -206,6 +307,40 @@
         <p>Questions before then? Text me directly: (718) 635-0140.</p>
         <p style="margin-top:14px;font-weight:600;color:var(--char-2);">Willy Lopez</p>
       </div>
+    </div>
+  </div>
+
+  <div class="proof-wrap">
+    <p class="proof-h">What clients are saying</p>
+    <div class="rc-mini">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"Willy was incredibly easy to work with. He answered every question I had, kept me updated throughout the whole process, and never made me feel like I was just another client."</p>
+      <div class="who">Jostin Lopez, Client &middot; Central Florida</div>
+    </div>
+    <div class="rc-mini">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>"Working with Willy took all the stress out of what could have been a really overwhelming process. He was patient, super responsive, and genuinely cared about finding the right fit."</p>
+      <div class="who">Ashley Reinoso, Client &middot; Central Florida</div>
+    </div>
+
+    <p class="proof-h">Common questions</p>
+    <div class="faq-mini">
+      <details>
+        <summary>Is this service really free?</summary>
+        <p>Yes, 100% free. Apartment communities pay me a referral fee when you sign a lease. You never pay anything: no service fee, no finder's fee, no processing charge.</p>
+      </details>
+      <details>
+        <summary>How fast can I expect to hear back?</summary>
+        <p>I respond to every inquiry within 24 hours. Once I understand what you're looking for, I can usually have options to you within a day of connecting.</p>
+      </details>
+      <details>
+        <summary>Can you help if I'm moving from out of state?</summary>
+        <p>Absolutely. I work with out-of-state clients regularly. I'll walk you through neighborhoods and detailed breakdowns so you feel confident before committing, many clients sign their lease without setting foot in Florida first.</p>
+      </details>
+      <details>
+        <summary>What if I have pets?</summary>
+        <p>Tell me upfront and I'll factor it in from the start. Pet policies vary widely between communities, including breed and weight limits, fees, and deposits, and I know which ones are genuinely pet-friendly.</p>
+      </details>
     </div>
   </div>
 
