@@ -195,9 +195,10 @@
       </form>
 
       <div class="success" id="successMsg">
-        <h2>Got it!</h2>
-        <p>Check your email, I just sent a quick confirmation (check spam just in case).</p>
-        <p>I'm putting your options together now and will call or text you shortly.</p>
+        <h2 id="successHeading">Thanks!</h2>
+        <p>I've got your details and I'm already checking them against what's actually available today.</p>
+        <p>I'll call or text you shortly, usually the same day, so we can find the right fit and get you scheduled to see it.</p>
+        <p>Check your email too, I just sent a quick confirmation (peek in spam just in case).</p>
         <p>Questions before then? Text me directly: (718) 635-0140.</p>
         <p style="margin-top:14px;font-weight:600;color:var(--char-2);">Willy Lopez</p>
       </div>
@@ -238,6 +239,8 @@
       })
         .then(function(res) {
           if (!res.ok) throw new Error('bad response');
+          var firstName = name.split(' ')[0];
+          document.getElementById('successHeading').textContent = 'Thanks, ' + firstName + '!';
           document.getElementById('intakeForm').style.display = 'none';
           document.getElementById('successMsg').style.display = 'block';
         })
