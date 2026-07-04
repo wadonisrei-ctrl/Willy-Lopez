@@ -1928,12 +1928,15 @@
               <label for="r-area">Area</label>
               <select id="r-area">
                 <option value="" disabled selected>Where?</option>
-                <option>Orlando</option>
-                <option>Ocala</option>
+                <option>Downtown Orlando</option>
                 <option>Lake Nona</option>
-                <option>Kissimmee</option>
-                <option>Davenport</option>
-                <option>Not sure yet</option>
+                <option>Winter Garden</option>
+                <option>Kissimmee/Davenport</option>
+                <option>Oviedo</option>
+                <option>Millenia/Sand Lake</option>
+                <option>Apopka</option>
+                <option>Ocala</option>
+                <option value="No preference">Not sure yet</option>
               </select>
             </div>
             <div class="fg">
@@ -2687,6 +2690,23 @@
     document.getElementById('step2').classList.add('active');
   }
 
+  // Bucketed dropdown -> the number match_complexes.py actually needs (upper bound of the
+  // selected range; "or more" gets a high ceiling so nothing is excluded on price alone).
+  var RENT_BUDGET_MAP = {
+    'Under $1,000': 1000,
+    '$1,000 to $1,400': 1400,
+    '$1,400 to $1,800': 1800,
+    '$1,800 to $2,200': 2200,
+    '$2,200 or more': 5000
+  };
+  var RENT_BEDS_MAP = {
+    'Studio': 'Studio',
+    '1 Bedroom': '1BR',
+    '2 Bedrooms': '2BR',
+    '3 or more': '3BR+'
+  };
+  var RENT_INTAKE_URL = 'https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake';
+
   function submitForm(type) {
     var emailId = type === 'rent' ? 'r-email' : type === 'buy' ? 'b-email' : 's-email';
     var email = document.getElementById(emailId).value.trim();
@@ -2697,14 +2717,34 @@
     btn.classList.add('btn-loading');
     btn.textContent = 'Sending...';
 
+    if (type === 'rent') {
+      var payload = {
+        name: window.leadName || '',
+        phone: window.leadPhone || '',
+        email: email,
+        area_pref: [document.getElementById('r-area').value || 'No preference'],
+        move_in_date: document.getElementById('r-time').value,
+        budget_max: RENT_BUDGET_MAP[document.getElementById('r-budget').value] || 0,
+        bedrooms: RENT_BEDS_MAP[document.getElementById('r-beds').value] || '1BR'
+      };
+
+      fetch(RENT_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .then(function(res) {
+          if (!res.ok) throw new Error('bad response');
+          showSuccess();
+        })
+        .catch(function(err) {
+          console.error('Renter intake error:', err);
+          btn.classList.remove('btn-loading');
+          btn.textContent = 'Try Again';
+          alert('Something went wrong. Please try again or call/text directly.');
+        });
+      return;
+    }
+
     var data = { name: window.leadName || '', phone: window.leadPhone || '', email: email, lead_type: type };
 
-    if (type === 'rent') {
-      data.area     = document.getElementById('r-area').value;
-      data.timeline = document.getElementById('r-time').value;
-      data.budget   = document.getElementById('r-budget').value;
-      data.bedrooms = document.getElementById('r-beds').value;
-    } else if (type === 'buy') {
+    if (type === 'buy') {
       data.area          = document.getElementById('b-area').value;
       data.timeline      = document.getElementById('b-time').value;
       data.price_range   = document.getElementById('b-price').value;
