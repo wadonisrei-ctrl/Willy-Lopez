@@ -272,18 +272,29 @@
           </div>
         </div>
 
-        <label for="f-area">Area</label>
-        <select id="f-area">
-          <option value="No preference">No preference / show me everything</option>
-          <option>Downtown Orlando</option>
-          <option>Lake Nona</option>
-          <option>Winter Garden</option>
-          <option>Kissimmee/Davenport</option>
-          <option>Oviedo</option>
-          <option>Millenia/Sand Lake</option>
-          <option>Apopka</option>
-          <option>Ocala</option>
-        </select>
+        <div class="row2">
+          <div>
+            <label for="f-area">Area</label>
+            <select id="f-area">
+              <option value="No preference">No preference</option>
+              <option>Downtown Orlando</option>
+              <option>Lake Nona</option>
+              <option>Winter Garden</option>
+              <option>Kissimmee/Davenport</option>
+              <option>Oviedo</option>
+              <option>Millenia/Sand Lake</option>
+              <option>Apopka</option>
+              <option>Ocala</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-pets">Pets?</label>
+            <select id="f-pets">
+              <option value="no">No pets</option>
+              <option value="yes">Yes, I have a pet</option>
+            </select>
+          </div>
+        </div>
 
         <label for="f-movein">When do you need to move in?</label>
         <select id="f-movein">
@@ -375,6 +386,7 @@
         bedrooms: document.getElementById('f-beds').value,
         area_pref: [document.getElementById('f-area').value],
         move_in_date: document.getElementById('f-movein').value,
+        has_pets: document.getElementById('f-pets').value === 'yes',
         website: document.getElementById('f-website').value,
         source: sourceLabel()
       };

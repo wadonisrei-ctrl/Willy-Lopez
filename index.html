@@ -1976,9 +1976,19 @@
               </select>
             </div>
           </div>
-          <div class="fg">
-            <label for="r-email">Email</label>
-            <input type="email" id="r-email" placeholder="you@email.com" autocomplete="email" />
+          <div class="fg-row">
+            <div class="fg">
+              <label for="r-pets">Pets?</label>
+              <select id="r-pets">
+                <option value="" disabled selected>Pets</option>
+                <option value="no">No pets</option>
+                <option value="yes">Yes, I have a pet</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label for="r-email">Email</label>
+              <input type="email" id="r-email" placeholder="you@email.com" autocomplete="email" />
+            </div>
           </div>
           <button class="btn-main" id="btn-rent" onclick="submitForm('rent')">Find My Apartment &rarr;</button>
           <button class="btn-back" onclick="goStep2FromStep3()">
@@ -2728,7 +2738,8 @@
         area_pref: [document.getElementById('r-area').value || 'No preference'],
         move_in_date: document.getElementById('r-time').value,
         budget_max: RENT_BUDGET_MAP[document.getElementById('r-budget').value] || 0,
-        bedrooms: RENT_BEDS_MAP[document.getElementById('r-beds').value] || '1BR'
+        bedrooms: RENT_BEDS_MAP[document.getElementById('r-beds').value] || '1BR',
+        has_pets: document.getElementById('r-pets').value === 'yes'
       };
 
       fetch(RENT_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
