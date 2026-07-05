@@ -225,8 +225,8 @@
 
   <div class="hero">
     <div class="free-badge">100% FREE &middot; paid by the complex, never by you</div>
-    <h1>You've probably messaged three or four listings this week.</h1>
-    <p style="font-size:1.15rem;color:#fff;font-weight:600;">How many actually called you back?</p>
+    <h1>You've probably messaged four listings this week and heard back from one.</h1>
+    <p style="font-size:1.15rem;color:#fff;font-weight:600;">That's not you, that's how apartment hunting usually works. I do it differently.</p>
     <ul class="how-list">
       <li>I check what you'll qualify for</li>
       <li>I send real options that fit your budget</li>
@@ -254,7 +254,7 @@
         <input type="email" id="f-email" required autocomplete="email" />
 
         <label for="f-phone">Phone Number</label>
-        <input type="tel" id="f-phone" autocomplete="tel" placeholder="(optional, faster response)" />
+        <input type="tel" id="f-phone" required autocomplete="tel" placeholder="(407) 000-0000" />
 
         <div class="row2">
           <div>
@@ -303,6 +303,9 @@
           <option value="2-3 months">2-3 months</option>
           <option value="Just exploring">Just exploring</option>
         </select>
+
+        <label for="f-notes">Anything else you'd like me to know? (optional)</label>
+        <textarea id="f-notes" rows="3" placeholder="Anything at all, questions, must-haves, timing details..." style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-family:var(--sans);font-size:1rem;color:var(--text);background:#fff;resize:vertical;"></textarea>
 
         <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get Your Free List</button>
         <div class="err-msg" id="errMsg">Something went wrong. Please try again, or text/call (718) 635-0140 directly.</div>
@@ -367,8 +370,9 @@
     function submitIntake() {
       var name = document.getElementById('f-name').value.trim();
       var email = document.getElementById('f-email').value.trim();
+      var phone = document.getElementById('f-phone').value.trim();
       var budget = document.getElementById('f-budget').value;
-      if (!name || !email || !budget) {
+      if (!name || !email || !phone || !budget) {
         document.getElementById('intakeForm').reportValidity();
         return;
       }
@@ -387,6 +391,7 @@
         area_pref: [document.getElementById('f-area').value],
         move_in_date: document.getElementById('f-movein').value,
         has_pets: document.getElementById('f-pets').value === 'yes',
+        notes: document.getElementById('f-notes').value.trim(),
         website: document.getElementById('f-website').value,
         source: sourceLabel()
       };

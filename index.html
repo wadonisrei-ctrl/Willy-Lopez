@@ -1990,6 +1990,10 @@
               <input type="email" id="r-email" placeholder="you@email.com" autocomplete="email" />
             </div>
           </div>
+          <div class="fg">
+            <label for="r-notes">Anything else you'd like me to know? (optional)</label>
+            <textarea id="r-notes" rows="2" placeholder="Anything at all, questions, must-haves, timing details..." style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:1rem;resize:vertical;box-sizing:border-box;"></textarea>
+          </div>
           <button class="btn-main" id="btn-rent" onclick="submitForm('rent')">Find My Apartment &rarr;</button>
           <button class="btn-back" onclick="goStep2FromStep3()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -2058,6 +2062,10 @@
             <label for="b-email">Email</label>
             <input type="email" id="b-email" placeholder="you@email.com" autocomplete="email" />
           </div>
+          <div class="fg">
+            <label for="b-notes">Anything else you'd like me to know? (optional)</label>
+            <textarea id="b-notes" rows="2" placeholder="Anything at all, questions, must-haves, timing details..." style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:1rem;resize:vertical;box-sizing:border-box;"></textarea>
+          </div>
           <button class="btn-main" id="btn-buy" onclick="submitForm('buy')">Get Started &rarr;</button>
           <button class="btn-back" onclick="goStep2FromStep3()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -2102,6 +2110,10 @@
           <div class="fg">
             <label for="s-email">Email</label>
             <input type="email" id="s-email" placeholder="you@email.com" autocomplete="email" />
+          </div>
+          <div class="fg">
+            <label for="s-notes">Anything else you'd like me to know? (optional)</label>
+            <textarea id="s-notes" rows="2" placeholder="Anything at all, questions, must-haves, timing details..." style="width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:1rem;resize:vertical;box-sizing:border-box;"></textarea>
           </div>
           <button class="btn-main" id="btn-sell" onclick="submitForm('sell')">Request a Consultation &rarr;</button>
           <button class="btn-back" onclick="goStep2FromStep3()">
@@ -2739,7 +2751,8 @@
         move_in_date: document.getElementById('r-time').value,
         budget_max: RENT_BUDGET_MAP[document.getElementById('r-budget').value] || 0,
         bedrooms: RENT_BEDS_MAP[document.getElementById('r-beds').value] || '1BR',
-        has_pets: document.getElementById('r-pets').value === 'yes'
+        has_pets: document.getElementById('r-pets').value === 'yes',
+        notes: document.getElementById('r-notes').value.trim()
       };
 
       fetch(RENT_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
@@ -2763,9 +2776,11 @@
       data.timeline      = document.getElementById('b-time').value;
       data.price_range   = document.getElementById('b-price').value;
       data.home_type     = document.getElementById('b-type').value;
+      data.notes         = document.getElementById('b-notes').value.trim();
     } else {
       data.area     = document.getElementById('s-area').value;
       data.timeline = document.getElementById('s-time').value;
+      data.notes    = document.getElementById('s-notes').value.trim();
     }
 
     fetch('https://formspree.io/f/xrewybvz', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
