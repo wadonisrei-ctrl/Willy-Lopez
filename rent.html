@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CE30FSTB4W');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Apartment Shortlist - Willy Lopez</title>
@@ -403,6 +411,9 @@
       })
         .then(function(res) {
           if (!res.ok) throw new Error('bad response');
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', { source: sourceLabel() });
+          }
           var firstName = name.split(' ')[0];
           document.getElementById('successHeading').textContent = 'Thanks, ' + firstName + '!';
           document.getElementById('intakeForm').style.display = 'none';
