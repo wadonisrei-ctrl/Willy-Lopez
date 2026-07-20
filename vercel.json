@@ -1,3 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/moving-to-ocala-florida",
+      "destination": "/ocala-fl-apartments",
+      "permanent": true
+    }
+  ]
 }
