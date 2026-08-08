@@ -1162,6 +1162,36 @@
     }
     .persona p { font-size: 12px; color: var(--muted); line-height: 1.65; }
 
+    /* BUY OR SELL */
+    .buysell {
+      background: linear-gradient(160deg, var(--char) 0%, var(--char-2) 60%, var(--char-3) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .buysell::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: -8%;
+      width: 50vw; height: 70vh;
+      background: radial-gradient(ellipse, rgba(200,148,58,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .buysell .sec-h { color: #F0E8D8; }
+    .buysell-body { max-width: 640px; position: relative; z-index: 1; }
+    .buysell-body p {
+      font-size: 15px;
+      color: rgba(240,232,216,0.55);
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+    .buysell-body p:last-of-type { margin-bottom: 0; }
+    .buysell-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
     /* REVIEWS */
     .reviews { background: var(--cream); }
     .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -1767,6 +1797,10 @@
       /* Reviews */
       .rc { padding: 22px 18px; }
 
+      /* Buy or sell */
+      .buysell-actions { flex-direction: column; }
+      .buysell-actions .btn-grad { justify-content: center; }
+
       /* Buyer strip */
       .buyer-strip { padding: 32px 20px; }
       .buyer-strip-in { flex-direction: column; gap: 16px; }
@@ -1809,6 +1843,7 @@
       <li><a href="#how">How It Works</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#areas">Areas</a></li>
+      <li><a href="#buysell">Buy or Sell</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#home" class="nav-btn">Get Started, Free</a></li>
@@ -1823,6 +1858,7 @@
     <a href="#how">How It Works</a>
     <a href="#about">About Willy</a>
     <a href="#areas">Areas We Serve</a>
+    <a href="#buysell">Buy or Sell</a>
     <a href="#reviews">Reviews</a>
     <a href="#faq">FAQ</a>
     <a href="#home" class="mob-btn">Get Started, 100% Free</a>
@@ -2284,7 +2320,7 @@
           </div>
         </div>
 
-        <p class="about-bio">I'm a licensed Florida real estate agent specializing in apartment locating, now focused on Hollywood, Dania Beach and Hallandale Beach. I still serve Greater Orlando and Ocala, where I started. My job is to find you the right apartment at no cost to you.</p>
+        <p class="about-bio">I'm a licensed Florida real estate agent specializing in apartment locating, now focused on Hollywood, Dania Beach and Hallandale Beach. I still serve Greater Orlando and Ocala, where I started. My job is to find you the right apartment at no cost to you. That same license covers helping clients buy and sell homes too.</p>
         <p class="about-bio">Licensed under <strong style="color:rgba(240,232,216,0.85);font-weight:600;">Taylor Apartment Locator</strong>, a brokerage with <strong style="color:rgba(240,232,216,0.85);font-weight:600;">12 years of experience</strong> in the industry. That gives me the tools, the network, and the access to deliver something search portals simply can't.</p>
         <p class="about-bio">I answer fast, give you straight answers, and stay with you from the first message to the day you pick up your keys.</p>
 
@@ -2461,6 +2497,25 @@
         <div class="p-ico">🏡</div>
         <h3>Chasing a Concession</h3>
         <p>Free-rent offers show up constantly around Hollywood and Dania Beach, but they move and the advertised rent never reflects them. I'll tell you which ones are real and what they actually work out to per month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY OR SELL -->
+<section class="buysell" id="buysell">
+  <div class="wrap">
+    <div class="hd reveal">
+      <div class="tag"><span>Buying &amp; Selling</span></div>
+      <h2 class="sec-h">Buying or selling instead?</h2>
+    </div>
+    <div class="buysell-body reveal reveal-d1">
+      <p>I am a licensed Florida real estate agent, not only an apartment locator. If you are buying or selling a home rather than renting, that is work I do too.</p>
+      <p>In Ocala and Marion Oaks I handle it myself. I live there, so I can usually get you inside a house the same week you ask. Anywhere else in Florida, I can help you find the right agent for that market and stay in the loop so you are not handed off and forgotten.</p>
+      <p>On how I get paid: in most transactions the seller covers my commission. Florida buyers now sign a written representation agreement before touring, and I will walk you through exactly what it says before you sign anything.</p>
+      <div class="buysell-actions">
+        <a href="/buy-a-home-orlando-ocala" class="btn-grad">Buying a Home</a>
+        <a href="/sell-my-home-orlando-ocala" class="btn-grad">Selling a Home</a>
       </div>
     </div>
   </div>
