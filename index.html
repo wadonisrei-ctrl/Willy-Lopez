@@ -2814,6 +2814,7 @@
     '3 or more': '3BR+'
   };
   var RENT_INTAKE_URL = 'https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake';
+  var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
 
   function submitForm(type) {
     var emailId = type === 'rent' ? 'r-email' : type === 'buy' ? 'b-email' : 's-email';
@@ -2866,22 +2867,38 @@
       data.notes    = document.getElementById('s-notes').value.trim();
     }
 
-    fetch('https://formspree.io/f/xrewybvz', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    function submitToFormspree() {
+      fetch('https://formspree.io/f/xrewybvz', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function(res) {
+          if (res.ok) {
+            showSuccess();
+          } else {
+            res.json().then(function(err) { console.error('Formspree error:', err); });
+            btn.classList.remove('btn-loading');
+            btn.textContent = 'Try Again';
+            alert('Something went wrong. Please try again or call/text directly.');
+          }
+        })
+        .catch(function(err) {
+          console.error('Network error:', err);
+          btn.classList.remove('btn-loading');
+          btn.textContent = 'Try Again';
+          alert('Something went wrong. Please try again or call/text directly.');
+        });
+    }
+
+    fetch(BUYER_SELLER_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(function(res) {
         if (res.ok) {
           showSuccess();
         } else {
-          res.json().then(function(err) { console.error('Formspree error:', err); });
-          btn.classList.remove('btn-loading');
-          btn.textContent = 'Try Again';
-          alert('Something went wrong. Please try again or call/text directly.');
+          console.error('Buyer/seller intake error: bad response, falling back to Formspree');
+          submitToFormspree();
         }
       })
       .catch(function(err) {
-        console.error('Network error:', err);
-        btn.classList.remove('btn-loading');
-        btn.textContent = 'Try Again';
-        alert('Something went wrong. Please try again or call/text directly.');
+        console.error('Buyer/seller intake network error, falling back to Formspree:', err);
+        submitToFormspree();
       });
   }
 
