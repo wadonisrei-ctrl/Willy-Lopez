@@ -1197,19 +1197,68 @@
       pointer-events: none;
     }
     .buysell .sec-h { color: #F0E8D8; }
-    .buysell-body { max-width: 640px; position: relative; z-index: 1; }
-    .buysell-body p {
-      font-size: 15px;
-      color: rgba(240,232,216,0.55);
-      line-height: 1.85;
-      margin-bottom: 18px;
+    .buysell .sec-s { color: rgba(240,232,216,0.55); }
+    .bs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
     }
-    .buysell-body p:last-of-type { margin-bottom: 0; }
-    .buysell-actions {
+    .bs-card {
+      border-radius: var(--r-xl);
+      padding: 34px 30px;
       display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 32px;
+      flex-direction: column;
+    }
+    .bs-card--buy {
+      background: linear-gradient(135deg, rgba(200,148,58,0.1) 0%, rgba(255,255,255,0.03) 100%);
+      border: 1px solid rgba(200,148,58,0.24);
+    }
+    .bs-card--sell {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(240,232,216,0.14);
+    }
+    .bs-card-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      background: var(--g-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .bs-card-lead {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #F0E8D8;
+      margin-bottom: 22px;
+      letter-spacing: -0.1px;
+    }
+    .bs-card-list { display: flex; flex-direction: column; gap: 13px; margin-bottom: 28px; }
+    .bs-card-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 13px;
+      line-height: 1.62;
+      color: rgba(240,232,216,0.6);
+    }
+    .bs-card-item .cred-dot { margin-top: 2px; }
+    .bs-card .btn-grad { margin-top: auto; align-self: flex-start; }
+    .bs-note {
+      max-width: 660px;
+      font-size: 13px;
+      color: rgba(240,232,216,0.42);
+      line-height: 1.7;
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(240,232,216,0.08);
+      position: relative;
+      z-index: 1;
     }
 
     /* REVIEWS */
@@ -1637,6 +1686,9 @@
       /* VS */
       .vs-grid { grid-template-columns: 1fr; gap: 12px; }
 
+      /* Buy or sell */
+      .bs-grid { grid-template-columns: 1fr; gap: 14px; }
+
       /* About */
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
       .about-photo-col { position: static; flex-direction: row; align-items: flex-start; gap: 20px; }
@@ -1767,8 +1819,8 @@
       .rc { padding: 22px 18px; }
 
       /* Buy or sell */
-      .buysell-actions { flex-direction: column; }
-      .buysell-actions .btn-grad { justify-content: center; }
+      .bs-card { padding: 26px 22px; }
+      .bs-card .btn-grad { justify-content: center; width: 100%; }
 
       /* Final CTA */
       .fin-cta { padding: 72px 20px; }
@@ -2174,29 +2226,49 @@
   <div class="wrap">
     <div class="hd reveal">
       <div class="tag"><span>01 &nbsp;&middot;&nbsp; Buying &amp; Selling</span></div>
-      <h2 class="sec-h">Buying or selling a home</h2>
+      <h2 class="sec-h">I don't cover five counties. I cover the one I live in.</h2>
+      <p class="sec-s">I'm a licensed Florida agent based in Marion Oaks. When you want to see a house here, I can usually get you inside the same week, because I'm ten minutes away and not two hours.</p>
     </div>
-    <div class="buysell-body reveal reveal-d1">
-      <p>I'm a licensed Florida real estate agent. Representing buyers and sellers is what I focus on now, alongside the apartment locating work I still do for renters.</p>
-      <p>In Ocala and Marion Oaks I handle it myself. I live there, so I can usually get you inside a house the same week you ask. Anywhere else in Florida, I'll help you find the right agent for that market and stay in the loop so you are not handed off and forgotten.</p>
-      <p>I handle the research, the scheduling, and the back-and-forth with listing agents, so you're not juggling it all yourself. If a house or a neighborhood isn't right for you, I'll tell you, even if it means the search takes longer. My job is finding you the right home, not just closing a deal.</p>
-      <div class="about-creds" style="margin:28px 0 0;">
-        <div class="cred-item">
-          <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-          Lic. SL3617612, brokered by Taylor Apartment Locator
+
+    <div class="bs-grid reveal reveal-d1">
+      <div class="bs-card bs-card--buy">
+        <div class="bs-card-label">For Buyers</div>
+        <p class="bs-card-lead">The friendly agent showing you the house works for the seller. You should have someone in your corner too.</p>
+        <div class="bs-card-list">
+          <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>I represent you, start to finish</div>
+          <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Same-week showings in Ocala and Marion Oaks</div>
+          <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>I'll tell you when a house or a street is wrong for you, even if it means the search takes longer</div>
+          <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>I handle the research, the scheduling, and the back-and-forth with listing agents</div>
         </div>
-        <div class="cred-item">
-          <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-          Based in Marion Oaks, in-person showings the same week
-        </div>
-        <div class="cred-item">
-          <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-          12 years of brokerage experience behind every deal
-        </div>
+        <a href="#home" onclick="window.preselectedType='buy'" class="btn-grad">Start My Home Search &rarr;</a>
       </div>
-      <div class="buysell-actions">
-        <a href="/buy-a-home-orlando-ocala" class="btn-grad">Buying a Home</a>
-        <a href="/sell-my-home-orlando-ocala" class="btn-grad">Selling a Home</a>
+
+      <div class="bs-card bs-card--sell">
+        <div class="bs-card-label">For Sellers</div>
+        <p class="bs-card-lead">Most sellers talk to one agent, hear one number, and never find out whether it was the right one.</p>
+        <div class="bs-card-list">
+          <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>A straight read on what your home should list for, and the reasoning behind it</div>
+          <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>No pressure and no obligation to list, the conversation costs you nothing but time</div>
+          <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>12 years of brokerage experience behind the pricing</div>
+        </div>
+        <a href="#home" onclick="window.preselectedType='sell'" class="btn-grad">Ask What My Home Could Sell For &rarr;</a>
+      </div>
+    </div>
+
+    <p class="bs-note reveal reveal-d2">Buying or selling somewhere else in Florida? I'll help you find the right agent for that market and stay in the loop so you are not handed off and forgotten.</p>
+
+    <div class="about-creds reveal reveal-d3" style="margin:24px 0 0;">
+      <div class="cred-item">
+        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        Lic. SL3617612, brokered by Taylor Apartment Locator
+      </div>
+      <div class="cred-item">
+        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        Based in Marion Oaks, in-person showings the same week
+      </div>
+      <div class="cred-item">
+        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        12 years of brokerage experience behind every deal
       </div>
     </div>
   </div>
