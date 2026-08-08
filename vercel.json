@@ -5,6 +5,11 @@
       "source": "/moving-to-ocala-florida",
       "destination": "/ocala-fl-apartments",
       "permanent": true
+    },
+    {
+      "source": "/first-time-home-buyer-florida",
+      "destination": "/first-time-home-buyer-ocala-fl",
+      "permanent": true
     }
   ]
 }

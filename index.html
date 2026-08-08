@@ -35,7 +35,7 @@
       {"@type": "City", "name": "Kissimmee, FL"}
     ],
     "description": "Licensed Florida real estate agent Willy Lopez, based in Marion Oaks. Represents buyers and sellers in Ocala and Marion Oaks directly, and helps clients find the right agent elsewhere in Florida. Also runs a free apartment locating service for renters in Central and South Florida.",
-    "priceRange": "Free apartment locating for renters; standard commission for buyers and sellers",
+    "priceRange": "Apartment locating is free to renters",
     "knowsAbout": ["Home Buying", "Home Selling", "Residential Real Estate", "Apartment Locating", "Relocation Services"],
     "employee": {
       "@type": "Person",
@@ -50,6 +50,26 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's it like working with you?",
+        "acceptedAnswer": {"@type": "Answer", "text": "I handle the research, the scheduling, and the back-and-forth with listing agents, so you're not doing it all yourself. I respond to every inquiry within 24 business hours, and I'll always give you a straight answer, including when I don't think a property or a neighborhood is the right fit for you."}
+      },
+      {
+        "@type": "Question",
+        "name": "I'm new to the area. Can you help me get oriented?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes. I'll walk you through neighborhoods, price points, and what an area is actually like to live in, not just what's on the listing. If you're relocating from out of state, I'll answer every question you have before you commit to anything."}
+      },
+      {
+        "@type": "Question",
+        "name": "I'm thinking about selling but haven't decided. Will you pressure me to list?",
+        "acceptedAnswer": {"@type": "Answer", "text": "No. Reach out and we'll talk through where things stand and what your options look like. I'll give you a straight read on your situation, and if it makes more sense to wait, I'll tell you that too."}
+      },
+      {
+        "@type": "Question",
+        "name": "What if I'm buying or selling somewhere you don't personally cover?",
+        "acceptedAnswer": {"@type": "Answer", "text": "I represent buyers and sellers myself in Ocala and Marion Oaks. Outside that area, I'll help you find the right agent for that market and stay available if you have questions along the way."}
+      },
       {
         "@type": "Question",
         "name": "Is this service really free?",
@@ -1300,82 +1320,31 @@
       line-height: 1.82;
     }
 
-    /* BUYER STRIP */
-    .buyer-strip {
-      background: var(--cream);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 40px 40px;
+    /* APARTMENT LOCATING CHAPTER DIVIDER */
+    .loc-chapter {
+      background: var(--g-cta);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
     }
-    .buyer-strip-in {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 48px;
+    .loc-chapter::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(200,148,58,0.45) 50%, transparent 100%);
     }
-    .buyer-strip-icon {
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(11,22,40,0.06) 0%, rgba(11,22,40,0.12) 100%);
-      border: 1px solid rgba(11,22,40,0.1);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 22px;
+    .loc-chapter::after {
+      content: '';
+      position: absolute;
+      top: -30%; left: 50%;
+      transform: translateX(-50%);
+      width: 60vw; height: 60vh;
+      background: radial-gradient(ellipse, rgba(200,148,58,0.1) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .buyer-strip-text { flex: 1; }
-    .buyer-strip-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-      background: var(--g-gold);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      display: inline-block;
-    }
-    .buyer-strip-title {
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.2px;
-      margin-bottom: 5px;
-    }
-    .buyer-strip-body {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 520px;
-    }
-    .buyer-strip-cta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      background: transparent;
-      border: 1px solid var(--border-2);
-      color: var(--text);
-      padding: 11px 22px;
-      border-radius: var(--r);
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: border-color 0.15s, box-shadow 0.15s, color 0.15s;
-      flex-shrink: 0;
-    }
-    .buyer-strip-cta:hover {
-      border-color: rgba(200,148,58,0.4);
-      box-shadow: 0 4px 16px rgba(168,120,40,0.1);
-      color: var(--gold);
-    }
-    .buyer-strip-cta svg { color: var(--gold); }
-    @media (max-width: 700px) {
-      .buyer-strip-in { flex-direction: column; gap: 20px; align-items: flex-start; }
-      .buyer-strip { padding: 36px 20px; }
-    }
+    .loc-chapter .sec-h { color: #F0E8D8; }
+    .loc-chapter .sec-s { color: rgba(240,232,216,0.55); margin: 0 auto; }
 
     /* FINAL CTA */
     .fin-cta {
@@ -1801,11 +1770,6 @@
       .buysell-actions { flex-direction: column; }
       .buysell-actions .btn-grad { justify-content: center; }
 
-      /* Buyer strip */
-      .buyer-strip { padding: 32px 20px; }
-      .buyer-strip-in { flex-direction: column; gap: 16px; }
-      .buyer-strip-cta { width: 100%; justify-content: center; }
-
       /* Final CTA */
       .fin-cta { padding: 72px 20px; }
       .fin-row { flex-direction: column; gap: 8px; }
@@ -2215,7 +2179,7 @@
     <div class="buysell-body reveal reveal-d1">
       <p>I'm a licensed Florida real estate agent. Representing buyers and sellers is what I focus on now, alongside the apartment locating work I still do for renters.</p>
       <p>In Ocala and Marion Oaks I handle it myself. I live there, so I can usually get you inside a house the same week you ask. Anywhere else in Florida, I'll help you find the right agent for that market and stay in the loop so you are not handed off and forgotten.</p>
-      <p>On how I get paid: in most transactions the seller covers my commission. Florida buyers now sign a written representation agreement before touring, and I'll walk you through exactly what it says before you sign anything.</p>
+      <p>I handle the research, the scheduling, and the back-and-forth with listing agents, so you're not juggling it all yourself. If a house or a neighborhood isn't right for you, I'll tell you, even if it means the search takes longer. My job is finding you the right home, not just closing a deal.</p>
       <div class="about-creds" style="margin:28px 0 0;">
         <div class="cred-item">
           <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
@@ -2370,27 +2334,51 @@
   </div>
 </section>
 
-<!-- APARTMENT LOCATING INTRO STRIP -->
-<div class="buyer-strip reveal" id="apartments">
-  <div class="buyer-strip-in">
-    <div class="buyer-strip-icon">🔑</div>
-    <div class="buyer-strip-text">
-      <p class="buyer-strip-label">Also available</p>
-      <p class="buyer-strip-title">Renting instead of buying?</p>
-      <p class="buyer-strip-body">I still do apartment locating too, matching renters across Central and South Florida to the right building. It's genuinely free, the community pays my fee, not you.</p>
+<!-- BUY/SELL FAQ -->
+<section class="faq" id="buysell-faq">
+  <div class="wrap">
+    <div class="hd c reveal">
+      <div class="tag"><span>04 &nbsp;&middot;&nbsp; Buying &amp; Selling FAQ</span></div>
+      <h2 class="sec-h">Answers to what buyers and sellers ask</h2>
     </div>
-    <a href="#home" onclick="window.preselectedType='rent'" class="buyer-strip-cta">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-      Get Started
-    </a>
+    <div class="faq-wrap">
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">What's it like working with you?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><div class="faq-body-in">I handle the research, the scheduling, and the back-and-forth with listing agents, so you're not doing it all yourself. I respond to every inquiry within 24 business hours, and I'll always give you a straight answer, including when I don't think a property or a neighborhood is the right fit for you.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">I'm new to the area. Can you help me get oriented?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><div class="faq-body-in">Yes. I'll walk you through neighborhoods, price points, and what an area is actually like to live in, not just what's on the listing. If you're relocating from out of state, I'll answer every question you have before you commit to anything.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">I'm thinking about selling but haven't decided. Will you pressure me to list?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><div class="faq-body-in">No. Reach out and we'll talk through where things stand and what your options look like. I'll give you a straight read on your situation, and if it makes more sense to wait, I'll tell you that too.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-btn" onclick="toggleFaq(this)">What if I'm buying or selling somewhere you don't personally cover?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><div class="faq-body-in">I represent buyers and sellers myself in Ocala and Marion Oaks. Outside that area, I'll help you find the right agent for that market and stay available if you have questions along the way.</div></div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- APARTMENT LOCATING CHAPTER -->
+<section class="loc-chapter" id="apartments">
+  <div class="wrap">
+    <div class="hd c reveal">
+      <div class="tag"><span>05 &nbsp;&middot;&nbsp; Apartment Locating</span></div>
+      <h2 class="sec-h">I'll Find Your Apartment.<br />You Won't Pay a Thing.</h2>
+      <p class="sec-s">Everything below is my other service. I match renters to apartment buildings across Central and South Florida, and it costs you nothing because the community pays my fee, not you.</p>
+    </div>
+    <a href="#home" onclick="window.preselectedType='rent'" class="btn-grad reveal reveal-d1">Start My Apartment Search &rarr;</a>
+  </div>
+</section>
 
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="wrap">
     <div class="hd c">
-      <div class="tag reveal"><span>04 &nbsp;&middot;&nbsp; The Process</span></div>
+      <div class="tag reveal"><span>06 &nbsp;&middot;&nbsp; The Process</span></div>
       <h2 class="sec-h reveal reveal-d1">Three steps to your new home</h2>
       <p class="sec-s reveal reveal-d2">I handle the research, the calls, and the scheduling. You just pick the apartment you like best and sign.</p>
     </div>
@@ -2418,7 +2406,7 @@
 <section class="vs-sec" id="why-locator">
   <div class="wrap">
     <div class="hd reveal">
-      <div class="tag"><span>05 &nbsp;&middot;&nbsp; The Difference</span></div>
+      <div class="tag"><span>07 &nbsp;&middot;&nbsp; The Difference</span></div>
       <h2 class="sec-h">Searching alone vs.<br />working with me</h2>
       <p class="sec-s">Both get you an apartment. Only one gets you the right apartment, faster, with less stress, and at no extra cost.</p>
     </div>
@@ -2462,7 +2450,7 @@
 <section class="why">
   <div class="wrap">
     <div class="hd reveal">
-      <div class="tag"><span>06 &nbsp;&middot;&nbsp; Why Work With Me</span></div>
+      <div class="tag"><span>08 &nbsp;&middot;&nbsp; Why Work With Me</span></div>
       <h2 class="sec-h">What search portals<br />will never give you</h2>
       <p class="sec-s">Zillow and Apartments.com show you listings. I find you a home, with inside knowledge, real relationships, and zero cost to you.</p>
     </div>
@@ -2505,7 +2493,7 @@
 <section class="areas" id="areas">
   <div class="wrap">
     <div class="hd reveal">
-      <div class="tag"><span>07 &nbsp;&middot;&nbsp; Where I Work</span></div>
+      <div class="tag"><span>09 &nbsp;&middot;&nbsp; Where I Work</span></div>
       <h2 class="sec-h">Hollywood and the<br />beach cities around it</h2>
       <p class="sec-s">This is where I focus. It is a dense, competitive stretch of Broward County where buildings actively compete for renters, which is exactly the kind of market where having someone track it for you pays off.</p>
     </div>
@@ -2570,7 +2558,7 @@
 <section class="who">
   <div class="wrap">
     <div class="hd c reveal">
-      <div class="tag"><span>08 &nbsp;&middot;&nbsp; Who I Help</span></div>
+      <div class="tag"><span>10 &nbsp;&middot;&nbsp; Who I Help</span></div>
       <h2 class="sec-h">Whatever your situation,<br />I've got you covered</h2>
     </div>
     <div class="personas">
@@ -2602,8 +2590,8 @@
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="hd c reveal">
-      <div class="tag"><span>09 &nbsp;&middot;&nbsp; Common Questions</span></div>
-      <h2 class="sec-h">Answers to what everyone asks</h2>
+      <div class="tag"><span>11 &nbsp;&middot;&nbsp; Apartment Locating FAQ</span></div>
+      <h2 class="sec-h">Answers to what renters ask</h2>
     </div>
     <div class="faq-wrap">
       <div class="faq-item reveal">
@@ -2636,8 +2624,8 @@
 
 <!-- FINAL CTA -->
 <section class="fin-cta">
-  <h2 class="reveal">Ready to stop scrolling<br />and <em>start living?</em></h2>
-  <p class="reveal reveal-d1">Drop your number below and I'll reach out personally, usually within a day. No commitment, no cost, no pressure.</p>
+  <h2 class="reveal">Buying, selling, or renting,<br /><em>let's find your next place.</em></h2>
+  <p class="reveal reveal-d1">Drop your number below and I'll reach out personally, usually within a day. No pressure, no obligation, just a straight conversation about what you need.</p>
   <div class="fin-row reveal reveal-d2">
     <input type="tel" id="finPhone" placeholder="Your phone number" />
     <button class="btn-fin" onclick="handleFin()">Get Started</button>
@@ -2718,7 +2706,7 @@
           <li><a href="/buying-a-home-in-ocala-fl">Buying a Home in Ocala</a></li>
           <li><a href="/ocala-fl-housing-market">Ocala Housing Market 2026</a></li>
           <li><a href="/renting-vs-buying-orlando">Renting vs Buying Orlando</a></li>
-          <li><a href="/first-time-home-buyer-florida">First-Time Buyer Guide FL</a></li>
+          <li><a href="/first-time-home-buyer-ocala-fl">First-Time Buyer Guide FL</a></li>
           <li><a href="/first-time-home-buyer-ocala-fl">First-Time Buyer Ocala</a></li>
           <li><a href="/marion-oaks-ocala-homes">Marion Oaks Buying Guide</a></li>
         </ul>
