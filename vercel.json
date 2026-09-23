@@ -10,6 +10,31 @@
       "source": "/first-time-home-buyer-florida",
       "destination": "/first-time-home-buyer-ocala-fl",
       "permanent": true
+    },
+    {
+      "source": "/apartment-locator-hollywood-fl",
+      "destination": "/how-free-apartment-locator-works",
+      "permanent": true
+    },
+    {
+      "source": "/apartment-move-in-specials-hollywood-fl",
+      "destination": "/how-free-apartment-locator-works",
+      "permanent": true
+    },
+    {
+      "source": "/apartments-near-memorial-regional-hollywood",
+      "destination": "/how-free-apartment-locator-works",
+      "permanent": true
+    },
+    {
+      "source": "/apartments-dania-beach-fl",
+      "destination": "/how-free-apartment-locator-works",
+      "permanent": true
+    },
+    {
+      "source": "/apartments-near-fort-lauderdale-airport",
+      "destination": "/how-free-apartment-locator-works",
+      "permanent": true
     }
   ]
 }
