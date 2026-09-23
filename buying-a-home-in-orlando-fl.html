@@ -229,6 +229,13 @@
       transition: opacity 0.15s, transform 0.1s; display: inline-flex; align-items: center;
     }
     .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .gen-nav-links { display: flex; align-items: center; gap: 22px; }
+    .gen-nav-links a {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.3px; transition: color 0.15s;
+    }
+    .gen-nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .gen-nav-links { display: none; } }
 
     /* HERO */
     .hero {
@@ -433,7 +440,14 @@
   <nav>
     <div class="nav-in">
       <a href="/" class="logo">Willy <b>Lopez</b></a>
-      <a href="/#home" class="nav-btn">Get Started</a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div class="gen-nav-links">
+          <a href="/about">About</a>
+          <a href="/landlords">Landlords</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <a href="/#home" class="nav-btn">Get Started</a>
+      </div>
     </div>
   </nav>
 
@@ -483,14 +497,14 @@
 
         <div class="section-block reveal reveal-d5">
           <h2>Who Buys Homes in Orlando (and Why)</h2>
-          <p>The Orlando buyer market is broad, but a few segments show up over and over.</p><p>Out-of-state relocators from the Northeast, Midwest, and South Florida make up a large share. No state income tax and a lower cost of living than the coasts are the consistent draw, even with Orlando's own prices well above where they sat five years ago.</p><p>Healthcare workers and researchers gravitate toward the Medical City corridor, where being close to the job outweighs paying more for the house.</p><p>Families weight school zoning above almost everything else, which pulls them toward Winter Garden, Horizon West, and Oviedo even when closer-in alternatives would cost less.</p><p>Hospitality and attractions workers look south and west, toward Kissimmee, Celebration, and Davenport, where the commute to the theme park corridor is short and the entry price is lower.</p><p>And there is a quieter group worth naming: renters who have been in Orlando a few years, watched their rent reset at every renewal, and decided they would rather own the payment. That crossover is a bigger share of the buyer pool than most market write-ups acknowledge.</p>
+          <p>The Orlando buyer market is broad, but a few segments show up over and over.</p><p>Out-of-state relocators from the Northeast, Midwest, and Miami make up a large share. No state income tax and a lower cost of living than the coasts are the consistent draw, even with Orlando's own prices well above where they sat five years ago.</p><p>Healthcare workers and researchers gravitate toward the Medical City corridor, where being close to the job outweighs paying more for the house.</p><p>Families weight school zoning above almost everything else, which pulls them toward Winter Garden, Horizon West, and Oviedo even when closer-in alternatives would cost less.</p><p>Hospitality and attractions workers look south and west, toward Kissimmee, Celebration, and Davenport, where the commute to the theme park corridor is short and the entry price is lower.</p><p>And there is a quieter group worth naming: renters who have been in Orlando a few years, watched their rent reset at every renewal, and decided they would rather own the payment. That crossover is a bigger share of the buyer pool than most market write-ups acknowledge.</p>
         </div>
               <ul class='benefit-list'>
           <li>Local agent based in Central Florida</li>
           <li>Know the Orlando metro neighborhood by neighborhood</li>
           <li>Straight talk about which submarket actually fits your budget</li>
           <li>Honest about timelines, condition issues, and what to expect</li>
-          <li>Licensed with Taylor Apartment Locator (12 years in the market)</li>
+          <li>Licensed with Taylor Apartment Locator</li>
           <li>Serving Orange, Osceola, Seminole, and surrounding counties</li>
         </ul>
     </div>
@@ -565,7 +579,7 @@
     <div class="inner">
       <div class="author-card reveal">
         <div class="author-info">
-          <div class="author-name">Written by Willy Lopez</div>
+          <div class="author-name">Written by <a href="/about" style="color:inherit;">Willy Lopez</a></div>
           <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator</div>
           <p class="author-bio">Willy Lopez is a licensed real estate agent serving Greater Orlando and Ocala, FL. He specializes in helping renters find apartments virtually and helping buyers navigate the Central Florida and Marion County markets.</p>
         </div>
@@ -581,6 +595,7 @@
       <a href="/buying-a-home-in-ocala-fl" class="rel-link">Buying a Home in Ocala, FL</a>
       <a href="/first-time-home-buyer-ocala-fl" class="rel-link">First-Time Home Buyer in Ocala</a>
       <a href="/renting-vs-buying-orlando" class="rel-link">Renting vs Buying in Orlando</a>
+      <a href="/florida-hometown-heroes-program" class="rel-link">Florida Hometown Heroes Program</a>
       </div>
     </div>
   </section>
@@ -598,6 +613,9 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/landlords">Landlords</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms of Service</a>
     </div>

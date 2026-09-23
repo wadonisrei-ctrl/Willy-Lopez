@@ -229,6 +229,13 @@
       transition: opacity 0.15s, transform 0.1s; display: inline-flex; align-items: center;
     }
     .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .gen-nav-links { display: flex; align-items: center; gap: 22px; }
+    .gen-nav-links a {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.3px; transition: color 0.15s;
+    }
+    .gen-nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .gen-nav-links { display: none; } }
 
     /* HERO */
     .hero {
@@ -433,7 +440,14 @@
   <nav>
     <div class="nav-in">
       <a href="/" class="logo">Willy <b>Lopez</b></a>
-      <a href="/#home" class="nav-btn">Get Started</a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div class="gen-nav-links">
+          <a href="/about">About</a>
+          <a href="/landlords">Landlords</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <a href="/#home" class="nav-btn">Get Started</a>
+      </div>
     </div>
   </nav>
 
@@ -468,7 +482,7 @@
 
         <div class="section-block reveal reveal-d2">
           <h2>What Homes Cost in Marion Oaks</h2>
-          <p>Marion Oaks is an entry-level market by Florida standards, and that has been consistently true for a long time. What a house costs here depends mostly on its age, its size, and whether anyone has touched the roof and the air conditioner this decade.</p><p>The durable fact is the gap, not the number. A house that is affordable in Marion Oaks would cost dramatically more in Orlando, Tampa, or South Florida, and that difference is the entire reason buyers look here in the first place.</p><p>Here is what I tell every Marion Oaks buyer, and it matters more than any price range. Cost per square foot varies more here than in almost any neighborhood I work, because the housing stock spans five decades on the same streets. A cheap listing is not automatically a deal. A newer build at the top of the range is not automatically overpriced. Comparing a 1988 resale to a build finished last year, two doors apart, takes local context and a look at what each one is actually going to cost you to insure and maintain.</p><p>That comparison is the work. Anyone can read you a list price.</p>
+          <p>Marion Oaks is an entry-level market by Florida standards, and that has been consistently true for a long time. What a house costs here depends mostly on its age, its size, and whether anyone has touched the roof and the air conditioner this decade.</p><p>The durable fact is the gap, not the number. A house that is affordable in Marion Oaks would cost dramatically more in Orlando, Tampa, or Miami, and that difference is the entire reason buyers look here in the first place.</p><p>Here is what I tell every Marion Oaks buyer, and it matters more than any price range. Cost per square foot varies more here than in almost any neighborhood I work, because the housing stock spans five decades on the same streets. A cheap listing is not automatically a deal. A newer build at the top of the range is not automatically overpriced. Comparing a 1988 resale to a build finished last year, two doors apart, takes local context and a look at what each one is actually going to cost you to insure and maintain.</p><p>That comparison is the work. Anyone can read you a list price.</p>
         </div>
 
         <div class="section-block reveal reveal-d3">
@@ -495,7 +509,7 @@
           <li>Straight answers on utilities, assessments, and new construction</li>
           <li>Know which questions to ask on a 1980s resale versus a new build</li>
           <li>Help for first-time buyers, relocators, and investors</li>
-          <li>Licensed with Taylor Apartment Locator (12 years in the market)</li>
+          <li>Licensed with Taylor Apartment Locator</li>
           <li>Serving Marion Oaks and all of Marion County</li>
         </ul>
     </div>
@@ -570,7 +584,7 @@
     <div class="inner">
       <div class="author-card reveal">
         <div class="author-info">
-          <div class="author-name">Written by Willy Lopez</div>
+          <div class="author-name">Written by <a href="/about" style="color:inherit;">Willy Lopez</a></div>
           <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator</div>
           <p class="author-bio">Willy Lopez is a licensed real estate agent serving Greater Orlando and Ocala, FL. He specializes in helping renters find apartments virtually and helping buyers navigate the Central Florida and Marion County markets.</p>
         </div>
@@ -604,6 +618,9 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/landlords">Landlords</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms of Service</a>
     </div>

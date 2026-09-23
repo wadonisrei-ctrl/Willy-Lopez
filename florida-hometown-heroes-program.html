@@ -24,6 +24,9 @@
   <meta name="twitter:description" content="Florida Hometown Heroes pays up to 5% toward a down payment as a 0% deferred second mortgage. Who qualifies, what you repay, and the funding reality." />
   <meta name="twitter:image" content="https://willy-lopez.vercel.app/images/willy.jpg" />
   <link rel="canonical" href="https://willy-lopez.vercel.app/florida-hometown-heroes-program" />
+  <link rel="alternate" hreflang="en" href="https://willy-lopez.vercel.app/florida-hometown-heroes-program" />
+  <link rel="alternate" hreflang="es" href="https://willy-lopez.vercel.app/programa-hometown-heroes-florida" />
+  <link rel="alternate" hreflang="x-default" href="https://willy-lopez.vercel.app/florida-hometown-heroes-program" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -96,7 +99,15 @@
       "name": "Is Hometown Heroes funding available right now?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "I cannot answer that honestly on a page you might be reading a year from now, and neither can anyone else writing in advance. Funding comes in rounds that are first come, first served, and lenders reserve it for individual buyers in real time. Past rounds moved fast: the 2023 round of $100 million was fully committed in under three weeks, and the 2024 round lasted about five weeks. The 2026 cycle relaunched on July 13, 2026 with $50 million, and the Legislature approved $50 million for the 2026-2027 fiscal year. Availability changes without notice, so check with Florida Housing Finance Corporation directly or ask a participating lender for reservation status on the day you are asking. Do not build a purchase around assistance nobody has confirmed in writing is reserved for you."
+        "text": "I cannot answer that honestly on a page you might be reading a year from now, and neither can anyone else writing in advance. Funding comes in rounds that are first come, first served, and lenders reserve it for individual buyers in real time. The 2023 round of $100 million was fully committed in under three weeks, but the round before this one, opened August 2025, took about six months to fully commit. The current round relaunched July 13, 2026 with $50 million. Florida Housing's own board materials show roughly $18 million committed as of early September 2026, which by my own math leaves something like $32 million still open, but that figure is my arithmetic off a public document, not a live balance Florida Housing publishes. Availability changes without notice, so check with Florida Housing Finance Corporation directly or ask a participating lender for reservation status on the day you are asking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Hometown Heroes pay my realtor's commission?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not out of the assistance funds. Realtor commission cannot be paid from the down payment assistance itself, and the current lender guide for this program caps any realtor fee you pay directly at $500. In practice that means buyer-side compensation on an HTH deal comes from seller concessions negotiated into the offer, or a cooperative fee on the listing side, and the buyer-broker agreement needs to be written that way from the start."
       }
     },
     {
@@ -229,6 +240,13 @@
       transition: opacity 0.15s, transform 0.1s; display: inline-flex; align-items: center;
     }
     .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .gen-nav-links { display: flex; align-items: center; gap: 22px; }
+    .gen-nav-links a {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.3px; transition: color 0.15s;
+    }
+    .gen-nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .gen-nav-links { display: none; } }
 
     /* HERO */
     .hero {
@@ -433,7 +451,14 @@
   <nav>
     <div class="nav-in">
       <a href="/" class="logo">Willy <b>Lopez</b></a>
-      <a href="/#home" class="nav-btn">Get Started</a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div class="gen-nav-links">
+          <a href="/about">About</a>
+          <a href="/landlords">Landlords</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <a href="/#home" class="nav-btn">Get Started</a>
+      </div>
     </div>
   </nav>
 
@@ -452,7 +477,7 @@
       <div class="hero-tag reveal">Down Payment Assistance</div>
       <h1 class="reveal reveal-d1">Florida Hometown Heroes Program Explained</h1>
       <p class="hero-sub reveal reveal-d2">Down payment and closing cost help for people who work in Florida, structured as a second mortgage you repay later. Here is how the money works, who it covers, and why the funding question never has a permanent answer.</p>
-      <a href="/#home" class="hero-cta reveal reveal-d3">Get Started</a>
+      <a href="/contact" class="hero-cta reveal reveal-d3">Get Started</a>
     </div>
   </section>
 
@@ -468,7 +493,7 @@
 
         <div class="section-block reveal reveal-d2">
           <h2>How the Deferred Second Mortgage Works</h2>
-          <p>Take the phrase apart and it stops being intimidating.</p><p>Zero percent means no interest accrues. The balance you repay is the balance you received, however many years later that turns out to be. In a state where insurance and taxes have both been moving in one direction, an obligation that charges no interest and never grows is genuinely valuable.</p><p>Non-amortizing means the balance does not shrink either. You are not chipping away at it every month, because there is no monthly payment on it at all.</p><p>Thirty-year deferred means it sits quietly behind your first mortgage instead of showing up in your payment.</p><p>Second mortgage means exactly what it says. It is recorded against the property, in second position behind your primary loan. It is a lien on your house, not a gift certificate.</p><p>So when does it come due? Florida Housing is specific: in full, upon sale of the property, refinancing of the first mortgage, transfer of the deed, or if you no longer occupy the home as your primary residence.</p><p>Read the refinance trigger twice, because that is the one that catches people. Rates move. Five years from now you may very much want to refinance your first mortgage into a better one, and doing that triggers repayment of the second. Whether any accommodation exists in that situation is a question for Florida Housing and your lender at the time, not something a web page should be answering for you. What you should take away is simple: the assistance is a claim against your future equity, and the moment you touch the first mortgage, that claim comes to the front of the line.</p><p>The practical version. If you buy, stay, and sell in year twelve with real appreciation behind you, the payoff comes out of your proceeds and you barely feel it. If you buy and sell in year three in a flat market, that same payoff can eat a meaningful share of whatever equity you built. Neither outcome is hidden. Both are knowable before you sign.</p><p>This is a different shape of help than a USDA loan, which is the other financing question Marion County buyers bring me most. USDA solves the down payment by not requiring one. Hometown Heroes hands you money for the down payment and closing costs and records a lien for it. One removes the requirement, the other funds it. There is a full USDA page linked at the bottom of this one if that comparison matters for where you are shopping.</p><p>On stacking, since the assistance is a second, it sits behind a first mortgage originated by a participating lender. Which first mortgage products it can pair with is set by Florida Housing and administered through its approved lender network, and those details can differ between funding cycles. Ask a participating lender what pairings are approved for the round you are applying under instead of trusting the structure described in an article written two cycles ago.</p>
+          <p>Take the phrase apart and it stops being intimidating.</p><p>Zero percent means no interest accrues. The balance you repay is the balance you received, however many years later that turns out to be. In a state where insurance and taxes have both been moving in one direction, an obligation that charges no interest and never grows is genuinely valuable.</p><p>Non-amortizing means the balance does not shrink either. You are not chipping away at it every month, because there is no monthly payment on it at all.</p><p>Thirty-year deferred means it sits quietly behind your first mortgage instead of showing up in your payment.</p><p>Second mortgage means exactly what it says. It is recorded against the property, in second position behind your primary loan. It is a lien on your house, not a gift certificate.</p><p>So when does it come due? Florida Housing is specific: in full, upon sale of the property, refinancing of the first mortgage, transfer of the deed, or if you no longer occupy the home as your primary residence.</p><p>Read the refinance trigger twice, because that is the one that catches people. Rates move. Five years from now you may very much want to refinance your first mortgage into a better one, and doing that triggers repayment of the second. Whether any accommodation exists in that situation is a question for Florida Housing and your lender at the time, not something a web page should be answering for you. What you should take away is simple: the assistance is a claim against your future equity, and the moment you touch the first mortgage, that claim comes to the front of the line.</p><p>The practical version. If you buy, stay, and sell in year twelve with real appreciation behind you, the payoff comes out of your proceeds and you barely feel it. If you buy and sell in year three in a flat market, that same payoff can eat a meaningful share of whatever equity you built. Neither outcome is hidden. Both are knowable before you sign.</p><p>This is a different shape of help than a USDA loan, which is the other financing question Marion County buyers bring me most. USDA solves the down payment by not requiring one. Hometown Heroes hands you money for the down payment and closing costs and records a lien for it. One removes the requirement, the other funds it. There is a full USDA page linked at the bottom of this one if that comparison matters for where you are shopping.</p><p>On stacking, since the assistance is a second, it sits behind a first mortgage originated by a participating lender. Which first mortgage products it can pair with is set by Florida Housing and administered through its approved lender network, and those details can differ between funding cycles. Ask a participating lender what pairings are approved for the round you are applying under instead of trusting the structure described in an article written two cycles ago.</p><p>The mechanics of the reservation itself are worth knowing before you talk to a lender. A participating lender reserves the assistance for you through a system called eHousingPlus, at the point your first mortgage rate locks, not before. From there you have 60 days to reach underwriter certification, or the reservation cancels automatically and the money goes back into the pool for someone else. The lender also needs to see a minimum 640 credit score and confirm you have completed FHFC-approved homebuyer education before that reservation can be made. If you are buying new construction, the home needs its certificate of occupancy before a reservation can be placed on it. The program pairs with FHA, VA, RD, and Conventional first mortgages. None of this is something I control or verify. The lender is the one who actually qualifies you, and I hand off to one rather than guessing on your behalf.</p>
         </div>
 
         <div class="section-block reveal reveal-d3">
@@ -483,7 +508,17 @@
 
         <div class="section-block reveal reveal-d5">
           <h2>First Come, First Served, and What That Really Means</h2>
-          <p>This is the part of the program that decides outcomes, and it is the part almost every article about it gets quietly wrong by the time you find it.</p><p>Hometown Heroes funding arrives in cycles. The Legislature appropriates money, Florida Housing makes it available, participating lenders reserve it for individual buyers as loans get locked, and when a round is committed, it is committed. First come, first served, with the reservations happening at lender level in real time.</p><p>What the record shows about the pace. The 2023 round of $100 million was fully committed in under three weeks. The 2024 round lasted roughly five weeks. The 2026 cycle relaunched on July 13, 2026 with $50 million, and the Legislature approved $50 million for the 2026-2027 fiscal year.</p><p>Line those up and the conclusion writes itself. These rounds do not sit open for months waiting for you to get organized. A round can be fully claimed before most eligible buyers in the state have heard that it opened.</p><p>So I am going to do something unusual for a real estate page and decline to tell you whether money is available as you read this. I have no idea when you are reading it. This page might be a day old or three years old, and the honest answer changes by the week. Availability shifts without notice, nobody announces it to you personally, and the only two sources worth trusting are Florida Housing Finance Corporation directly and a participating lender who can see reservation status today. Any other answer, including a confident one, is a guess wearing a suit.</p><p>That reality should change your strategy completely. When a program gets claimed in weeks, the buyers who land it are not the ones who start when it opens. They are the ones who finished the slow parts months earlier and only had to make one call.</p><p>Being ready looks like this.</p><p>Pre-approved with a lender who participates in Florida Housing's programs, not just any lender who answered the phone. Not every loan officer works these files, and hunting for one after a round opens burns the days that actually mattered.</p><p>Documentation gathered in advance. Verification of full-time employment in a qualifying role, income history, and a clear answer on your ownership history for the last three years.</p><p>Your county's current income and purchase price limits confirmed in writing.</p><p>Homebuyer education handled if the round requires it. Ask whether it does, because a course you have not taken is a poor thing to discover on a deadline.</p><p>A property you can go under contract on, or at minimum a search narrow enough that you could move within days.</p><p>If you check and a round is closed, that is information, not a verdict. Appropriations have come back in past cycles. Getting your file assembled during a closed stretch costs you nothing and puts you near the front when funding returns. One thing I will say flatly: never structure a purchase around assistance nobody has confirmed in writing is reserved for you. Contracts have dates. Funding rounds do not care about them.</p>
+          <p>This is the part of the program that decides outcomes, and it is the part almost every article about it gets quietly wrong by the time you find it.</p><p>Hometown Heroes funding arrives in cycles. The Legislature appropriates money, Florida Housing makes it available, participating lenders reserve it for individual buyers as loans get locked, and when a round is committed, it is committed. First come, first served, with the reservations happening at lender level in real time.</p><p>What the record shows about the pace. The 2023 round of $100 million was fully committed in under three weeks. The prior 2025-2026 round opened August 18, 2025 with $50 million plus $13 million in recycled funds, and took about six months to fully commit. The current round relaunched July 13, 2026 with a new $50 million allocation. Florida Housing's own board materials for its September 25, 2026 meeting show roughly 1,159 loans in the pipeline using just over $18 million of that money, based on data as of September 10, 2026. That leaves somewhere around $32 million still uncommitted as of this writing, and at that pace the round could run through the rest of the year before it is fully claimed. I want to be honest about what that number is and is not. It is my own arithmetic off a public board packet, not a live balance Florida Housing publishes anywhere, and it will be stale the moment a lender in another county locks a batch of loans. Treat it as evidence the round moves slower than 2023 did, not as a promise about what is left when you call.</p><p>Line those up and the conclusion writes itself. These rounds do not sit open for months waiting for you to get organized. A round can be fully claimed before most eligible buyers in the state have heard that it opened.</p><p>So I am going to do something unusual for a real estate page and decline to tell you whether money is available as you read this. I have no idea when you are reading it. This page might be a day old or three years old, and the honest answer changes by the week. Availability shifts without notice, nobody announces it to you personally, and the only two sources worth trusting are Florida Housing Finance Corporation directly and a participating lender who can see reservation status today. Any other answer, including a confident one, is a guess wearing a suit.</p><p>That reality should change your strategy completely. When a program gets claimed in weeks, the buyers who land it are not the ones who start when it opens. They are the ones who finished the slow parts months earlier and only had to make one call.</p><p>Being ready looks like this.</p><p>Pre-approved with a lender who participates in Florida Housing's programs, not just any lender who answered the phone. Not every loan officer works these files, and hunting for one after a round opens burns the days that actually mattered.</p><p>Documentation gathered in advance. Verification of full-time employment in a qualifying role, income history, and a clear answer on your ownership history for the last three years.</p><p>Your county's current income and purchase price limits confirmed in writing.</p><p>Homebuyer education handled if the round requires it. Ask whether it does, because a course you have not taken is a poor thing to discover on a deadline.</p><p>A property you can go under contract on, or at minimum a search narrow enough that you could move within days.</p><p>If you check and a round is closed, that is information, not a verdict. Appropriations have come back in past cycles. Getting your file assembled during a closed stretch costs you nothing and puts you near the front when funding returns. One thing I will say flatly: never structure a purchase around assistance nobody has confirmed in writing is reserved for you. Contracts have dates. Funding rounds do not care about them.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2>How I Get Paid on a Hometown Heroes Deal</h2>
+          <p>Buyers ask me this less than they should, so I am putting it on the page unprompted.</p><p>Realtor commission cannot be paid out of the down payment assistance funds themselves. On top of that, Florida Housing's current lender guide for this program caps any realtor fee you pay directly at $500. That is not a typo and it is not a negotiable line item I can talk a lender into changing.</p><p>What that means in practice is that my compensation on an HTH purchase comes from seller concessions built into the offer, or from a cooperative fee offered on the listing side, not from your pocket. The buyer-broker agreement we sign has to be written to reflect that from the start, not adjusted after the fact.</p><p>I am telling you this for the same reason I do not print stale income limits on this page. I would rather you know exactly how the money moves before you sign anything than have you find out at the closing table.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2>Three Steps If You Want to Move on This</h2>
+          <p>Step one. Reply to my email or call me directly. Tell me your occupation, your rough timeline, and whether you have owned a home in the last three years. That is enough for a first read on whether this program fits you.</p><p>Step two. I connect you with a lender who actually participates in Florida Housing's programs, and they run your pre-qualification. This is the step that matters most, because the lender confirms your credit, your income against the current county limits, and whether a round has room for you right now. I do not skip you past this step, because nobody can promise you funding without it.</p><p>Step three. Once you are pre-qualified, we tour homes in Ocala or Marion Oaks that fit your price range and the program's purchase price limit for your county. From there it is a normal purchase, just one with a second mortgage attached that you now understand.</p>
         </div>
 
         <div class="section-block reveal reveal-d6">
@@ -493,8 +528,10 @@
               <ul class='benefit-list'>
           <li>Down payment and closing cost assistance of up to 5% of the first mortgage, minimum $10,000 and maximum $35,000</li>
           <li>Structured by Florida Housing as a 0% deferred second mortgage, not a grant</li>
-          <li>Eligible occupations include health care, school staff, first responders, child care, military and veterans</li>
-          <li>Funding runs in first-come first-served rounds that have historically been claimed in weeks</li>
+          <li>Eligible occupations include health care, school staff, first responders, public safety and court employees, child care, military and veterans, working full-time for a Florida-based employer</li>
+          <li>Your lender needs a minimum 640 credit score and FHFC-approved homebuyer education to reserve the funds</li>
+          <li>Funding runs in first-come first-served rounds that have historically been claimed in weeks to months</li>
+          <li>A realtor fee you pay directly is capped at $500 on an HTH deal, so buyer-side compensation comes from seller concessions instead</li>
           <li>No stale income limits printed here, only where to get the figure that is current on the day you apply</li>
           <li>Licensed with Taylor Apartment Locator, representing buyers in Ocala and Marion Oaks</li>
         </ul>
@@ -540,10 +577,19 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-a">
-              <p>I cannot answer that honestly on a page you might be reading a year from now, and neither can anyone else writing in advance. Funding comes in rounds that are first come, first served, and lenders reserve it for individual buyers in real time. Past rounds moved fast: the 2023 round of $100 million was fully committed in under three weeks, and the 2024 round lasted about five weeks. The 2026 cycle relaunched on July 13, 2026 with $50 million, and the Legislature approved $50 million for the 2026-2027 fiscal year. Availability changes without notice, so check with Florida Housing Finance Corporation directly or ask a participating lender for reservation status on the day you are asking. Do not build a purchase around assistance nobody has confirmed in writing is reserved for you.</p>
+              <p>I cannot answer that honestly on a page you might be reading a year from now, and neither can anyone else writing in advance. Funding comes in rounds that are first come, first served, and lenders reserve it for individual buyers in real time. The 2023 round of $100 million was fully committed in under three weeks, but the round before this one, opened August 2025, took about six months to fully commit. The current round relaunched July 13, 2026 with $50 million. Florida Housing's own board materials show roughly $18 million committed as of early September 2026, which by my own math leaves something like $32 million still open, but that figure is my arithmetic off a public document, not a live balance Florida Housing publishes. Availability changes without notice, so check with Florida Housing Finance Corporation directly or ask a participating lender for reservation status on the day you are asking.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Does Hometown Heroes pay my realtor's commission?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-a">
+              <p>Not out of the assistance funds. Realtor commission cannot be paid from the down payment assistance itself, and the current lender guide for this program caps any realtor fee you pay directly at $500. In practice that means buyer-side compensation on an HTH deal comes from seller concessions negotiated into the offer, or a cooperative fee on the listing side, and the buyer-broker agreement needs to be written that way from the start.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal reveal-d6">
             <button class="faq-q" onclick="toggleFaq(this)">
               Do I have to be a first-time buyer to use Hometown Heroes?
               <span class="faq-icon">+</span>
@@ -570,7 +616,7 @@
     <div class="inner">
       <div class="author-card reveal">
         <div class="author-info">
-          <div class="author-name">Written by Willy Lopez</div>
+          <div class="author-name">Written by <a href="/about" style="color:inherit;">Willy Lopez</a></div>
           <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator</div>
           <p class="author-bio">Willy Lopez is a licensed real estate agent serving Greater Orlando and Ocala, FL. He specializes in helping renters find apartments virtually and helping buyers navigate the Central Florida and Marion County markets.</p>
         </div>
@@ -586,6 +632,7 @@
       <a href="/usda-loans-marion-oaks-ocala" class="rel-link">USDA Loans in Marion Oaks</a>
       <a href="/first-time-home-buyer-ocala-fl" class="rel-link">First-Time Home Buyer in Ocala</a>
       <a href="/buying-a-home-in-ocala-fl" class="rel-link">Buying a Home in Ocala, FL</a>
+      <a href="/programa-hometown-heroes-florida" class="rel-link">Programa Hometown Heroes en Espanol</a>
       </div>
     </div>
   </section>
@@ -595,7 +642,7 @@
     <div class="inner">
       <h2 class="reveal">Not sure if Hometown Heroes fits your situation?</h2>
       <p class="reveal reveal-d1">Tell me your occupation, your timeline, and where in Florida you are looking. I will tell you straight whether this program is worth chasing and what to ask a lender first.</p>
-      <a href="/#home" class="hero-cta reveal reveal-d2">Get Started</a>
+      <a href="/contact" class="hero-cta reveal reveal-d2">Get Started</a>
     </div>
   </section>
 
@@ -603,6 +650,9 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/landlords">Landlords</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms of Service</a>
     </div>

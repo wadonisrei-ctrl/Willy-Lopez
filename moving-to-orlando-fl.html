@@ -229,6 +229,13 @@
       transition: opacity 0.15s, transform 0.1s; display: inline-flex; align-items: center;
     }
     .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .gen-nav-links { display: flex; align-items: center; gap: 22px; }
+    .gen-nav-links a {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.3px; transition: color 0.15s;
+    }
+    .gen-nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .gen-nav-links { display: none; } }
 
     /* HERO */
     .hero {
@@ -433,7 +440,14 @@
   <nav>
     <div class="nav-in">
       <a href="/" class="logo">Willy <b>Lopez</b></a>
-      <a href="/#home" class="nav-btn">Get Started Free</a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div class="gen-nav-links">
+          <a href="/about">About</a>
+          <a href="/landlords">Landlords</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <a href="/#home" class="nav-btn">Get Started Free</a>
+      </div>
     </div>
   </nav>
 
@@ -463,12 +477,12 @@
       
         <div class="section-block reveal reveal-d1">
           <h2>Why People Move to Orlando</h2>
-          <p>Most people moving to Orlando are coming from one of three places: the Northeast, South Florida, or the Midwest. The reasons are usually the same. Florida has no state income tax, which by itself makes a real difference for middle-income earners. Orlando rents generally run below Miami, Fort Lauderdale, and Boca Raton. And the weather in Central Florida is more forgiving than coastal South Florida during hurricane season.</p><p>The other big driver is remote work. Since 2020, a lot of people who can work from anywhere chose Orlando because it has the infrastructure of a real city, reasonable cost of living, and easy access to both coasts via I-4 and two major airports. You can fly direct to almost anywhere from Orlando International.</p><p>If you are coming from New York or New Jersey specifically, the price shock goes the other direction in the best way. A two-bedroom in Orlando often rents for what you might pay for a one-bedroom in Hoboken. That difference adds up fast.</p>
+          <p>Most people moving to Orlando are coming from one of three places: the Northeast, Miami, or the Midwest. The reasons are usually the same. Florida has no state income tax, which by itself makes a real difference for middle-income earners. Orlando rents generally run below Miami, Fort Lauderdale, and Boca Raton. And the weather in Central Florida is more forgiving than Florida's southeast coast during hurricane season.</p><p>The other big driver is remote work. Since 2020, a lot of people who can work from anywhere chose Orlando because it has the infrastructure of a real city, reasonable cost of living, and easy access to both coasts via I-4 and two major airports. You can fly direct to almost anywhere from Orlando International.</p><p>If you are coming from New York or New Jersey specifically, the price shock goes the other direction in the best way. A two-bedroom in Orlando often rents for what you might pay for a one-bedroom in Hoboken. That difference adds up fast.</p>
         </div>
 
         <div class="section-block reveal reveal-d2">
           <h2>How Orlando Compares to Other Florida Cities</h2>
-          <p>Orlando sits in the middle of Florida, which is both a strength and a limitation. You are about 85 miles from Tampa, 55 miles from Daytona Beach, and 235 miles from Miami. If a beach day requires a drive, that is the tradeoff for living somewhere with lower housing costs and less traffic than South Florida.</p><p>Compared to Tampa, Orlando has a larger rental inventory and rents in a similar range. Compared to Jacksonville, Orlando has more employment anchors in healthcare, tourism, and tech. Compared to Ocala, Orlando is more urban with more options but noticeably higher prices.</p><p>Most people who contact me and say they are moving to Orlando are actually moving to the greater metro area. That includes communities in Orange, Seminole, Osceola, and Lake counties. Lake Nona, Kissimmee, Davenport, Oviedo, Winter Garden, and Dr. Phillips are all technically outside the city limits but fully part of the Orlando market.</p>
+          <p>Orlando sits in the middle of Florida, which is both a strength and a limitation. You are about 85 miles from Tampa, 55 miles from Daytona Beach, and 235 miles from Miami. If a beach day requires a drive, that is the tradeoff for living somewhere with lower housing costs and less traffic than Miami.</p><p>Compared to Tampa, Orlando has a larger rental inventory and rents in a similar range. Compared to Jacksonville, Orlando has more employment anchors in healthcare, tourism, and tech. Compared to Ocala, Orlando is more urban with more options but noticeably higher prices.</p><p>Most people who contact me and say they are moving to Orlando are actually moving to the greater metro area. That includes communities in Orange, Seminole, Osceola, and Lake counties. Lake Nona, Kissimmee, Davenport, Oviedo, Winter Garden, and Dr. Phillips are all technically outside the city limits but fully part of the Orlando market.</p>
         </div>
 
         <div class="section-block reveal reveal-d3">
@@ -569,7 +583,7 @@
     <div class="inner">
       <div class="author-card reveal">
         <div class="author-info">
-          <div class="author-name">Written by Willy Lopez</div>
+          <div class="author-name">Written by <a href="/about" style="color:inherit;">Willy Lopez</a></div>
           <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator</div>
           <p class="author-bio">Willy Lopez is a licensed real estate agent serving Greater Orlando and Ocala, FL. He specializes in helping renters find apartments virtually and helping buyers navigate the Central Florida and Marion County markets.</p>
         </div>
@@ -603,6 +617,9 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/landlords">Landlords</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms of Service</a>
     </div>

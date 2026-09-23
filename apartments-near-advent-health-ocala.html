@@ -96,7 +96,7 @@
       "name": "What is the average rent near Advent Health Ocala?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It runs below most of Florida's other metros, and the exact number shifts with season and occupancy, so I do not post a figure that could go stale. Tell me your budget and I will give you a current, confirmed answer. Ocala overall still runs well below Orlando and South Florida, which is a major draw for healthcare workers relocating from higher-cost markets."
+        "text": "It runs below most of Florida's other metros, and the exact number shifts with season and occupancy, so I do not post a figure that could go stale. Tell me your budget and I will give you a current, confirmed answer. Ocala overall still runs well below Orlando and Miami, which is a major draw for healthcare workers relocating from higher-cost markets."
       }
     },
     {
@@ -229,6 +229,13 @@
       transition: opacity 0.15s, transform 0.1s; display: inline-flex; align-items: center;
     }
     .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .gen-nav-links { display: flex; align-items: center; gap: 22px; }
+    .gen-nav-links a {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.3px; transition: color 0.15s;
+    }
+    .gen-nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .gen-nav-links { display: none; } }
 
     /* HERO */
     .hero {
@@ -433,7 +440,14 @@
   <nav>
     <div class="nav-in">
       <a href="/" class="logo">Willy <b>Lopez</b></a>
-      <a href="/#home" class="nav-btn">Get Started Free</a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div class="gen-nav-links">
+          <a href="/about">About</a>
+          <a href="/landlords">Landlords</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <a href="/#home" class="nav-btn">Get Started Free</a>
+      </div>
     </div>
   </nav>
 
@@ -534,7 +548,7 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-a">
-              <p>It runs below most of Florida's other metros, and the exact number shifts with season and occupancy, so I do not post a figure that could go stale. Tell me your budget and I will give you a current, confirmed answer. Ocala overall still runs well below Orlando and South Florida, which is a major draw for healthcare workers relocating from higher-cost markets.</p>
+              <p>It runs below most of Florida's other metros, and the exact number shifts with season and occupancy, so I do not post a figure that could go stale. Tell me your budget and I will give you a current, confirmed answer. Ocala overall still runs well below Orlando and Miami, which is a major draw for healthcare workers relocating from higher-cost markets.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
@@ -564,7 +578,7 @@
     <div class="inner">
       <div class="author-card reveal">
         <div class="author-info">
-          <div class="author-name">Written by Willy Lopez</div>
+          <div class="author-name">Written by <a href="/about" style="color:inherit;">Willy Lopez</a></div>
           <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator</div>
           <p class="author-bio">Willy Lopez is a licensed real estate agent serving Greater Orlando and Ocala, FL. He specializes in helping renters find apartments virtually and helping buyers navigate the Central Florida and Marion County markets.</p>
         </div>
@@ -596,6 +610,9 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/landlords">Landlords</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms of Service</a>
     </div>

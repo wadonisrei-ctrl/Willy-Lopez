@@ -229,6 +229,13 @@
       transition: opacity 0.15s, transform 0.1s; display: inline-flex; align-items: center;
     }
     .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .gen-nav-links { display: flex; align-items: center; gap: 22px; }
+    .gen-nav-links a {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.3px; transition: color 0.15s;
+    }
+    .gen-nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .gen-nav-links { display: none; } }
 
     /* HERO */
     .hero {
@@ -433,7 +440,14 @@
   <nav>
     <div class="nav-in">
       <a href="/" class="logo">Willy <b>Lopez</b></a>
-      <a href="/#home" class="nav-btn">Get Started</a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div class="gen-nav-links">
+          <a href="/about">About</a>
+          <a href="/landlords">Landlords</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <a href="/#home" class="nav-btn">Get Started</a>
+      </div>
     </div>
   </nav>
 
@@ -463,7 +477,7 @@
       
         <div class="section-block reveal reveal-d1">
           <h2>Why Ocala Is One of the Best Places to Buy Right Now</h2>
-          <p>Ocala is one of the more affordable homebuying markets left in Florida, and that is the whole reason most of my buyers end up looking here. A house that would stretch a budget in Orlando or Tampa tends to sit comfortably inside it in Marion County.</p><p>The gap has held long enough that people keep finding it. The World Equestrian Center opened in 2021 and put Ocala on a national map it had never been on before, and growth followed. It is not a small effect either: Census Bureau estimates released in March 2026 put this metro at the top of the national growth list for the second straight year.</p><p>That cuts both ways for a buyer. More people means more competition for the well-priced homes and steady pressure on values over time. It also means more new construction, more inventory, and services showing up in parts of the county that had none five years ago.</p><p>For buyers selling out of a high-cost market in the Northeast or South Florida, for remote workers, and for anyone who has watched entry-level inventory disappear everywhere else in this state, the trade is usually worth it.</p>
+          <p>Ocala is one of the more affordable homebuying markets left in Florida, and that is the whole reason most of my buyers end up looking here. A house that would stretch a budget in Orlando or Tampa tends to sit comfortably inside it in Marion County.</p><p>The gap has held long enough that people keep finding it. The World Equestrian Center opened in 2021 and put Ocala on a national map it had never been on before, and growth followed. It is not a small effect either: Census Bureau estimates released in March 2026 put this metro at the top of the national growth list for the second straight year.</p><p>That cuts both ways for a buyer. More people means more competition for the well-priced homes and steady pressure on values over time. It also means more new construction, more inventory, and services showing up in parts of the county that had none five years ago.</p><p>For buyers selling out of a high-cost market in the Northeast or Miami, for remote workers, and for anyone who has watched entry-level inventory disappear everywhere else in this state, the trade is usually worth it.</p>
         </div>
 
         <div class="section-block reveal reveal-d2">
@@ -490,7 +504,7 @@
           <li>Know the Ocala market neighborhood by neighborhood</li>
           <li>I will tell you when a house is wrong for you</li>
           <li>Honest about timelines, condition issues, and what to expect</li>
-          <li>Licensed with Taylor Apartment Locator (12 years in the market)</li>
+          <li>Licensed with Taylor Apartment Locator</li>
           <li>Serving all of Marion County and surrounding areas</li>
         </ul>
     </div>
@@ -565,7 +579,7 @@
     <div class="inner">
       <div class="author-card reveal">
         <div class="author-info">
-          <div class="author-name">Written by Willy Lopez</div>
+          <div class="author-name">Written by <a href="/about" style="color:inherit;">Willy Lopez</a></div>
           <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator</div>
           <p class="author-bio">Willy Lopez is a licensed real estate agent serving Greater Orlando and Ocala, FL. He specializes in helping renters find apartments virtually and helping buyers navigate the Central Florida and Marion County markets.</p>
         </div>
@@ -580,7 +594,7 @@
       <div class="rel-links reveal reveal-d1">
       <a href="/ocala-fl-housing-market" class="rel-link">Ocala FL Housing Market</a>
       <a href="/first-time-home-buyer-ocala-fl" class="rel-link">First-Time Home Buyer in Ocala</a>
-      <a href="/renting-vs-buying-orlando" class="rel-link">Renting vs Buying in Orlando</a>
+      <a href="/florida-hometown-heroes-program" class="rel-link">Florida Hometown Heroes Program</a>
       <a href="/marion-oaks-ocala-homes" class="rel-link">Marion Oaks, Ocala FL Home Buying Guide</a>
       </div>
     </div>
@@ -599,6 +613,9 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/landlords">Landlords</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms of Service</a>
     </div>

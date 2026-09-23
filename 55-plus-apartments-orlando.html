@@ -229,6 +229,13 @@
       transition: opacity 0.15s, transform 0.1s; display: inline-flex; align-items: center;
     }
     .nav-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .gen-nav-links { display: flex; align-items: center; gap: 22px; }
+    .gen-nav-links a {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.3px; transition: color 0.15s;
+    }
+    .gen-nav-links a:hover { color: var(--text); }
+    @media (max-width: 640px) { .gen-nav-links { display: none; } }
 
     /* HERO */
     .hero {
@@ -433,7 +440,14 @@
   <nav>
     <div class="nav-in">
       <a href="/" class="logo">Willy <b>Lopez</b></a>
-      <a href="/#home" class="nav-btn">Get Started Free</a>
+      <div style="display:flex;align-items:center;gap:24px;">
+        <div class="gen-nav-links">
+          <a href="/about">About</a>
+          <a href="/landlords">Landlords</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <a href="/#home" class="nav-btn">Get Started Free</a>
+      </div>
     </div>
   </nav>
 
@@ -463,7 +477,7 @@
       
         <div class="section-block reveal reveal-d1">
           <h2>Finding 55+ Housing in the Orlando Area</h2>
-          <p>Most of the Orlando rental market is open-age housing. Dedicated 55+ communities are rarer, which means when a well-run one has availability, it tends to fill up fast, and buildings with a track record of good management and maintenance get first pick of applicants.</p><p>I focus on senior housing across the Orlando area, with my strongest relationships in Winter Park. At least one tenant in the household typically needs to be 55 or older to qualify, and I steer clients toward professionally managed buildings with responsive maintenance and on-site staff rather than smaller, less established operations.</p><p>Winter Park itself is one of Orlando's most desirable addresses. Tree-lined streets, walkable to Park Avenue dining and shops, and a quieter pace than downtown Orlando. It is a natural landing spot for retirees relocating from the Northeast, Midwest, or South Florida.</p>
+          <p>Most of the Orlando rental market is open-age housing. Dedicated 55+ communities are rarer, which means when a well-run one has availability, it tends to fill up fast, and buildings with a track record of good management and maintenance get first pick of applicants.</p><p>I focus on senior housing across the Orlando area, with my strongest relationships in Winter Park. At least one tenant in the household typically needs to be 55 or older to qualify, and I steer clients toward professionally managed buildings with responsive maintenance and on-site staff rather than smaller, less established operations.</p><p>Winter Park itself is one of Orlando's most desirable addresses. Tree-lined streets, walkable to Park Avenue dining and shops, and a quieter pace than downtown Orlando. It is a natural landing spot for retirees relocating from the Northeast, Midwest, or Miami.</p>
         </div>
 
         <div class="section-block reveal reveal-d2">
@@ -473,7 +487,7 @@
 
         <div class="section-block reveal reveal-d3">
           <h2>Why Retirees Move to the Orlando Area</h2>
-          <p>Florida is the top destination for retirees in the country, and Central Florida specifically has a few advantages over the more saturated South Florida market.</p><p>No state income tax. Florida has no personal income tax, which makes retirement income go further.</p><p>Lower cost of living than South Florida. Rents in the Orlando area generally run below Miami or Fort Lauderdale for comparable units, though the gap varies building to building.</p><p>Warm weather year-round. The Central Florida climate is milder than the coast, without the constant humidity and hurricane exposure of Southeast Florida.</p><p>Proximity to family. Many retirees follow adult children who moved to the Orlando metro for work in healthcare, tech, or the hospitality industry.</p><p>Season flexibility. You can choose to be here year-round or use a rental as a seasonal base and return north in summer.</p>
+          <p>Florida is the top destination for retirees in the country, and Central Florida specifically has a few advantages over the more saturated Miami market.</p><p>No state income tax. Florida has no personal income tax, which makes retirement income go further.</p><p>Lower cost of living than Florida's coast. Rents in the Orlando area generally run below Miami or Fort Lauderdale for comparable units, though the gap varies building to building.</p><p>Warm weather year-round. The Central Florida climate is milder than the coast, without the constant humidity and hurricane exposure of Southeast Florida.</p><p>Proximity to family. Many retirees follow adult children who moved to the Orlando metro for work in healthcare, tech, or the hospitality industry.</p><p>Season flexibility. You can choose to be here year-round or use a rental as a seasonal base and return north in summer.</p>
         </div>
 
         <div class="section-block reveal reveal-d4">
@@ -560,7 +574,7 @@
     <div class="inner">
       <div class="author-card reveal">
         <div class="author-info">
-          <div class="author-name">Written by Willy Lopez</div>
+          <div class="author-name">Written by <a href="/about" style="color:inherit;">Willy Lopez</a></div>
           <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator</div>
           <p class="author-bio">Willy Lopez is a licensed real estate agent serving Greater Orlando and Ocala, FL. He specializes in helping renters find apartments virtually and helping buyers navigate the Central Florida and Marion County markets.</p>
         </div>
@@ -593,6 +607,9 @@
   <footer>
     <div class="footer-links">
       <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/landlords">Landlords</a>
+      <a href="/contact">Contact</a>
       <a href="/privacy.html">Privacy Policy</a>
       <a href="/terms.html">Terms of Service</a>
     </div>
