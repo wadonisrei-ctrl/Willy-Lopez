@@ -35,6 +35,16 @@
       "source": "/apartments-near-fort-lauderdale-airport",
       "destination": "/how-free-apartment-locator-works",
       "permanent": true
+    },
+    {
+      "source": "/buy-a-home-orlando-ocala",
+      "destination": "/buying-a-home-in-ocala-fl",
+      "permanent": true
+    },
+    {
+      "source": "/sell-my-home-orlando-ocala",
+      "destination": "/selling-a-home-in-ocala-fl",
+      "permanent": true
     }
   ]
 }
