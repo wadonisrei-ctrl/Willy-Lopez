@@ -2620,6 +2620,15 @@
     a.addEventListener('click', function() { document.getElementById('mobNav').classList.remove('on'); });
   });
 
+  // Buyer, seller and landlord pages link here as /?intent=buy#home so step 2 opens
+  // with the right card already chosen instead of making the visitor pick again.
+  (function () {
+    try {
+      var intent = new URLSearchParams(window.location.search).get('intent');
+      if (intent === 'buy' || intent === 'sell' || intent === 'rent') { window.preselectedType = intent; }
+    } catch (e) {}
+  })();
+
   function goStep2() {
     var name = document.getElementById('s1-name').value.trim();
     var phone = document.getElementById('s1-phone').value.trim();
