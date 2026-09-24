@@ -1,0 +1,13 @@
+# Auto-generated from vercel.json by seo_page_gen.py write_redirects().
+# Netlify / Cloudflare Pages format: /source /destination 301
+# No /*.html rewrite needed: both hosts serve foo.html at /foo natively,
+# unlike vercel.json which needs cleanUrls:true to do the same thing.
+/moving-to-ocala-florida /ocala-fl-apartments 301
+/first-time-home-buyer-florida /first-time-home-buyer-ocala-fl 301
+/apartment-locator-hollywood-fl /how-free-apartment-locator-works 301
+/apartment-move-in-specials-hollywood-fl /how-free-apartment-locator-works 301
+/apartments-near-memorial-regional-hollywood /how-free-apartment-locator-works 301
+/apartments-dania-beach-fl /how-free-apartment-locator-works 301
+/apartments-near-fort-lauderdale-airport /how-free-apartment-locator-works 301
+/buy-a-home-orlando-ocala /buying-a-home-in-ocala-fl 301
+/sell-my-home-orlando-ocala /selling-a-home-in-ocala-fl 301
