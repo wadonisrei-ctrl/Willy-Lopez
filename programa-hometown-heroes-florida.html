@@ -273,6 +273,20 @@
       max-width: 600px; margin: 0 auto 36px;
       line-height: 1.6;
     }
+    .hero-lang-switch {
+      font-size: 13px;
+      margin: -22px 0 30px;
+    }
+    .hero-lang-switch a {
+      color: var(--gold-lt);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232,184,112,0.35);
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .hero-lang-switch a:hover {
+      color: white;
+      border-color: rgba(255,255,255,0.6);
+    }
     .hero-cta {
       display: inline-block;
       background: var(--g-gold); color: white;
@@ -479,7 +493,8 @@
       <div class="hero-tag reveal">Ayuda Para el Pago Inicial</div>
       <h1 class="reveal reveal-d1">El Programa Hometown Heroes de Florida, Explicado</h1>
       <p class="hero-sub reveal reveal-d2">Ayuda para el pago inicial y los costos de cierre para gente que trabaja en Florida, estructurada como una segunda hipoteca que se paga mas adelante. Aquí explico cómo funciona el dinero, quién califica y por qué la pregunta de los fondos nunca tiene una respuesta permanente.</p>
-      <a href="/contact" class="hero-cta reveal reveal-d3">Empezar</a>
+      <p class="hero-lang-switch reveal reveal-d2"><a href="https://willy-lopez.vercel.app/florida-hometown-heroes-program">Read this guide in English &rarr;</a></p>
+      <a href="/contacto?type=buy" class="hero-cta reveal reveal-d3">Empezar</a>
     </div>
   </section>
 
@@ -643,7 +658,7 @@
     <div class="inner">
       <h2 class="reveal">¿No sabes si Hometown Heroes es para ti?</h2>
       <p class="reveal reveal-d1">Dime tu ocupación, tu tiempo aproximado, y en qué parte de Florida estás buscando. Te diré con honestidad si este programa vale la pena para ti y qué preguntarle primero a un prestamista.</p>
-      <a href="/contact" class="hero-cta reveal reveal-d2">Empezar</a>
+      <a href="/contacto?type=buy" class="hero-cta reveal reveal-d2">Empezar</a>
     </div>
   </section>
 
