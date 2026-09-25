@@ -149,8 +149,8 @@
 
 <div class="hero">
   <p class="tag">Contacto</p>
-  <h1>Hablemos</h1>
-  <p>Llama, envía un mensaje de texto, escribe un correo, o manda el formulario de abajo. Respondo dentro de 24 horas hábiles.</p>
+  <h1>Recibe una Respuesta Directa</h1>
+  <p>Comprando, vendiendo, buscando apartamento, o con una renta vacía. Cuéntame tu situación y te digo qué haría yo. Llama, escribe un mensaje de texto o un correo, o manda el formulario de abajo. Respondo dentro de 24 horas hábiles.</p>
 </div>
 
 <div class="content">
@@ -179,7 +179,7 @@
         <input type="email" id="c-email" required />
       </div>
       <div class="fg">
-        <label for="c-type">Soy:</label>
+        <label for="c-type">¿Cuál eres tú?</label>
         <select id="c-type" required>
           <option value="" disabled selected>Elige una opción</option>
           <option value="Buyer">Comprador</option>
@@ -190,19 +190,19 @@
       </div>
       <div class="fg">
         <label for="c-message">Mensaje</label>
-        <textarea id="c-message" rows="4" placeholder="¿Qué necesitas? Cuéntame y vemos cómo te puedo ayudar."></textarea>
+        <textarea id="c-message" rows="4" placeholder="Cuéntame tu plazo y el área que te interesa."></textarea>
       </div>
       <input type="hidden" id="c-idioma" value="es" />
       <div class="consent-row">
         <input type="checkbox" id="c-consent" required />
         <label for="c-consent">Acepto que Willy Lopez me contacte por llamada, mensaje de texto o correo electrónico, al número y la dirección que di arriba, incluyendo mensajes automáticos o pregrabados, sobre mi consulta. Dar este consentimiento no es una condición para comprar ningún producto ni servicio. Pueden aplicar tarifas de mensajes y datos. Contesta STOP a cualquier mensaje de texto para cancelar. Consulta la <a href="/privacy">Política de Privacidad</a>.</label>
       </div>
-      <button type="submit" class="btn-submit" id="c-submit">Enviar Mensaje</button>
+      <button type="submit" class="btn-submit" id="c-submit">Enviar Mi Mensaje</button>
       <p class="form-note">Respondo dentro de 24 horas hábiles.</p>
     </form>
     <div class="form-success" id="c-success">
-      <p>Mensaje enviado.</p>
-      <p>Te contacto dentro de 24 horas hábiles. Mientras tanto también puedes llamarme o enviarme un mensaje de texto al (718) 635-0140.</p>
+      <p>Listo.</p>
+      <p>Yo los leo personalmente, y te contesto por llamada, mensaje o correo dentro de 24 horas hábiles. Si me necesitas antes, llama o escribe al (718) 635-0140.</p>
     </div>
   </div>
 
@@ -261,13 +261,13 @@
         document.getElementById('c-success').classList.add('on');
       } else {
         btn.disabled = false;
-        btn.textContent = 'Enviar Mensaje';
-        alert('Algo salió mal. Por favor intenta de nuevo o llama/envía un mensaje directamente.');
+        btn.textContent = 'Enviar Mi Mensaje';
+        alert('No se envió. Intenta otra vez, o escríbeme o llámame al (718) 635-0140 y yo sigo desde ahí.');
       }
     }).catch(function () {
       btn.disabled = false;
-      btn.textContent = 'Enviar Mensaje';
-      alert('Algo salió mal. Por favor intenta de nuevo o llama/envía un mensaje directamente.');
+      btn.textContent = 'Enviar Mi Mensaje';
+      alert('No se envió. Intenta otra vez, o escríbeme o llámame al (718) 635-0140 y yo sigo desde ahí.');
     });
   });
 </script>

@@ -148,8 +148,8 @@
 
 <div class="hero">
   <p class="tag">Contact</p>
-  <h1>Let's Talk</h1>
-  <p>Call, text, email, or send the form below. I respond within 24 business hours.</p>
+  <h1>Get a Straight Answer</h1>
+  <p>Buying, selling, looking for an apartment, or sitting on an empty rental. Tell me what is going on and I will tell you what I would do. Call, text, email, or send the form below. I respond within 24 business hours.</p>
 </div>
 
 <div class="content">
@@ -178,7 +178,7 @@
         <input type="email" id="c-email" required />
       </div>
       <div class="fg">
-        <label for="c-type">I am a:</label>
+        <label for="c-type">Which one are you?</label>
         <select id="c-type" required>
           <option value="" disabled selected>Choose one</option>
           <option value="Buyer">Buyer</option>
@@ -189,18 +189,18 @@
       </div>
       <div class="fg">
         <label for="c-message">Message</label>
-        <textarea id="c-message" rows="4" placeholder="What's going on, and what would help?"></textarea>
+        <textarea id="c-message" rows="4" placeholder="Tell me your timeline and the area you're looking in."></textarea>
       </div>
       <div class="consent-row">
         <input type="checkbox" id="c-consent" required />
         <label for="c-consent">I agree to be contacted by Willy Lopez by call, text, or email at the number and address I provided above, including by automated or prerecorded message, about my inquiry. Consent is not a condition of any purchase or service. Message and data rates may apply. Reply STOP to any text to opt out. See the <a href="/privacy">Privacy Policy</a>.</label>
       </div>
-      <button type="submit" class="btn-submit" id="c-submit">Send Message</button>
+      <button type="submit" class="btn-submit" id="c-submit">Send My Message</button>
       <p class="form-note">I respond within 24 business hours.</p>
     </form>
     <div class="form-success" id="c-success">
-      <p>Message sent.</p>
-      <p>I'll be in touch within 24 business hours. You can also call or text (718) 635-0140 in the meantime.</p>
+      <p>Got it.</p>
+      <p>I read these myself, and I will call, text, or email you back within 24 business hours. If you need me sooner, call or text (718) 635-0140.</p>
     </div>
   </div>
 
@@ -258,13 +258,13 @@
         document.getElementById('c-success').classList.add('on');
       } else {
         btn.disabled = false;
-        btn.textContent = 'Send Message';
-        alert('Something went wrong. Please try again or call/text directly.');
+        btn.textContent = 'Send My Message';
+        alert('That did not send. Try once more, or text or call me at (718) 635-0140 and I will take it from there.');
       }
     }).catch(function () {
       btn.disabled = false;
-      btn.textContent = 'Send Message';
-      alert('Something went wrong. Please try again or call/text directly.');
+      btn.textContent = 'Send My Message';
+      alert('That did not send. Try once more, or text or call me at (718) 635-0140 and I will take it from there.');
     });
   });
 </script>
