@@ -483,6 +483,7 @@
       box-shadow: 0 0 0 3px rgba(200,148,58,0.1);
     }
     .fg input.err { border-color: var(--red); }
+    .field-err { color: var(--red); font-size: 12px; margin-top: 5px; }
     .fg select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237A7060' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -1928,10 +1929,12 @@
           <div class="fg">
             <label for="s1-name">Tu Nombre</label>
             <input type="text" id="s1-name" placeholder="Nombre y apellido" autocomplete="name" />
+            <span id="s1-name-err" class="field-err" role="alert" hidden>Agrega tu nombre para saber con quién hablo.</span>
           </div>
           <div class="fg">
             <label for="s1-phone">Mejor Número para Contactarte</label>
             <input type="tel" id="s1-phone" placeholder="(407) 000-0000" autocomplete="tel" />
+            <span id="s1-phone-err" class="field-err" role="alert" hidden>Agrega el mejor número para llamarte o escribirte.</span>
           </div>
           <button class="btn-main" onclick="goStep2()">Continuar &rarr;</button>
           <p class="tcpa-note">Al continuar, aceptas que Willy Lopez te contacte al número que diste, incluyendo por mensaje de texto. Pueden aplicar tarifas de mensajes y datos. Consulta nuestra <a href="/privacy">Política de Privacidad</a>.</p>
@@ -2056,6 +2059,7 @@
             <div class="fg">
               <label for="r-email">Correo Electrónico</label>
               <input type="email" id="r-email" placeholder="tu@correo.com" autocomplete="email" />
+              <span id="r-email-err" class="field-err" role="alert" hidden>Agrega un correo para enviarte lo que hablamos.</span>
             </div>
           </div>
           <div class="fg">
@@ -2129,6 +2133,7 @@
           <div class="fg">
             <label for="b-email">Correo Electrónico</label>
             <input type="email" id="b-email" placeholder="tu@correo.com" autocomplete="email" />
+            <span id="b-email-err" class="field-err" role="alert" hidden>Agrega un correo para enviarte lo que hablamos.</span>
           </div>
           <div class="fg">
             <label for="b-notes">¿Algo más que deba saber? (opcional)</label>
@@ -2178,6 +2183,7 @@
           <div class="fg">
             <label for="s-email">Correo Electrónico</label>
             <input type="email" id="s-email" placeholder="tu@correo.com" autocomplete="email" />
+            <span id="s-email-err" class="field-err" role="alert" hidden>Agrega un correo para enviarte lo que hablamos.</span>
           </div>
           <div class="fg">
             <label for="s-notes">¿Algo más que deba saber? (opcional)</label>
@@ -2836,7 +2842,9 @@
 
   function shake(id) {
     var el = document.getElementById(id);
+    var msg = document.getElementById(id + '-err');
     el.classList.add('err');
+    if (msg) { msg.hidden = false; }
     el.animate([
       { transform: 'translateX(0)' },
       { transform: 'translateX(-5px)' },
@@ -2845,7 +2853,10 @@
       { transform: 'translateX(3px)' },
       { transform: 'translateX(0)' }
     ], { duration: 320, easing: 'ease-out' });
-    el.addEventListener('input', function() { el.classList.remove('err'); }, { once: true });
+    el.addEventListener('input', function() {
+      el.classList.remove('err');
+      if (msg) { msg.hidden = true; }
+    }, { once: true });
   }
 
   function handleFin() {

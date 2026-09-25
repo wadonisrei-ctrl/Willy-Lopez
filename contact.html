@@ -116,6 +116,7 @@
     .form-success p:first-child { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 6px; }
     .form-success p { font-size: 13px; color: var(--muted); }
     .err { border-color: var(--red) !important; }
+    .field-err { color: var(--red); font-size: 12px; margin-top: 5px; }
 
     footer { background: #060D18; padding: 32px 40px; text-align: center; }
     .footer-links { margin-bottom: 14px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
@@ -168,14 +169,17 @@
       <div class="fg">
         <label for="c-name">Name</label>
         <input type="text" id="c-name" required />
+        <span id="c-name-err" class="field-err" role="alert" hidden>Please add your name so I know who I'm talking to.</span>
       </div>
       <div class="fg">
         <label for="c-phone">Phone</label>
         <input type="tel" id="c-phone" required />
+        <span id="c-phone-err" class="field-err" role="alert" hidden>Add the best number to text or call you back on.</span>
       </div>
       <div class="fg">
         <label for="c-email">Email</label>
         <input type="email" id="c-email" required />
+        <span id="c-email-err" class="field-err" role="alert" hidden>Add an email so I can send you what we discuss.</span>
       </div>
       <div class="fg">
         <label for="c-type">Which one are you?</label>
@@ -195,6 +199,7 @@
         <input type="checkbox" id="c-consent" required />
         <label for="c-consent">I agree to be contacted by Willy Lopez by call, text, or email at the number and address I provided above, including by automated or prerecorded message, about my inquiry. Consent is not a condition of any purchase or service. Message and data rates may apply. Reply STOP to any text to opt out. See the <a href="/privacy">Privacy Policy</a>.</label>
       </div>
+      <span id="c-consent-err" class="field-err" role="alert" hidden>Check this box so I'm allowed to contact you.</span>
       <button type="submit" class="btn-submit" id="c-submit">Send My Message</button>
       <p class="form-note">I respond within 24 business hours.</p>
     </form>
@@ -228,6 +233,21 @@
     var sel = document.getElementById('c-type');
     if (sel && map[t]) sel.value = map[t];
   })();
+
+  // Required fields already block native submission via the `required` attribute;
+  // these listeners swap the browser's own validation bubble for an inline message
+  // in the site's own style, without touching the `required` rule itself.
+  ['c-name', 'c-phone', 'c-email', 'c-consent'].forEach(function (id) {
+    var field = document.getElementById(id);
+    var msg = document.getElementById(id + '-err');
+    field.addEventListener('invalid', function (e) {
+      e.preventDefault();
+      if (msg) { msg.hidden = false; }
+    });
+    field.addEventListener(id === 'c-consent' ? 'change' : 'input', function () {
+      if (field.checkValidity() && msg) { msg.hidden = true; }
+    });
+  });
 
   document.getElementById('contactForm').addEventListener('submit', function (e) {
     e.preventDefault();
