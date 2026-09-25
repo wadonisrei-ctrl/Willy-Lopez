@@ -462,7 +462,7 @@
           <a href="/landlords">Landlords</a>
           <a href="/contact">Contact</a>
         </div>
-        <a href="/#home" class="nav-btn">Get Started Free</a>
+        <a href="/#home" class="nav-btn" data-cta="nav-get-started">Get Started</a>
       </div>
     </div>
   </nav>
@@ -482,7 +482,7 @@
       <div class="hero-tag reveal">Free Service for Renters</div>
       <h1 class="reveal reveal-d1">Rental Homes in St. Cloud, FL</h1>
       <p class="hero-sub reveal reveal-d2">Not everyone wants an apartment. I place renters in single-family rental homes in St. Cloud with real square footage and a yard. Free service.</p>
-      <a href="/#home" class="hero-cta reveal reveal-d3">Start For Free</a>
+      <a href="/#home" class="hero-cta reveal reveal-d3" data-cta="hero-cta">Start For Free</a>
     </div>
   </section>
 
@@ -591,7 +591,7 @@
       <div class="author-card reveal">
         <div class="author-info">
           <div class="author-name">Written by <a href="/about" style="color:inherit;">Willy Lopez</a></div>
-          <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator &middot; <a href="tel:+17186350140" style="color:inherit;">(718) 635-0140</a></div>
+          <div class="author-creds">Licensed Real Estate Agent &middot; Lic. SL3617612 &middot; Taylor Apartment Locator &middot; <a href="tel:+17186350140" style="color:inherit;" data-cta="author-phone">(718) 635-0140</a></div>
           <p class="author-bio">Willy Lopez is a licensed Florida real estate agent based in Marion County. He represents buyers and sellers in Ocala and Marion Oaks, places tenants for landlords, and helps renters across Greater Orlando and Ocala, in English and Spanish.</p>
         </div>
       </div>
@@ -616,7 +616,7 @@
     <div class="inner">
       <h2 class="reveal">Ready to find your apartment?</h2>
       <p class="reveal reveal-d1">It costs you nothing. I get paid by the property when you sign. I respond within 24 hours.</p>
-      <a href="/#home" class="hero-cta reveal reveal-d2">Start For Free</a>
+      <a href="/#home" class="hero-cta reveal reveal-d2" data-cta="cta-strip-cta">Start For Free</a>
     </div>
   </section>
 
@@ -630,7 +630,7 @@
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
     </div>
-    <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; <a href="tel:+17186350140">(718) 635-0140</a> &middot; <a href="mailto:wadonisrei@gmail.com">wadonisrei@gmail.com</a><br>
+    <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; <a href="tel:+17186350140" data-cta="footer-phone">(718) 635-0140</a> &middot; <a href="mailto:wadonisrei@gmail.com" data-cta="footer-email">wadonisrei@gmail.com</a><br>
     &copy; 2026 Willy Lopez. All rights reserved.</p>
   </footer>
 
@@ -652,6 +652,25 @@
         btn.classList.add('open');
       }
     }
+  </script>
+  <script>
+  try {
+    var _fs = {};
+    document.addEventListener('click', function (e) {
+      var ls = e.target.closest && e.target.closest('a[data-lang-switch]');
+      if (ls) { gtag('event', 'language_switch', { from_lang: ls.getAttribute('data-lang-switch'), page_path: location.pathname }); return; }
+      var c = e.target.closest && e.target.closest('a[data-cta]');
+      if (c) { gtag('event', 'cta_click', { cta_id: c.getAttribute('data-cta'), cta_text: (c.textContent || '').trim(), page_path: location.pathname }); }
+    });
+    document.addEventListener('focusin', function (e) {
+      var f = e.target.closest && e.target.closest('[data-form-id]');
+      if (!f || _fs[f.getAttribute('data-form-id')]) return;
+      _fs[f.getAttribute('data-form-id')] = 1;
+      var src = f.getAttribute('data-lead-type-from');
+      var lt = src ? ((document.querySelector(src) || {}).value || '').toLowerCase() : (f.getAttribute('data-lead-type') || '');
+      gtag('event', 'form_start', { form_id: f.getAttribute('data-form-id'), lead_type: lt, lang: f.getAttribute('data-lang') || document.documentElement.lang });
+    });
+  } catch (e) {}
   </script>
 </body>
 </html>

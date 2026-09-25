@@ -1845,7 +1845,7 @@
       <li><a href="/landlords">Landlords</a></li>
       <li><a href="#apartments">Apartments</a></li>
       <li><a href="/contact">Contact</a></li>
-      <li><a href="#home" class="nav-btn">Get Started</a></li>
+      <li><a href="#home" class="nav-btn" data-cta="nav-get-started">Get Started</a></li>
     </ul>
     <button class="hbg" id="hbg" aria-label="Open menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1859,7 +1859,7 @@
     <a href="/landlords">Landlords</a>
     <a href="#apartments">Apartments</a>
     <a href="/contact">Contact</a>
-    <a href="#home" class="mob-btn">Get Started</a>
+    <a href="#home" class="mob-btn" data-cta="nav-get-started-mobile">Get Started</a>
   </div>
 </nav>
 
@@ -1883,17 +1883,17 @@
       </div>
       <h1>Buying, Selling, or Renting<br />in <em>Florida?</em></h1>
       <p class="hero-sub">Licensed Florida real estate agent based in Ocala. I represent buyers and sellers across the state, place tenants for landlords in Marion County, and help renters find the right apartment. Straight answers, in English or Spanish.</p>
-      <div style="font-size:12px;color:rgba(240,232,216,0.55);margin-bottom:28px;">Taylor Apartment Locator &middot; Lic. SL3617612 &middot; <a href="tel:+17186350140" style="color:rgba(240,232,216,0.75);">(718) 635-0140</a> &middot; <a href="mailto:wadonisrei@gmail.com" style="color:rgba(240,232,216,0.75);">wadonisrei@gmail.com</a></div>
+      <div style="font-size:12px;color:rgba(240,232,216,0.55);margin-bottom:28px;">Taylor Apartment Locator &middot; Lic. SL3617612 &middot; <a href="tel:+17186350140" style="color:rgba(240,232,216,0.75);" data-cta="hero-info-phone">(718) 635-0140</a> &middot; <a href="mailto:wadonisrei@gmail.com" style="color:rgba(240,232,216,0.75);" data-cta="hero-info-email">wadonisrei@gmail.com</a></div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
-        <a href="/?intent=buy#home" class="btn-grad">I'm buying &rarr;</a>
-        <a href="/?intent=sell#home" class="btn-grad" style="background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid rgba(240,232,216,0.18);">I'm selling &rarr;</a>
+        <a href="/?intent=buy#home" class="btn-grad" data-cta="hero-door-buy">I'm buying &rarr;</a>
+        <a href="/?intent=sell#home" class="btn-grad" style="background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid rgba(240,232,216,0.18);" data-cta="hero-door-sell">I'm selling &rarr;</a>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-        <a href="/?intent=rent#home" class="btn-grad">I'm renting &rarr;</a>
-        <a href="/landlords" class="btn-grad" style="background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid rgba(240,232,216,0.18);">I own a rental &rarr;</a>
+        <a href="/?intent=rent#home" class="btn-grad" data-cta="hero-door-rent">I'm renting &rarr;</a>
+        <a href="/landlords" class="btn-grad" style="background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid rgba(240,232,216,0.18);" data-cta="hero-door-landlord">I own a rental &rarr;</a>
       </div>
       <div style="margin-bottom:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
-        <a href="/es" style="font-size:12px;color:rgba(240,232,216,0.55);text-decoration:underline;">En espa&ntilde;ol &rarr;</a>
+        <a href="/es" style="font-size:12px;color:rgba(240,232,216,0.55);text-decoration:underline;" data-lang-switch="en-to-es">En espa&ntilde;ol &rarr;</a>
       </div>
       <div class="hero-stats">
         <div class="hs-item">
@@ -1981,7 +1981,7 @@
         </div>
 
         <!-- Step 3a: Rent questions -->
-        <div class="hfc-step" id="step3-rent">
+        <div class="hfc-step" id="step3-rent" data-form-id="home_rent" data-lead-type="rent" data-lang="en">
           <div class="step-progress">
             <div class="sp-dot done"></div>
             <div class="sp-dot done"></div>
@@ -2069,7 +2069,7 @@
         </div>
 
         <!-- Step 3b: Buy questions -->
-        <div class="hfc-step" id="step3-buy">
+        <div class="hfc-step" id="step3-buy" data-form-id="home_buy" data-lead-type="buy" data-lang="en">
           <div class="step-progress">
             <div class="sp-dot done"></div>
             <div class="sp-dot done"></div>
@@ -2141,7 +2141,7 @@
         </div>
 
         <!-- Step 3c: Sell questions -->
-        <div class="hfc-step" id="step3-sell">
+        <div class="hfc-step" id="step3-sell" data-form-id="home_sell" data-lead-type="sell" data-lang="en">
           <div class="step-progress">
             <div class="sp-dot done"></div>
             <div class="sp-dot done"></div>
@@ -2196,7 +2196,7 @@
           </div>
           <p style="font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:#1C1916;margin-bottom:8px;letter-spacing:-0.3px;">You're all set!</p>
           <p style="font-size:13px;color:#7A7060;line-height:1.7;margin-bottom:16px;">I'll be in touch personally, usually within a day. Keep an eye on your phone.</p>
-          <p style="font-size:11px;color:#B0A490;">Questions? Text or call <a href="tel:+17186350140" style="color:#7A7060;font-weight:500;">(718) 635-0140</a></p>
+          <p style="font-size:11px;color:#B0A490;">Questions? Text or call <a href="tel:+17186350140" style="color:#7A7060;font-weight:500;" data-cta="success-phone">(718) 635-0140</a></p>
         </div>
 
       </div>
@@ -2237,7 +2237,7 @@
             <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/florida-hometown-heroes-program" style="color:#F0E8D8;text-decoration:underline;">Florida Hometown Heroes explained</a>, down payment help for eligible first responders, teachers, and healthcare workers.</div>
           </div>
         </div>
-        <a href="/?intent=buy#home" class="btn-grad">Start My Home Search &rarr;</a>
+        <a href="/?intent=buy#home" class="btn-grad" data-cta="buysell-cta-buy">Start My Home Search &rarr;</a>
       </div>
 
       <div class="bs-card bs-card--sell">
@@ -2251,7 +2251,7 @@
             <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/fsbo-vs-real-estate-agent-florida" style="color:#F0E8D8;text-decoration:underline;">FSBO vs an agent</a>, an honest look at what each route actually costs you.</div>
           </div>
         </div>
-        <a href="/?intent=sell#home" class="btn-grad">Ask What My Home Could Sell For &rarr;</a>
+        <a href="/?intent=sell#home" class="btn-grad" data-cta="buysell-cta-sell">Ask What My Home Could Sell For &rarr;</a>
       </div>
 
       <div class="bs-card bs-card--buy">
@@ -2265,7 +2265,7 @@
             <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/apartments-kissimmee-fl" style="color:#F0E8D8;text-decoration:underline;">Apartments in Kissimmee</a>, options in that part of Central Florida.</div>
           </div>
         </div>
-        <a href="/?intent=rent#home" class="btn-grad">Find My Apartment &rarr;</a>
+        <a href="/?intent=rent#home" class="btn-grad" data-cta="apartments-cta-rent">Find My Apartment &rarr;</a>
       </div>
 
       <div class="bs-card bs-card--sell">
@@ -2278,7 +2278,7 @@
             <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/selling-a-home-in-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">Selling instead of renting it out</a>, how pricing and timing work in Ocala.</div>
           </div>
         </div>
-        <a href="/landlords" class="btn-grad">See How Tenant Placement Works &rarr;</a>
+        <a href="/landlords" class="btn-grad" data-cta="buysell-cta-landlord">See How Tenant Placement Works &rarr;</a>
       </div>
     </div>
 
@@ -2327,7 +2327,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:44px;" class="reveal">
-      <a href="/landlords" class="btn-grad">See How Tenant Placement Works &rarr;</a>
+      <a href="/landlords" class="btn-grad" data-cta="landlords-section-cta">See How Tenant Placement Works &rarr;</a>
     </div>
   </div>
 </section>
@@ -2399,7 +2399,7 @@
         </div>
 
         <div class="about-contact">
-          <a href="tel:+17186350140" class="contact-pill">
+          <a href="tel:+17186350140" class="contact-pill" data-cta="about-contact-phone">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             (718) 635-0140
           </a>
@@ -2407,7 +2407,7 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             WhatsApp
           </a>
-          <a href="#home" class="btn-grad" style="padding:11px 22px;font-size:11px;">Get Started &rarr;</a>
+          <a href="#home" class="btn-grad" style="padding:11px 22px;font-size:11px;" data-cta="about-cta-get-started">Get Started &rarr;</a>
         </div>
       </div>
 
@@ -2500,7 +2500,7 @@
       <h2 class="sec-h">I Also Help Renters Find an Apartment.</h2>
       <p class="sec-s">Separate from buying, selling, and landlord placement, I run a free apartment locating service across Greater Orlando and Ocala. The apartment community pays my fee, so it costs the renter nothing.</p>
     </div>
-    <a href="/how-free-apartment-locator-works" class="btn-grad reveal reveal-d1">How the Free Locator Works &rarr;</a>
+    <a href="/how-free-apartment-locator-works" class="btn-grad reveal reveal-d1" data-cta="locator-how-it-works">How the Free Locator Works &rarr;</a>
   </div>
 </section>
 
@@ -2540,7 +2540,7 @@
   <p class="fin-note reveal reveal-d3">By submitting, you consent to be contacted by text or call. See our <a href="/privacy">Privacy Policy</a>. Prefer a form with more detail? Use the <a href="/contact">full contact page</a>.</p>
   <p class="fin-divider reveal reveal-d3">You can also reach me directly</p>
   <div class="fin-actions reveal reveal-d4">
-    <a href="tel:+17186350140" class="fin-phone-link">
+    <a href="tel:+17186350140" class="fin-phone-link" data-cta="fin-phone">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       (718) 635-0140
     </a>
@@ -2569,10 +2569,10 @@
         <li><a href="/contact">Contact</a></li>
       </ul>
       <div class="foot-contact">
-        <a href="tel:+17186350140">(718) 635-0140</a>
-        <a href="mailto:wadonisrei@gmail.com">wadonisrei@gmail.com</a>
+        <a href="tel:+17186350140" data-cta="footer-phone">(718) 635-0140</a>
+        <a href="mailto:wadonisrei@gmail.com" data-cta="footer-email">wadonisrei@gmail.com</a>
         <a href="https://wa.me/17186350140" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="#home">Get Started</a>
+        <a href="#home" data-cta="footer-get-started">Get Started</a>
       </div>
     </div>
     <div class="foot-sitemap">
@@ -2638,7 +2638,7 @@
 
 <!-- MOBILE STICKY -->
 <div class="sticky-bar" id="stickyBar">
-  <a href="tel:+17186350140" class="sb-call">
+  <a href="tel:+17186350140" class="sb-call" data-cta="sticky-bar-call">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
     Call Willy
   </a>
@@ -2728,6 +2728,10 @@
   var RENT_INTAKE_URL = 'https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake';
   var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
 
+  function trackLead(formId, leadType, lang) {
+    try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { form_id: formId, lead_type: leadType, lang: lang }); } catch (e) {}
+  }
+
   function submitForm(type) {
     var emailId = type === 'rent' ? 'r-email' : type === 'buy' ? 'b-email' : 's-email';
     var email = document.getElementById(emailId).value.trim();
@@ -2754,6 +2758,7 @@
       fetch(RENT_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
         .then(function(res) {
           if (!res.ok) throw new Error('bad response');
+          trackLead('home_rent', 'rent', 'en');
           showSuccess();
         })
         .catch(function(err) {
@@ -2783,6 +2788,7 @@
       fetch('https://formspree.io/f/xrewybvz', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
         .then(function(res) {
           if (res.ok) {
+            trackLead('home_' + type, type, 'en');
             showSuccess();
           } else {
             res.json().then(function(err) { console.error('Formspree error:', err); });
@@ -2802,6 +2808,7 @@
     fetch(BUYER_SELLER_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
       .then(function(res) {
         if (res.ok) {
+          trackLead('home_' + type, type, 'en');
           showSuccess();
         } else {
           console.error('Buyer/seller intake error: bad response, falling back to Formspree');
@@ -2869,6 +2876,25 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+</script>
+<script>
+try {
+  var _fs = {};
+  document.addEventListener('click', function (e) {
+    var ls = e.target.closest && e.target.closest('a[data-lang-switch]');
+    if (ls) { gtag('event', 'language_switch', { from_lang: ls.getAttribute('data-lang-switch'), page_path: location.pathname }); return; }
+    var c = e.target.closest && e.target.closest('a[data-cta]');
+    if (c) { gtag('event', 'cta_click', { cta_id: c.getAttribute('data-cta'), cta_text: (c.textContent || '').trim(), page_path: location.pathname }); }
+  });
+  document.addEventListener('focusin', function (e) {
+    var f = e.target.closest && e.target.closest('[data-form-id]');
+    if (!f || _fs[f.getAttribute('data-form-id')]) return;
+    _fs[f.getAttribute('data-form-id')] = 1;
+    var src = f.getAttribute('data-lead-type-from');
+    var lt = src ? ((document.querySelector(src) || {}).value || '').toLowerCase() : (f.getAttribute('data-lead-type') || '');
+    gtag('event', 'form_start', { form_id: f.getAttribute('data-form-id'), lead_type: lt, lang: f.getAttribute('data-lang') || document.documentElement.lang });
+  });
+} catch (e) {}
 </script>
 </body>
 </html>

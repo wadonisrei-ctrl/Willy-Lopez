@@ -249,7 +249,7 @@
         <img src="images/willy.jpg" alt="Willy Lopez, Licensed Apartment Locator" />
         <p><strong>Willy Lopez</strong><br>I'll personally handle your search, no call center, no bot.</p>
       </div>
-      <form id="intakeForm" onsubmit="return false;">
+      <form id="intakeForm" onsubmit="return false;" data-form-id="rent_page" data-lead-type="renter" data-lang="en">
         <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
           <label for="f-website">Website</label>
           <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off" />
@@ -320,7 +320,7 @@
 
         <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get Your Free List</button>
         <div class="err-msg" id="errMsg">Something went wrong. Please try again, or text/call (718) 635-0140 directly.</div>
-        <p class="talk-line">Prefer to talk? Text or call <a href="tel:17186350140">(718) 635-0140</a>.</p>
+        <p class="talk-line">Prefer to talk? Text or call <a href="tel:17186350140" data-cta="rent-talk-line-phone">(718) 635-0140</a>.</p>
         <div class="fineprint">Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator. Paid by the complex, never by you.</div>
         <p class="tcpa-note">By submitting, you agree to be contacted by Willy Lopez at the number provided, including by text. Msg &amp; data rates may apply. See our <a href="/privacy">Privacy Policy</a>.</p>
       </form>
@@ -415,7 +415,7 @@
         .then(function(res) {
           if (!res.ok) throw new Error('bad response');
           if (typeof gtag === 'function') {
-            gtag('event', 'generate_lead', { source: sourceLabel() });
+            gtag('event', 'generate_lead', { form_id: 'rent_page', lead_type: 'renter', lang: 'en', source: sourceLabel() });
           }
           var firstName = name.split(' ')[0];
           document.getElementById('successHeading').textContent = 'Thanks, ' + firstName + '!';
@@ -428,6 +428,25 @@
           document.getElementById('errMsg').style.display = 'block';
         });
     }
+  </script>
+  <script>
+  try {
+    var _fs = {};
+    document.addEventListener('click', function (e) {
+      var ls = e.target.closest && e.target.closest('a[data-lang-switch]');
+      if (ls) { gtag('event', 'language_switch', { from_lang: ls.getAttribute('data-lang-switch'), page_path: location.pathname }); return; }
+      var c = e.target.closest && e.target.closest('a[data-cta]');
+      if (c) { gtag('event', 'cta_click', { cta_id: c.getAttribute('data-cta'), cta_text: (c.textContent || '').trim(), page_path: location.pathname }); }
+    });
+    document.addEventListener('focusin', function (e) {
+      var f = e.target.closest && e.target.closest('[data-form-id]');
+      if (!f || _fs[f.getAttribute('data-form-id')]) return;
+      _fs[f.getAttribute('data-form-id')] = 1;
+      var src = f.getAttribute('data-lead-type-from');
+      var lt = src ? ((document.querySelector(src) || {}).value || '').toLowerCase() : (f.getAttribute('data-lead-type') || '');
+      gtag('event', 'form_start', { form_id: f.getAttribute('data-form-id'), lead_type: lt, lang: f.getAttribute('data-lang') || document.documentElement.lang });
+    });
+  } catch (e) {}
   </script>
 </body>
 </html>

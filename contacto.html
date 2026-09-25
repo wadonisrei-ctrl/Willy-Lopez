@@ -142,7 +142,7 @@
         <a href="/about">Sobre mí</a>
         <a href="/landlords">Propietarios</a>
       </div>
-      <a href="/#home" class="nav-btn">Empezar</a>
+      <a href="/#home" class="nav-btn" data-cta="nav-get-started">Empezar</a>
     </div>
   </div>
 </nav>
@@ -157,15 +157,15 @@
 
   <div class="contact-info">
     <h2>Contáctame Directamente</h2>
-    <a href="tel:+17186350140" class="info-pill">(718) 635-0140</a>
-    <a href="mailto:wadonisrei@gmail.com" class="info-pill">wadonisrei@gmail.com</a>
+    <a href="tel:+17186350140" class="info-pill" data-cta="contact-info-phone">(718) 635-0140</a>
+    <a href="mailto:wadonisrei@gmail.com" class="info-pill" data-cta="contact-info-email">wadonisrei@gmail.com</a>
     <a href="https://wa.me/17186350140" class="info-pill" target="_blank" rel="noopener">WhatsApp</a>
     <p>Ya sea que estés comprando, vendiendo, buscando un apartamento para rentar, o decidiendo qué hacer con una propiedad de renta, cuéntame tu situación y te doy una respuesta directa. Respondo dentro de 24 horas hábiles.</p>
     <p class="lic-line">Willy Lopez, Lic. SL3617612<br />Taylor Apartment Locator</p>
   </div>
 
   <div class="contact-form">
-    <form id="contactForm">
+    <form id="contactForm" data-form-id="contacto" data-lead-type-from="#c-type" data-lang="es">
       <div class="fg">
         <label for="c-name">Nombre</label>
         <input type="text" id="c-name" required />
@@ -256,6 +256,7 @@
       body: JSON.stringify(data)
     }).then(function (res) {
       if (res.ok) {
+        try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { form_id: 'contacto', lead_type: (data.lead_type || '').toLowerCase(), lang: 'es' }); } catch (e) {}
         document.getElementById('contactForm').style.display = 'none';
         document.getElementById('c-success').classList.add('on');
       } else {
@@ -269,6 +270,25 @@
       alert('Algo salió mal. Por favor intenta de nuevo o llama/envía un mensaje directamente.');
     });
   });
+</script>
+<script>
+try {
+  var _fs = {};
+  document.addEventListener('click', function (e) {
+    var ls = e.target.closest && e.target.closest('a[data-lang-switch]');
+    if (ls) { gtag('event', 'language_switch', { from_lang: ls.getAttribute('data-lang-switch'), page_path: location.pathname }); return; }
+    var c = e.target.closest && e.target.closest('a[data-cta]');
+    if (c) { gtag('event', 'cta_click', { cta_id: c.getAttribute('data-cta'), cta_text: (c.textContent || '').trim(), page_path: location.pathname }); }
+  });
+  document.addEventListener('focusin', function (e) {
+    var f = e.target.closest && e.target.closest('[data-form-id]');
+    if (!f || _fs[f.getAttribute('data-form-id')]) return;
+    _fs[f.getAttribute('data-form-id')] = 1;
+    var src = f.getAttribute('data-lead-type-from');
+    var lt = src ? ((document.querySelector(src) || {}).value || '').toLowerCase() : (f.getAttribute('data-lead-type') || '');
+    gtag('event', 'form_start', { form_id: f.getAttribute('data-form-id'), lead_type: lt, lang: f.getAttribute('data-lang') || document.documentElement.lang });
+  });
+} catch (e) {}
 </script>
 
 </body>
