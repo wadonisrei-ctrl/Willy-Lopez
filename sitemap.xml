@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://willy-lopez.vercel.app/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
@@ -14,13 +14,13 @@
   </url>
   <url>
     <loc>https://willy-lopez.vercel.app/contact</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-25</lastmod>
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://willy-lopez.vercel.app/es</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
@@ -133,6 +133,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://willy-lopez.vercel.app/buying-a-home-in-dunnellon-fl</loc>
+    <lastmod>2026-09-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://willy-lopez.vercel.app/buying-a-home-in-ocala-fl</loc>
     <lastmod>2026-09-24</lastmod>
     <priority>0.8</priority>
@@ -177,6 +183,12 @@
   <url>
     <loc>https://willy-lopez.vercel.app/usda-loans-marion-oaks-ocala</loc>
     <lastmod>2026-09-24</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://willy-lopez.vercel.app/casas-en-marion-oaks-ocala</loc>
+    <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
