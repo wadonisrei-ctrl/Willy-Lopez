@@ -10,6 +10,7 @@
     gtag('config', 'G-CE30FSTB4W');
   </script>
   <meta charset="UTF-8" />
+  <script>document.documentElement.className += ' js';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Florida Real Estate Agent, Buyers and Sellers | Willy Lopez</title>
   <meta name="description" content="Florida real estate agent, Ocala-based. Buyer and seller representation, tenant placement for landlords, and apartment locating. English and Spanish." />
@@ -56,6 +57,11 @@
       },
       {
         "@type": "Question",
+        "name": "How fast can I expect to hear back?",
+        "acceptedAnswer": {"@type": "Answer", "text": "I respond to every inquiry within 24 business hours. That is true whether you're buying, selling, renting, or asking about tenant placement for a property you own."}
+      },
+      {
+        "@type": "Question",
         "name": "I'm thinking about selling but haven't decided. Will you pressure me to list?",
         "acceptedAnswer": {"@type": "Answer", "text": "No. Reach out and we'll talk through where things stand and what your options look like. I'll give you a straight read on your situation, and if it makes more sense to wait, I'll tell you that too."}
       },
@@ -71,13 +77,8 @@
       },
       {
         "@type": "Question",
-        "name": "Is this service really free?",
+        "name": "Is apartment locating really free?",
         "acceptedAnswer": {"@type": "Answer", "text": "Yes, 100% free to the renter. Apartment communities pay me a referral fee when you sign a lease. You never pay anything: no service fee, no finder's fee, no processing charge. If an apartment locator ever asks you for money, walk away."}
-      },
-      {
-        "@type": "Question",
-        "name": "How fast can I expect to hear back?",
-        "acceptedAnswer": {"@type": "Answer", "text": "I respond to every inquiry within 24 business hours. That is true whether you're buying, selling, renting, or asking about tenant placement for a property you own."}
       },
       {
         "@type": "Question",
@@ -1831,6 +1832,118 @@
       .personas { grid-template-columns: 1fr; }
       .sec-h { font-size: 26px; }
     }
+    /* ── FRONT DOOR (cro-2) ── */
+    .nav-list { gap: 28px; }
+    .nav-list a { font-size: 13px; }
+    .front {
+      min-height: calc(100vh - 64px);
+      min-height: calc(100svh - 64px);
+      padding: 48px 40px;
+    }
+    .front-in { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+    .front-id {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 22px;
+      font-size: 14px; line-height: 1.5; color: rgba(240,232,216,0.7);
+    }
+    .front-id strong { color: #F0E8D8; font-weight: 600; }
+    .front-id img {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      object-fit: cover; object-position: center top;
+      border: 1px solid rgba(200,148,58,0.35);
+    }
+    .hero.front h1 { font-size: clamp(34px, 5vw, 60px); margin-bottom: 32px; }
+    .tiles {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .tile {
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 22px 22px 20px;
+      min-height: 124px;
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(240,232,216,0.18);
+      background: rgba(255,255,255,0.04);
+      color: #F0E8D8;
+      text-decoration: none;
+      position: relative;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    }
+    .tile:hover { background: rgba(255,255,255,0.08); border-color: rgba(232,184,112,0.5); transform: translateY(-1px); }
+    .tile:focus-visible { outline: 2px solid var(--gold-lt); outline-offset: 3px; }
+    .tile-label { font-family: var(--serif); font-size: 22px; font-weight: 700; line-height: 1.15; padding-right: 26px; }
+    .tile-sub { font-size: 13px; line-height: 1.45; color: rgba(240,232,216,0.62); }
+    .tile-arrow { position: absolute; top: 22px; right: 20px; font-size: 18px; line-height: 1; color: var(--gold-lt); }
+    .tile--primary {
+      background: var(--g-gold);
+      border-color: transparent;
+      color: var(--char);
+      box-shadow: 0 10px 32px rgba(168,120,40,0.35);
+    }
+    .tile--primary:hover { background: var(--g-gold); opacity: 0.94; }
+    .tile--primary .tile-label { font-size: 26px; }
+    .tile--primary .tile-sub { color: rgba(11,22,40,0.78); font-weight: 500; }
+    .tile--primary .tile-arrow { color: var(--char); }
+    .front-legal { font-size: 12px; color: rgba(240,232,216,0.55); line-height: 1.6; }
+    .front-legal a { color: rgba(240,232,216,0.8); }
+
+    .intake { background: var(--cream); padding: 64px 40px 72px; scroll-margin-top: 64px; }
+    html.js .intake { display: none; }
+    html.js .intake.open { display: block; }
+    .intake-in { max-width: 520px; margin: 0 auto; }
+    .intake .hfc-outer { box-shadow: 0 18px 48px rgba(11,22,40,0.12); }
+    .intake-door {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 14px;
+      font-size: 13px; font-weight: 600; color: var(--char);
+    }
+    .intake-door[hidden] { display: none; }
+    .intake-door a { font-size: 12px; font-weight: 500; color: var(--gold-dk); }
+
+    .rev-lic { text-align: center; margin-top: 28px; font-size: 12px; color: var(--muted); }
+    .faq-more { margin-top: 28px; }
+    .faq-more > summary {
+      cursor: pointer; list-style: none;
+      font-size: 13px; font-weight: 600; color: var(--gold-dk);
+      padding: 6px 0 18px;
+    }
+    .faq-more > summary::-webkit-details-marker { display: none; }
+    .faq-more > summary::after { content: ' +'; }
+    .faq-more[open] > summary::after { content: ' \2212'; }
+    .fin-mail { position: relative; margin-top: 18px; font-size: 14px; }
+    .fin-mail a { color: rgba(240,232,216,0.75); }
+    .fin-legal { position: relative; margin-top: 28px; font-size: 11px; color: rgba(240,232,216,0.45); }
+
+    @media (max-width: 900px) {
+      .nav-list { display: flex; gap: 18px; }
+      .tiles { grid-template-columns: 1fr 1fr; }
+      .tile--primary { grid-column: 1 / -1; }
+      .front { min-height: auto; padding: 40px 28px 48px; }
+      .intake { padding: 48px 28px 56px; }
+    }
+    @media (max-width: 600px) {
+      .nav-list { gap: 16px; }
+      .nav-list a { font-size: 13px; }
+      .logo { font-size: 17px; }
+      .front { min-height: calc(100vh - 56px); min-height: calc(100svh - 56px); padding: 24px 16px 28px; }
+      .front-id { font-size: 13px; margin-bottom: 16px; }
+      .front-id img { width: 40px; height: 40px; }
+      .hero.front h1 { font-size: 34px; margin-bottom: 20px; letter-spacing: -0.8px; }
+      .tiles { grid-template-columns: 1fr; gap: 10px; margin-bottom: 16px; }
+      .tile { min-height: 0; padding: 15px 18px 14px; gap: 3px; }
+      .tile-label { font-size: 19px; }
+      .tile--primary { padding: 20px 18px 18px; }
+      .tile--primary .tile-label { font-size: 23px; }
+      .tile-sub { font-size: 13px; }
+      .tile-arrow { top: 16px; right: 16px; }
+      .intake { padding: 32px 16px 48px; scroll-margin-top: 56px; }
+    }
+    @media (max-width: 380px) {
+      .nav-list { gap: 12px; }
+      .hero.front h1 { font-size: 30px; }
+    }
   </style>
 </head>
 <body>
@@ -1839,79 +1952,52 @@
 <!-- NAV -->
 <nav>
   <div class="nav-in">
-    <a href="#" class="logo">Willy <b>Lopez</b></a>
+    <a href="/" class="logo">Willy <b>Lopez</b></a>
     <ul class="nav-list">
-      <li><a href="#buysell">Services</a></li>
       <li><a href="/about">About</a></li>
-      <li><a href="/landlords">Landlords</a></li>
-      <li><a href="#apartments">Apartments</a></li>
       <li><a href="/contact">Contact</a></li>
-      <li><a href="#home" class="nav-btn" data-cta="nav-get-started">Get Started</a></li>
+      <li><a href="/es" data-lang-switch="en-to-es">En espa&ntilde;ol</a></li>
     </ul>
-    <button class="hbg" id="hbg" aria-label="Open menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
-  </div>
-  <div class="mob-nav" id="mobNav">
-    <a href="#buysell">Services</a>
-    <a href="/about">About Willy</a>
-    <a href="/landlords">Landlords</a>
-    <a href="#apartments">Apartments</a>
-    <a href="/contact">Contact</a>
-    <a href="#home" class="mob-btn" data-cta="nav-get-started-mobile">Get Started</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
+<!-- FRONT DOOR -->
+<section class="hero front" id="top">
   <div class="hero-glow"></div>
-  <div class="hero-glow-2"></div>
   <div class="hero-line"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-label">
-        <div class="hero-label-line"></div>
-        <span>Licensed in Florida &middot; Based in Ocala</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-        <img src="images/willy.jpg" alt="Willy Lopez" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid rgba(200,148,58,0.3);" />
-        <div>
-          <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:#F0E8D8;">Willy Lopez</div>
-          <div style="font-size:12px;color:rgba(240,232,216,0.5);">Florida real estate agent, based in Ocala &middot; English &amp; Spanish</div>
-        </div>
-      </div>
-      <h1>Buy, Sell, Rent, or Get It Leased<br />in <em>Florida.</em></h1>
-      <p class="hero-sub">For buyers and sellers anywhere in the state, landlords with a vacant rental in Marion County, and renters looking in Greater Orlando or Ocala. I'm a licensed agent based in Ocala. Pick the door that fits you and I'll tell you what happens next, in English or Spanish.</p>
-      <div style="font-size:12px;color:rgba(240,232,216,0.55);margin-bottom:28px;">Taylor Apartment Locator &middot; Lic. SL3617612 &middot; <a href="tel:+17186350140" style="color:rgba(240,232,216,0.75);" data-cta="hero-info-phone">(718) 635-0140</a> &middot; <a href="mailto:wadonisrei@gmail.com" style="color:rgba(240,232,216,0.75);" data-cta="hero-info-email">wadonisrei@gmail.com</a></div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
-        <a href="/?intent=buy#home" class="btn-grad" data-cta="hero-door-buy">Show me homes &rarr;</a>
-        <a href="/?intent=sell#home" class="btn-grad" style="background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid rgba(240,232,216,0.18);" data-cta="hero-door-sell">Price my home &rarr;</a>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-        <a href="/?intent=rent#home" class="btn-grad" data-cta="hero-door-rent">Find me an apartment &rarr;</a>
-        <a href="/landlords" class="btn-grad" style="background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid rgba(240,232,216,0.18);" data-cta="hero-door-landlord">Lease my rental &rarr;</a>
-      </div>
-      <div style="margin-bottom:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
-        <a href="/es" style="font-size:12px;color:rgba(240,232,216,0.55);text-decoration:underline;" data-lang-switch="en-to-es">En espa&ntilde;ol &rarr;</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hs-item">
-          <div class="hs-num">Licensed</div>
-          <div class="hs-lbl">Florida real estate agent</div>
-        </div>
-        <div class="hs-item">
-          <div class="hs-num">24 hrs</div>
-          <div class="hs-lbl">Business-hour response</div>
-        </div>
-        <div class="hs-item">
-          <div class="hs-num">Direct</div>
-          <div class="hs-lbl">Buyer, seller &amp; landlord representation</div>
-        </div>
-      </div>
+  <div class="front-in">
+    <p class="front-id"><img src="images/willy.jpg" alt="Willy Lopez" width="44" height="44" /><span><strong>Willy Lopez</strong>, licensed Florida real estate agent based in Ocala. English and Spanish.</span></p>
+    <h1>What can I help you with?</h1>
+    <div class="tiles" role="group" aria-label="What I can help with">
+      <a href="/?intent=buy#home" class="tile tile--primary" data-cta="tile-buy" data-door="buy">
+        <span class="tile-label">Buy a home</span>
+        <span class="tile-sub">I represent you as the buyer, anywhere in Florida</span>
+        <span class="tile-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="/?intent=sell#home" class="tile" data-cta="tile-sell" data-door="sell">
+        <span class="tile-label">Sell a home</span>
+        <span class="tile-sub">A straight read on price before you list</span>
+        <span class="tile-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="/?intent=rent#home" class="tile" data-cta="tile-rent" data-door="rent">
+        <span class="tile-label">Find an apartment</span>
+        <span class="tile-sub">Free to you, in Greater Orlando and Ocala</span>
+        <span class="tile-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="/landlords" class="tile" data-cta="tile-landlord">
+        <span class="tile-label">Lease my rental</span>
+        <span class="tile-sub">A screened tenant for your Marion County rental</span>
+        <span class="tile-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
+    <p class="front-legal">Willy Lopez, Lic. SL3617612 &middot; Brokered by Taylor Apartment Locator &middot; <a href="tel:+17186350140" data-cta="front-phone">(718) 635-0140</a></p>
+  </div>
+</section>
 
+<!-- INTAKE FORM (opens from a tile; #home is the anchor other pages link to) -->
+<section class="intake" id="home">
+  <div class="intake-in">
+    <p class="intake-door" id="doorPick" hidden><span id="doorName"></span><a href="#top" id="doorChange">Change</a></p>
     <div class="hfc-outer">
       <div class="hfc">
 
@@ -1924,7 +2010,7 @@
             <span class="sp-label">Step 1 of 3</span>
           </div>
           <p class="hfc-title">Who am I talking to?</p>
-          <p class="hfc-sub">Your name and the best number to text or call you back on. That is how I answer, within 24 business hours. Two short steps after this, about 60 seconds.</p>
+          <p class="hfc-sub">Your name and the best number to text or call you back on. That is how I answer, within 24 business hours. About 60 seconds from start to finish.</p>
           <div class="fg">
             <label for="s1-name">Your Name</label>
             <input type="text" id="s1-name" placeholder="First and last name" autocomplete="name" />
@@ -2210,229 +2296,17 @@
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="tb-in">
-    <div class="tb-i"><span class="ico">🪪</span>Lic. SL3617612, Taylor Apartment Locator</div>
-    <div class="tb-i"><span class="ico">🏠</span>Buyers, Sellers &amp; Landlords</div>
-    <div class="tb-i"><span class="ico">📍</span>Based in Ocala, FL</div>
-    <div class="tb-i"><span class="ico">⚡</span>24-Hour Response</div>
-    <div class="tb-i"><span class="ico">🗣️</span>English &amp; Spanish</div>
-  </div>
-</div>
-
-<!-- FOUR WAYS I HELP -->
-<section class="buysell" id="buysell">
-  <div class="wrap">
-    <div class="hd reveal">
-      <div class="tag"><span>How I Can Help</span></div>
-      <h2 class="sec-h">Four doors. Pick yours.</h2>
-      <p class="sec-s">Each one starts the same way: you tell me where you are, I tell you what I would do. No obligation either way.</p>
-    </div>
-
-    <div class="bs-grid reveal reveal-d1">
-      <div class="bs-card bs-card--buy">
-        <div class="bs-card-label">For Buyers</div>
-        <p class="bs-card-lead">You see the homes worth seeing, and you skip the wrong ones before they cost you a Saturday. Tell me your area and your timeline, and I come back with what fits and what to look at first. I handle the research, the scheduling, and the back-and-forth with listing agents, and I know Ocala and Marion Oaks block by block.</p>
-        <div style="margin:4px 0 26px;padding-top:20px;border-top:1px solid rgba(200,148,58,0.16);">
-          <p style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,232,216,0.4);margin:0 0 14px;">Start Here</p>
-          <div class="bs-card-list" style="margin-bottom:0;gap:11px;">
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/buying-a-home-in-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">Buying a home in Ocala</a>, what the process looks like from a first showing to closing day.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/marion-oaks-ocala-homes" style="color:#F0E8D8;text-decoration:underline;">Marion Oaks homes</a>, the neighborhood I work most and what is listing there now.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/first-time-home-buyer-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">First-time home buyer Ocala guide</a>, the steps if this is your first purchase.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/florida-hometown-heroes-program" style="color:#F0E8D8;text-decoration:underline;">Florida Hometown Heroes explained</a>, down payment help for eligible first responders, teachers, and healthcare workers.</div>
-          </div>
-        </div>
-        <a href="/?intent=buy#home" class="btn-grad" data-cta="buysell-cta-buy">Show me homes I can afford in Ocala &rarr;</a>
-      </div>
-
-      <div class="bs-card bs-card--sell">
-        <div class="bs-card-label">For Sellers</div>
-        <p class="bs-card-lead">You find out what your home should list for, and why, before you commit to anything. Tell me where it is and when you want to move, and I walk you through the pricing and what it takes to sell it. I answer within 24 business hours, and there is no pressure to list before it makes sense for you.</p>
-        <div style="margin:4px 0 26px;padding-top:20px;border-top:1px solid rgba(240,232,216,0.12);">
-          <p style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,232,216,0.4);margin:0 0 14px;">Start Here</p>
-          <div class="bs-card-list" style="margin-bottom:0;gap:11px;">
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/selling-a-home-in-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">Selling a home in Ocala</a>, how pricing and timing work in this market.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/best-time-to-sell-a-home-florida" style="color:#F0E8D8;text-decoration:underline;">Best time to sell in Florida</a>, so you are not guessing at the season.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/fsbo-vs-real-estate-agent-florida" style="color:#F0E8D8;text-decoration:underline;">FSBO vs an agent</a>, an honest look at what each route actually costs you.</div>
-          </div>
-        </div>
-        <a href="/?intent=sell#home" class="btn-grad" data-cta="buysell-cta-sell">Tell me what my home could sell for &rarr;</a>
-      </div>
-
-      <div class="bs-card bs-card--buy">
-        <div class="bs-card-label">For Renters</div>
-        <p class="bs-card-lead">You get a short list of buildings that actually fit, instead of scrolling listings all week. Tell me your budget, your move-in date, and how many bedrooms, and I come back with the matches. The apartment community pays my fee, so this costs you nothing, anywhere in Greater Orlando and Ocala.</p>
-        <div style="margin:4px 0 26px;padding-top:20px;border-top:1px solid rgba(200,148,58,0.16);">
-          <p style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,232,216,0.4);margin:0 0 14px;">Start Here</p>
-          <div class="bs-card-list" style="margin-bottom:0;gap:11px;">
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/how-free-apartment-locator-works" style="color:#F0E8D8;text-decoration:underline;">How the free locator works</a>, what happens after you reach out.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/ocala-fl-apartments" style="color:#F0E8D8;text-decoration:underline;">Apartments in Ocala</a>, what's available and what things run.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/apartments-kissimmee-fl" style="color:#F0E8D8;text-decoration:underline;">Apartments in Kissimmee</a>, options in that part of Central Florida.</div>
-          </div>
-        </div>
-        <a href="/?intent=rent#home" class="btn-grad" data-cta="apartments-cta-rent">Send me apartments in my budget &rarr;</a>
-      </div>
-
-      <div class="bs-card bs-card--sell">
-        <div class="bs-card-label">For Landlords</div>
-        <p class="bs-card-lead">Your empty Marion County rental gets a screened tenant and a signed lease. You tell me the unit and your number, and I market it and screen every applicant on income, rental history, and a background check before anyone reaches you. My fee is one month's rent, owed only when a lease is signed.</p>
-        <div style="margin:4px 0 26px;padding-top:20px;border-top:1px solid rgba(240,232,216,0.12);">
-          <p style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,232,216,0.4);margin:0 0 14px;">Start Here</p>
-          <div class="bs-card-list" style="margin-bottom:0;gap:11px;">
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/landlords" style="color:#F0E8D8;text-decoration:underline;">How tenant placement works</a>, the full process from listing to a signed lease.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/selling-a-home-in-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">Selling instead of renting it out</a>, how pricing and timing work in Ocala.</div>
-          </div>
-        </div>
-        <a href="/landlords" class="btn-grad" data-cta="buysell-cta-landlord">Get my rental leased &rarr;</a>
-      </div>
-    </div>
-
-    <p class="bs-note reveal reveal-d2">I represent buyers and sellers directly anywhere in Florida, not just Ocala and Marion Oaks. Wherever the property is, you're working with me start to finish.</p>
-
-    <div class="about-creds reveal reveal-d3" style="margin:24px 0 0;">
-      <div class="cred-item">
-        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-        Lic. SL3617612, brokered by Taylor Apartment Locator
-      </div>
-      <div class="cred-item">
-        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-        Based in Ocala, in-person showings there the same week
-      </div>
-      <div class="cred-item">
-        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-        Tenant placement for landlords, one month's rent, owed at lease signing
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LANDLORDS -->
-<section class="how" id="landlords">
-  <div class="wrap">
-    <div class="hd c">
-      <div class="tag reveal"><span>For Landlords</span></div>
-      <h2 class="sec-h reveal reveal-d1">Own a Rental That's Sitting Empty?</h2>
-      <p class="sec-s reveal reveal-d2">I place a qualified tenant in your Marion County rental. You pay one month's rent, and only when a lease is signed.</p>
-    </div>
-    <div class="steps-grid">
-      <div class="step-card reveal reveal-d1">
-        <div class="step-num">01</div>
-        <h3>Tell Me the Unit</h3>
-        <p>You tell me about the property and your number. Address, condition, what you want for rent, and when you need someone in.</p>
-      </div>
-      <div class="step-card reveal reveal-d2">
-        <div class="step-num">02</div>
-        <h3>I Market and Screen</h3>
-        <p>I list it, field the calls, and screen every serious applicant: income, rental history, and a background check before anyone gets to you.</p>
-      </div>
-      <div class="step-card reveal reveal-d3">
-        <div class="step-num">03</div>
-        <h3>You Sign and Get Paid</h3>
-        <p>You sign the lease directly with your tenant. My fee is one month's rent, due at signing, never before.</p>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:44px;" class="reveal">
-      <a href="/landlords" class="btn-grad" data-cta="landlords-section-cta">See How Tenant Placement Works &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="wrap">
-    <div class="about-grid">
-
-      <!-- LEFT: Photo + ID card -->
-      <div class="about-photo-col reveal">
-        <div class="photo-frame">
-          <img src="images/willy.jpg" alt="Willy Lopez, Licensed Real Estate Agent" />
-        </div>
-        <div class="about-id-card">
-          <p class="about-id-name">Willy Lopez</p>
-          <p class="about-id-title">Licensed Real Estate Agent &middot; Based in Ocala, FL</p>
-          <div class="about-id-lic">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span>Lic. SL3617612 &middot; Taylor Apt. Locator</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT: Content -->
-      <div class="about-content reveal reveal-d1">
-        <div class="tag"><span>02 &nbsp;&middot;&nbsp; Your Agent</span></div>
-        <h2 class="sec-h">Hi, I'm Willy Lopez.</h2>
-
-        <!-- Stats row -->
-        <div class="about-stats-row">
-          <div class="ab-stat">
-            <div class="ab-stat-num">24 hrs</div>
-            <div class="ab-stat-lbl">Business-hour response</div>
-          </div>
-          <div class="ab-stat">
-            <div class="ab-stat-num">EN/ES</div>
-            <div class="ab-stat-lbl">English &amp; Spanish</div>
-          </div>
-          <div class="ab-stat">
-            <div class="ab-stat-num">100%</div>
-            <div class="ab-stat-lbl">Free for renters</div>
-          </div>
-        </div>
-
-        <p class="about-bio">I'm a licensed Florida real estate agent based in Ocala. I represent buyers and sellers anywhere in the state, place tenants for landlords in Marion County, and still do apartment locating, connecting renters across Greater Orlando and Ocala with the right building at no cost to them.</p>
-        <p class="about-bio">Licensed under <strong style="color:rgba(240,232,216,0.85);font-weight:600;">Taylor Apartment Locator</strong>. I bring a clear next step to every home search or listing, so you always know what happens next.</p>
-        <p class="about-bio">I answer fast, give you straight answers, and stay with you from the first message to the day you pick up your keys. <a href="/about" style="color:rgba(240,232,216,0.85);">More about how I work &rarr;</a></p>
-
-        <div class="about-divider"></div>
-
-        <div class="about-creds">
-          <div class="cred-item">
-            <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Lic. SL3617612 &middot; Taylor Apartment Locator
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Buyer and seller representation anywhere in Florida
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Apartment locating for renters, free to them
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Specialized in out-of-state relocations and remote searches
-          </div>
-        </div>
-
-        <div class="about-contact">
-          <a href="tel:+17186350140" class="contact-pill" data-cta="about-contact-phone">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            (718) 635-0140
-          </a>
-          <a href="https://wa.me/17186350140" class="contact-pill wa" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp
-          </a>
-          <a href="#home" class="btn-grad" style="padding:11px 22px;font-size:11px;" data-cta="about-cta-get-started">Get Started &rarr;</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="wrap">
     <div class="hd c reveal">
-      <div class="tag"><span>03 &nbsp;&middot;&nbsp; Client Reviews</span></div>
+      <div class="tag"><span>Client Reviews</span></div>
       <h2 class="sec-h">What clients are saying</h2>
-      <p class="sec-s">Real people who worked with Willy and trusted him with a major decision in their lives.</p>
+      <p class="sec-s">Four people I have worked with, in their own words.</p>
     </div>
     <div class="reviews-grid">
       <div class="rc reveal reveal-d1">
         <div class="rc-quote">"</div>
-        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="rc-text">Willy was incredibly easy to work with. He answered every question I had, kept me updated throughout the whole process, and never made me feel like I was just another client. If you're looking for someone who actually has your back, he's your guy.</p>
         <div class="rc-author">
           <div class="rc-av">JL</div>
@@ -2441,7 +2315,6 @@
       </div>
       <div class="rc reveal reveal-d2">
         <div class="rc-quote">"</div>
-        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="rc-text">Working with Willy took all the stress out of what could have been a really overwhelming process. He was patient, super responsive, and genuinely cared about finding the right fit. I'd recommend him to anyone without hesitation.</p>
         <div class="rc-author">
           <div class="rc-av">AR</div>
@@ -2450,7 +2323,6 @@
       </div>
       <div class="rc reveal reveal-d3">
         <div class="rc-quote">"</div>
-        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="rc-text">Willy walked me through everything step by step. I never felt confused or left in the dark. He's honest, thorough, and you can tell he actually wants to help you, not just close a deal. Really appreciate the work he put in.</p>
         <div class="rc-author">
           <div class="rc-av">IR</div>
@@ -2459,7 +2331,6 @@
       </div>
       <div class="rc reveal reveal-d4">
         <div class="rc-quote">"</div>
-        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="rc-text">From the first call, Willy made me feel like I was in good hands. He was upfront about everything, checked in regularly, and made the whole experience way less stressful than I expected. I'll definitely reach out again for my next move.</p>
         <div class="rc-author">
           <div class="rc-av">JG</div>
@@ -2467,85 +2338,85 @@
         </div>
       </div>
     </div>
+    <p class="rev-lic">Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator.</p>
   </div>
 </section>
 
-<!-- BUY/SELL FAQ -->
-<section class="faq" id="buysell-faq">
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
   <div class="wrap">
     <div class="hd c reveal">
-      <div class="tag"><span>04 &nbsp;&middot;&nbsp; Buying &amp; Selling FAQ</span></div>
-      <h2 class="sec-h">Answers to what buyers and sellers ask</h2>
+      <div class="tag"><span>How It Works</span></div>
+      <h2 class="sec-h">Three steps, the same for everyone</h2>
     </div>
-    <div class="faq-wrap">
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">Do you only work in Ocala?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">No. I'm based in Ocala and know the streets here best, but I represent buyers and sellers directly anywhere in Florida. If you're outside Marion County, we still work together start to finish, I'll just be doing more of the legwork remotely before we meet in person.</div></div>
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-d1">
+        <div class="step-num">01</div>
+        <h3>Pick what you need</h3>
+        <p>Tap the option at the top that fits you and tell me the basics. It takes about a minute.</p>
       </div>
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">I'm thinking about selling but haven't decided. Will you pressure me to list?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">No. Reach out and we'll talk through where things stand and what your options look like. I'll give you a straight read on your situation, and if it makes more sense to wait, I'll tell you that too.</div></div>
+      <div class="step-card reveal reveal-d2">
+        <div class="step-num">02</div>
+        <h3>I get back to you</h3>
+        <p>I read every request myself and call or text you back within 24 business hours.</p>
       </div>
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">What's it like working with you?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">I handle the research, the scheduling, and the back-and-forth with listing agents, so you're not doing it all yourself. I respond to every inquiry within 24 business hours, and I'll always give you a straight answer, including when I don't think a property or a neighborhood is the right fit for you.</div></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">I'm new to the area. Can you help me get oriented?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">Yes. I'll walk you through neighborhoods, price points, and what an area is actually like to live in, not just what's on the listing. If you're relocating from out of state, I'll answer every question you have before you commit to anything.</div></div>
+      <div class="step-card reveal reveal-d3">
+        <div class="step-num">03</div>
+        <h3>You get a straight answer</h3>
+        <p>We talk through where you are and what I would do next. No obligation either way.</p>
       </div>
     </div>
   </div>
 </section>
-
-<!-- APARTMENT LOCATING (quieter, third service) -->
-<section class="loc-chapter" id="apartments">
-  <div class="wrap">
-    <div class="hd c reveal">
-      <div class="tag"><span>Apartment Locating</span></div>
-      <h2 class="sec-h">I Also Help Renters Find an Apartment.</h2>
-      <p class="sec-s">Separate from buying, selling, and landlord placement, I run a free apartment locating service across Greater Orlando and Ocala. The apartment community pays my fee, so it costs the renter nothing.</p>
-    </div>
-    <a href="/how-free-apartment-locator-works" class="btn-grad reveal reveal-d1" data-cta="locator-how-it-works">How the Free Locator Works &rarr;</a>
-  </div>
-</section>
-
 
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="hd c reveal">
-      <div class="tag"><span>Apartment Locating FAQ</span></div>
-      <h2 class="sec-h">Answers to what renters ask</h2>
+      <div class="tag"><span>Questions</span></div>
+      <h2 class="sec-h">What people ask first</h2>
     </div>
     <div class="faq-wrap">
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">Is this service really free?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">Yes, 100% free to the renter. Apartment communities pay me a referral fee when you sign a lease. You never pay anything: no service fee, no finder's fee, no processing charge. If an apartment locator ever asks you for money, walk away.</div></div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">Do you only work in Ocala?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><div class="faq-body-in">No. I'm based in Ocala and know the streets here best, but I represent buyers and sellers directly anywhere in Florida. If you're outside Marion County, we still work together start to finish, I'll just be doing more of the legwork remotely before we meet in person.</div></div>
       </div>
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <button class="faq-btn" onclick="toggleFaq(this)">How fast can I expect to hear back?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="faq-body"><div class="faq-body-in">I respond to every inquiry within 24 business hours. That is true whether you're buying, selling, renting, or asking about tenant placement for a property you own.</div></div>
       </div>
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">What areas do you cover?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">I represent buyers and sellers anywhere in Florida, place tenants for landlords in Marion County, and do apartment locating in Greater Orlando and Ocala. Tell me what you need and where, and I'll give you a straight answer on whether I can help.</div></div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">I'm thinking about selling but haven't decided. Will you pressure me to list?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><div class="faq-body-in">No. Reach out and we'll talk through where things stand and what your options look like. I'll give you a straight read on your situation, and if it makes more sense to wait, I'll tell you that too.</div></div>
       </div>
+      <details class="faq-more">
+        <summary>More questions</summary>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">What's it like working with you?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-body"><div class="faq-body-in">I handle the research, the scheduling, and the back-and-forth with listing agents, so you're not doing it all yourself. I respond to every inquiry within 24 business hours, and I'll always give you a straight answer, including when I don't think a property or a neighborhood is the right fit for you.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">I'm new to the area. Can you help me get oriented?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-body"><div class="faq-body-in">Yes. I'll walk you through neighborhoods, price points, and what an area is actually like to live in, not just what's on the listing. If you're relocating from out of state, I'll answer every question you have before you commit to anything.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">Is apartment locating really free?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-body"><div class="faq-body-in">Yes, 100% free to the renter. Apartment communities pay me a referral fee when you sign a lease. You never pay anything: no service fee, no finder's fee, no processing charge. If an apartment locator ever asks you for money, walk away.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">What areas do you cover?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-body"><div class="faq-body-in">I represent buyers and sellers anywhere in Florida, place tenants for landlords in Marion County, and do apartment locating in Greater Orlando and Ocala. Tell me what you need and where, and I'll give you a straight answer on whether I can help.</div></div>
+        </div>
+      </details>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="fin-cta" id="contact">
-  <h2 class="reveal">Buying, selling, renting, or placing a tenant,<br /><em>let's talk.</em></h2>
-  <p class="reveal reveal-d1">Drop your number below and I'll reach out personally, usually within a day. No pressure, no obligation, just a straight conversation about what you need.</p>
-  <div class="fin-row reveal reveal-d2">
-    <input type="tel" id="finPhone" placeholder="Your phone number" />
-    <button class="btn-fin" onclick="handleFin()">Get Started</button>
-  </div>
-  <p class="fin-note reveal reveal-d3">By submitting, you consent to be contacted by text or call. See our <a href="/privacy">Privacy Policy</a>. Prefer a form with more detail? Use the <a href="/contact">full contact page</a>.</p>
-  <p class="fin-divider reveal reveal-d3">You can also reach me directly</p>
-  <div class="fin-actions reveal reveal-d4">
+  <h2 class="reveal">Rather talk it through?<br /><em>Call or text me.</em></h2>
+  <p class="reveal reveal-d1">I answer in English or Spanish, within 24 business hours.</p>
+  <div class="fin-actions reveal reveal-d2">
     <a href="tel:+17186350140" class="fin-phone-link" data-cta="fin-phone">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       (718) 635-0140
@@ -2555,6 +2426,8 @@
       Message on WhatsApp
     </a>
   </div>
+  <p class="fin-mail reveal reveal-d3"><a href="mailto:wadonisrei@gmail.com" data-cta="fin-email">wadonisrei@gmail.com</a></p>
+  <p class="fin-legal">Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator.</p>
 </section>
 
 <!-- FOOTER -->
@@ -2562,15 +2435,15 @@
   <div class="wrap">
     <div class="foot-in">
       <div class="foot-brand">
-        <a href="#" class="logo">Willy <b>Lopez</b></a>
+        <a href="/" class="logo">Willy <b>Lopez</b></a>
         <p class="foot-tagline">Representing buyers and sellers anywhere in Florida, based in Ocala. Tenant placement for landlords in Marion County. Apartment locating in Greater Orlando and Ocala, free to renters.<br />Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator.</p>
       </div>
       <ul class="foot-links">
-        <li><a href="#buysell">Services</a></li>
+        <li><a href="#top">Services</a></li>
         <li><a href="/landlords">Landlords</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#apartments">Apartment Locating</a></li>
+        <li><a href="/how-free-apartment-locator-works">Apartment Locating</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
@@ -2662,19 +2535,56 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
 
-  document.getElementById('hbg').addEventListener('click', function() {
-    document.getElementById('mobNav').classList.toggle('on');
-  });
-  document.querySelectorAll('.mob-nav a').forEach(function(a) {
-    a.addEventListener('click', function() { document.getElementById('mobNav').classList.remove('on'); });
+
+  // Front door: a tile (or /?intent=buy#home from another page) opens the intake form
+  // below with that door already known, so name and phone lead straight to its step 3.
+  var DOOR_NAMES = {"buy": "Buy a home", "sell": "Sell a home", "rent": "Find an apartment", "landlord": "Lease my rental"};
+  var STEP_WORD = 'Step', STEP_OF = 'of';
+  window.presetDoor = null;
+
+  function setStepCount(n) {
+    var s1 = document.querySelector('#step1 .step-progress');
+    var s1dots = s1.querySelectorAll('.sp-dot');
+    s1dots[1].style.display = n === 2 ? 'none' : '';
+    s1.querySelector('.sp-label').textContent = STEP_WORD + ' 1 ' + STEP_OF + ' ' + n;
+    ['rent','buy','sell'].forEach(function(t) {
+      var p = document.querySelector('#step3-' + t + ' .step-progress');
+      p.querySelectorAll('.sp-dot')[1].style.display = n === 2 ? 'none' : '';
+      p.querySelector('.sp-label').textContent = STEP_WORD + ' ' + n + ' ' + STEP_OF + ' ' + n;
+    });
+  }
+
+  function openIntake(door, smooth) {
+    var sec = document.getElementById('home');
+    sec.classList.add('open');
+    if (!document.getElementById('hfc-ok').classList.contains('on')) {
+      document.querySelectorAll('.hfc-step').forEach(function(s) { s.classList.remove('active'); });
+      document.getElementById('step1').classList.add('active');
+      window.presetDoor = door || null;
+      setStepCount(door ? 2 : 3);
+      var pick = document.getElementById('doorPick');
+      if (door) { document.getElementById('doorName').textContent = DOOR_NAMES[door]; pick.hidden = false; }
+      else { pick.hidden = true; }
+    }
+    sec.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    setTimeout(function() { try { document.getElementById('s1-name').focus({ preventScroll: true }); } catch (e) {} }, smooth ? 600 : 50);
+  }
+
+  document.querySelectorAll('a.tile[data-door]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      openIntake(a.getAttribute('data-door'), true);
+    });
   });
 
-  // Buyer, seller and landlord pages link here as /?intent=buy#home so step 2 opens
-  // with the right card already chosen instead of making the visitor pick again.
   (function () {
     try {
       var intent = new URLSearchParams(window.location.search).get('intent');
-      if (intent === 'buy' || intent === 'sell' || intent === 'rent') { window.preselectedType = intent; }
+      var door = (intent === 'buy' || intent === 'sell' || intent === 'rent') ? intent : null;
+      if (door || window.location.hash === '#home') {
+        openIntake(door, false);
+        window.addEventListener('load', function() { document.getElementById('home').scrollIntoView({ block: 'start' }); });
+      }
     } catch (e) {}
   })();
 
@@ -2688,14 +2598,12 @@
     window.leadName = name;
     window.leadPhone = phone;
     document.getElementById('step1').classList.remove('active');
-    document.getElementById('step2').classList.add('active');
-    if (window.preselectedType) {
-      document.querySelectorAll('.intent-card').forEach(function(c) { c.classList.remove('intent-card--active'); });
-      var cards = document.querySelectorAll('.intent-card');
-      var idx = window.preselectedType === 'buy' ? 0 : window.preselectedType === 'sell' ? 1 : 2;
-      cards[idx].classList.add('intent-card--active');
-      window.preselectedType = null;
+    if (window.presetDoor) {
+      window.leadType = window.presetDoor;
+      document.getElementById('step3-' + window.presetDoor).classList.add('active');
+      return;
     }
+    document.getElementById('step2').classList.add('active');
   }
 
   function goStep1() {
@@ -2713,7 +2621,7 @@
     ['rent','buy','sell'].forEach(function(t) {
       document.getElementById('step3-' + t).classList.remove('active');
     });
-    document.getElementById('step2').classList.add('active');
+    document.getElementById(window.presetDoor ? 'step1' : 'step2').classList.add('active');
   }
 
   // Bucketed dropdown -> the number match_complexes.py actually needs (upper bound of the
@@ -2853,20 +2761,6 @@
     }, { once: true });
   }
 
-  function handleFin() {
-    var phone = document.getElementById('finPhone').value.trim();
-    if (!phone) {
-      var el = document.getElementById('finPhone');
-      el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.2)';
-      el.focus();
-      setTimeout(function() { el.style.boxShadow = ''; }, 2000);
-      return;
-    }
-    document.getElementById('s1-phone').value = phone;
-    document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-    setTimeout(function() { document.getElementById('s1-name').focus(); }, 700);
-  }
-
   function toggleFaq(btn) {
     var item = btn.closest('.faq-item');
     var wasOpen = item.classList.contains('on');
@@ -2874,16 +2768,22 @@
     if (!wasOpen) item.classList.add('on');
   }
 
+  // The call bar stays out of the way while the tiles or the form are on screen.
+  var inView = {};
   var heroObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) { inView[en.target.id] = en.isIntersecting; });
     var bar = document.getElementById('stickyBar');
-    if (entries[0].isIntersecting) bar.style.display = 'none';
+    if (inView.top || inView.home) bar.style.display = 'none';
     else bar.style.removeProperty('display');
-  }, { threshold: 0.3 });
+  }, { threshold: 0.15 });
+  heroObs.observe(document.getElementById('top'));
   heroObs.observe(document.getElementById('home'));
 
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
-      var t = document.querySelector(this.getAttribute('href'));
+      var href = this.getAttribute('href');
+      if (href === '#home') { e.preventDefault(); openIntake(null, true); return; }
+      var t = href.length > 1 && document.querySelector(href);
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
