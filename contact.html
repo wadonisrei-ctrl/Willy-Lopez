@@ -249,17 +249,22 @@
     });
   });
 
+  var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
+
   document.getElementById('contactForm').addEventListener('submit', function (e) {
     e.preventDefault();
     var consent = document.getElementById('c-consent');
     if (!consent.checked) { consent.focus(); return; }
 
+    var leadType = document.getElementById('c-type').value;
+    var message = document.getElementById('c-message').value.trim();
+
     var data = {
       name: document.getElementById('c-name').value.trim(),
       phone: document.getElementById('c-phone').value.trim(),
       email: document.getElementById('c-email').value.trim(),
-      lead_type: document.getElementById('c-type').value,
-      message: document.getElementById('c-message').value.trim(),
+      lead_type: leadType,
+      message: message,
       consent: true
     };
 
@@ -267,25 +272,50 @@
     btn.disabled = true;
     btn.textContent = 'Sending...';
 
-    fetch('https://formspree.io/f/xrewybvz', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function (res) {
-      if (res.ok) {
-        try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { form_id: 'contact', lead_type: (data.lead_type || '').toLowerCase(), lang: 'en' }); } catch (e) {}
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('c-success').classList.add('on');
-      } else {
-        btn.disabled = false;
-        btn.textContent = 'Send My Message';
-        alert('That did not send. Try once more, or text or call me at (718) 635-0140 and I will take it from there.');
-      }
-    }).catch(function () {
+    function onSuccess() {
+      try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { form_id: 'contact', lead_type: (leadType || '').toLowerCase(), lang: 'en' }); } catch (e) {}
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('c-success').classList.add('on');
+    }
+
+    function onBothFailed() {
       btn.disabled = false;
       btn.textContent = 'Send My Message';
       alert('That did not send. Try once more, or text or call me at (718) 635-0140 and I will take it from there.');
-    });
+    }
+
+    function submitToFormspree() {
+      fetch('https://formspree.io/f/xrewybvz', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        if (res.ok) { onSuccess(); } else { onBothFailed(); }
+      }).catch(onBothFailed);
+    }
+
+    if (leadType === 'Buyer' || leadType === 'Seller') {
+      var intakeData = {
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        lead_type: leadType === 'Buyer' ? 'buy' : 'sell',
+        area: '',
+        timeline: '',
+        price_range: '',
+        home_type: '',
+        notes: '[contact page EN] ' + message
+      };
+      fetch(BUYER_SELLER_INTAKE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(intakeData)
+      }).then(function (res) {
+        if (res.ok) { onSuccess(); } else { submitToFormspree(); }
+      }).catch(submitToFormspree);
+    } else {
+      submitToFormspree();
+    }
   });
 </script>
 <script>
