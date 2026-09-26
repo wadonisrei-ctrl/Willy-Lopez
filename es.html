@@ -10,6 +10,7 @@
     gtag('config', 'G-CE30FSTB4W');
   </script>
   <meta charset="UTF-8" />
+  <script>document.documentElement.className += ' js';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agente de Bienes Raíces en Florida | Willy Lopez</title>
   <meta name="description" content="Agente de bienes raíces con base en Ocala. Compradores, vendedores, inquilinos para propietarios, y apartamentos en Florida. Inglés y español." />
@@ -57,6 +58,11 @@
       },
       {
         "@type": "Question",
+        "name": "¿Qué tan rápido puedo esperar una respuesta?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Respondo a cada consulta dentro de 24 horas hábiles. Eso es cierto ya sea que estés comprando, vendiendo, rentando, o preguntando sobre colocación de inquilinos para una propiedad que tienes."}
+      },
+      {
+        "@type": "Question",
         "name": "Estoy pensando en vender pero no lo he decidido. ¿Me vas a presionar a listar?",
         "acceptedAnswer": {"@type": "Answer", "text": "No. Contáctame y hablamos de dónde estás parado y cómo se ven tus opciones. Te doy una opinión directa de tu situación, y si tiene más sentido esperar, también te lo digo."}
       },
@@ -72,13 +78,8 @@
       },
       {
         "@type": "Question",
-        "name": "¿Este servicio es realmente gratis?",
+        "name": "¿La localización de apartamentos es realmente gratis?",
         "acceptedAnswer": {"@type": "Answer", "text": "Sí, 100% gratis para el inquilino. Las comunidades de apartamentos me pagan una tarifa de referido cuando firmas un contrato. Tú nunca pagas nada: sin tarifa de servicio, sin tarifa de búsqueda, sin cargo de procesamiento. Si un localizador de apartamentos alguna vez te pide dinero, aléjate."}
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué tan rápido puedo esperar una respuesta?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Respondo a cada consulta dentro de 24 horas hábiles. Eso es cierto ya sea que estés comprando, vendiendo, rentando, o preguntando sobre colocación de inquilinos para una propiedad que tienes."}
       },
       {
         "@type": "Question",
@@ -1832,6 +1833,118 @@
       .personas { grid-template-columns: 1fr; }
       .sec-h { font-size: 26px; }
     }
+    /* ── FRONT DOOR (cro-2) ── */
+    .nav-list { gap: 28px; }
+    .nav-list a { font-size: 13px; }
+    .front {
+      min-height: calc(100vh - 64px);
+      min-height: calc(100svh - 64px);
+      padding: 48px 40px;
+    }
+    .front-in { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+    .front-id {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 22px;
+      font-size: 14px; line-height: 1.5; color: rgba(240,232,216,0.7);
+    }
+    .front-id strong { color: #F0E8D8; font-weight: 600; }
+    .front-id img {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      object-fit: cover; object-position: center top;
+      border: 1px solid rgba(200,148,58,0.35);
+    }
+    .hero.front h1 { font-size: clamp(34px, 5vw, 60px); margin-bottom: 32px; }
+    .tiles {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .tile {
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 22px 22px 20px;
+      min-height: 124px;
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(240,232,216,0.18);
+      background: rgba(255,255,255,0.04);
+      color: #F0E8D8;
+      text-decoration: none;
+      position: relative;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    }
+    .tile:hover { background: rgba(255,255,255,0.08); border-color: rgba(232,184,112,0.5); transform: translateY(-1px); }
+    .tile:focus-visible { outline: 2px solid var(--gold-lt); outline-offset: 3px; }
+    .tile-label { font-family: var(--serif); font-size: 22px; font-weight: 700; line-height: 1.15; padding-right: 26px; }
+    .tile-sub { font-size: 13px; line-height: 1.45; color: rgba(240,232,216,0.62); }
+    .tile-arrow { position: absolute; top: 22px; right: 20px; font-size: 18px; line-height: 1; color: var(--gold-lt); }
+    .tile--primary {
+      background: var(--g-gold);
+      border-color: transparent;
+      color: var(--char);
+      box-shadow: 0 10px 32px rgba(168,120,40,0.35);
+    }
+    .tile--primary:hover { background: var(--g-gold); opacity: 0.94; }
+    .tile--primary .tile-label { font-size: 26px; }
+    .tile--primary .tile-sub { color: rgba(11,22,40,0.78); font-weight: 500; }
+    .tile--primary .tile-arrow { color: var(--char); }
+    .front-legal { font-size: 12px; color: rgba(240,232,216,0.55); line-height: 1.6; }
+    .front-legal a { color: rgba(240,232,216,0.8); }
+
+    .intake { background: var(--cream); padding: 64px 40px 72px; scroll-margin-top: 64px; }
+    html.js .intake { display: none; }
+    html.js .intake.open { display: block; }
+    .intake-in { max-width: 520px; margin: 0 auto; }
+    .intake .hfc-outer { box-shadow: 0 18px 48px rgba(11,22,40,0.12); }
+    .intake-door {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 14px;
+      font-size: 13px; font-weight: 600; color: var(--char);
+    }
+    .intake-door[hidden] { display: none; }
+    .intake-door a { font-size: 12px; font-weight: 500; color: var(--gold-dk); }
+
+    .rev-lic { text-align: center; margin-top: 28px; font-size: 12px; color: var(--muted); }
+    .faq-more { margin-top: 28px; }
+    .faq-more > summary {
+      cursor: pointer; list-style: none;
+      font-size: 13px; font-weight: 600; color: var(--gold-dk);
+      padding: 6px 0 18px;
+    }
+    .faq-more > summary::-webkit-details-marker { display: none; }
+    .faq-more > summary::after { content: ' +'; }
+    .faq-more[open] > summary::after { content: ' \2212'; }
+    .fin-mail { position: relative; margin-top: 18px; font-size: 14px; }
+    .fin-mail a { color: rgba(240,232,216,0.75); }
+    .fin-legal { position: relative; margin-top: 28px; font-size: 11px; color: rgba(240,232,216,0.45); }
+
+    @media (max-width: 900px) {
+      .nav-list { display: flex; gap: 18px; }
+      .tiles { grid-template-columns: 1fr 1fr; }
+      .tile--primary { grid-column: 1 / -1; }
+      .front { min-height: auto; padding: 40px 28px 48px; }
+      .intake { padding: 48px 28px 56px; }
+    }
+    @media (max-width: 600px) {
+      .nav-list { gap: 16px; }
+      .nav-list a { font-size: 13px; }
+      .logo { font-size: 17px; }
+      .front { min-height: calc(100vh - 56px); min-height: calc(100svh - 56px); padding: 24px 16px 28px; }
+      .front-id { font-size: 13px; margin-bottom: 16px; }
+      .front-id img { width: 40px; height: 40px; }
+      .hero.front h1 { font-size: 34px; margin-bottom: 20px; letter-spacing: -0.8px; }
+      .tiles { grid-template-columns: 1fr; gap: 10px; margin-bottom: 16px; }
+      .tile { min-height: 0; padding: 15px 18px 14px; gap: 3px; }
+      .tile-label { font-size: 19px; }
+      .tile--primary { padding: 20px 18px 18px; }
+      .tile--primary .tile-label { font-size: 23px; }
+      .tile-sub { font-size: 13px; }
+      .tile-arrow { top: 16px; right: 16px; }
+      .intake { padding: 32px 16px 48px; scroll-margin-top: 56px; }
+    }
+    @media (max-width: 380px) {
+      .nav-list { gap: 12px; }
+      .hero.front h1 { font-size: 30px; }
+    }
   </style>
 </head>
 <body>
@@ -1842,77 +1955,50 @@
   <div class="nav-in">
     <a href="/es" class="logo">Willy <b>Lopez</b></a>
     <ul class="nav-list">
-      <li><a href="#buysell">Servicios</a></li>
-      <li><a href="/sobre-mi">Sobre mí</a></li>
-      <li><a href="/propietarios">Propietarios</a></li>
-      <li><a href="#apartments">Apartamentos</a></li>
+      <li><a href="/sobre-mi">Sobre m&iacute;</a></li>
       <li><a href="/contacto">Contacto</a></li>
-      <li><a href="#home" class="nav-btn" data-cta="nav-get-started">Empezar</a></li>
+      <li><a href="/" data-lang-switch="es-to-en">English</a></li>
     </ul>
-    <button class="hbg" id="hbg" aria-label="Abrir menú">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
-  </div>
-  <div class="mob-nav" id="mobNav">
-    <a href="#buysell">Servicios</a>
-    <a href="/sobre-mi">Sobre Willy</a>
-    <a href="/propietarios">Propietarios</a>
-    <a href="#apartments">Apartamentos</a>
-    <a href="/contacto">Contacto</a>
-    <a href="#home" class="mob-btn" data-cta="nav-get-started-mobile">Empezar</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
+<!-- FRONT DOOR -->
+<section class="hero front" id="top">
   <div class="hero-glow"></div>
-  <div class="hero-glow-2"></div>
   <div class="hero-line"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-label">
-        <div class="hero-label-line"></div>
-        <span>Con Licencia en Florida &middot; Con Base en Ocala</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
-        <img src="images/willy.jpg" alt="Willy Lopez" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid rgba(200,148,58,0.3);" />
-        <div>
-          <div style="font-family:var(--serif);font-size:17px;font-weight:700;color:#F0E8D8;">Willy Lopez</div>
-          <div style="font-size:12px;color:rgba(240,232,216,0.5);">Agente de bienes raíces en Florida, con base en Ocala &middot; Inglés y Español</div>
-        </div>
-      </div>
-      <h1>Compra, Vende, Renta, o Coloca un Inquilino<br />en <em>Florida.</em></h1>
-      <p class="hero-sub">Para compradores y vendedores en cualquier parte del estado, propietarios con una renta vacía en el condado de Marion, e inquilinos buscando en el área de Orlando u Ocala. Soy agente con licencia, con base en Ocala. Elige la opción que te toca y te digo qué sigue, en inglés o español.</p>
-      <div style="font-size:12px;color:rgba(240,232,216,0.55);margin-bottom:28px;">Taylor Apartment Locator &middot; Lic. SL3617612 &middot; <a href="tel:+17186350140" style="color:rgba(240,232,216,0.75);" data-cta="hero-info-phone">(718) 635-0140</a> &middot; <a href="mailto:wadonisrei@gmail.com" style="color:rgba(240,232,216,0.75);" data-cta="hero-info-email">wadonisrei@gmail.com</a></div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
-        <a href="/es?intent=buy#home" class="btn-grad" data-cta="hero-door-buy">Muéstrame casas &rarr;</a>
-        <a href="/es?intent=sell#home" class="btn-grad" style="background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid rgba(240,232,216,0.18);" data-cta="hero-door-sell">Dime el precio de mi casa &rarr;</a>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-        <a href="/es?intent=rent#home" class="btn-grad" data-cta="hero-door-rent">Encuéntrame un apartamento &rarr;</a>
-        <a href="/propietarios" class="btn-grad" style="background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid rgba(240,232,216,0.18);" data-cta="hero-door-landlord">Alquila mi propiedad &rarr;</a>
-      </div>
-      <div style="margin-bottom:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
-        <a href="/" style="font-size:12px;color:rgba(240,232,216,0.55);text-decoration:underline;" data-lang-switch="es-to-en">Ver esta página en inglés &rarr;</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hs-item">
-          <div class="hs-num">Con Licencia</div>
-          <div class="hs-lbl">Agente de bienes raíces en Florida</div>
-        </div>
-        <div class="hs-item">
-          <div class="hs-num">24 hrs</div>
-          <div class="hs-lbl">Respuesta en horario laboral</div>
-        </div>
-        <div class="hs-item">
-          <div class="hs-num">Directa</div>
-          <div class="hs-lbl">Representación de comprador, vendedor y propietario</div>
-        </div>
-      </div>
+  <div class="front-in">
+    <p class="front-id"><img src="images/willy.jpg" alt="Willy Lopez" width="44" height="44" /><span><strong>Willy Lopez</strong>, agente de bienes ra&iacute;ces con licencia en Florida, con base en Ocala. Ingl&eacute;s y espa&ntilde;ol.</span></p>
+    <h1>&iquest;En qu&eacute; te puedo ayudar?</h1>
+    <div class="tiles" role="group" aria-label="En qué te puedo ayudar">
+      <a href="/es?intent=buy#home" class="tile tile--primary" data-cta="tile-buy" data-door="buy">
+        <span class="tile-label">Comprar una casa</span>
+        <span class="tile-sub">Te represento como comprador en cualquier parte de Florida</span>
+        <span class="tile-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="/es?intent=sell#home" class="tile" data-cta="tile-sell" data-door="sell">
+        <span class="tile-label">Vender una casa</span>
+        <span class="tile-sub">Una opini&oacute;n directa del precio antes de listar</span>
+        <span class="tile-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="/es?intent=rent#home" class="tile" data-cta="tile-rent" data-door="rent">
+        <span class="tile-label">Buscar un apartamento</span>
+        <span class="tile-sub">Gratis para ti, en el &aacute;rea de Orlando y Ocala</span>
+        <span class="tile-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="/propietarios" class="tile" data-cta="tile-landlord">
+        <span class="tile-label">Alquilar mi propiedad</span>
+        <span class="tile-sub">Un inquilino evaluado para tu renta en el condado de Marion</span>
+        <span class="tile-arrow" aria-hidden="true">&rarr;</span>
+      </a>
     </div>
+    <p class="front-legal">Willy Lopez, Lic. SL3617612 &middot; Bajo la correduría de Taylor Apartment Locator &middot; <a href="tel:+17186350140" data-cta="front-phone">(718) 635-0140</a></p>
+  </div>
+</section>
 
+<!-- INTAKE FORM (opens from a tile; #home is the anchor other pages link to) -->
+<section class="intake" id="home">
+  <div class="intake-in">
+    <p class="intake-door" id="doorPick" hidden><span id="doorName"></span><a href="#top" id="doorChange">Cambiar</a></p>
     <div class="hfc-outer">
       <div class="hfc">
 
@@ -1925,7 +2011,7 @@
             <span class="sp-label">Paso 1 de 3</span>
           </div>
           <p class="hfc-title">¿Con quién hablo?</p>
-          <p class="hfc-sub">Tu nombre y el mejor número para llamarte o escribirte. Así te contesto, dentro de 24 horas hábiles. Faltan dos pasos cortos, como 60 segundos.</p>
+          <p class="hfc-sub">Tu nombre y el mejor número para llamarte o escribirte. Así te contesto, dentro de 24 horas hábiles. Te toma como 60 segundos en total.</p>
           <div class="fg">
             <label for="s1-name">Tu Nombre</label>
             <input type="text" id="s1-name" placeholder="Nombre y apellido" autocomplete="name" />
@@ -2211,229 +2297,17 @@
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="tb-in">
-    <div class="tb-i"><span class="ico">🪪</span>Lic. SL3617612, Taylor Apartment Locator</div>
-    <div class="tb-i"><span class="ico">🏠</span>Compradores, Vendedores y Propietarios</div>
-    <div class="tb-i"><span class="ico">📍</span>Con Base en Ocala, FL</div>
-    <div class="tb-i"><span class="ico">⚡</span>Respuesta en 24 Horas</div>
-    <div class="tb-i"><span class="ico">🗣️</span>Inglés y Español</div>
-  </div>
-</div>
-
-<!-- CUATRO FORMAS DE AYUDAR -->
-<section class="buysell" id="buysell">
-  <div class="wrap">
-    <div class="hd reveal">
-      <div class="tag"><span>Cómo Puedo Ayudarte</span></div>
-      <h2 class="sec-h">Cuatro puertas. Elige la tuya.</h2>
-      <p class="sec-s">Todas empiezan igual: me cuentas dónde estás, y te digo qué haría yo. Sin compromiso de ningún lado.</p>
-    </div>
-
-    <div class="bs-grid reveal reveal-d1">
-      <div class="bs-card bs-card--buy">
-        <div class="bs-card-label">Para Compradores</div>
-        <p class="bs-card-lead">Ves las casas que valen la pena ver, y te saltas las equivocadas antes de que te cuesten un sábado. Dime tu área y tu plazo, y te regreso con lo que encaja y qué ver primero. Yo hago la investigación, la programación, y la comunicación con los agentes listadores, y conozco Ocala y Marion Oaks calle por calle.</p>
-        <div style="margin:4px 0 26px;padding-top:20px;border-top:1px solid rgba(200,148,58,0.16);">
-          <p style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,232,216,0.4);margin:0 0 14px;">Empieza Aquí</p>
-          <div class="bs-card-list" style="margin-bottom:0;gap:11px;">
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/buying-a-home-in-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">Comprar una casa en Ocala</a> (en inglés), cómo se ve el proceso desde la primera visita hasta el día de cierre.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/marion-oaks-ocala-homes" style="color:#F0E8D8;text-decoration:underline;">Casas en Marion Oaks</a> (en inglés), el vecindario donde más trabajo y qué hay listado ahí ahora.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/primera-casa-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">Guía de comprador primerizo en Ocala</a>, los pasos si esta es tu primera compra.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/programa-hometown-heroes-florida" style="color:#F0E8D8;text-decoration:underline;">Programa Hometown Heroes de Florida explicado</a>, ayuda para el pago inicial para primeros respondedores, maestros, y trabajadores de salud elegibles.</div>
-          </div>
-        </div>
-        <a href="/es?intent=buy#home" class="btn-grad" data-cta="buysell-cta-buy">Muéstrame casas que pueda pagar en Ocala &rarr;</a>
-      </div>
-
-      <div class="bs-card bs-card--sell">
-        <div class="bs-card-label">Para Vendedores</div>
-        <p class="bs-card-lead">Averiguas en cuánto debería listarse tu casa, y por qué, antes de comprometerte a nada. Dime dónde está y cuándo te quieres mudar, y repasamos el precio y lo que se necesita para venderla. Respondo dentro de 24 horas hábiles, y no hay presión de listar antes de que te convenga a ti.</p>
-        <div style="margin:4px 0 26px;padding-top:20px;border-top:1px solid rgba(240,232,216,0.12);">
-          <p style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,232,216,0.4);margin:0 0 14px;">Empieza Aquí</p>
-          <div class="bs-card-list" style="margin-bottom:0;gap:11px;">
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/selling-a-home-in-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">Vender una casa en Ocala</a> (en inglés), cómo funcionan el precio y el tiempo en este mercado.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/best-time-to-sell-a-home-florida" style="color:#F0E8D8;text-decoration:underline;">Mejor momento para vender en Florida</a> (en inglés), para que no adivines la temporada.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/fsbo-vs-real-estate-agent-florida" style="color:#F0E8D8;text-decoration:underline;">Vender por tu cuenta vs un agente</a> (en inglés), una mirada honesta a lo que cada camino realmente te cuesta.</div>
-          </div>
-        </div>
-        <a href="/es?intent=sell#home" class="btn-grad" data-cta="buysell-cta-sell">Dime en cuánto podría vender mi casa &rarr;</a>
-      </div>
-
-      <div class="bs-card bs-card--buy">
-        <div class="bs-card-label">Para Inquilinos</div>
-        <p class="bs-card-lead">Recibes una lista corta de edificios que de verdad encajan, en vez de pasar la semana entera viendo anuncios. Dime tu presupuesto, tu fecha de mudanza, y cuántas habitaciones, y te regreso con las opciones. La comunidad de apartamentos paga mi tarifa, así que a ti no te cuesta nada, en el área de Orlando y Ocala.</p>
-        <div style="margin:4px 0 26px;padding-top:20px;border-top:1px solid rgba(200,148,58,0.16);">
-          <p style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,232,216,0.4);margin:0 0 14px;">Empieza Aquí</p>
-          <div class="bs-card-list" style="margin-bottom:0;gap:11px;">
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/how-free-apartment-locator-works" style="color:#F0E8D8;text-decoration:underline;">Cómo funciona el localizador gratis</a> (en inglés), qué pasa después de que me contactas.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/ocala-fl-apartments" style="color:#F0E8D8;text-decoration:underline;">Apartamentos en Ocala</a> (en inglés), qué hay disponible y cuánto cuestan.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/apartments-kissimmee-fl" style="color:#F0E8D8;text-decoration:underline;">Apartamentos en Kissimmee</a> (en inglés), opciones en esa parte de Florida Central.</div>
-          </div>
-        </div>
-        <a href="/es?intent=rent#home" class="btn-grad" data-cta="apartments-cta-rent">Mándame apartamentos en mi presupuesto &rarr;</a>
-      </div>
-
-      <div class="bs-card bs-card--sell">
-        <div class="bs-card-label">Para Propietarios</div>
-        <p class="bs-card-lead">Tu renta vacía del condado de Marion consigue un inquilino evaluado y un contrato firmado. Me cuentas de la unidad y tu número, y yo la promociono y evalúo a cada solicitante por ingresos, historial de renta, y antecedentes antes de que llegue a ti. Mi tarifa es un mes de renta, y la debes solo cuando se firma un contrato.</p>
-        <div style="margin:4px 0 26px;padding-top:20px;border-top:1px solid rgba(240,232,216,0.12);">
-          <p style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,232,216,0.4);margin:0 0 14px;">Empieza Aquí</p>
-          <div class="bs-card-list" style="margin-bottom:0;gap:11px;">
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/propietarios" style="color:#F0E8D8;text-decoration:underline;">Cómo funciona la colocación de inquilinos</a>, el proceso completo desde el listado hasta el contrato firmado.</div>
-            <div class="bs-card-item"><div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg></div><a href="/selling-a-home-in-ocala-fl" style="color:#F0E8D8;text-decoration:underline;">Vender en vez de rentarla</a> (en inglés), cómo funcionan el precio y el tiempo en Ocala.</div>
-          </div>
-        </div>
-        <a href="/propietarios" class="btn-grad" data-cta="buysell-cta-landlord">Consígueme un inquilino &rarr;</a>
-      </div>
-    </div>
-
-    <p class="bs-note reveal reveal-d2">Te represento directamente como comprador o vendedor en cualquier parte de Florida, no solo en Ocala y Marion Oaks. Dondequiera que esté la propiedad, trabajas conmigo de principio a fin.</p>
-
-    <div class="about-creds reveal reveal-d3" style="margin:24px 0 0;">
-      <div class="cred-item">
-        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-        Lic. SL3617612, bajo la correduría de Taylor Apartment Locator
-      </div>
-      <div class="cred-item">
-        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-        Con base en Ocala, visitas en persona ahí la misma semana
-      </div>
-      <div class="cred-item">
-        <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-        Colocación de inquilinos para propietarios, un mes de renta, que se debe al firmar el contrato
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LANDLORDS -->
-<section class="how" id="landlords">
-  <div class="wrap">
-    <div class="hd c">
-      <div class="tag reveal"><span>Para Propietarios</span></div>
-      <h2 class="sec-h reveal reveal-d1">¿Tienes una Renta Vacía?</h2>
-      <p class="sec-s reveal reveal-d2">Coloco un inquilino calificado en tu renta del condado de Marion. Pagas un mes de renta, y solo cuando se firma un contrato.</p>
-    </div>
-    <div class="steps-grid">
-      <div class="step-card reveal reveal-d1">
-        <div class="step-num">01</div>
-        <h3>Cuéntame de la Unidad</h3>
-        <p>Me cuentas de la propiedad y tu número. Dirección, condición, cuánto quieres de renta, y cuándo necesitas que alguien entre.</p>
-      </div>
-      <div class="step-card reveal reveal-d2">
-        <div class="step-num">02</div>
-        <h3>Promociono y Evalúo</h3>
-        <p>La listo, atiendo las llamadas, y evalúo a cada solicitante serio: ingresos, historial de renta, y una revisión de antecedentes antes de que llegue a ti.</p>
-      </div>
-      <div class="step-card reveal reveal-d3">
-        <div class="step-num">03</div>
-        <h3>Firmas y Cobras</h3>
-        <p>Firmas el contrato directamente con tu inquilino. Mi tarifa es un mes de renta, debida al firmar, nunca antes.</p>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:44px;" class="reveal">
-      <a href="/propietarios" class="btn-grad" data-cta="landlords-section-cta">Ve Cómo Funciona la Colocación de Inquilinos &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="wrap">
-    <div class="about-grid">
-
-      <!-- LEFT: Photo + ID card -->
-      <div class="about-photo-col reveal">
-        <div class="photo-frame">
-          <img src="images/willy.jpg" alt="Willy Lopez, Licensed Real Estate Agent" />
-        </div>
-        <div class="about-id-card">
-          <p class="about-id-name">Willy Lopez</p>
-          <p class="about-id-title">Agente de Bienes Raíces con Licencia &middot; Con Base en Ocala, FL</p>
-          <div class="about-id-lic">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span>Lic. SL3617612 &middot; Taylor Apt. Locator</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- RIGHT: Content -->
-      <div class="about-content reveal reveal-d1">
-        <div class="tag"><span>02 &nbsp;&middot;&nbsp; Tu Agente</span></div>
-        <h2 class="sec-h">Hola, soy Willy Lopez.</h2>
-
-        <!-- Stats row -->
-        <div class="about-stats-row">
-          <div class="ab-stat">
-            <div class="ab-stat-num">24 hrs</div>
-            <div class="ab-stat-lbl">Respuesta en horario laboral</div>
-          </div>
-          <div class="ab-stat">
-            <div class="ab-stat-num">EN/ES</div>
-            <div class="ab-stat-lbl">Inglés y Español</div>
-          </div>
-          <div class="ab-stat">
-            <div class="ab-stat-num">100%</div>
-            <div class="ab-stat-lbl">Gratis para inquilinos</div>
-          </div>
-        </div>
-
-        <p class="about-bio">Soy agente de bienes raíces con licencia en Florida, con base en Ocala. Represento a compradores y vendedores en cualquier parte del estado, coloco inquilinos para propietarios en el condado de Marion, y sigo haciendo localización de apartamentos, conectando a inquilinos del área de Orlando y Ocala con el edificio correcto sin costo para ellos.</p>
-        <p class="about-bio">Con licencia bajo <strong style="color:rgba(240,232,216,0.85);font-weight:600;">Taylor Apartment Locator</strong>. Traigo un siguiente paso claro a cada búsqueda de casa o listado, para que siempre sepas qué sigue.</p>
-        <p class="about-bio">Respondo rápido, te doy respuestas directas, y sigo contigo desde el primer mensaje hasta el día que recoges tus llaves. <a href="/sobre-mi" style="color:rgba(240,232,216,0.85);">Más sobre cómo trabajo &rarr;</a></p>
-
-        <div class="about-divider"></div>
-
-        <div class="about-creds">
-          <div class="cred-item">
-            <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Lic. SL3617612 &middot; Taylor Apartment Locator
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Representación de comprador y vendedor en cualquier parte de Florida
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Localización de apartamentos para inquilinos, gratis para ellos
-          </div>
-          <div class="cred-item">
-            <div class="cred-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            Especializado en reubicaciones fuera del estado y búsquedas remotas
-          </div>
-        </div>
-
-        <div class="about-contact">
-          <a href="tel:+17186350140" class="contact-pill" data-cta="about-contact-phone">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            (718) 635-0140
-          </a>
-          <a href="https://wa.me/17186350140" class="contact-pill wa" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp
-          </a>
-          <a href="#home" class="btn-grad" style="padding:11px 22px;font-size:11px;" data-cta="about-cta-get-started">Empezar &rarr;</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="wrap">
     <div class="hd c reveal">
-      <div class="tag"><span>03 &nbsp;&middot;&nbsp; Reseñas de Clientes</span></div>
+      <div class="tag"><span>Reseñas de Clientes</span></div>
       <h2 class="sec-h">Lo que dicen los clientes</h2>
-      <p class="sec-s">Personas reales que trabajaron con Willy y le confiaron una decisión importante en sus vidas. Reseñas mostradas en su idioma original.</p>
+      <p class="sec-s">Cuatro personas con las que he trabajado, en sus propias palabras. Reseñas mostradas en su idioma original.</p>
     </div>
     <div class="reviews-grid">
       <div class="rc reveal reveal-d1">
         <div class="rc-quote">"</div>
-        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="rc-text">Willy was incredibly easy to work with. He answered every question I had, kept me updated throughout the whole process, and never made me feel like I was just another client. If you're looking for someone who actually has your back, he's your guy.</p>
         <div class="rc-author">
           <div class="rc-av">JL</div>
@@ -2442,7 +2316,6 @@
       </div>
       <div class="rc reveal reveal-d2">
         <div class="rc-quote">"</div>
-        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="rc-text">Working with Willy took all the stress out of what could have been a really overwhelming process. He was patient, super responsive, and genuinely cared about finding the right fit. I'd recommend him to anyone without hesitation.</p>
         <div class="rc-author">
           <div class="rc-av">AR</div>
@@ -2451,7 +2324,6 @@
       </div>
       <div class="rc reveal reveal-d3">
         <div class="rc-quote">"</div>
-        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="rc-text">Willy walked me through everything step by step. I never felt confused or left in the dark. He's honest, thorough, and you can tell he actually wants to help you, not just close a deal. Really appreciate the work he put in.</p>
         <div class="rc-author">
           <div class="rc-av">IR</div>
@@ -2460,7 +2332,6 @@
       </div>
       <div class="rc reveal reveal-d4">
         <div class="rc-quote">"</div>
-        <div class="rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="rc-text">From the first call, Willy made me feel like I was in good hands. He was upfront about everything, checked in regularly, and made the whole experience way less stressful than I expected. I'll definitely reach out again for my next move.</p>
         <div class="rc-author">
           <div class="rc-av">JG</div>
@@ -2468,85 +2339,85 @@
         </div>
       </div>
     </div>
+    <p class="rev-lic">Willy Lopez, Lic. SL3617612. Bajo la correduría de Taylor Apartment Locator.</p>
   </div>
 </section>
 
-<!-- BUY/SELL FAQ -->
-<section class="faq" id="buysell-faq">
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
   <div class="wrap">
     <div class="hd c reveal">
-      <div class="tag"><span>04 &nbsp;&middot;&nbsp; Preguntas de Compra y Venta</span></div>
-      <h2 class="sec-h">Respuestas a lo que preguntan compradores y vendedores</h2>
+      <div class="tag"><span>Cómo Funciona</span></div>
+      <h2 class="sec-h">Tres pasos, iguales para todos</h2>
     </div>
-    <div class="faq-wrap">
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">¿Solo trabajas en Ocala?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">No. Tengo mi base en Ocala y conozco las calles de aquí mejor que nadie, pero represento directamente a compradores y vendedores en cualquier parte de Florida. Si estás fuera del condado de Marion, igual trabajamos juntos de principio a fin, solo que hago más de la investigación a distancia antes de vernos en persona.</div></div>
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-d1">
+        <div class="step-num">01</div>
+        <h3>Elige lo que necesitas</h3>
+        <p>Toca la opción de arriba que te toca y cuéntame lo básico. Toma como un minuto.</p>
       </div>
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">Estoy pensando en vender pero no lo he decidido. ¿Me vas a presionar a listar?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">No. Contáctame y hablamos de dónde estás parado y cómo se ven tus opciones. Te doy una opinión directa de tu situación, y si tiene más sentido esperar, también te lo digo.</div></div>
+      <div class="step-card reveal reveal-d2">
+        <div class="step-num">02</div>
+        <h3>Te respondo</h3>
+        <p>Yo leo cada solicitud personalmente y te llamo o te escribo dentro de 24 horas hábiles.</p>
       </div>
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">¿Cómo es trabajar contigo?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">Yo hago la investigación, la programación de visitas, y la comunicación con los agentes listadores, para que no tengas que hacerlo todo tú. Respondo a cada consulta dentro de 24 horas hábiles, y siempre te doy una respuesta directa, incluyendo cuando no creo que una propiedad o un vecindario sea el correcto para ti.</div></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">Soy nuevo en el área. ¿Me puedes orientar?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">Sí. Te guío por los vecindarios, los precios, y cómo es realmente vivir en un área, no solo lo que dice el anuncio. Si te estás mudando de otro estado, contesto cada pregunta que tengas antes de que te comprometas a algo.</div></div>
+      <div class="step-card reveal reveal-d3">
+        <div class="step-num">03</div>
+        <h3>Recibes una respuesta directa</h3>
+        <p>Hablamos de dónde estás y qué haría yo después. Sin compromiso de ninguna forma.</p>
       </div>
     </div>
   </div>
 </section>
-
-<!-- APARTMENT LOCATING (quieter, third service) -->
-<section class="loc-chapter" id="apartments">
-  <div class="wrap">
-    <div class="hd c reveal">
-      <div class="tag"><span>Localización de Apartamentos</span></div>
-      <h2 class="sec-h">También Ayudo a Inquilinos a Encontrar Apartamento.</h2>
-      <p class="sec-s">Aparte de comprar, vender, y colocación de inquilinos, manejo un servicio gratis de localización de apartamentos en el área de Orlando y Ocala. La comunidad de apartamentos paga mi tarifa, así que no le cuesta nada al inquilino.</p>
-    </div>
-    <a href="/how-free-apartment-locator-works" class="btn-grad reveal reveal-d1" data-cta="locator-how-it-works">Cómo Funciona el Localizador Gratis &rarr;</a>
-  </div>
-</section>
-
 
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="wrap">
     <div class="hd c reveal">
-      <div class="tag"><span>Preguntas de Localización de Apartamentos</span></div>
-      <h2 class="sec-h">Respuestas a lo que preguntan los inquilinos</h2>
+      <div class="tag"><span>Preguntas</span></div>
+      <h2 class="sec-h">Lo que la gente pregunta primero</h2>
     </div>
     <div class="faq-wrap">
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">¿Este servicio es realmente gratis?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">Sí, 100% gratis para el inquilino. Las comunidades de apartamentos me pagan una tarifa de referido cuando firmas un contrato. Tú nunca pagas nada: sin tarifa de servicio, sin tarifa de búsqueda, sin cargo de procesamiento. Si un localizador de apartamentos alguna vez te pide dinero, aléjate.</div></div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">¿Solo trabajas en Ocala?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><div class="faq-body-in">No. Tengo mi base en Ocala y conozco las calles de aquí mejor que nadie, pero represento directamente a compradores y vendedores en cualquier parte de Florida. Si estás fuera del condado de Marion, igual trabajamos juntos de principio a fin, solo que hago más de la investigación a distancia antes de vernos en persona.</div></div>
       </div>
-      <div class="faq-item reveal">
+      <div class="faq-item">
         <button class="faq-btn" onclick="toggleFaq(this)">¿Qué tan rápido puedo esperar una respuesta?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="faq-body"><div class="faq-body-in">Respondo a cada consulta dentro de 24 horas hábiles. Eso es cierto ya sea que estés comprando, vendiendo, rentando, o preguntando sobre colocación de inquilinos para una propiedad que tienes.</div></div>
       </div>
-      <div class="faq-item reveal">
-        <button class="faq-btn" onclick="toggleFaq(this)">¿Qué áreas cubres?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="faq-body"><div class="faq-body-in">Represento a compradores y vendedores en cualquier parte de Florida, coloco inquilinos para propietarios en el condado de Marion, y hago localización de apartamentos en el área de Orlando y Ocala. Dime qué necesitas y dónde, y te doy una respuesta directa sobre si puedo ayudarte.</div></div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">Estoy pensando en vender pero no lo he decidido. ¿Me vas a presionar a listar?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-body"><div class="faq-body-in">No. Contáctame y hablamos de dónde estás parado y cómo se ven tus opciones. Te doy una opinión directa de tu situación, y si tiene más sentido esperar, también te lo digo.</div></div>
       </div>
+      <details class="faq-more">
+        <summary>Más preguntas</summary>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">¿Cómo es trabajar contigo?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-body"><div class="faq-body-in">Yo hago la investigación, la programación de visitas, y la comunicación con los agentes listadores, para que no tengas que hacerlo todo tú. Respondo a cada consulta dentro de 24 horas hábiles, y siempre te doy una respuesta directa, incluyendo cuando no creo que una propiedad o un vecindario sea el correcto para ti.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">Soy nuevo en el área. ¿Me puedes orientar?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-body"><div class="faq-body-in">Sí. Te guío por los vecindarios, los precios, y cómo es realmente vivir en un área, no solo lo que dice el anuncio. Si te estás mudando de otro estado, contesto cada pregunta que tengas antes de que te comprometas a algo.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">¿La localización de apartamentos es realmente gratis?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-body"><div class="faq-body-in">Sí, 100% gratis para el inquilino. Las comunidades de apartamentos me pagan una tarifa de referido cuando firmas un contrato. Tú nunca pagas nada: sin tarifa de servicio, sin tarifa de búsqueda, sin cargo de procesamiento. Si un localizador de apartamentos alguna vez te pide dinero, aléjate.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">¿Qué áreas cubres?<svg class="faq-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="faq-body"><div class="faq-body-in">Represento a compradores y vendedores en cualquier parte de Florida, coloco inquilinos para propietarios en el condado de Marion, y hago localización de apartamentos en el área de Orlando y Ocala. Dime qué necesitas y dónde, y te doy una respuesta directa sobre si puedo ayudarte.</div></div>
+        </div>
+      </details>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="fin-cta" id="contact">
-  <h2 class="reveal">Comprando, vendiendo, rentando, o colocando un inquilino,<br /><em>hablemos.</em></h2>
-  <p class="reveal reveal-d1">Deja tu número abajo y te contacto personalmente, normalmente dentro de un día. Sin presión, sin compromiso, solo una conversación directa sobre lo que necesitas.</p>
-  <div class="fin-row reveal reveal-d2">
-    <input type="tel" id="finPhone" placeholder="Tu número de teléfono" />
-    <button class="btn-fin" onclick="handleFin()">Empezar</button>
-  </div>
-  <p class="fin-note reveal reveal-d3">Al enviar, aceptas ser contactado por mensaje de texto o llamada. Consulta nuestra <a href="/privacy">Política de Privacidad</a>. ¿Prefieres un formulario con más detalle? Usa la <a href="/contacto">página de contacto completa</a>.</p>
-  <p class="fin-divider reveal reveal-d3">También puedes contactarme directamente</p>
-  <div class="fin-actions reveal reveal-d4">
+  <h2 class="reveal">¿Prefieres hablarlo?<br /><em>Llámame o escríbeme.</em></h2>
+  <p class="reveal reveal-d1">Te contesto en inglés o español, dentro de 24 horas hábiles.</p>
+  <div class="fin-actions reveal reveal-d2">
     <a href="tel:+17186350140" class="fin-phone-link" data-cta="fin-phone">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       (718) 635-0140
@@ -2556,6 +2427,8 @@
       Escríbeme por WhatsApp
     </a>
   </div>
+  <p class="fin-mail reveal reveal-d3"><a href="mailto:wadonisrei@gmail.com" data-cta="fin-email">wadonisrei@gmail.com</a></p>
+  <p class="fin-legal">Willy Lopez, Lic. SL3617612. Bajo la correduría de Taylor Apartment Locator.</p>
 </section>
 
 <!-- FOOTER -->
@@ -2567,11 +2440,11 @@
         <p class="foot-tagline">Represento a compradores y vendedores en cualquier parte de Florida, con base en Ocala. Colocación de inquilinos para propietarios en el condado de Marion. Localización de apartamentos en el área de Orlando y Ocala, gratis para inquilinos.<br />Willy Lopez, Lic. SL3617612. Bajo la correduría de Taylor Apartment Locator.</p>
       </div>
       <ul class="foot-links">
-        <li><a href="#buysell">Servicios</a></li>
+        <li><a href="#top">Servicios</a></li>
         <li><a href="/propietarios">Propietarios</a></li>
         <li><a href="/sobre-mi">Sobre mí</a></li>
         <li><a href="#reviews">Reseñas</a></li>
-        <li><a href="#apartments">Localización de Apartamentos</a></li>
+        <li><a href="/how-free-apartment-locator-works">Localización de Apartamentos</a></li>
         <li><a href="#faq">Preguntas Frecuentes</a></li>
         <li><a href="/contacto">Contacto</a></li>
       </ul>
@@ -2663,19 +2536,56 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
 
-  document.getElementById('hbg').addEventListener('click', function() {
-    document.getElementById('mobNav').classList.toggle('on');
-  });
-  document.querySelectorAll('.mob-nav a').forEach(function(a) {
-    a.addEventListener('click', function() { document.getElementById('mobNav').classList.remove('on'); });
+
+  // Front door: a tile (or /?intent=buy#home from another page) opens the intake form
+  // below with that door already known, so name and phone lead straight to its step 3.
+  var DOOR_NAMES = {"buy": "Comprar una casa", "sell": "Vender una casa", "rent": "Buscar un apartamento", "landlord": "Alquilar mi propiedad"};
+  var STEP_WORD = 'Paso', STEP_OF = 'de';
+  window.presetDoor = null;
+
+  function setStepCount(n) {
+    var s1 = document.querySelector('#step1 .step-progress');
+    var s1dots = s1.querySelectorAll('.sp-dot');
+    s1dots[1].style.display = n === 2 ? 'none' : '';
+    s1.querySelector('.sp-label').textContent = STEP_WORD + ' 1 ' + STEP_OF + ' ' + n;
+    ['rent','buy','sell'].forEach(function(t) {
+      var p = document.querySelector('#step3-' + t + ' .step-progress');
+      p.querySelectorAll('.sp-dot')[1].style.display = n === 2 ? 'none' : '';
+      p.querySelector('.sp-label').textContent = STEP_WORD + ' ' + n + ' ' + STEP_OF + ' ' + n;
+    });
+  }
+
+  function openIntake(door, smooth) {
+    var sec = document.getElementById('home');
+    sec.classList.add('open');
+    if (!document.getElementById('hfc-ok').classList.contains('on')) {
+      document.querySelectorAll('.hfc-step').forEach(function(s) { s.classList.remove('active'); });
+      document.getElementById('step1').classList.add('active');
+      window.presetDoor = door || null;
+      setStepCount(door ? 2 : 3);
+      var pick = document.getElementById('doorPick');
+      if (door) { document.getElementById('doorName').textContent = DOOR_NAMES[door]; pick.hidden = false; }
+      else { pick.hidden = true; }
+    }
+    sec.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    setTimeout(function() { try { document.getElementById('s1-name').focus({ preventScroll: true }); } catch (e) {} }, smooth ? 600 : 50);
+  }
+
+  document.querySelectorAll('a.tile[data-door]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      openIntake(a.getAttribute('data-door'), true);
+    });
   });
 
-  // Buyer, seller and landlord pages link here as /?intent=buy#home so step 2 opens
-  // with the right card already chosen instead of making the visitor pick again.
   (function () {
     try {
       var intent = new URLSearchParams(window.location.search).get('intent');
-      if (intent === 'buy' || intent === 'sell' || intent === 'rent') { window.preselectedType = intent; }
+      var door = (intent === 'buy' || intent === 'sell' || intent === 'rent') ? intent : null;
+      if (door || window.location.hash === '#home') {
+        openIntake(door, false);
+        window.addEventListener('load', function() { document.getElementById('home').scrollIntoView({ block: 'start' }); });
+      }
     } catch (e) {}
   })();
 
@@ -2689,14 +2599,12 @@
     window.leadName = name;
     window.leadPhone = phone;
     document.getElementById('step1').classList.remove('active');
-    document.getElementById('step2').classList.add('active');
-    if (window.preselectedType) {
-      document.querySelectorAll('.intent-card').forEach(function(c) { c.classList.remove('intent-card--active'); });
-      var cards = document.querySelectorAll('.intent-card');
-      var idx = window.preselectedType === 'buy' ? 0 : window.preselectedType === 'sell' ? 1 : 2;
-      cards[idx].classList.add('intent-card--active');
-      window.preselectedType = null;
+    if (window.presetDoor) {
+      window.leadType = window.presetDoor;
+      document.getElementById('step3-' + window.presetDoor).classList.add('active');
+      return;
     }
+    document.getElementById('step2').classList.add('active');
   }
 
   function goStep1() {
@@ -2714,7 +2622,7 @@
     ['rent','buy','sell'].forEach(function(t) {
       document.getElementById('step3-' + t).classList.remove('active');
     });
-    document.getElementById('step2').classList.add('active');
+    document.getElementById(window.presetDoor ? 'step1' : 'step2').classList.add('active');
   }
 
   // Bucketed dropdown -> the number match_complexes.py actually needs (upper bound of the
@@ -2859,20 +2767,6 @@
     }, { once: true });
   }
 
-  function handleFin() {
-    var phone = document.getElementById('finPhone').value.trim();
-    if (!phone) {
-      var el = document.getElementById('finPhone');
-      el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.2)';
-      el.focus();
-      setTimeout(function() { el.style.boxShadow = ''; }, 2000);
-      return;
-    }
-    document.getElementById('s1-phone').value = phone;
-    document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-    setTimeout(function() { document.getElementById('s1-name').focus(); }, 700);
-  }
-
   function toggleFaq(btn) {
     var item = btn.closest('.faq-item');
     var wasOpen = item.classList.contains('on');
@@ -2880,16 +2774,22 @@
     if (!wasOpen) item.classList.add('on');
   }
 
+  // The call bar stays out of the way while the tiles or the form are on screen.
+  var inView = {};
   var heroObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(en) { inView[en.target.id] = en.isIntersecting; });
     var bar = document.getElementById('stickyBar');
-    if (entries[0].isIntersecting) bar.style.display = 'none';
+    if (inView.top || inView.home) bar.style.display = 'none';
     else bar.style.removeProperty('display');
-  }, { threshold: 0.3 });
+  }, { threshold: 0.15 });
+  heroObs.observe(document.getElementById('top'));
   heroObs.observe(document.getElementById('home'));
 
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
-      var t = document.querySelector(this.getAttribute('href'));
+      var href = this.getAttribute('href');
+      if (href === '#home') { e.preventDefault(); openIntake(null, true); return; }
+      var t = href.length > 1 && document.querySelector(href);
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
