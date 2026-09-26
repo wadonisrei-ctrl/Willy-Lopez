@@ -2115,21 +2115,21 @@
               <label for="r-budget">Presupuesto Mensual Máximo</label>
               <select id="r-budget">
                 <option value="" disabled selected>Presupuesto</option>
-                <option>Menos de $1,000</option>
-                <option>$1,000 a $1,400</option>
-                <option>$1,400 a $1,800</option>
-                <option>$1,800 a $2,200</option>
-                <option>$2,200 o más</option>
+                <option value="Under $1,000">Menos de $1,000</option>
+                <option value="$1,000 to $1,400">$1,000 a $1,400</option>
+                <option value="$1,400 to $1,800">$1,400 a $1,800</option>
+                <option value="$1,800 to $2,200">$1,800 a $2,200</option>
+                <option value="$2,200 or more">$2,200 o más</option>
               </select>
             </div>
             <div class="fg">
               <label for="r-beds">Habitaciones</label>
               <select id="r-beds">
                 <option value="" disabled selected>Habitaciones</option>
-                <option>Estudio</option>
-                <option>1 Habitación</option>
-                <option>2 Habitaciones</option>
-                <option>3 o más</option>
+                <option value="Studio">Estudio</option>
+                <option value="1 Bedroom">1 Habitación</option>
+                <option value="2 Bedrooms">2 Habitaciones</option>
+                <option value="3 or more">3 o más</option>
               </select>
             </div>
           </div>
@@ -2632,17 +2632,17 @@
   // stay in English, unchanged from the English site, so downstream matching
   // logic keeps working identically regardless of page language.
   var RENT_BUDGET_MAP = {
-    'Menos de $1,000': 1000,
-    '$1,000 a $1,400': 1400,
-    '$1,400 a $1,800': 1800,
-    '$1,800 a $2,200': 2200,
-    '$2,200 o más': 5000
+    'Under $1,000': 1000,
+    '$1,000 to $1,400': 1400,
+    '$1,400 to $1,800': 1800,
+    '$1,800 to $2,200': 2200,
+    '$2,200 or more': 5000
   };
   var RENT_BEDS_MAP = {
-    'Estudio': 'Studio',
-    '1 Habitación': '1BR',
-    '2 Habitaciones': '2BR',
-    '3 o más': '3BR+'
+    'Studio': 'Studio',
+    '1 Bedroom': '1BR',
+    '2 Bedrooms': '2BR',
+    '3 or more': '3BR+'
   };
   var RENT_INTAKE_URL = 'https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake';
   var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
