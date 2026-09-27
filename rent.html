@@ -240,6 +240,31 @@
     }
     .faq-mini summary { font-size: 0.9rem; font-weight: 600; color: var(--char-2); cursor: pointer; }
     .faq-mini p { font-size: 0.85rem; line-height: 1.55; color: var(--muted); margin: 8px 0 0; }
+      /* design-1 (2026-09-27): spacing, legible fine print, calmer quotes, 44px FAQ rows */
+    .row2 label:first-of-type { margin-top: 16px; }
+    .fineprint, .tcpa-note { font-size: 11px; }
+    .proof-wrap .proof-h { margin-top: 30px; }
+    .rc-mini { background: none; border: none; border-left: 2px solid #E3CFA6; border-radius: 0; padding: 2px 0 2px 16px; margin-bottom: 20px; }
+    .rc-mini p { color: #374151; font-size: 0.92rem; }
+    .faq-mini details { padding: 0 16px; }
+    .faq-mini summary {
+      list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 48px; padding: 10px 0;
+    }
+    .faq-mini summary::-webkit-details-marker { display: none; }
+    .faq-mini summary::after {
+      content: ""; flex: 0 0 8px; width: 8px; height: 8px; margin-top: -4px;
+      border: solid #A07828; border-width: 0 2px 2px 0; transform: rotate(45deg);
+    }
+    .faq-mini details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .faq-mini details[open] { padding-bottom: 14px; }
+    .faq-mini p { margin-top: 2px; font-size: 0.9rem; color: #4B5563; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #A07828; outline-offset: 3px; border-radius: 4px; }
+    .hero a:focus-visible, .page-hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible { outline-color: #E8B870; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
@@ -351,12 +376,10 @@
   <div class="proof-wrap">
     <p class="proof-h">What clients are saying</p>
     <div class="rc-mini">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       <p>"Willy was incredibly easy to work with. He answered every question I had, kept me updated throughout the whole process, and never made me feel like I was just another client."</p>
       <div class="who">Jostin Lopez, Client &middot; Central Florida</div>
     </div>
     <div class="rc-mini">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       <p>"Working with Willy took all the stress out of what could have been a really overwhelming process. He was patient, super responsive, and genuinely cared about finding the right fit."</p>
       <div class="who">Ashley Reinoso, Client &middot; Central Florida</div>
     </div>

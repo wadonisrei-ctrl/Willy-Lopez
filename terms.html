@@ -146,6 +146,32 @@
       nav { padding: 0 20px; }
       .page-hero { padding: 48px 20px 44px; }
     }
+      /* design-1 (2026-09-27): brand navy palette and the shared reading scale */
+    :root { --cream: #FAF8F4; --char: #0B1628; --text: #1A1F2E; --muted: #4B5563; --border: #E2E6EE; }
+    nav { background: rgba(255,255,255,0.96); }
+    .logo, .nav-back { white-space: nowrap; }
+    .page-hero { background: linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%); }
+    .page-hero p { color: rgba(255,255,255,0.72); }
+    .content { max-width: 744px; }
+    .section { margin-bottom: 44px; }
+    .section h2 { font-size: 25px; line-height: 1.25; color: var(--char); margin-bottom: 14px; }
+    .section p, .section ul li { font-size: 17px; line-height: 1.7; color: #4B5563; }
+    .section p { margin-bottom: 1em; }
+    .highlight-box { background: #F7EDDD; border-color: rgba(200,148,58,0.3); }
+    .highlight-box p { font-size: 16px; }
+    footer { background: #060D18; }
+    footer p { font-size: 12px; line-height: 1.8; }
+    footer p a { display: inline-block; padding: 4px 2px; }
+    @media (max-width: 640px) {
+      .nav-in > div > a.nav-back:not(:last-child) { display: none; }
+    }
+    @media (min-width: 900px) { .section h2 { font-size: 28px; } .section p, .section ul li { font-size: 18px; } }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #A07828; outline-offset: 3px; border-radius: 4px; }
+    .hero a:focus-visible, .page-hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible { outline-color: #E8B870; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
