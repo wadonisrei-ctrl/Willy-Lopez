@@ -176,6 +176,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -200,6 +205,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -209,7 +225,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -233,7 +249,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -255,7 +271,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -290,7 +307,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -306,94 +323,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -406,7 +472,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -419,7 +485,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -427,11 +493,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -439,42 +505,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -515,39 +656,11 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
-      <div class="section-label reveal">Guide</div>
-      
-        <div class="section-block reveal reveal-d1">
-          <h2>The Most Expensive Mistake a New Construction Buyer Makes</h2>
-          <p>It usually happens on a Saturday. You are driving through southwest Marion County, you spot a builder sign in front of a finished home, the door is propped open, and you walk in to look around. Someone friendly greets you, asks for your name and email, and walks you through the floor plan.</p><p>You may have just done the one thing in this process that is hard to undo.</p><p>Most production builders, which covers nearly every builder active in Marion Oaks, run some form of agent registration policy. The common version works like this: for an agent to represent you on a purchase with that builder, the agent has to register you before your first visit or physically accompany you on it. Tour alone first, decide months later that you want representation, and a lot of builders will simply decline to recognize that agent on your purchase.</p><p>The policies are not identical from company to company. Some allow registration inside a short window after a first visit. Some want the agent standing next to you at the door with no exceptions. Some apply the rule more strictly at one community than at another. So the reliable move is not to assume anything, it is to ask the builder directly before you tour: does my agent need to register me in advance, or be with me on my first visit, for you to recognize them on a purchase?</p><p>Here is why this deserves more weight than the usual advice about shopping around. Almost every other decision in a home purchase can be walked back. You can switch lenders. You can change your mind about a lot or a floor plan. You can leave a contract inside your inspection period. Representation on a builder purchase is the outlier, because the window on it can close the moment you sign the visitor sheet at the sales office. There is no clean way to reopen it later.</p><p>And the person greeting you at the model is not a neutral party. The on site sales consultant knows the product cold, is usually pleasant to deal with, and will answer a lot of your questions honestly. They are also employed by the builder, paid by the builder, and working toward the builder's result. That is not a knock on them. It is their job description, and they are doing it well. The question worth asking is who is doing that same work on your side of the table.</p><p>If new construction in Marion Oaks is anywhere on your list, reach out before you tour. Registering you takes an email or a phone call. Fixing it afterward usually is not an option.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d2">
-          <h2>Spot Lot Building in Marion Oaks</h2>
-          <p>Marion Oaks is the most active area for affordable new construction in Marion County, and the reason traces back to a decision made decades ago.</p><p>The community was platted decades ago as a very large subdivision. Roads were laid out and thousands of individual residential lots were recorded long before most of the houses existed. Buildout never finished. What that left is an unincorporated community with paved streets, settled neighbors, mature trees on some blocks, and empty lots scattered all through it.</p><p>Builders call those spot lots. Rather than buying a hundred acres of raw land and developing a community from scratch, a builder buys one recorded lot, or a handful of them spread across different streets, and builds. LGI Homes, Adams Homes, Highland Homes, and Maronda Homes each market a community they name Marion Oaks on their own site. D.R. Horton also builds scattered homesites within Marion Oaks, marketed on its own site as Marion County Spot Lots rather than as a named Marion Oaks community.</p><p>That creates a buying experience that does not resemble new construction in most of Central Florida.</p><p>In a planned community, you buy into a phase. The whole street goes up at once, every house is the same vintage, and the amenity package arrives bundled with an association and sometimes a community development district behind it. Everything around you is new, including the unknowns.</p><p>On a spot lot, you are buying a brand new house dropped into a neighborhood that already exists. The practical differences are worth thinking about before you fall for a floor plan.</p><p>Your neighbors are already there, which is an advantage almost nobody uses. You can drive the street on a Tuesday at six in the evening instead of a Sunday afternoon and see what the block is actually like. In a phased community you are guessing about people who have not moved in yet.</p><p>The character of the street is already set. There is no phase three coming that changes the view or the traffic pattern.</p><p>Comparable sales get messy. The house next to your new build might be from 1994. Appraisers working Marion Oaks have to reconcile a 2026 build against neighboring stock that spans five decades, and that shows up later as a real number in your file.</p><p>Nothing about the lot is standardized. Some sections of Marion Oaks are on county water and sewer, others run private well and septic, and the answer changes by address rather than by neighborhood. What a builder has available also shifts constantly, because inventory here moves one lot at a time instead of one phase at a time. A list of available homes in Marion Oaks can be accurate on Monday and wrong by Friday.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d3">
-          <h2>No HOA Is the Real Draw, and It Runs Both Directions</h2>
-          <p>Marion Oaks has no mandatory HOA. That one fact pulls a lot of buyers here instead of toward the newer master planned communities closer to Ocala, since no HOA and no CDD fees is a genuine differentiator in a state where both are close to standard on new construction. Amenities and services here are instead funded through a county municipal service district that appears on the property tax bill.</p><p>For anyone who has lived under an active Florida association, the appeal needs no explanation. No monthly or quarterly assessment. No architectural review committee deciding on your paint color. No letter about the work truck in the driveway. No board meeting.</p><p>I live here, and I will give you the balanced version rather than the sales version.</p><p>What you gain is real. Your carrying cost is the mortgage, taxes, and insurance, without a dues line that a board can raise. You have latitude with your own property that association neighborhoods do not offer. Worth one caution: no HOA does not mean no rules. Marion County's land development code still applies to setbacks, structures, vehicles, and use, so check the county's requirements rather than assuming the absence of a board equals the absence of regulation.</p><p>What you give up is also real, and it is the part builders do not lead with.</p><p>There is no amenity package attached to your purchase. No association pool, no gym, no gate, no clubhouse funded out of your dues, because there are no dues.</p><p>The freedom is not yours alone. No architectural standards means nothing stops the property next to yours from looking however its owner wants it to look. Buyers who love the no HOA pitch sometimes have not thought through the version where the neighbor is the one exercising it.</p><p>When a neighbor problem shows up, there is no board to call. The path is Marion County code enforcement, which is a narrower and slower instrument than a management company that can send a letter next week.</p><p>There is a resale angle too. A share of Florida buyers, especially people relocating from association heavy markets, actively want the structure an HOA provides. No HOA widens your appeal with one group and narrows it with another.</p><p>On a new build specifically, the no HOA reality has an effect people miss. In a planned community, architectural review keeps the streetscape consistent, so your builder's elevation choices sit next to matching ones. On a Marion Oaks spot lot, your new house may sit between two homes built decades apart with nothing in common. Some buyers find that charming. Others walk the street and realize it is not the look they pictured. Either reaction is fine. Have it before you sign, not after.</p><p>One practical step: pull the parcel record with the Marion County Property Appraiser for any home you are serious about, and confirm what assessments actually appear on that tax bill. Verify the specific parcel rather than taking a general answer about the community.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d4">
-          <h2>The Model Home Is Not the House You Are Buying</h2>
-          <p>Every finish in a model home was chosen by a marketing team to make you feel something. That is what a model is for, and it works.</p><p>The house in the contract is the base house. Ask the builder for the standard features list in writing, then walk the model a second time with that list in your hand and identify which items are options. Quartz instead of laminate, tile running past the wet areas, upgraded cabinet height, frameless shower glass, the landscaping package, sometimes the appliances themselves. It is common for a model to be a heavily optioned version of a plan that looks considerably plainer at base.</p><p>That is not deception. It is normal industry practice, and it is only a problem if nobody tells you.</p><p>How to think about which upgrades are worth taking:</p><p>Things that are difficult or expensive to change after the fact usually justify the money. Structural options come first, since a slab is poured once. An extended covered lanai, a different roofline, moving a wall, additional electrical rough in, extra hose bibs, conduit run before the concrete goes down, the window and insulation package. In Florida, the window and roof specifications also feed straight into what an insurer says about the home, so those are not purely cosmetic decisions.</p><p>Things you can swap out later on your own schedule are usually the weakest place to spend builder money. Light fixtures, mirrors, faucets, blinds, paint, and often appliances fall in that group. You can change any of them in year two for less than the option price, and you will have more control over the result.</p><p>There is a financing angle worth saying plainly. Upgrades roll into the purchase price, which means they get financed over the life of the loan rather than paid in cash. Convenient, and also the reason a package of cosmetic options quietly becomes a much larger number than the option sheet suggests.</p><p>The Marion Oaks specific piece is the appraisal. In a phased community, an appraiser has a supply of recent, nearly identical sales a street away, so a well optioned house has support. Here, the closest sales might be a 1990s resale and a small builder home from two years ago. Stack enough upgrades on a spot lot build and the finished price can outrun what the surrounding sales will support. That does not make upgrading wrong. It makes it a conversation to have before you select, not after an appraisal comes back and everyone is unhappy.</p><p>Lot premiums deserve the same scrutiny. A larger lot, a corner, a treed backdrop, or a position at the end of a street can carry a premium. Some of those hold value on resale and some are personal preference you pay for once.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d5">
-          <h2>Yes, You Still Inspect a Brand New House</h2>
-          <p>The most common objection I hear on new construction is that an inspection is unnecessary because everything is new and it just passed county inspection.</p><p>Both halves of that are worth taking apart.</p><p>New means unused, not flawless. Homes are built on a schedule by rotating crews of subcontractors, and quality varies with who was on the job that week. A brand new house can have a mis-strapped truss, a shower pan that will not drain right, insulation missing from a section of wall, or an exterior door that was never properly flashed.</p><p>The county inspection is not your inspection. A building inspector is verifying code compliance on behalf of the jurisdiction, in a walkthrough that covers specific checkpoints. That is a floor, not a quality review, and the inspector is not there representing your interests.</p><p>The sequence I recommend on a to be built home in Marion Oaks:</p><p>Pre drywall inspection. This is the only moment anyone will ever see the framing, the plumbing runs, the electrical, the hurricane strapping, and the ductwork. Once drywall goes up, it is all invisible for the life of the house. Buyers skip this one constantly and it is the most valuable inspection in the entire build.</p><p>Final inspection before closing, with a written punch list. Small items get fixed far more readily before your closing than after it.</p><p>An inspection before the first year warranty window closes. Most builder warranties run a workmanship period measured in months from closing, and the settling, cracking, and drainage issues that show up in a Florida first year tend to surface late in that window. Read the actual warranty document you were given and calendar the date. Waiting until month thirteen to raise something is a bad plan.</p><p>A few items specific to building here rather than anywhere in Florida.</p><p>Drainage on a spot lot is a genuine issue. You are placing a new pad and a new roof onto a lot in a neighborhood that has been draining a certain way for decades. Where the water goes after your house exists, and what that does at the property line, is worth understanding at plan stage rather than during the first heavy summer storm.</p><p>Well and septic. If the home is on a private system, that is a different inspection scope and a different maintenance reality than county water and sewer, and it varies address by address across Marion Oaks.</p><p>Wind mitigation documentation. New construction in Florida usually carries features that matter to an insurer. Make sure you receive the wind mitigation report and the certificate of occupancy, since your insurance quote depends on paperwork the builder generates.</p><p>A good inspector on a new build is not looking for reasons to kill your deal. They are producing a list of items the builder is expected to correct, at the one point in time when correcting them is easy.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>The Contract Is the Builder's Paper, and Timelines Slip</h2>
-          <p>A resale purchase in Florida typically runs on a standard contract form that the industry negotiated with both sides in mind. A new construction purchase usually does not. The agreement is drafted by the builder's attorneys, for the builder, and it reads that way.</p><p>That does not make it predatory. It makes it one sided by design, and it means the burden of understanding it sits with you.</p><p>Provisions worth reading closely, and asking about before you sign:</p><p>Completion language. What the builder has actually committed to, versus an estimated date, and which categories of delay are excused. Weather, permitting, and material availability are typically carved out.</p><p>Deposit handling. Whether your deposit sits in escrow or is released to the builder, and under exactly what circumstances it comes back to you.</p><p>What the builder can change. Many agreements permit substituting materials, suppliers, or plan details of comparable quality. That is standard, and it is also the clause under which the thing you liked becomes a different thing.</p><p>The warranty. What it covers, for how long, what is excluded, and what process you must follow to make a claim.</p><p>Dispute resolution. Mandatory arbitration is common in builder agreements. It changes how a disagreement gets resolved, so know it is there.</p><p>Financing terms. If a builder ties an incentive to using an affiliated lender, treat the incentive and the loan as a single package and compare that package against at least one outside quote. Sometimes the bundled deal wins. Sometimes it does not, and the only way to know is to price both.</p><p>On timelines, I will not publish a number I cannot stand behind. Build schedules move with permitting, weather, inspections, and trade availability, and a spot lot start does not run on the same rhythm as a phased community where crews are already working the street. Ask the builder for their current schedule for that specific plan on that specific lot, ask what the last few homes actually took, and get it in writing. Then plan your lease end or your closing on the house you are selling with slack in it, because a build finishing later than projected is the normal case, not the disaster case.</p><p>This is the part where an independent agent earns the relationship. Not by talking you out of a builder, since the builders here produce a lot of good houses at prices that are hard to find elsewhere in Florida. The value is in having someone read that agreement whose read is not authored by the seller, walk the model against the standard features list with you, sit on the pre drywall inspection, track the punch list, and give you an honest comparison between the new build and the resale two streets over.</p><p>I live in Marion Oaks. I know which streets are still filling in and which ones are done, and I can meet you at a model this week.</p><p>The one thing I cannot fix is a first visit that already happened. Message me before you tour.</p>
-        </div>
-              <ul class='benefit-list'>
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">The short version</p>
+        <ul class="benefit-list">
           <li>Active builders here include LGI Homes, Adams Homes, Highland Homes, and Maronda Homes, plus D.R. Horton on scattered spot lots</li>
           <li>I register you with the builder before your first model home visit</li>
           <li>Straight answers on spot lots, standard versus upgrade finishes, and what no HOA really means</li>
@@ -555,6 +668,67 @@
           <li>Licensed Florida real estate agent, Lic. SL3617612</li>
           <li>Serving Marion Oaks and all of Marion County</li>
         </ul>
+      </div>
+      <nav class="toc-m" aria-label="On this page">
+        <details>
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#the-most-expensive-mistake-a-new-construction-buyer-makes">The Most Expensive Mistake a New Construction Buyer Makes</a></li>
+            <li><a href="#spot-lot-building-in-marion-oaks">Spot Lot Building in Marion Oaks</a></li>
+            <li><a href="#no-hoa-is-the-real-draw-and-it-runs-both-directions">No HOA Is the Real Draw, and It Runs Both Directions</a></li>
+            <li><a href="#the-model-home-is-not-the-house-you-are-buying">The Model Home Is Not the House You Are Buying</a></li>
+            <li><a href="#yes-you-still-inspect-a-brand-new-house">Yes, You Still Inspect a Brand New House</a></li>
+            <li><a href="#the-contract-is-the-builder-s-paper-and-timelines-slip">The Contract Is the Builder's Paper, and Timelines Slip</a></li>
+          </ol>
+        </details>
+      </nav>
+      <div class="section-label reveal">Guide</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2 id="the-most-expensive-mistake-a-new-construction-buyer-makes">The Most Expensive Mistake a New Construction Buyer Makes</h2>
+          <p>It usually happens on a Saturday. You are driving through southwest Marion County, you spot a builder sign in front of a finished home, the door is propped open, and you walk in to look around. Someone friendly greets you, asks for your name and email, and walks you through the floor plan.</p><p>You may have just done the one thing in this process that is hard to undo.</p><p>Most production builders, which covers nearly every builder active in Marion Oaks, run some form of agent registration policy. The common version works like this: for an agent to represent you on a purchase with that builder, the agent has to register you before your first visit or physically accompany you on it. Tour alone first, decide months later that you want representation, and a lot of builders will simply decline to recognize that agent on your purchase.</p><p>The policies are not identical from company to company. Some allow registration inside a short window after a first visit. Some want the agent standing next to you at the door with no exceptions.</p><p>Some apply the rule more strictly at one community than at another. So the reliable move is not to assume anything, it is to ask the builder directly before you tour: does my agent need to register me in advance, or be with me on my first visit, for you to recognize them on a purchase?</p><p>Here is why this deserves more weight than the usual advice about shopping around. Almost every other decision in a home purchase can be walked back. You can switch lenders.</p><p>You can change your mind about a lot or a floor plan. You can leave a contract inside your inspection period.</p><p>Representation on a builder purchase is the outlier, because the window on it can close the moment you sign the visitor sheet at the sales office. There is no clean way to reopen it later.</p><p>And the person greeting you at the model is not a neutral party. The on site sales consultant knows the product cold, is usually pleasant to deal with, and will answer a lot of your questions honestly. They are also employed by the builder, paid by the builder, and working toward the builder's result.</p><p>That is not a knock on them. It is their job description, and they are doing it well. The question worth asking is who is doing that same work on your side of the table.</p><p>If new construction in Marion Oaks is anywhere on your list, reach out before you tour. Registering you takes an email or a phone call. Fixing it afterward usually is not an option.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2 id="spot-lot-building-in-marion-oaks">Spot Lot Building in Marion Oaks</h2>
+          <p>Marion Oaks is the most active area for affordable new construction in Marion County, and the reason traces back to a decision made decades ago.</p><p>The community was platted decades ago as a very large subdivision. Roads were laid out and thousands of individual residential lots were recorded long before most of the houses existed. Buildout never finished. What that left is an unincorporated community with paved streets, settled neighbors, mature trees on some blocks, and empty lots scattered all through it.</p><p>Builders call those spot lots. Rather than buying a hundred acres of raw land and developing a community from scratch, a builder buys one recorded lot, or a handful of them spread across different streets, and builds. LGI Homes, Adams Homes, Highland Homes, and Maronda Homes each market a community they name Marion Oaks on their own site. D.R. Horton also builds scattered homesites within Marion Oaks, marketed on its own site as Marion County Spot Lots rather than as a named Marion Oaks community.</p><p>That creates a buying experience that does not resemble new construction in most of Central Florida.</p><p>In a planned community, you buy into a phase. The whole street goes up at once, every house is the same vintage, and the amenity package arrives bundled with an association and sometimes a community development district behind it. Everything around you is new, including the unknowns.</p><p>On a spot lot, you are buying a brand new house dropped into a neighborhood that already exists. The practical differences are worth thinking about before you fall for a floor plan.</p><p>Your neighbors are already there, which is an advantage almost nobody uses. You can drive the street on a Tuesday at six in the evening instead of a Sunday afternoon and see what the block is actually like. In a phased community you are guessing about people who have not moved in yet.</p><p>The character of the street is already set. There is no phase three coming that changes the view or the traffic pattern.</p><p>Comparable sales get messy. The house next to your new build might be from 1994. Appraisers working Marion Oaks have to reconcile a 2026 build against neighboring stock that spans five decades, and that shows up later as a real number in your file.</p><p>Nothing about the lot is standardized. Some sections of Marion Oaks are on county water and sewer, others run private well and septic, and the answer changes by address rather than by neighborhood. What a builder has available also shifts constantly, because inventory here moves one lot at a time instead of one phase at a time. A list of available homes in Marion Oaks can be accurate on Monday and wrong by Friday.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2 id="no-hoa-is-the-real-draw-and-it-runs-both-directions">No HOA Is the Real Draw, and It Runs Both Directions</h2>
+          <p>Marion Oaks has no mandatory HOA. That one fact pulls a lot of buyers here instead of toward the newer master planned communities closer to Ocala, since no HOA and no CDD fees is a genuine differentiator in a state where both are close to standard on new construction. Amenities and services here are instead funded through a county municipal service district that appears on the property tax bill.</p><p>For anyone who has lived under an active Florida association, the appeal needs no explanation. No monthly or quarterly assessment. No architectural review committee deciding on your paint color.</p><p>No letter about the work truck in the driveway. No board meeting.</p><p>I live here, and I will give you the balanced version rather than the sales version.</p><p>What you gain is real. Your carrying cost is the mortgage, taxes, and insurance, without a dues line that a board can raise. You have latitude with your own property that association neighborhoods do not offer.</p><p>Worth one caution: no HOA does not mean no rules. Marion County's land development code still applies to setbacks, structures, vehicles, and use, so check the county's requirements rather than assuming the absence of a board equals the absence of regulation.</p><p>What you give up is also real, and it is the part builders do not lead with.</p><p>There is no amenity package attached to your purchase. No association pool, no gym, no gate, no clubhouse funded out of your dues, because there are no dues.</p><p>The freedom is not yours alone. No architectural standards means nothing stops the property next to yours from looking however its owner wants it to look. Buyers who love the no HOA pitch sometimes have not thought through the version where the neighbor is the one exercising it.</p><p>When a neighbor problem shows up, there is no board to call. The path is Marion County code enforcement, which is a narrower and slower instrument than a management company that can send a letter next week.</p><p>There is a resale angle too. A share of Florida buyers, especially people relocating from association heavy markets, actively want the structure an HOA provides. No HOA widens your appeal with one group and narrows it with another.</p><p>On a new build specifically, the no HOA reality has an effect people miss. In a planned community, architectural review keeps the streetscape consistent, so your builder's elevation choices sit next to matching ones. On a Marion Oaks spot lot, your new house may sit between two homes built decades apart with nothing in common.</p><p>Some buyers find that charming. Others walk the street and realize it is not the look they pictured.</p><p>Either reaction is fine. Have it before you sign, not after.</p><p>One practical step: pull the parcel record with the Marion County Property Appraiser for any home you are serious about, and confirm what assessments actually appear on that tax bill. Verify the specific parcel rather than taking a general answer about the community.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2 id="the-model-home-is-not-the-house-you-are-buying">The Model Home Is Not the House You Are Buying</h2>
+          <p>Every finish in a model home was chosen by a marketing team to make you feel something. That is what a model is for, and it works.</p><p>The house in the contract is the base house. Ask the builder for the standard features list in writing, then walk the model a second time with that list in your hand and identify which items are options. Quartz instead of laminate, tile running past the wet areas, upgraded cabinet height, frameless shower glass, the landscaping package, sometimes the appliances themselves. It is common for a model to be a heavily optioned version of a plan that looks considerably plainer at base.</p><p>That is not deception. It is normal industry practice, and it is only a problem if nobody tells you.</p><p>How to think about which upgrades are worth taking:</p><p>Things that are difficult or expensive to change after the fact usually justify the money. Structural options come first, since a slab is poured once. An extended covered lanai, a different roofline, moving a wall, additional electrical rough in, extra hose bibs, conduit run before the concrete goes down, the window and insulation package. In Florida, the window and roof specifications also feed straight into what an insurer says about the home, so those are not purely cosmetic decisions.</p><p>Things you can swap out later on your own schedule are usually the weakest place to spend builder money. Light fixtures, mirrors, faucets, blinds, paint, and often appliances fall in that group. You can change any of them in year two for less than the option price, and you will have more control over the result.</p><p>There is a financing angle worth saying plainly. Upgrades roll into the purchase price, which means they get financed over the life of the loan rather than paid in cash. Convenient, and also the reason a package of cosmetic options quietly becomes a much larger number than the option sheet suggests.</p><p>The Marion Oaks specific piece is the appraisal. In a phased community, an appraiser has a supply of recent, nearly identical sales a street away, so a well optioned house has support. Here, the closest sales might be a 1990s resale and a small builder home from two years ago.</p><p>Stack enough upgrades on a spot lot build and the finished price can outrun what the surrounding sales will support. That does not make upgrading wrong. It makes it a conversation to have before you select, not after an appraisal comes back and everyone is unhappy.</p><p>Lot premiums deserve the same scrutiny. A larger lot, a corner, a treed backdrop, or a position at the end of a street can carry a premium. Some of those hold value on resale and some are personal preference you pay for once.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2 id="yes-you-still-inspect-a-brand-new-house">Yes, You Still Inspect a Brand New House</h2>
+          <p>The most common objection I hear on new construction is that an inspection is unnecessary because everything is new and it just passed county inspection.</p><p>Both halves of that are worth taking apart.</p><p>New means unused, not flawless. Homes are built on a schedule by rotating crews of subcontractors, and quality varies with who was on the job that week. A brand new house can have a mis-strapped truss, a shower pan that will not drain right, insulation missing from a section of wall, or an exterior door that was never properly flashed.</p><p>The county inspection is not your inspection. A building inspector is verifying code compliance on behalf of the jurisdiction, in a walkthrough that covers specific checkpoints. That is a floor, not a quality review, and the inspector is not there representing your interests.</p><p>The sequence I recommend on a to be built home in Marion Oaks:</p><p>Pre drywall inspection. This is the only moment anyone will ever see the framing, the plumbing runs, the electrical, the hurricane strapping, and the ductwork. Once drywall goes up, it is all invisible for the life of the house. Buyers skip this one constantly and it is the most valuable inspection in the entire build.</p><p>Final inspection before closing, with a written punch list. Small items get fixed far more readily before your closing than after it.</p><p>An inspection before the first year warranty window closes. Most builder warranties run a workmanship period measured in months from closing, and the settling, cracking, and drainage issues that show up in a Florida first year tend to surface late in that window. Read the actual warranty document you were given and calendar the date. Waiting until month thirteen to raise something is a bad plan.</p><p>A few items specific to building here rather than anywhere in Florida.</p><p>Drainage on a spot lot is a genuine issue. You are placing a new pad and a new roof onto a lot in a neighborhood that has been draining a certain way for decades. Where the water goes after your house exists, and what that does at the property line, is worth understanding at plan stage rather than during the first heavy summer storm.</p><p>Well and septic. If the home is on a private system, that is a different inspection scope and a different maintenance reality than county water and sewer, and it varies address by address across Marion Oaks.</p><p>Wind mitigation documentation. New construction in Florida usually carries features that matter to an insurer. Make sure you receive the wind mitigation report and the certificate of occupancy, since your insurance quote depends on paperwork the builder generates.</p><p>A good inspector on a new build is not looking for reasons to kill your deal. They are producing a list of items the builder is expected to correct, at the one point in time when correcting them is easy.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="the-contract-is-the-builder-s-paper-and-timelines-slip">The Contract Is the Builder's Paper, and Timelines Slip</h2>
+          <p>A resale purchase in Florida typically runs on a standard contract form that the industry negotiated with both sides in mind. A new construction purchase usually does not. The agreement is drafted by the builder's attorneys, for the builder, and it reads that way.</p><p>That does not make it predatory. It makes it one sided by design, and it means the burden of understanding it sits with you.</p><p>Provisions worth reading closely, and asking about before you sign:</p><p>Completion language. What the builder has actually committed to, versus an estimated date, and which categories of delay are excused. Weather, permitting, and material availability are typically carved out.</p><p>Deposit handling. Whether your deposit sits in escrow or is released to the builder, and under exactly what circumstances it comes back to you.</p><p>What the builder can change. Many agreements permit substituting materials, suppliers, or plan details of comparable quality. That is standard, and it is also the clause under which the thing you liked becomes a different thing.</p><p>The warranty. What it covers, for how long, what is excluded, and what process you must follow to make a claim.</p><p>Dispute resolution. Mandatory arbitration is common in builder agreements. It changes how a disagreement gets resolved, so know it is there.</p><p>Financing terms. If a builder ties an incentive to using an affiliated lender, treat the incentive and the loan as a single package and compare that package against at least one outside quote. Sometimes the bundled deal wins. Sometimes it does not, and the only way to know is to price both.</p><p>On timelines, I will not publish a number I cannot stand behind. Build schedules move with permitting, weather, inspections, and trade availability, and a spot lot start does not run on the same rhythm as a phased community where crews are already working the street. Ask the builder for their current schedule for that specific plan on that specific lot, ask what the last few homes actually took, and get it in writing. Then plan your lease end or your closing on the house you are selling with slack in it, because a build finishing later than projected is the normal case, not the disaster case.</p><p>This is the part where an independent agent earns the relationship. Not by talking you out of a builder, since the builders here produce a lot of good houses at prices that are hard to find elsewhere in Florida. The value is in having someone read that agreement whose read is not authored by the seller, walk the model against the standard features list with you, sit on the pre drywall inspection, track the punch list, and give you an honest comparison between the new build and the resale two streets over.</p><p>I live in Marion Oaks. I know which streets are still filling in and which ones are done, and I can meet you at a model this week.</p><p>The one thing I cannot fix is a first visit that already happened. Message me before you tour.</p>
+        </div>
+      
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">On this page</p>
+          <ol>
+            <li><a href="#the-most-expensive-mistake-a-new-construction-buyer-makes">The Most Expensive Mistake a New Construction Buyer Makes</a></li>
+            <li><a href="#spot-lot-building-in-marion-oaks">Spot Lot Building in Marion Oaks</a></li>
+            <li><a href="#no-hoa-is-the-real-draw-and-it-runs-both-directions">No HOA Is the Real Draw, and It Runs Both Directions</a></li>
+            <li><a href="#the-model-home-is-not-the-house-you-are-buying">The Model Home Is Not the House You Are Buying</a></li>
+            <li><a href="#yes-you-still-inspect-a-brand-new-house">Yes, You Still Inspect a Brand New House</a></li>
+            <li><a href="#the-contract-is-the-builder-s-paper-and-timelines-slip">The Contract Is the Builder's Paper, and Timelines Slip</a></li>
+          </ol>
+        </nav>
+        <a href="/?intent=buy#home" class="rail-cta" data-cta="hero-cta-rail">Start My Home Search</a>
+      </div>
     </div>
   </main>
 
@@ -565,56 +739,38 @@
           <h2 class="section-h2 reveal">Common Questions</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Do I need to bring an agent on my first visit to a builder's model home?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">Do I need to bring an agent on my first visit to a builder's model home?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>Ask that builder directly, because the answer decides whether you can be represented at all. Most production builders require your agent to register you before your first visit or to accompany you on it. If you tour alone and bring an agent later, many builders will refuse to recognize that agent on your purchase. Policies vary by builder and sometimes by community, so the safe approach is to have an agent register you in advance. Registration takes an email or a phone call, and it is generally not reversible once you have toured.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Which builders build new construction homes in Marion Oaks?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">Which builders build new construction homes in Marion Oaks?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>LGI Homes, Adams Homes, Highland Homes, and Maronda Homes each market a community they name Marion Oaks on their own site, and D.R. Horton also builds here on scattered homesites it markets as Marion County Spot Lots. This is the most active area for affordable new construction in Marion County. What is available changes constantly because inventory here moves one lot at a time. Tell me what you are looking for and I will tell you what is realistic right now.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What is a spot lot, and how is it different from a planned community?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">What is a spot lot, and how is it different from a planned community?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>A spot lot is an individual recorded lot inside an existing neighborhood. Marion Oaks was platted decades ago as a large subdivision and never finished building out, so thousands of lots sit scattered among homes that are already occupied. A builder buys one lot, or a few across different streets, and builds a house there. In a planned community you buy into a phase where every home goes up at once and everything around you is new. On a spot lot your neighbors are already there, which lets you see the street as it actually is before you commit.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Does Marion Oaks have an HOA?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">Does Marion Oaks have an HOA?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>No. Marion Oaks has no mandatory HOA, which is one of the main reasons buyers choose it over newer master planned communities near Ocala. Amenities and services are instead funded through a county municipal service district that appears on the property tax bill rather than as a monthly HOA fee. The tradeoff is that there is no amenity package, no common area maintenance, and no architectural standards, which means neither you nor your neighbor is restricted. Marion County's land development code still applies. Check the parcel record with the Marion County Property Appraiser to confirm what assessments appear on the tax bill for a specific home.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Do I need a home inspection on brand new construction?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">Do I need a home inspection on brand new construction?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Yes, and ideally more than one. The county building inspection verifies code compliance for the jurisdiction, not workmanship on your behalf. A pre drywall inspection is the single most valuable one, since it is the only time anyone sees the framing, plumbing, wiring, and strapping before drywall hides it permanently. Add a final inspection with a written punch list before closing, and another before your builder warranty period expires. On a spot lot, have someone look at drainage specifically, because a new pad changes how water moves on a street that has drained the same way for decades.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              How long does it take to build a new home in Marion Oaks?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6" onclick="toggleFaq(this)"><span class="faq-q-text">How long does it take to build a new home in Marion Oaks?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-6">
               <p>It varies enough that any number published on a web page would mislead you. Permitting, weather, inspections, and subcontractor availability all move the schedule, and a spot lot build does not run on the same rhythm as a phased community where crews are already working the street. Ask the builder for their current schedule for that plan on that lot, ask what the last few homes there actually took, and get the answer in writing. Then build slack into your lease end or your own sale, because finishing later than projected is common.</p>
             </div>
           </div>
@@ -636,17 +792,17 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Sources</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.lgihomes.com/florida/orlando/marion-oaks" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.lgihomes.com</a>
-      <a href="https://www.adamshomes.com/communities/florida/ocala/marion-oaks" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.adamshomes.com</a>
-      <a href="https://www.highlandhomes.org/new-homes/florida/ocala/ocala/marion-oaks" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.highlandhomes.org</a>
-      <a href="https://www.marondahomes.com/fl/ocala/marion-oaks-34473.html" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.marondahomes.com</a>
-      <a href="https://www.drhorton.com/florida/west-central-florida/ocala/marion-spot-lots" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.drhorton.com</a>
-      <a href="https://www.marionfl.org/agencies-departments/departments-facilities-offices/municipal-services/marion-oaks-mstu" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.marionfl.org</a>
-      </div>
+      <div class="section-label">Sources</div>
+      <ul class="src-list">
+        <li><a href="https://www.lgihomes.com/florida/orlando/marion-oaks" target="_blank" rel="noopener">www.lgihomes.com</a></li>
+        <li><a href="https://www.adamshomes.com/communities/florida/ocala/marion-oaks" target="_blank" rel="noopener">www.adamshomes.com</a></li>
+        <li><a href="https://www.highlandhomes.org/new-homes/florida/ocala/ocala/marion-oaks" target="_blank" rel="noopener">www.highlandhomes.org</a></li>
+        <li><a href="https://www.marondahomes.com/fl/ocala/marion-oaks-34473.html" target="_blank" rel="noopener">www.marondahomes.com</a></li>
+        <li><a href="https://www.drhorton.com/florida/west-central-florida/ocala/marion-spot-lots" target="_blank" rel="noopener">www.drhorton.com</a></li>
+        <li><a href="https://www.marionfl.org/agencies-departments/departments-facilities-offices/municipal-services/marion-oaks-mstu" target="_blank" rel="noopener">www.marionfl.org</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -698,6 +854,11 @@
     &copy; 2026 Willy Lopez. All rights reserved.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/?intent=buy#home" class="sticky-cta-btn" data-cta="hero-cta-sticky">Start My Home Search</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -705,17 +866,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

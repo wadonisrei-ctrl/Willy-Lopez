@@ -168,6 +168,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -192,6 +197,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -201,7 +217,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -225,7 +241,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -247,7 +263,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -282,7 +299,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -298,94 +315,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -398,7 +464,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -411,7 +477,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -419,11 +485,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -431,42 +497,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -507,44 +648,85 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">The short version</p>
+        <ul class="benefit-list">
+          <li>Unit size and bedroom count are the biggest factor, the same as anywhere.</li>
+          <li>Building age matters almost as much.</li>
+          <li>Neighborhood is the third lever, and it is the one people underestimate.</li>
+          <li>Always ask for the total monthly obligation, not just the base rent.</li>
+          <li>Get the total monthly number in writing before you apply, not just the headline rent.</li>
+        </ul>
+      </div>
+      <nav class="toc-m" aria-label="On this page">
+        <details>
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#what-determines-rent-in-ocala-fl">What Determines Rent in Ocala, FL</a></li>
+            <li><a href="#rent-by-neighborhood-in-ocala">Rent by Neighborhood in Ocala</a></li>
+            <li><a href="#comparing-two-ocala-listings-side-by-side">Comparing Two Ocala Listings Side by Side</a></li>
+            <li><a href="#what-to-budget-beyond-base-rent">What to Budget Beyond Base Rent</a></li>
+            <li><a href="#how-to-spot-a-good-deal">How to Spot a Good Deal</a></li>
+            <li><a href="#ocala-vs-orlando-for-renters">Ocala vs. Orlando for Renters</a></li>
+            <li><a href="#get-a-current-confirmed-number">Get a Current, Confirmed Number</a></li>
+          </ol>
+        </details>
+      </nav>
       <div class="section-label reveal">Guide</div>
       
         <div class="section-block reveal reveal-d1">
-          <h2>What Determines Rent in Ocala, FL</h2>
+          <h2 id="what-determines-rent-in-ocala-fl">What Determines Rent in Ocala, FL</h2>
           <p>Ocala is one of the more affordable rental markets in Florida. Compared to Orlando, Tampa, or Miami, renters typically get more space for less money, which is one of the main reasons people relocate here.</p><p>Marion County keeps growing, and new supply keeps shifting the market, so rather than publish rent ranges that will likely be stale within a few months, here is what determines what you will pay.</p><p>Unit size and bedroom count are the biggest factor, the same as anywhere. A studio costs less than a one-bedroom, which costs less than a two-bedroom, in a fairly predictable progression within any given building.</p><p>Building age matters almost as much. Newer construction, especially anything built in the last five years, generally commands a premium over an older 1990s or 2000s complex, but it also comes with amenities like in-unit washer and dryer and smart-home features that older buildings usually lack.</p><p>Neighborhood is the third lever, and it is the one people underestimate. Two otherwise-comparable buildings a few miles apart can price differently just because of which part of Marion County they sit in.</p><p>Management company and current occupancy also move the number month to month. A building that just opened and is still filling units will often run more aggressive specials than a stabilized property that is nearly full, regardless of what the listed price says.</p>
         </div>
 
         <div class="section-block reveal reveal-d2">
-          <h2>Rent by Neighborhood in Ocala</h2>
+          <h2 id="rent-by-neighborhood-in-ocala">Rent by Neighborhood in Ocala</h2>
           <p>Where you live in Ocala affects price meaningfully, even more than in a lot of Florida markets, because Marion County covers a lot of ground with very different character block to block.</p><p>Silver Springs Shores is generally the most affordable part of Ocala. It is mostly suburban residential, a good fit for budget-conscious renters and families, and it tends to have older housing stock than some of the newer corridors.</p><p>SE Ocala along SW 17th Street and the hospital corridor has seen newer construction and generally prices a bit above Silver Springs Shores. It is popular with healthcare workers at Advent Health and HCA Florida Ocala Hospital, for the obvious reason that it is close to work.</p><p>Downtown Ocala has seen real new development over the past several years. Newer downtown units tend to price above the county average, with the tradeoff being walkability and proximity to dining and events, a rare combination in Marion County.</p><p>Paddock Park and NW Ocala vary the most of any area in the county. Some communities here are value-oriented, others are genuinely upscale, so this is the neighborhood where a single average means the least. Ask about the specific building, not just the zip code.</p>
         </div>
 
         <div class="section-block reveal reveal-d3">
-          <h2>Comparing Two Ocala Listings Side by Side</h2>
-          <p>Rent alone is not a fair comparison between two apartments. Here is how to actually evaluate what you are looking at.</p><p>Check what is included. Some Ocala buildings bundle water and trash into rent. Others bill separately. A lower advertised rent with everything billed separately can cost the same or more than a higher advertised rent that bundles utilities.</p><p>Ask about mandatory fees. Some communities charge a flat monthly amenity fee on top of base rent, covering things like valet trash, package lockers, or pest control, that effectively raises the real cost beyond the number in the listing headline. Always ask for the total monthly obligation, not just the base rent.</p><p>Run the concession math if a special is being advertised. A free month is not a discount on that one month, it is a discount spread across the whole lease. Say a unit lists at $1,200 a month and the building offers one month free on a 13-month lease. You pay 12 months of rent across 13 months of living there, which works out to roughly $1,108 a month in real terms, about 8 percent off the sticker price. That comparison only matters if you actually run it, since listing sites show you the advertised number, not the effective one.</p><p>Compare price per square foot, not just the bedroom count label. A one-bedroom can range widely in actual square footage between buildings, and a smaller unit at a lower rent is not automatically the better deal.</p>
+          <h2 id="comparing-two-ocala-listings-side-by-side">Comparing Two Ocala Listings Side by Side</h2>
+          <p>Rent alone is not a fair comparison between two apartments. Here is how to actually evaluate what you are looking at.</p><p>Check what is included. Some Ocala buildings bundle water and trash into rent. Others bill separately. A lower advertised rent with everything billed separately can cost the same or more than a higher advertised rent that bundles utilities.</p><p>Ask about mandatory fees. Some communities charge a flat monthly amenity fee on top of base rent, covering things like valet trash, package lockers, or pest control, that effectively raises the real cost beyond the number in the listing headline. Always ask for the total monthly obligation, not just the base rent.</p><p>Run the concession math if a special is being advertised. A free month is not a discount on that one month, it is a discount spread across the whole lease. Say a unit lists at $1,200 a month and the building offers one month free on a 13-month lease.</p><p>You pay 12 months of rent across 13 months of living there, which works out to roughly $1,108 a month in real terms, about 8 percent off the sticker price. That comparison only matters if you actually run it, since listing sites show you the advertised number, not the effective one.</p><p>Compare price per square foot, not just the bedroom count label. A one-bedroom can range widely in actual square footage between buildings, and a smaller unit at a lower rent is not automatically the better deal.</p>
         </div>
 
         <div class="section-block reveal reveal-d4">
-          <h2>What to Budget Beyond Base Rent</h2>
+          <h2 id="what-to-budget-beyond-base-rent">What to Budget Beyond Base Rent</h2>
           <p>Base rent is rarely the whole monthly cost. Here is what else to plan for, as categories, since the actual amounts vary by building and change over time.</p><p>Utilities. Most Ocala communities include water and trash in rent, but not all do. Electricity is almost always billed separately, through Ocala Electric Utility inside city limits, or Duke Energy or SECO Energy outside it. Ask what is bundled before you sign.</p><p>Move-in costs. Expect a security deposit, generally equal to a month or a fraction of a month's rent depending on your application results, plus your first month's payment. Some communities also charge a one-time administrative or application fee.</p><p>Pet costs. If you have a pet, budget for a one-time pet fee or deposit plus ongoing monthly pet rent. Breed and weight restrictions vary by building, so confirm before you fall in love with a place.</p><p>Amenity or utility-bundle fees. Newer buildings especially tend to charge a flat monthly fee covering things like valet trash, pest control, or a package locker system. This is on top of base rent and is easy to miss when comparing listings.</p><p>Renter's insurance. Most leases require it, and it is a real monthly line item even though it is a small one relative to rent.</p><p>None of these categories have one right number. They depend entirely on the specific building, which is exactly why I confirm the full monthly obligation, not just the advertised rent, before you apply anywhere.</p>
         </div>
 
         <div class="section-block reveal reveal-d5">
-          <h2>How to Spot a Good Deal</h2>
+          <h2 id="how-to-spot-a-good-deal">How to Spot a Good Deal</h2>
           <p>A lower sticker price is not automatically a better deal. A few things worth checking before you assume you found a bargain.</p><p>Why is it priced low? Sometimes it is genuinely a good unit in a building running an aggressive move-in special to fill vacancies fast. Sometimes it reflects an older unit, a weaker floor plan, or a building with a maintenance reputation that shows up in reviews. Both explanations can produce the same headline number.</p><p>Read recent reviews, not just the star rating. A steady rating built up over years tells a different story than an average propped up by old five-star reviews sitting next to a run of recent one-star reviews about maintenance response time.</p><p>Ask how long a special has been running. A concession that has been advertised for months straight, with no sign of expiring, suggests a building that is struggling to fill units for a reason worth asking about directly.</p><p>Get the total monthly number in writing before you apply, not just the headline rent. This is the single most reliable way to avoid a surprise at signing, and it is a completely normal thing to ask any leasing office.</p>
         </div>
 
         <div class="section-block reveal reveal-d6">
-          <h2>Ocala vs. Orlando for Renters</h2>
+          <h2 id="ocala-vs-orlando-for-renters">Ocala vs. Orlando for Renters</h2>
           <p>One of the reasons people leave Orlando for Ocala is cost. Ocala consistently prices below Orlando for a comparable unit, which is one of the more reliable patterns in the Central Florida rental market even as both markets move month to month.</p><p>Ocala is about 80 miles north of Orlando. The commute is too far for most jobs, but for remote workers or those with jobs in Ocala itself, the tradeoff between space, price, and pace is real and worth weighing seriously rather than assuming Orlando is automatically the better move.</p>
         </div>
 
         <div class="section-block reveal reveal-d6">
-          <h2>Get a Current, Confirmed Number</h2>
+          <h2 id="get-a-current-confirmed-number">Get a Current, Confirmed Number</h2>
           <p>Everything above explains what moves the number. It deliberately does not give you a single average, because any figure published today would likely be wrong within a few months. Ocala's rental market moves too fast for a static page to keep up, and I would rather you get something true than something quick.</p><p>I focus my search on a select group of well-managed Ocala communities rather than the whole market, mostly in NW and SW Ocala, which means I can give you real, current pricing and honest guidance instead of guessing. If your target area or budget is outside where I currently have coverage, I will tell you that directly rather than waste your time.</p><p>Text or call me with your budget, move-in date, and bedroom count, and I will tell you exactly what things cost right now, not what they cost when this page was written. See my Ocala apartments page for more on the areas I currently cover.</p>
         </div>
       
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">On this page</p>
+          <ol>
+            <li><a href="#what-determines-rent-in-ocala-fl">What Determines Rent in Ocala, FL</a></li>
+            <li><a href="#rent-by-neighborhood-in-ocala">Rent by Neighborhood in Ocala</a></li>
+            <li><a href="#comparing-two-ocala-listings-side-by-side">Comparing Two Ocala Listings Side by Side</a></li>
+            <li><a href="#what-to-budget-beyond-base-rent">What to Budget Beyond Base Rent</a></li>
+            <li><a href="#how-to-spot-a-good-deal">How to Spot a Good Deal</a></li>
+            <li><a href="#ocala-vs-orlando-for-renters">Ocala vs. Orlando for Renters</a></li>
+            <li><a href="#get-a-current-confirmed-number">Get a Current, Confirmed Number</a></li>
+          </ol>
+        </nav>
+        <a href="/?intent=rent#home" class="rail-cta" data-cta="hero-cta-rail">Start For Free</a>
+      </div>
     </div>
   </main>
 
@@ -555,47 +737,32 @@
           <h2 class="section-h2 reveal">Common Questions</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Is Ocala cheaper than Orlando for renters?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">Is Ocala cheaper than Orlando for renters?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>Yes, noticeably. Ocala consistently prices below Orlando for a comparable unit. The exact gap shifts with the market on both sides, so ask me for a current comparison rather than relying on a fixed percentage that could be out of date.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What is the cheapest neighborhood to rent in Ocala?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">What is the cheapest neighborhood to rent in Ocala?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>Silver Springs Shores is generally the most affordable area in Ocala, largely because of its older housing stock and suburban character. Pricing there still moves with the market, so ask me for what is currently realistic rather than a fixed number.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Are rents going up in Ocala?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">Are rents going up in Ocala?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>Ocala's rental market has grown alongside the broader Marion County population boom. According to the U.S. Census Bureau's Vintage 2025 population estimates (released March 2026), the Ocala metro grew 3.4 percent between July 2024 and July 2025, the fastest rate of any U.S. metro area for that period. Rents have generally trended upward over the past several years but remain well below most other Florida metros. New construction has helped keep supply up.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Do Ocala apartments include utilities?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">Do Ocala apartments include utilities?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>Most include water and trash. Electricity is almost always separate. Some newer communities bundle cable or internet into rent. Always confirm what is included before signing your lease.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What if my budget is on the lower end for Ocala?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">What if my budget is on the lower end for Ocala?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Tell me your number and I will tell you honestly whether it fits what I currently have access to. If it does not, I will point you toward the parts of the general market, like Silver Springs Shores or older NW Ocala properties, where lower-priced listings tend to show up on sites like Apartments.com or Zillow. I do not have a referral relationship with every property in Marion County, so anything outside my coverage is best handled by contacting the leasing office or checking listing sites directly.</p>
             </div>
           </div>
@@ -617,12 +784,12 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Sources</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.census.gov/newsroom/press-releases/2026/2025-popest-metro-micro-counties.html" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.census.gov</a>
-      </div>
+      <div class="section-label">Sources</div>
+      <ul class="src-list">
+        <li><a href="https://www.census.gov/newsroom/press-releases/2026/2025-popest-metro-micro-counties.html" target="_blank" rel="noopener">www.census.gov</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -674,6 +841,11 @@
     &copy; 2026 Willy Lopez. All rights reserved.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/?intent=rent#home" class="sticky-cta-btn" data-cta="hero-cta-sticky">Start For Free</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -681,17 +853,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

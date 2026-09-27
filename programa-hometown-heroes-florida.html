@@ -187,6 +187,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -211,6 +216,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -220,7 +236,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -244,7 +260,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -266,7 +282,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -301,7 +318,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -317,94 +334,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -417,7 +483,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -430,7 +496,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -438,11 +504,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -450,42 +516,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -527,58 +668,96 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
-      <div class="section-label reveal">Guía</div>
-      
-        <div class="section-block reveal reveal-d1">
-          <h2>Qué Cubre el Dinero de Hometown Heroes</h2>
-          <p>El programa Hometown Heroes lo maneja Florida Housing Finance Corporation, la agencia estatal de vivienda, y hace un trabajo específico. Pone dinero hacia el enganche y los costos de cierre de una compra de casa para compradores primerizos que trabajan en ciertas ocupaciones que el estado decidió que valía la pena mantener viviendo aquí.</p><p>Florida Housing fija la ayuda en hasta 5% del monto de la primera hipoteca, con un piso de $10,000 y un techo de $35,000.</p><p>Esos dos números son fijos. Una hipoteca pequeña no baja tu ayuda por debajo del mínimo. Una hipoteca grande no la sube por encima del máximo. Y como el cálculo se hace sobre el monto de la primera hipoteca y no sobre el precio de venta, dos compradores en la misma calle pueden terminar con cifras distintas según cómo esté armado su financiamiento.</p><p>El dinero es para el enganche, los costos de cierre y los gastos prepagados. No es para muebles, no es para remodelar, y no es un colchón de efectivo que te queda en la cuenta después del cierre.</p><p>Ahora la parte que casi nadie explica bien. No es un regalo. Florida Housing lo describe como una segunda hipoteca diferida, al 0%, no amortizable, a 30 años. Cada palabra de esa frase importa, y la siguiente sección las explica una por una, porque esto pone un gravamen sobre tu casa y tienes que entenderlo antes de firmar, no después.</p><p>No te digo esto para asustarte. Bien entendido, es una de las herramientas más fuertes que tiene un comprador en Florida cuyo ingreso alcanza para el pago mensual pero cuyo ahorro todavía no cubre lo que se necesita para llegar a la mesa de cierre. Mal entendido, se convierte en una sorpresa desagradable años después, cuando vendes o refinancias.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d2">
-          <h2>Cómo Funciona la Segunda Hipoteca Diferida</h2>
-          <p>Cero por ciento significa que no se acumula interés. El saldo que devuelves es el mismo que recibiste, sin importar cuántos años pasen.</p><p>No amortizable significa que el saldo tampoco baja solo. No hay pago mensual sobre ese dinero, para nada.</p><p>Diferida a 30 años significa que queda quieta detrás de tu primera hipoteca en vez de aparecer en tu pago mensual.</p><p>Segunda hipoteca significa exactamente eso. Queda registrada contra la propiedad, en segunda posición detrás de tu préstamo principal. Es un gravamen sobre tu casa, no un certificado de regalo.</p><p>Entonces, ¿cuándo se paga? Florida Housing es claro: se paga completo cuando vendes la propiedad, cuando refinancias la primera hipoteca, cuando transfieres el título, o si dejas de vivir en la casa como tu residencia principal.</p><p>Lee el punto del refinanciamiento dos veces, porque ahí es donde la gente se sorprende. Las tasas cambian. Dentro de cinco años puede que quieras refinanciar tu primera hipoteca a una mejor tasa, y hacerlo activa el pago de la segunda. La ayuda es un derecho contra tu futuro capital en la casa, y en el momento que tocas la primera hipoteca, ese derecho pasa al frente de la fila.</p><p>La parte mecánica también importa. Un prestamista participante reserva la ayuda para ti a través de un sistema llamado eHousingPlus, en el momento que se fija la tasa de tu primera hipoteca, no antes. Desde ahí tienes 60 días para llegar a la certificación del asegurador de la hipoteca, o la reserva se cancela automáticamente y el dinero regresa al fondo para otra persona. El prestamista también necesita ver un puntaje de crédito mínimo de 640 y confirmar que completaste la educación para compradores aprobada por FHFC antes de poder hacer esa reserva. Si compras construcción nueva, la casa necesita su certificado de ocupación antes de poder reservar los fondos. El programa se combina con hipotecas FHA, VA, RD y Convencional. Yo no controlo ni verifico nada de esto. El prestamista es quien realmente te califica, y yo te conecto con uno en vez de adivinar por ti.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d3">
-          <h2>Quién Califica, por Trabajo y por Historial de Vivienda</h2>
-          <p>Florida Housing limita el programa a personas que trabajan tiempo completo para un empleador con sede en Florida, en salud, personal escolar, primeros respondedores, empleados de seguridad pública o de los tribunales, o cuidado infantil. Militares en servicio activo y reservistas también califican, igual que veteranos que trabajan tiempo completo para un empleador con sede en Florida.</p><p>Dos palabras en esa frase filtran más que los títulos de trabajo. Tiempo completo. Trabajar medio tiempo en un puesto elegible es otra conversación, y esa conversación es con un prestamista, no algo que se decide leyendo una página web.</p><p>Empleador con sede en Florida. Hay mucha gente viviendo aquí con un cheque que viene de otra parte. Si trabajas remoto para una empresa con oficina central en otro estado, no asumas nada en ninguna dirección. Pregunta directamente, temprano, y consigue la respuesta de alguien que reserva estos fondos todos los días.</p><p>Sobre las categorías de trabajo, el lenguaje es más amplio de lo que la gente imagina. Personal escolar no es sinónimo de maestro de salón. Un hospital emplea a mucha más gente de la que usa bata. Si tu puesto está dentro de una institución elegible pero no es la cara obvia de esa institución, vale la pena preguntar en vez de descartarte solo.</p><p>Después está el requisito de comprador primerizo, que sorprende a más gente que cualquier otra parte del programa. En general, se te considera comprador primerizo si no has sido dueño y has ocupado una vivienda como tu residencia principal en los últimos tres años. Te doy esto como el estándar general, no como un veredicto sobre tu caso, porque un prestamista aplica la definición contra tu historial real, y los casos particulares se resuelven ahí. Heredaste una casa donde nunca viviste. Tienes una propiedad de renta que nunca has ocupado. Te divorciaste y la casa quedó a nombre de tu ex pareja. Cada uno de esos casos tiene una respuesta real, y ninguna de esas respuestas debería venir de una página como esta. Vienen de un prestamista participante revisando tu archivo.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d4">
-          <h2>Límites de Ingreso y de Precio, y Por Qué No Pongo Cifras Aquí</h2>
-          <p>Existe un techo de ingreso familiar y un techo de precio de compra. Los dos se fijan por condado. No pongo ninguna cifra en esta página a propósito, y quiero explicar por qué en vez de dejarte pensando que simplemente no lo investigué.</p><p>Los límites por condado se actualizan. Una página que cita el límite de ingreso de Marion County con exactitud hoy queda mal en dieciocho meses, y para entonces ya fue indexada, enlazada y guardada en las notas de alguien. Un comprador que se descarta a sí mismo por una cifra vieja que yo publiqué es un resultado mucho peor que un comprador que tiene que hacer una llamada para conseguir la cifra correcta.</p><p>Dónde están las cifras reales: Florida Housing publica los límites de ingreso y de precio de compra por condado en su propio sitio, y cualquier prestamista participante puede sacarte la cifra vigente para tu condado y el tamaño de tu familia en el tiempo que toma abrir un archivo. Pide las dos cifras, y pídelas por escrito.</p><p>La variación por condado no es un detalle menor. Florida tiene condados con perfiles de ingreso y de precio muy distintos, y el límite que rige una compra en Marion County no es el mismo que rige una en Broward o Monroe. Si tu búsqueda cruza la línea de un condado, puede que estés trabajando contra dos conjuntos de límites a la vez, y eso es un problema real de planificación, no un detalle técnico.</p><p>No te descalifiques con un cálculo mental. De quién cuenta el ingreso, cuál ingreso cuenta y qué se resta antes de comparar son preguntas técnicas con respuestas reales, y el número bruto en tu recibo de pago casi nunca es la cifra que decide. Mucha gente se descarta de programas de ayuda en su propia cabeza, con matemáticas que hicieron en el carro, y nunca hacen la llamada que los hubiera corregido.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d5">
-          <h2>Por Orden de Llegada, y Qué Significa Eso en la Práctica</h2>
-          <p>Esta es la parte del programa que decide los resultados, y es la parte que casi todos los artículos explican mal.</p><p>Los fondos de Hometown Heroes llegan por ciclos. La Legislatura asigna el dinero, Florida Housing lo pone disponible, los prestamistas participantes lo reservan para compradores individuales a medida que se fijan las tasas, y cuando una ronda se compromete, se compromete. Por orden de llegada, con las reservas pasando a nivel de prestamista en tiempo real.</p><p>Lo que muestra el historial sobre el ritmo. Las rondas se han movido a velocidades muy distintas. Algunas se han comprometido por completo en pocas semanas; otras han tardado casi un año en agotarse. Los fondos son limitados, el prestamista participante los reserva en el momento de la solicitud, y se pueden agotar sin previo aviso. Consulta floridahousing.org para ver la disponibilidad actual, no una cifra publicada en un artículo que puede tener meses o años.</p><p>Así que voy a hacer algo poco común en una página de bienes raíces y no te voy a decir si hay dinero disponible mientras lees esto. No sé cuándo estás leyendo esto. Esta página puede tener un día o tres años, y la respuesta honesta cambia cada semana. Las únicas dos fuentes que vale la pena confiar son Florida Housing Finance Corporation directamente, o un prestamista participante que pueda ver el estado de las reservas hoy mismo.</p><p>Estar listo se ve así: preaprobado con un prestamista que realmente participa en los programas de Florida Housing, no cualquiera que conteste el teléfono. Documentación reunida por adelantado, verificando empleo tiempo completo en un puesto elegible, historial de ingreso, y una respuesta clara sobre tu historial de vivienda en los últimos tres años. Los límites vigentes de tu condado confirmados por escrito. La educación para compradores resuelta si la ronda la exige. Y una propiedad donde puedas ir bajo contrato pronto, o al menos una búsqueda lo bastante concreta para moverte en cuestión de días.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>El Límite de Honorarios del Agente en una Compra con Hometown Heroes</h2>
-          <p>Esto casi nadie lo pregunta, así que lo pongo aquí sin que me lo pidan.</p><p>La comisión del agente no se puede pagar con los fondos de la asistencia. Además de eso, la guía actual del prestamista para este programa pone un tope de $500 en cualquier comisión de agente que tú pagues directamente. No es un error de escritura y no es una línea que un prestamista pueda cambiar por ti.</p><p>Te cuento esto por la misma razón que no publico límites de ingreso viejos en esta página. Prefiero que sepas exactamente cómo se mueve el dinero antes de firmar nada, en vez de que te enteres en la mesa de cierre.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>Tres Pasos Si Quieres Avanzar con Esto</h2>
-          <p>Paso uno. Toca el botón de esta página para mandarme tu nombre y tu número, o llámame directamente. Dime tu ocupación, tu tiempo aproximado, y si has sido dueño de una casa en los últimos tres años. Con eso basta para una primera evaluación honesta.</p><p>Paso dos. Te conecto con un prestamista que realmente participa en los programas de Florida Housing, y ellos corren tu precalificación. Este es el paso más importante, porque el prestamista confirma tu crédito, tu ingreso contra los límites vigentes del condado, y si la ronda actual tiene espacio para ti. Yo no me salto este paso, porque nadie te puede prometer fondos sin él.</p><p>Paso tres. Una vez precalificado, visitamos casas en Ocala o Marion Oaks que quepan en tu rango de precio y en el límite de precio de compra del programa para tu condado. De ahí en adelante es una compra normal, solo que con una segunda hipoteca que ahora entiendes bien.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>Cuándo Esta No Es la Herramienta Correcta, y Dónde Encajo Yo</h2>
-          <p>Prefiero decirle a un comprador que no persiga este programa en la primera semana, que ver un trato construido sobre él fallar en la sexta.</p><p>Tu ocupación no está en la lista. Eso es binario y no hay forma creativa de rodearlo. Florida Housing tiene otros programas de ayuda que no dependen de tu ocupación, así que lo correcto es preguntarle a un prestamista participante qué más calificas en vez de tratar este como tu única opción.</p><p>Necesitas mudarte pronto y la ronda está cerrada. Esperar una asignación futura no es un plan de tiempo. Si tienes un contrato de renta que termina o un trabajo que empieza, compra con el financiamiento que existe hoy.</p><p>Esperas vender o refinanciar pronto. La segunda hipoteca se activa en los dos casos. Si tu cálculo honesto es que sales de esta casa en dos o tres años, calcula el pago contra tu capital probable antes de tomar la ayuda, no después.</p><p>Estás comprando una propiedad de inversión o una segunda casa. Vivir ahí como tu residencia principal es una condición del diferimiento, y en el momento que la propiedad deja de ser donde vives, el saldo se vence.</p><p>Ahora, dónde encajo yo, dicho claramente. Represento compradores en Ocala y Marion Oaks. Ahí es donde camino la casa contigo, leo las divulgaciones contigo y escribo la oferta. Hometown Heroes es un programa estatal, así que mucha gente leyendo esto está comprando donde yo no trabajo, y no voy a fingir lo contrario para mantenerte en la página.</p><p>Si buscas en Marion County, mándame tu ocupación, tu tiempo aproximado, y si has sido dueño de una casa en los últimos tres años. Con eso te puedo decir con honestidad si este programa vale tu energía y cuál debería ser la siguiente llamada.</p>
-        </div>
-              <ul class='benefit-list'>
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">En pocas palabras</p>
+        <ul class="benefit-list">
           <li>Ayuda para el enganche y costos de cierre de hasta 5% de la primera hipoteca, mínimo $10,000 y máximo $35,000</li>
           <li>Estructurado por Florida Housing como una segunda hipoteca diferida al 0%, no es un regalo</li>
           <li>Ocupaciones elegibles: salud, personal escolar, primeros respondedores, seguridad pública y tribunales, cuidado infantil, militares y veteranos, trabajando tiempo completo para un empleador con sede en Florida</li>
           <li>Tu prestamista necesita un puntaje de crédito mínimo de 640 y educación para compradores aprobada por FHFC</li>
           <li>Los fondos se entregan por rondas, por orden de llegada, y en el pasado se han agotado en semanas o meses</li>
-          <li>La comisión de agente que pagas tú directamente tiene un tope de $500 en una compra con HTH</li>
           <li>No publico límites de ingreso aquí porque cambian, solo te digo dónde conseguir la cifra vigente el día que aplicas</li>
           <li>Licenciado con Taylor Apartment Locator, represento compradores en Ocala y Marion Oaks</li>
         </ul>
+      </div>
+      <nav class="toc-m" aria-label="En esta página">
+        <details>
+          <summary>En esta página</summary>
+          <ol>
+            <li><a href="#que-cubre-el-dinero-de-hometown-heroes">Qué Cubre el Dinero de Hometown Heroes</a></li>
+            <li><a href="#como-funciona-la-segunda-hipoteca-diferida">Cómo Funciona la Segunda Hipoteca Diferida</a></li>
+            <li><a href="#quien-califica-por-trabajo-y-por-historial-de-vivienda">Quién Califica, por Trabajo y por Historial de Vivienda</a></li>
+            <li><a href="#limites-de-ingreso-y-de-precio-y-por-que-no-pongo-cifras-aqui">Límites de Ingreso y de Precio, y Por Qué No Pongo Cifras Aquí</a></li>
+            <li><a href="#por-orden-de-llegada-y-que-significa-eso-en-la-practica">Por Orden de Llegada, y Qué Significa Eso en la Práctica</a></li>
+            <li><a href="#el-limite-de-honorarios-del-agente-en-una-compra-con-hometown-he">El Límite de Honorarios del Agente en una Compra con Hometown Heroes</a></li>
+            <li><a href="#tres-pasos-si-quieres-avanzar-con-esto">Tres Pasos Si Quieres Avanzar con Esto</a></li>
+            <li><a href="#cuando-esta-no-es-la-herramienta-correcta-y-donde-encajo-yo">Cuándo Esta No Es la Herramienta Correcta, y Dónde Encajo Yo</a></li>
+          </ol>
+        </details>
+      </nav>
+      <div class="section-label reveal">Guía</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2 id="que-cubre-el-dinero-de-hometown-heroes">Qué Cubre el Dinero de Hometown Heroes</h2>
+          <p>El programa Hometown Heroes lo maneja Florida Housing Finance Corporation, la agencia estatal de vivienda, y hace un trabajo específico. Pone dinero hacia el enganche y los costos de cierre de una compra de casa para compradores primerizos que trabajan en ciertas ocupaciones que el estado decidió que valía la pena mantener viviendo aquí.</p><p class="fact">Florida Housing fija la ayuda en hasta 5% del monto de la primera hipoteca, con un piso de $10,000 y un techo de $35,000.</p><p>Esos dos números son fijos. Una hipoteca pequeña no baja tu ayuda por debajo del mínimo. Una hipoteca grande no la sube por encima del máximo. Y como el cálculo se hace sobre el monto de la primera hipoteca y no sobre el precio de venta, dos compradores en la misma calle pueden terminar con cifras distintas según cómo esté armado su financiamiento.</p><p>El dinero es para el enganche, los costos de cierre y los gastos prepagados. No es para muebles, no es para remodelar, y no es un colchón de efectivo que te queda en la cuenta después del cierre.</p><p>Ahora la parte que casi nadie explica bien. No es un regalo. Florida Housing lo describe como una segunda hipoteca diferida, al 0%, no amortizable, a 30 años. Cada palabra de esa frase importa, y la siguiente sección las explica una por una, porque esto pone un gravamen sobre tu casa y tienes que entenderlo antes de firmar, no después.</p><p>No te digo esto para asustarte. Bien entendido, es una de las herramientas más fuertes que tiene un comprador en Florida cuyo ingreso alcanza para el pago mensual pero cuyo ahorro todavía no cubre lo que se necesita para llegar a la mesa de cierre. Mal entendido, se convierte en una sorpresa desagradable años después, cuando vendes o refinancias.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2 id="como-funciona-la-segunda-hipoteca-diferida">Cómo Funciona la Segunda Hipoteca Diferida</h2>
+          <p>Cero por ciento significa que no se acumula interés. El saldo que devuelves es el mismo que recibiste, sin importar cuántos años pasen.</p><p>No amortizable significa que el saldo tampoco baja solo. No hay pago mensual sobre ese dinero, para nada.</p><p>Diferida a 30 años significa que queda quieta detrás de tu primera hipoteca en vez de aparecer en tu pago mensual.</p><p>Segunda hipoteca significa exactamente eso. Queda registrada contra la propiedad, en segunda posición detrás de tu préstamo principal. Es un gravamen sobre tu casa, no un certificado de regalo.</p><p>Entonces, ¿cuándo se paga? Florida Housing es claro: se paga completo cuando vendes la propiedad, cuando refinancias la primera hipoteca, cuando transfieres el título, o si dejas de vivir en la casa como tu residencia principal.</p><p>Lee el punto del refinanciamiento dos veces, porque ahí es donde la gente se sorprende. Las tasas cambian. Dentro de cinco años puede que quieras refinanciar tu primera hipoteca a una mejor tasa, y hacerlo activa el pago de la segunda. La ayuda es un derecho contra tu futuro capital en la casa, y en el momento que tocas la primera hipoteca, ese derecho pasa al frente de la fila.</p><p>La parte mecánica también importa. Un prestamista participante reserva la ayuda para ti a través de un sistema llamado eHousingPlus, en el momento que se fija la tasa de tu primera hipoteca, no antes. Desde ahí tienes 60 días para llegar a la certificación del asegurador de la hipoteca, o la reserva se cancela automáticamente y el dinero regresa al fondo para otra persona.</p><p>El prestamista también necesita ver un puntaje de crédito mínimo de 640 y confirmar que completaste la educación para compradores aprobada por FHFC antes de poder hacer esa reserva. Si compras construcción nueva, la casa necesita su certificado de ocupación antes de poder reservar los fondos. El programa se combina con hipotecas FHA, VA, RD y Convencional.</p><p>Yo no controlo ni verifico nada de esto. El prestamista es quien realmente te califica, y yo te conecto con uno en vez de adivinar por ti.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2 id="quien-califica-por-trabajo-y-por-historial-de-vivienda">Quién Califica, por Trabajo y por Historial de Vivienda</h2>
+          <p>Florida Housing limita el programa a personas que trabajan tiempo completo para un empleador con sede en Florida, en salud, personal escolar, primeros respondedores, empleados de seguridad pública o de los tribunales, o cuidado infantil. Militares en servicio activo y reservistas también califican, igual que veteranos que trabajan tiempo completo para un empleador con sede en Florida.</p><p>Dos palabras en esa frase filtran más que los títulos de trabajo. Tiempo completo. Trabajar medio tiempo en un puesto elegible es otra conversación, y esa conversación es con un prestamista, no algo que se decide leyendo una página web.</p><p>Empleador con sede en Florida. Hay mucha gente viviendo aquí con un cheque que viene de otra parte. Si trabajas remoto para una empresa con oficina central en otro estado, no asumas nada en ninguna dirección. Pregunta directamente, temprano, y consigue la respuesta de alguien que reserva estos fondos todos los días.</p><p>Sobre las categorías de trabajo, el lenguaje es más amplio de lo que la gente imagina. Personal escolar no es sinónimo de maestro de salón. Un hospital emplea a mucha más gente de la que usa bata. Si tu puesto está dentro de una institución elegible pero no es la cara obvia de esa institución, vale la pena preguntar en vez de descartarte solo.</p><p>Después está el requisito de comprador primerizo, que sorprende a más gente que cualquier otra parte del programa. En general, se te considera comprador primerizo si no has sido dueño y has ocupado una vivienda como tu residencia principal en los últimos tres años. Te doy esto como el estándar general, no como un veredicto sobre tu caso, porque un prestamista aplica la definición contra tu historial real, y los casos particulares se resuelven ahí.</p><p>Heredaste una casa donde nunca viviste. Tienes una propiedad de renta que nunca has ocupado. Te divorciaste y la casa quedó a nombre de tu ex pareja.</p><p>Cada uno de esos casos tiene una respuesta real, y ninguna de esas respuestas debería venir de una página como esta. Vienen de un prestamista participante revisando tu archivo.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2 id="limites-de-ingreso-y-de-precio-y-por-que-no-pongo-cifras-aqui">Límites de Ingreso y de Precio, y Por Qué No Pongo Cifras Aquí</h2>
+          <p>Existe un techo de ingreso familiar y un techo de precio de compra. Los dos se fijan por condado. No pongo ninguna cifra en esta página a propósito, y quiero explicar por qué en vez de dejarte pensando que simplemente no lo investigué.</p><p>Los límites por condado se actualizan. Una página que cita el límite de ingreso de Marion County con exactitud hoy queda mal en dieciocho meses, y para entonces ya fue indexada, enlazada y guardada en las notas de alguien. Un comprador que se descarta a sí mismo por una cifra vieja que yo publiqué es un resultado mucho peor que un comprador que tiene que hacer una llamada para conseguir la cifra correcta.</p><p>Dónde están las cifras reales: Florida Housing publica los límites de ingreso y de precio de compra por condado en su propio sitio, y cualquier prestamista participante puede sacarte la cifra vigente para tu condado y el tamaño de tu familia en el tiempo que toma abrir un archivo. Pide las dos cifras, y pídelas por escrito.</p><p>La variación por condado no es un detalle menor. Florida tiene condados con perfiles de ingreso y de precio muy distintos, y el límite que rige una compra en Marion County no es el mismo que rige una en Broward o Monroe. Si tu búsqueda cruza la línea de un condado, puede que estés trabajando contra dos conjuntos de límites a la vez, y eso es un problema real de planificación, no un detalle técnico.</p><p>No te descalifiques con un cálculo mental. De quién cuenta el ingreso, cuál ingreso cuenta y qué se resta antes de comparar son preguntas técnicas con respuestas reales, y el número bruto en tu recibo de pago casi nunca es la cifra que decide. Mucha gente se descarta de programas de ayuda en su propia cabeza, con matemáticas que hicieron en el carro, y nunca hacen la llamada que los hubiera corregido.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2 id="por-orden-de-llegada-y-que-significa-eso-en-la-practica">Por Orden de Llegada, y Qué Significa Eso en la Práctica</h2>
+          <p>Esta es la parte del programa que decide los resultados, y es la parte que casi todos los artículos explican mal.</p><p>Los fondos de Hometown Heroes llegan por ciclos. La Legislatura asigna el dinero, Florida Housing lo pone disponible, los prestamistas participantes lo reservan para compradores individuales a medida que se fijan las tasas, y cuando una ronda se compromete, se compromete. Por orden de llegada, con las reservas pasando a nivel de prestamista en tiempo real.</p><p>Lo que muestra el historial sobre el ritmo. Las rondas se han movido a velocidades muy distintas. Algunas se han comprometido por completo en pocas semanas; otras han tardado casi un año en agotarse.</p><p>Los fondos son limitados, el prestamista participante los reserva en el momento de la solicitud, y se pueden agotar sin previo aviso. Consulta floridahousing.org para ver la disponibilidad actual, no una cifra publicada en un artículo que puede tener meses o años.</p><p>Así que voy a hacer algo poco común en una página de bienes raíces y no te voy a decir si hay dinero disponible mientras lees esto. No sé cuándo estás leyendo esto. Esta página puede tener un día o tres años, y la respuesta honesta cambia cada semana. Las únicas dos fuentes que vale la pena confiar son Florida Housing Finance Corporation directamente, o un prestamista participante que pueda ver el estado de las reservas hoy mismo.</p><p>Estar listo se ve así: preaprobado con un prestamista que realmente participa en los programas de Florida Housing, no cualquiera que conteste el teléfono. Documentación reunida por adelantado, verificando empleo tiempo completo en un puesto elegible, historial de ingreso, y una respuesta clara sobre tu historial de vivienda en los últimos tres años. Los límites vigentes de tu condado confirmados por escrito.</p><p>La educación para compradores resuelta si la ronda la exige. Y una propiedad donde puedas ir bajo contrato pronto, o al menos una búsqueda lo bastante concreta para moverte en cuestión de días.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="el-limite-de-honorarios-del-agente-en-una-compra-con-hometown-he">El Límite de Honorarios del Agente en una Compra con Hometown Heroes</h2>
+          <p>Esto casi nadie lo pregunta, así que lo pongo aquí sin que me lo pidan.</p><p>La comisión del agente no se puede pagar con los fondos de la asistencia. Además de eso, la guía actual del prestamista para este programa pone un tope de $500 en cualquier comisión de agente que tú pagues directamente. No es un error de escritura y no es una línea que un prestamista pueda cambiar por ti.</p><p>Te cuento esto por la misma razón que no publico límites de ingreso viejos en esta página. Prefiero que sepas exactamente cómo se mueve el dinero antes de firmar nada, en vez de que te enteres en la mesa de cierre.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="tres-pasos-si-quieres-avanzar-con-esto">Tres Pasos Si Quieres Avanzar con Esto</h2>
+          <p>Paso uno. Toca el botón de esta página para mandarme tu nombre y tu número, o llámame directamente. Dime tu ocupación, tu tiempo aproximado, y si has sido dueño de una casa en los últimos tres años. Con eso basta para una primera evaluación honesta.</p><p>Paso dos. Te conecto con un prestamista que realmente participa en los programas de Florida Housing, y ellos corren tu precalificación. Este es el paso más importante, porque el prestamista confirma tu crédito, tu ingreso contra los límites vigentes del condado, y si la ronda actual tiene espacio para ti. Yo no me salto este paso, porque nadie te puede prometer fondos sin él.</p><p>Paso tres. Una vez precalificado, visitamos casas en Ocala o Marion Oaks que quepan en tu rango de precio y en el límite de precio de compra del programa para tu condado. De ahí en adelante es una compra normal, solo que con una segunda hipoteca que ahora entiendes bien.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="cuando-esta-no-es-la-herramienta-correcta-y-donde-encajo-yo">Cuándo Esta No Es la Herramienta Correcta, y Dónde Encajo Yo</h2>
+          <p>Prefiero decirle a un comprador que no persiga este programa en la primera semana, que ver un trato construido sobre él fallar en la sexta.</p><p>Tu ocupación no está en la lista. Eso es binario y no hay forma creativa de rodearlo. Florida Housing tiene otros programas de ayuda que no dependen de tu ocupación, así que lo correcto es preguntarle a un prestamista participante qué más calificas en vez de tratar este como tu única opción.</p><p>Necesitas mudarte pronto y la ronda está cerrada. Esperar una asignación futura no es un plan de tiempo. Si tienes un contrato de renta que termina o un trabajo que empieza, compra con el financiamiento que existe hoy.</p><p>Esperas vender o refinanciar pronto. La segunda hipoteca se activa en los dos casos. Si tu cálculo honesto es que sales de esta casa en dos o tres años, calcula el pago contra tu capital probable antes de tomar la ayuda, no después.</p><p>Estás comprando una propiedad de inversión o una segunda casa. Vivir ahí como tu residencia principal es una condición del diferimiento, y en el momento que la propiedad deja de ser donde vives, el saldo se vence.</p><p>Ahora, dónde encajo yo, dicho claramente. Represento compradores en Ocala y Marion Oaks. Ahí es donde camino la casa contigo, leo las divulgaciones contigo y escribo la oferta. Hometown Heroes es un programa estatal, así que mucha gente leyendo esto está comprando donde yo no trabajo, y no voy a fingir lo contrario para mantenerte en la página.</p><p>Si buscas en Marion County, mándame tu ocupación, tu tiempo aproximado, y si has sido dueño de una casa en los últimos tres años. Con eso te puedo decir con honestidad si este programa vale tu energía y cuál debería ser la siguiente llamada.</p>
+        </div>
+              <ul class='benefit-list'>
+          <li>La comisión de agente que pagas tú directamente tiene un tope de $500 en una compra con HTH</li>
+        </ul>
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">En esta página</p>
+          <ol>
+            <li><a href="#que-cubre-el-dinero-de-hometown-heroes">Qué Cubre el Dinero de Hometown Heroes</a></li>
+            <li><a href="#como-funciona-la-segunda-hipoteca-diferida">Cómo Funciona la Segunda Hipoteca Diferida</a></li>
+            <li><a href="#quien-califica-por-trabajo-y-por-historial-de-vivienda">Quién Califica, por Trabajo y por Historial de Vivienda</a></li>
+            <li><a href="#limites-de-ingreso-y-de-precio-y-por-que-no-pongo-cifras-aqui">Límites de Ingreso y de Precio, y Por Qué No Pongo Cifras Aquí</a></li>
+            <li><a href="#por-orden-de-llegada-y-que-significa-eso-en-la-practica">Por Orden de Llegada, y Qué Significa Eso en la Práctica</a></li>
+            <li><a href="#el-limite-de-honorarios-del-agente-en-una-compra-con-hometown-he">El Límite de Honorarios del Agente en una Compra con Hometown Heroes</a></li>
+            <li><a href="#tres-pasos-si-quieres-avanzar-con-esto">Tres Pasos Si Quieres Avanzar con Esto</a></li>
+            <li><a href="#cuando-esta-no-es-la-herramienta-correcta-y-donde-encajo-yo">Cuándo Esta No Es la Herramienta Correcta, y Dónde Encajo Yo</a></li>
+          </ol>
+        </nav>
+        <a href="/es?intent=buy#home" class="rail-cta" data-cta="hero-cta-rail">Dime Si Me Sirve</a>
+      </div>
     </div>
   </main>
 
@@ -589,65 +768,44 @@
           <h2 class="section-h2 reveal">Preguntas comunes</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Qué es el programa Hometown Heroes?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">¿Qué es el programa Hometown Heroes?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>Es un programa de ayuda para el enganche y los costos de cierre, manejado por Florida Housing Finance Corporation, para compradores primerizos que trabajan en ocupaciones elegibles. Florida Housing fija la ayuda en hasta 5% del monto de la primera hipoteca, con un mínimo de $10,000 y un máximo de $35,000. No es un regalo. El dinero llega como una segunda hipoteca diferida al 0%, no amortizable, a 30 años, registrada contra la propiedad, lo que significa sin interés y sin pago mensual sobre ese dinero, pero con un saldo que se vence más adelante.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Tengo que devolver la ayuda de Hometown Heroes?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">¿Tengo que devolver la ayuda de Hometown Heroes?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>Sí. Florida Housing describe la ayuda como una segunda hipoteca diferida al 0%, no amortizable, a 30 años, que se vuelve pagadera en su totalidad cuando vendes la propiedad, refinancias la primera hipoteca, transfieres el título, o dejas de ocupar la casa como tu residencia principal. Diferido no es lo mismo que perdonado. No se cobra nada por tener el dinero, porque la tasa es cero y el saldo nunca crece, pero el monto que recibiste es un gravamen sobre tu casa y se resuelve en uno de esos momentos.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Quién califica para Hometown Heroes según su ocupación?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">¿Quién califica para Hometown Heroes según su ocupación?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>Florida Housing limita el programa a personas que trabajan tiempo completo para un empleador con sede en Florida, en salud, personal escolar, primeros respondedores, empleados de seguridad pública o de tribunales, o cuidado infantil, además de militares, reservistas y veteranos que trabajan tiempo completo para un empleador con sede en Florida. Dos condiciones pesan más de lo que la gente espera: el trabajo tiene que ser tiempo completo, y el empleador tiene que tener sede en Florida, algo que vale la pena preguntar si vives aquí pero tu cheque viene de otro estado.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Hay fondos disponibles de Hometown Heroes ahora mismo?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">¿Hay fondos disponibles de Hometown Heroes ahora mismo?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>No puedo contestar eso con honestidad en una página que quizás leas dentro de un año, y nadie más puede tampoco escribiendo por adelantado. Los fondos llegan por rondas, por orden de llegada, y los prestamistas los reservan en tiempo real. Las rondas han tenido ritmos muy distintos: algunas se han comprometido por completo en semanas, otras han tardado casi un año. Confirma con Florida Housing Finance Corporation o con un prestamista participante el mismo día que preguntes. Cumplir el mínimo no garantiza fondos; los límites de ingreso y precio de tu condado y la disponibilidad de la ronda actual también deciden.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Tengo que ser comprador primerizo para usar Hometown Heroes?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">¿Tengo que ser comprador primerizo para usar Hometown Heroes?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>El programa está escrito para compradores primerizos, y en general se te cuenta como primerizo si no has sido dueño y has ocupado una vivienda como tu residencia principal en los últimos tres años. Te doy esto como el estándar general, no como una promesa sobre tu caso específico, porque un prestamista aplica la definición contra tu historial real de vivienda, y los casos particulares se resuelven ahí.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Hometown Heroes paga la comisión de mi agente?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6" onclick="toggleFaq(this)"><span class="faq-q-text">¿Hometown Heroes paga la comisión de mi agente?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-6">
               <p>No con los fondos de la asistencia. La comisión del agente no se puede pagar con el dinero de la ayuda, y la guía actual del prestamista para este programa pone un tope de $500 en cualquier comisión que tú pagues directamente.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Cuáles son los límites de ingreso y de precio para Hometown Heroes?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-7" aria-expanded="false" aria-controls="faq-a-7" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cuáles son los límites de ingreso y de precio para Hometown Heroes?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-7">
               <p>Los dos existen y se fijan por condado, y no publico ninguna cifra aquí a propósito. Los límites se actualizan, y una cifra correcta hoy se vuelve una cifra equivocada en una página indexada más adelante, que es exactamente como compradores elegibles se descartan de un programa que sí calificaban. Florida Housing publica los límites por condado, y cualquier prestamista participante puede darte la cifra vigente para tu condado y el tamaño de tu familia. Pide las dos cifras por escrito antes de empezar a ver casas.</p>
             </div>
           </div>
@@ -669,15 +827,15 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Fuentes</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.floridahousing.org/programs/homebuyer-overview-page/hometown-heroes" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.floridahousing.org</a>
-      <a href="https://www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/2026-hometown-heroes-limits-rev-7-13-2026.pdf" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.floridahousing.org</a>
-      <a href="https://www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/hth-eligible-occupations-list-7-13-26.pdf" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.floridahousing.org</a>
-      <a href="https://www.ehousingplus.com/wp-content/uploads/FHFC-HTH-TBA-Guide-FNMA-Removed-08-01-25.pdf" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.ehousingplus.com</a>
-      </div>
+      <div class="section-label">Fuentes</div>
+      <ul class="src-list">
+        <li><a href="https://www.floridahousing.org/programs/homebuyer-overview-page/hometown-heroes" target="_blank" rel="noopener">www.floridahousing.org/programs/homebuyer-overview-page/hometown-heroes</a></li>
+        <li><a href="https://www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/2026-hometown-heroes-limits-rev-7-13-2026.pdf" target="_blank" rel="noopener">www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/2026-hometown-heroes-limits-rev-7-13-2026.pdf</a></li>
+        <li><a href="https://www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/hth-eligible-occupations-list-7-13-26.pdf" target="_blank" rel="noopener">www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/hth-eligible-occupations-list-7-13-26.pdf</a></li>
+        <li><a href="https://www.ehousingplus.com/wp-content/uploads/FHFC-HTH-TBA-Guide-FNMA-Removed-08-01-25.pdf" target="_blank" rel="noopener">www.ehousingplus.com</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -730,6 +888,11 @@
     &copy; 2026 Willy Lopez. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/es?intent=buy#home" class="sticky-cta-btn" data-cta="hero-cta-sticky">Dime Si Me Sirve</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -737,17 +900,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

@@ -179,6 +179,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -203,6 +208,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -212,7 +228,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -236,7 +252,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -258,7 +274,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -293,7 +310,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -309,94 +326,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -409,7 +475,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -422,7 +488,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -430,11 +496,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -442,42 +508,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -519,29 +660,11 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
-      <div class="section-label reveal">Guía</div>
-      
-        <div class="section-block reveal reveal-d1">
-          <h2>Lo Que Hago por un Propietario</h2>
-          <p>Tienes una renta en el condado de Marion y quieres un buen inquilino adentro. Ese es todo el trabajo: promociono la unidad, evalúo a quien responde, y te entrego a alguien con quien vale la pena firmar. Mándame la dirección y tu número y te llamo dentro de 24 horas hábiles para repasar condición, renta, y qué tan rápido puede salir al mercado.</p><p>No soy una compañía de administración de propiedades. No te cobro la renta cada mes, no atiendo la llamada de mantenimiento a las dos de la mañana, y no voy a fingir que ese servicio existe aquí. Lo que hago es la parte que realmente decide si una renta funciona bien o no: quién termina viviendo en tu propiedad.</p><p>Un mal inquilino te cuesta más que cualquier mes vacío. Renta atrasada, daños a la propiedad, un desalojo que se arrastra por meses. La evaluación es donde ese riesgo se detecta o se pasa por alto, y es la parte de este negocio que me tomo más en serio.</p><p>Mi tarifa es un mes de renta, y la debes solo cuando se firma un contrato. Si no coloco un inquilino, no me pagas nada. Ese es todo el arreglo.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d2">
-          <h2>Cómo Funciona, Paso a Paso</h2>
-          <p>Me cuentas de la unidad y tu número. Dirección, cuartos, condición, cuánto quieres de renta, y cuándo necesitas que alguien entre. Pregunto lo suficiente desde el inicio para no estar llamándote tres veces por detalles que debí haber conseguido la primera vez.</p><p>La promociono y evalúo a los solicitantes. Escribo el anuncio, lo pongo frente a inquilinos que buscan activamente en el condado de Marion, atiendo las llamadas y preguntas, y proceso las solicitudes que llegan. Evaluar significa verificación de ingresos, historial de renta, y una revisión de antecedentes de cualquiera que te presente como solicitante serio. Tú no eres quien atiende llamadas de gente que nunca iba a calificar.</p><p>Firmas el contrato y pagas un mes de renta. Una vez que tienes un inquilino con el que te sientes cómodo, firmas el contrato directamente con esa persona. Mi tarifa se debe en ese momento, no antes. No te estoy pidiendo que pagues por esfuerzo, te estoy pidiendo que pagues por un resultado.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d3">
-          <h2>¿Debería Alquilarla o Venderla?</h2>
-          <p>No toda propiedad vacía debería volver al mercado de renta, y prefiero decírtelo desde el principio en vez de cobrar una tarifa de colocación en una propiedad que deberías haber vendido.</p><p>Si heredaste una casa, si administras una propiedad desde fuera del estado, o si los números de alquilarla apenas cubren tu hipoteca e impuestos una vez que cuentas la vacancia y las reparaciones, vender puede ser la mejor decisión. Una renta vacía semanas en el mercado mientras cargas la hipoteca es un costo real, y también lo es una propiedad que sigue pidiendo dinero que no estás recuperando en renta.</p><p>Por otro lado, muchos propietarios tienen una propiedad que renta bien y no necesita venderse para nada. Depende de tus números, tu horizonte de tiempo, y qué quieres realmente de la propiedad a largo plazo, no de una regla genérica.</p><p>No te voy a empujar hacia la opción que más me convenga a mí. Si alquilarla tiene sentido, coloco un inquilino. Si vender tiene más sentido para tu situación, también soy agente listador con licencia y puedo guiarte por ese lado también. De cualquier forma, no hay costo por hablarlo y no hay presión de decidir nada en la primera llamada.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d4">
-          <h2>Dónde Trabajo</h2>
-          <p>La colocación de inquilinos es en el condado de Marion: Ocala, Marion Oaks, y el área alrededor. Represento a compradores y vendedores directamente aquí también, lo que significa que ya conozco los vecindarios, lo que realmente renta una cuadra dada versus lo que un propietario espera que rente, y cómo se ve un solicitante serio en este mercado.</p><p>Si tu propiedad está fuera del condado de Marion, dime de todas formas. Te doy una respuesta directa sobre si puedo ayudarte directamente o te conecto con alguien que sí puede.</p>
-        </div>
-              <ul class='benefit-list'>
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">En pocas palabras</p>
+        <ul class="benefit-list">
           <li>Colocación de inquilinos en el condado de Marion: yo encuentro y evalúo al inquilino, tú firmas el contrato</li>
           <li>La tarifa es un mes de renta, y se debe solo cuando se firma un contrato</li>
           <li>No administro la propiedad día a día, es solo colocación</li>
@@ -549,6 +672,53 @@
           <li>Agente de bienes raíces con licencia, Lic. SL3617612, Taylor Apartment Locator</li>
           <li>Respondo dentro de 24 horas hábiles</li>
         </ul>
+      </div>
+      <nav class="toc-m" aria-label="En esta página">
+        <details>
+          <summary>En esta página</summary>
+          <ol>
+            <li><a href="#lo-que-hago-por-un-propietario">Lo Que Hago por un Propietario</a></li>
+            <li><a href="#como-funciona-paso-a-paso">Cómo Funciona, Paso a Paso</a></li>
+            <li><a href="#deberia-alquilarla-o-venderla">¿Debería Alquilarla o Venderla?</a></li>
+            <li><a href="#donde-trabajo">Dónde Trabajo</a></li>
+          </ol>
+        </details>
+      </nav>
+      <div class="section-label reveal">Guía</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2 id="lo-que-hago-por-un-propietario">Lo Que Hago por un Propietario</h2>
+          <p>Tienes una renta en el condado de Marion y quieres un buen inquilino adentro. Ese es todo el trabajo: promociono la unidad, evalúo a quien responde, y te entrego a alguien con quien vale la pena firmar. Mándame la dirección y tu número y te llamo dentro de 24 horas hábiles para repasar condición, renta, y qué tan rápido puede salir al mercado.</p><p>No soy una compañía de administración de propiedades. No te cobro la renta cada mes, no atiendo la llamada de mantenimiento a las dos de la mañana, y no voy a fingir que ese servicio existe aquí. Lo que hago es la parte que realmente decide si una renta funciona bien o no: quién termina viviendo en tu propiedad.</p><p>Un mal inquilino te cuesta más que cualquier mes vacío. Renta atrasada, daños a la propiedad, un desalojo que se arrastra por meses. La evaluación es donde ese riesgo se detecta o se pasa por alto, y es la parte de este negocio que me tomo más en serio.</p><p>Mi tarifa es un mes de renta, y la debes solo cuando se firma un contrato. Si no coloco un inquilino, no me pagas nada. Ese es todo el arreglo.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2 id="como-funciona-paso-a-paso">Cómo Funciona, Paso a Paso</h2>
+          <p>Me cuentas de la unidad y tu número. Dirección, cuartos, condición, cuánto quieres de renta, y cuándo necesitas que alguien entre. Pregunto lo suficiente desde el inicio para no estar llamándote tres veces por detalles que debí haber conseguido la primera vez.</p><p>La promociono y evalúo a los solicitantes. Escribo el anuncio, lo pongo frente a inquilinos que buscan activamente en el condado de Marion, atiendo las llamadas y preguntas, y proceso las solicitudes que llegan. Evaluar significa verificación de ingresos, historial de renta, y una revisión de antecedentes de cualquiera que te presente como solicitante serio. Tú no eres quien atiende llamadas de gente que nunca iba a calificar.</p><p>Firmas el contrato y pagas un mes de renta. Una vez que tienes un inquilino con el que te sientes cómodo, firmas el contrato directamente con esa persona. Mi tarifa se debe en ese momento, no antes. No te estoy pidiendo que pagues por esfuerzo, te estoy pidiendo que pagues por un resultado.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2 id="deberia-alquilarla-o-venderla">¿Debería Alquilarla o Venderla?</h2>
+          <p>No toda propiedad vacía debería volver al mercado de renta, y prefiero decírtelo desde el principio en vez de cobrar una tarifa de colocación en una propiedad que deberías haber vendido.</p><p>Si heredaste una casa, si administras una propiedad desde fuera del estado, o si los números de alquilarla apenas cubren tu hipoteca e impuestos una vez que cuentas la vacancia y las reparaciones, vender puede ser la mejor decisión. Una renta vacía semanas en el mercado mientras cargas la hipoteca es un costo real, y también lo es una propiedad que sigue pidiendo dinero que no estás recuperando en renta.</p><p>Por otro lado, muchos propietarios tienen una propiedad que renta bien y no necesita venderse para nada. Depende de tus números, tu horizonte de tiempo, y qué quieres realmente de la propiedad a largo plazo, no de una regla genérica.</p><p>No te voy a empujar hacia la opción que más me convenga a mí. Si alquilarla tiene sentido, coloco un inquilino. Si vender tiene más sentido para tu situación, también soy agente listador con licencia y puedo guiarte por ese lado también. De cualquier forma, no hay costo por hablarlo y no hay presión de decidir nada en la primera llamada.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2 id="donde-trabajo">Dónde Trabajo</h2>
+          <p>La colocación de inquilinos es en el condado de Marion: Ocala, Marion Oaks, y el área alrededor. Represento a compradores y vendedores directamente aquí también, lo que significa que ya conozco los vecindarios, lo que realmente renta una cuadra dada versus lo que un propietario espera que rente, y cómo se ve un solicitante serio en este mercado.</p><p>Si tu propiedad está fuera del condado de Marion, dime de todas formas. Te doy una respuesta directa sobre si puedo ayudarte directamente o te conecto con alguien que sí puede.</p>
+        </div>
+      
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">En esta página</p>
+          <ol>
+            <li><a href="#lo-que-hago-por-un-propietario">Lo Que Hago por un Propietario</a></li>
+            <li><a href="#como-funciona-paso-a-paso">Cómo Funciona, Paso a Paso</a></li>
+            <li><a href="#deberia-alquilarla-o-venderla">¿Debería Alquilarla o Venderla?</a></li>
+            <li><a href="#donde-trabajo">Dónde Trabajo</a></li>
+          </ol>
+        </nav>
+        <a href="/contacto?type=landlord" class="rail-cta" data-cta="hero-cta-rail">Consígueme un Inquilino</a>
+      </div>
     </div>
   </main>
 
@@ -559,56 +729,38 @@
           <h2 class="section-h2 reveal">Preguntas comunes</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Cuánto cobras por colocación de inquilinos?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cuánto cobras por colocación de inquilinos?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>Un mes de renta, y se debe solo cuando se firma un contrato. Si no coloco un inquilino calificado en tu propiedad, no me debes nada. No hay tarifa por adelantado, no hay tarifa de promoción, y no hay cargo por la conversación inicial sobre tu propiedad.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Administras la propiedad después de que el inquilino se muda?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">¿Administras la propiedad después de que el inquilino se muda?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>No. Esto es solo colocación: encontrar al inquilino, evaluarlo, y dejar el contrato firmado. No cobro la renta mensual, no atiendo solicitudes de mantenimiento, ni administro la propiedad día a día. Si necesitas administración continua, esa es otra conversación y otro servicio, y te lo digo claramente si no es algo que ofrezco para tu situación.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Cómo evalúas a los solicitantes?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cómo evalúas a los solicitantes?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>Cada solicitante que te presento como candidato serio pasó por verificación de ingresos, revisión de historial de renta, y una revisión de antecedentes. Prefiero enviarte menos solicitantes calificados que una pila de gente que nunca iba a funcionar. Tú tomas la decisión final de con quién firmas el contrato, yo solo me aseguro de que la gente frente a ti valga la pena considerar.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Cuánto tiempo toma normalmente colocar un inquilino?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cuánto tiempo toma normalmente colocar un inquilino?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>Depende de la propiedad, la renta que pides, y la temporada. Una unidad bien valorada y en buena condición en el condado de Marion normalmente atrae interés serio más rápido que una que está sobrevalorada o necesita trabajo antes de estar lista para rentar. Te doy una lectura honesta sobre tu propiedad y precio específico en vez de una promesa genérica, y te digo temprano si tu renta pedida se ve fuera de línea con lo que unidades similares realmente están alquilando.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Qué pasa si decido que quiero vender en vez de alquilar?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">¿Qué pasa si decido que quiero vender en vez de alquilar?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Dime y lo hablamos honestamente. Soy agente de bienes raíces con licencia y puedo representarte como vendedor también. Si alquilar o vender tiene más sentido depende de tus números y tu horizonte de tiempo, no de cuál me genera una tarifa a mí, y prefiero guiarte hacia la opción correcta que colocar un inquilino en una propiedad que debiste haber puesto en venta.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Te encargas del papeleo del contrato?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6" onclick="toggleFaq(this)"><span class="faq-q-text">¿Te encargas del papeleo del contrato?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-6">
               <p>Coordino la firma del contrato entre tú y el inquilino que encontré para ti, pero el contrato es entre tú y tu inquilino. No soy tu administrador de propiedad después de ese punto, así que asegúrate de estar cómodo con los términos del contrato y tu propio plan para cobrar la renta y manejar el mantenimiento antes de firmar.</p>
             </div>
           </div>
@@ -680,6 +832,11 @@
     &copy; 2026 Willy Lopez. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/contacto?type=landlord" class="sticky-cta-btn" data-cta="hero-cta-sticky">Consígueme un Inquilino</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -687,17 +844,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

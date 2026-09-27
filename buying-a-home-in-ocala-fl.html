@@ -179,6 +179,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -203,6 +208,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -212,7 +228,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -236,7 +252,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -258,7 +274,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -293,7 +310,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -309,94 +326,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -409,7 +475,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -422,7 +488,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -430,11 +496,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -442,42 +508,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -519,34 +660,11 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
-      <div class="section-label reveal">Guide</div>
-      
-        <div class="section-block reveal reveal-d1">
-          <h2>Why Buyers Are Looking at Ocala</h2>
-          <p>Ocala is one of the more affordable homebuying markets left in Florida, and that is the whole reason most of my buyers end up looking here. A house that would stretch a budget in Orlando or Tampa tends to sit comfortably inside it in Marion County.</p><p>The gap has held long enough that people keep finding it. The World Equestrian Center put Ocala on a national map it had never been on before, and growth followed. It is not a small effect either: according to the U.S. Census Bureau's Vintage 2025 population estimates (released March 2026), the Ocala metro grew 3.4 percent between July 2024 and July 2025, the fastest rate of any U.S. metro area for that period and the second year in a row it ranked first.</p><p>That cuts both ways for a buyer. More people means more competition for the well-priced homes and steady pressure on values over time. It also means more new construction, more inventory, and services showing up in parts of the county that had none five years ago.</p><p>For buyers selling out of a high-cost market in the Northeast or Miami, for remote workers, and for anyone who has watched entry-level inventory disappear everywhere else in this state, the trade is usually worth it.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d2">
-          <h2>Ocala Neighborhoods Worth Knowing Before You Buy</h2>
-          <p>Ocala is not one market. It is several, and they do not behave the same way.</p><p>Silver Springs Shores on the east side is the county's largest affordable neighborhood. It was platted decades ago and is still filling in, so turnover is high and there is almost always something moving.</p><p>Marion Oaks in the southwest is the other entry-level anchor. Because so many of its lots were platted decades ago and never built on, it has seen a steady run of new construction.</p><p>The 17th Street corridor in SE Ocala sits close to both major hospitals and carries more newer construction. Healthcare workers and younger professionals cluster here.</p><p>NW Ocala and the Paddock Park area are the established mid-to-upper tier. Bigger lots, mature trees, and the horse-country edge of the county that gave Ocala its reputation in the first place.</p><p>Downtown has condos and townhomes around a square that has been actively revitalized over the past decade. It is walkable in a way that almost nothing else in Marion County is.</p><p>Which one fits usually comes down to commute and lot size rather than anything printed on a listing sheet. Tell me how you actually spend your week and I will tell you which side of the county to look at.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d3">
-          <h2>What the Homebuying Process Looks Like in Florida</h2>
-          <p>Buying here follows the same broad sequence as anywhere else. A few Florida wrinkles change the math enough to be worth knowing before you start.</p><p>Property taxes come with a break for owner-occupants. The homestead exemption reduces the taxable value of a primary residence, and once you are homesteaded, the Save Our Homes cap limits how fast your assessed value can climb, to 3% a year or the change in the consumer price index, whichever is lower. What that is worth in dollars depends entirely on the millage rate where the house sits, so the Marion County Property Appraiser is the place to get a real number for a real address rather than a rule of thumb. You file after closing.</p><p>Insurance is the line that decides deals here. Premiums climbed hard after 2022 as carriers pulled back from Florida, and underwriters care about roof age more than almost anything else on the house. A home can be sound, well kept, and still hard to insure at a price that works. Get a quote during your inspection period, not after.</p><p>HOA fees show up in most newer Central Florida communities and in very few of the older Marion County subdivisions. Ask what the association charges, what it actually covers, and whether its reserves are healthy before you go under contract.</p><p>In my experience, a financed purchase usually takes about a month to six weeks from accepted offer to closing, though your lender's own timeline is what actually governs it. Cash moves faster. I walk you through each step so nothing lands on you as a surprise.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d4">
-          <h2>My Part in an Ocala Purchase</h2>
-          <p>The listing photos are the easy part. Most of the real work happens in the gap between liking a house and knowing whether it is a good buy.</p><p>I walk properties looking at the things that decide whether a deal survives. Roof age. Whether the electrical panel is one of the brands insurers refuse to write. Whether the addition on the back was ever permitted. Whether that street is on county water and sewer or private well and septic. Marion County housing stock spans five decades, so two houses that look nearly identical on a listing site can carry very different bills behind them.</p><p>I will also tell you when a house is wrong for you. Buyers say they want that and then find it uncomfortable in the moment, and it is still the most useful thing I do. Talking someone out of a house that would have cost them money later beats a fast closing.</p><p>The rest is unglamorous and matters anyway. Pulling comparable sales that actually compare, given how much the housing stock varies here. Getting inspections and the insurance quote scheduled early enough that the answers arrive while you can still act on them. Keeping the lender and the title company moving. Answering the phone.</p><p>If you are buying from out of the area, add video walkthroughs and an honest read on what the camera is not showing you.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d5">
-          <h2>Who Buys Homes in Ocala (and Why)</h2>
-          <p>The Ocala buyer pool is more varied than people expect.</p><p>Retirees and pre-retirees from the Northeast and Midwest are a big group. They sell into a high-cost market, buy here outright or close to it, and keep the difference. That math has been pulling people into Marion County for years and it has not stopped.</p><p>Families priced out of Orlando and Tampa are the group growing fastest. Ocala sits roughly 80 miles north of downtown Orlando, which rules it out as a daily commute for most people and makes it irrelevant if you work remotely or locally.</p><p>I see a lot of healthcare workers. Nurses and clinical staff relocating for a position tend to arrive with a start date already set, which makes them decisive buyers who want to be near work and are not interested in a long drive across town to a shift.</p><p>Investors come for the entry cost and county-wide rental demand. If you are buying a primary residence, that matters to you mainly because you may be bidding against someone who can move faster than you can.</p><p>And first-time buyers come because Ocala still has genuine entry-level inventory, which has quietly become rare in this state.</p>
-        </div>
-              <ul class='benefit-list'>
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">The short version</p>
+        <ul class="benefit-list">
           <li>Local agent based in Central Florida</li>
           <li>Know the Ocala market neighborhood by neighborhood</li>
           <li>I will tell you when a house is wrong for you</li>
@@ -554,6 +672,60 @@
           <li>Licensed with Taylor Apartment Locator</li>
           <li>Serving all of Marion County and surrounding areas</li>
         </ul>
+      </div>
+      <nav class="toc-m" aria-label="On this page">
+        <details>
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#why-buyers-are-looking-at-ocala">Why Buyers Are Looking at Ocala</a></li>
+            <li><a href="#ocala-neighborhoods-worth-knowing-before-you-buy">Ocala Neighborhoods Worth Knowing Before You Buy</a></li>
+            <li><a href="#what-the-homebuying-process-looks-like-in-florida">What the Homebuying Process Looks Like in Florida</a></li>
+            <li><a href="#my-part-in-an-ocala-purchase">My Part in an Ocala Purchase</a></li>
+            <li><a href="#who-buys-homes-in-ocala-and-why">Who Buys Homes in Ocala (and Why)</a></li>
+          </ol>
+        </details>
+      </nav>
+      <div class="section-label reveal">Guide</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2 id="why-buyers-are-looking-at-ocala">Why Buyers Are Looking at Ocala</h2>
+          <p>Ocala is one of the more affordable homebuying markets left in Florida, and that is the whole reason most of my buyers end up looking here. A house that would stretch a budget in Orlando or Tampa tends to sit comfortably inside it in Marion County.</p><p class="fact">The gap has held long enough that people keep finding it. The World Equestrian Center put Ocala on a national map it had never been on before, and growth followed. It is not a small effect either: according to the U.S. Census Bureau's Vintage 2025 population estimates (released March 2026), the Ocala metro grew 3.4 percent between July 2024 and July 2025, the fastest rate of any U.S. metro area for that period and the second year in a row it ranked first.</p><p>That cuts both ways for a buyer. More people means more competition for the well-priced homes and steady pressure on values over time. It also means more new construction, more inventory, and services showing up in parts of the county that had none five years ago.</p><p>For buyers selling out of a high-cost market in the Northeast or Miami, for remote workers, and for anyone who has watched entry-level inventory disappear everywhere else in this state, the trade is usually worth it.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2 id="ocala-neighborhoods-worth-knowing-before-you-buy">Ocala Neighborhoods Worth Knowing Before You Buy</h2>
+          <p>Ocala is not one market. It is several, and they do not behave the same way.</p><p>Silver Springs Shores on the east side is the county's largest affordable neighborhood. It was platted decades ago and is still filling in, so turnover is high and there is almost always something moving.</p><p>Marion Oaks in the southwest is the other entry-level anchor. Because so many of its lots were platted decades ago and never built on, it has seen a steady run of new construction.</p><p>The 17th Street corridor in SE Ocala sits close to both major hospitals and carries more newer construction. Healthcare workers and younger professionals cluster here.</p><p>NW Ocala and the Paddock Park area are the established mid-to-upper tier. Bigger lots, mature trees, and the horse-country edge of the county that gave Ocala its reputation in the first place.</p><p>Downtown has condos and townhomes around a square that has been actively revitalized over the past decade. It is walkable in a way that almost nothing else in Marion County is.</p><p>Which one fits usually comes down to commute and lot size rather than anything printed on a listing sheet. Tell me how you actually spend your week and I will tell you which side of the county to look at.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2 id="what-the-homebuying-process-looks-like-in-florida">What the Homebuying Process Looks Like in Florida</h2>
+          <p>Buying here follows the same broad sequence as anywhere else. A few Florida wrinkles change the math enough to be worth knowing before you start.</p><p class="fact">Property taxes come with a break for owner-occupants. The homestead exemption reduces the taxable value of a primary residence, and once you are homesteaded, the Save Our Homes cap limits how fast your assessed value can climb, to 3% a year or the change in the consumer price index, whichever is lower. What that is worth in dollars depends entirely on the millage rate where the house sits, so the Marion County Property Appraiser is the place to get a real number for a real address rather than a rule of thumb. You file after closing.</p><p>Insurance is the line that decides deals here. Premiums climbed hard after 2022 as carriers pulled back from Florida, and underwriters care about roof age more than almost anything else on the house. A home can be sound, well kept, and still hard to insure at a price that works. Get a quote during your inspection period, not after.</p><p>HOA fees show up in most newer Central Florida communities and in very few of the older Marion County subdivisions. Ask what the association charges, what it actually covers, and whether its reserves are healthy before you go under contract.</p><p>In my experience, a financed purchase usually takes about a month to six weeks from accepted offer to closing, though your lender's own timeline is what actually governs it. Cash moves faster. I walk you through each step so nothing lands on you as a surprise.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2 id="my-part-in-an-ocala-purchase">My Part in an Ocala Purchase</h2>
+          <p>The listing photos are the easy part. Most of the real work happens in the gap between liking a house and knowing whether it is a good buy.</p><p>I walk properties looking at the things that decide whether a deal survives. Roof age. Whether the electrical panel is one of the brands insurers refuse to write.</p><p>Whether the addition on the back was ever permitted. Whether that street is on county water and sewer or private well and septic. Marion County housing stock spans five decades, so two houses that look nearly identical on a listing site can carry very different bills behind them.</p><p>I will also tell you when a house is wrong for you. Buyers say they want that and then find it uncomfortable in the moment, and it is still the most useful thing I do. Talking someone out of a house that would have cost them money later beats a fast closing.</p><p>The rest is unglamorous and matters anyway. Pulling comparable sales that actually compare, given how much the housing stock varies here. Getting inspections and the insurance quote scheduled early enough that the answers arrive while you can still act on them.</p><p>Keeping the lender and the title company moving. Answering the phone.</p><p>If you are buying from out of the area, add video walkthroughs and an honest read on what the camera is not showing you.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2 id="who-buys-homes-in-ocala-and-why">Who Buys Homes in Ocala (and Why)</h2>
+          <p>The Ocala buyer pool is more varied than people expect.</p><p>Retirees and pre-retirees from the Northeast and Midwest are a big group. They sell into a high-cost market, buy here outright or close to it, and keep the difference. That math has been pulling people into Marion County for years and it has not stopped.</p><p>Families priced out of Orlando and Tampa are the group growing fastest. Ocala sits roughly 80 miles north of downtown Orlando, which rules it out as a daily commute for most people and makes it irrelevant if you work remotely or locally.</p><p>I see a lot of healthcare workers. Nurses and clinical staff relocating for a position tend to arrive with a start date already set, which makes them decisive buyers who want to be near work and are not interested in a long drive across town to a shift.</p><p>Investors come for the entry cost and county-wide rental demand. If you are buying a primary residence, that matters to you mainly because you may be bidding against someone who can move faster than you can.</p><p>And first-time buyers come because Ocala still has genuine entry-level inventory, which has quietly become rare in this state.</p>
+        </div>
+      
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">On this page</p>
+          <ol>
+            <li><a href="#why-buyers-are-looking-at-ocala">Why Buyers Are Looking at Ocala</a></li>
+            <li><a href="#ocala-neighborhoods-worth-knowing-before-you-buy">Ocala Neighborhoods Worth Knowing Before You Buy</a></li>
+            <li><a href="#what-the-homebuying-process-looks-like-in-florida">What the Homebuying Process Looks Like in Florida</a></li>
+            <li><a href="#my-part-in-an-ocala-purchase">My Part in an Ocala Purchase</a></li>
+            <li><a href="#who-buys-homes-in-ocala-and-why">Who Buys Homes in Ocala (and Why)</a></li>
+          </ol>
+        </nav>
+        <a href="/?intent=buy#home" class="rail-cta" data-cta="hero-cta-rail">Start My Home Search</a>
+      </div>
     </div>
   </main>
 
@@ -564,56 +736,38 @@
           <h2 class="section-h2 reveal">Common Questions</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Is Ocala a good place to buy a home in 2026?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">Is Ocala a good place to buy a home in 2026?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>For buyers focused on affordability and long-term value, yes. Marion County remains one of the more affordable places to buy in Florida, it has been growing consistently, and inventory is easier to find here than in Orlando or Tampa. The tradeoff is distance. Ocala is roughly 80 miles from downtown Orlando, so a daily commute there is not realistic for most people.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              How much does it cost to buy a home in Ocala, FL?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">How much does it cost to buy a home in Ocala, FL?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>It depends heavily on which part of the county you are in and how old the house is. Entry-level neighborhoods in the southwest and east sides of the county sit well below the established northwest side, and Marion County housing stock spans five decades, so age and condition move the number as much as location does. Rather than quote you a range that will be stale by the time you read it, tell me your target area and I will pull current comparable sales for it.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Is homeowners insurance easier to get in Ocala than on the coast?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">Is homeowners insurance easier to get in Ocala than on the coast?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>Inland Marion County generally prices better than coastal Florida, but easier is not the same as easy. Carriers here still underwrite hard on roof age, and a roof past about 15 years can limit your options or push you toward a much higher premium regardless of how well the rest of the house was maintained. Flood zone designation also varies more within the county than people expect. Get a real quote on the specific address during your inspection period rather than budgeting from an average.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Do I need to be pre-approved before you can help me?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">Do I need to be pre-approved before you can help me?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>Not for a first conversation. Once you are ready to look at homes seriously, get pre-approved first. Sellers here expect a pre-approval letter with any offer, and it saves you from touring houses that were never going to work.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What is the Florida homestead exemption and how does it help buyers?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">What is the Florida homestead exemption and how does it help buyers?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Three practical things about it, since the mechanics are covered on my first-time buyer page. First, you have to apply. It is not automatic and it does not follow you from a previous house, so a closing in one year means filing with the Marion County Property Appraiser early in the next. Second, if you already had a homesteaded Florida home, ask specifically about portability, which lets you carry accumulated Save Our Homes savings to the new house and is a separate application people miss entirely. Third, do not budget from the seller's current tax bill. Their assessment reflects years under the cap. Yours resets when you buy, and the appraiser's site is where you get a real estimate for your address.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              How long does it take to close on a home in Ocala?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6" onclick="toggleFaq(this)"><span class="faq-q-text">How long does it take to close on a home in Ocala?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-6">
               <p>In my experience, a typical financed purchase takes about a month to six weeks from accepted offer to closing, and cash purchases can close noticeably faster. The timeline depends on the lender, the title company, and whether any inspection issues come up, so I will give you a real estimate once we know how you are financing.</p>
             </div>
           </div>
@@ -635,14 +789,14 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Sources</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.census.gov/newsroom/press-releases/2026/2025-popest-metro-micro-counties.html" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.census.gov</a>
-      <a href="https://floridarevenue.com/property/Pages/Taxpayers_Exemptions.aspx" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">floridarevenue.com</a>
-      <a href="https://floridarevenue.com/property/Documents/pt112.pdf" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">floridarevenue.com</a>
-      </div>
+      <div class="section-label">Sources</div>
+      <ul class="src-list">
+        <li><a href="https://www.census.gov/newsroom/press-releases/2026/2025-popest-metro-micro-counties.html" target="_blank" rel="noopener">www.census.gov</a></li>
+        <li><a href="https://floridarevenue.com/property/Pages/Taxpayers_Exemptions.aspx" target="_blank" rel="noopener">floridarevenue.com/property/Pages/Taxpayers_Exemptions.aspx</a></li>
+        <li><a href="https://floridarevenue.com/property/Documents/pt112.pdf" target="_blank" rel="noopener">floridarevenue.com/property/Documents/pt112.pdf</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -695,6 +849,11 @@
     &copy; 2026 Willy Lopez. All rights reserved.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/?intent=buy#home" class="sticky-cta-btn" data-cta="hero-cta-sticky">Start My Home Search</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -702,17 +861,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

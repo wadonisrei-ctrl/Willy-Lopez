@@ -195,6 +195,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -219,6 +224,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -228,7 +244,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -252,7 +268,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -274,7 +290,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -309,7 +326,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -325,94 +342,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -425,7 +491,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -438,7 +504,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -446,11 +512,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -458,42 +524,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -535,39 +676,11 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
-      <div class="section-label reveal">Guía</div>
-      
-        <div class="section-block reveal reveal-d1">
-          <h2>Cómo Es Marion Oaks</h2>
-          <p>Marion Oaks es una comunidad planificada grande en el suroeste del condado de Marion, al sur del centro de Ocala con acceso a la I-75 por la CR 484. Se trazó hace décadas, uno de los grandes desarrollos maestros de Florida de esa época, lo que significa que la cuadrícula de calles, el mapa de lotes, y los espacios comunitarios se diseñaron décadas antes de que se construyera la mayoría de las casas.</p><p>Esa historia se nota apenas manejas por ahí. Casas de los años ochenta y noventa están al lado de construcciones nuevas, con lotes vacíos todavía dispersos entre ellas. Marion Oaks ha sido una de las zonas de nueva construcción más activas del condado por años, precisamente porque esos lotes ya trazados dejan a los constructores levantar casas una por una en vez de desarrollar toda una subdivisión desde cero.</p><p>La comunidad tiene sus propias amenidades, incluyendo un centro comunitario y parques, financiados a través de un distrito de servicios municipales del condado, no de una asociación de propietarios tradicional.</p><p>Lo que esto significa para ti como comprador es simple. Marion Oaks ofrece casas unifamiliares en lotes reales de un cuarto de acre a algunos de los precios de entrada más bajos del centro de Florida, con inventario nuevo llegando de forma constante en vez de por oleadas.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d2">
-          <h2>Cuánto Cuestan las Casas en Marion Oaks</h2>
-          <p>Marion Oaks es un mercado de nivel de entrada según los estándares de Florida, y eso ha sido cierto de forma consistente por mucho tiempo. Lo que cuesta una casa aquí depende sobre todo de su edad, su tamaño, y si alguien le ha tocado el techo y el aire acondicionado en esta década.</p><p>El hecho que importa es la brecha, no el número exacto. Una casa que resulta accesible en Marion Oaks costaría muchísimo más en Orlando, Tampa, o Miami, y esa diferencia es la razón completa por la que la gente busca aquí en primer lugar.</p><p>Esto es lo que le digo a cada comprador que llega a Marion Oaks, y pesa más que cualquier rango de precio que te pueda dar de entrada. El costo por pie cuadrado varía más aquí que en casi cualquier otro vecindario donde trabajo, porque el inventario de casas abarca cinco décadas en las mismas calles. Una casa barata no es automáticamente un buen negocio. Una construcción nueva en la parte alta del rango tampoco está automáticamente sobrevalorada. Comparar una reventa de 1988 con una casa terminada el año pasado, a dos puertas de distancia, requiere contexto local y una mirada honesta a lo que cada una te va a costar en seguro y mantenimiento.</p><p>Esa comparación es el trabajo de verdad. Cualquiera te puede leer un precio de lista.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d3">
-          <h2>Nueva Construcción o Reventa: la Decisión Real</h2>
-          <p>Como todavía hay tantos lotes trazados esperando construcción, Marion Oaks le da al comprador una opción real entre casa nueva y reventa, a precios que se traslapan. Eso no es común, y cada lado tiene ventajas y desventajas reales.</p><p>Las casas nuevas vienen con techo nuevo, aire nuevo, y todo nuevo, lo cual importa más en Florida de lo que la mayoría de la gente que viene de otros estados se imagina, porque la suscripción de seguros depende muchísimo de la edad del techo. Un techo nuevo puede ser la diferencia entre una prima manejable y una complicada. Las desventajas son árboles más pequeños, construcción activa en lotes cercanos por un tiempo, y contratos de constructora que no se parecen en nada a un contrato de reventa estándar. Si compras nueva construcción, sigues necesitando tu propio agente revisando el trato. El representante de ventas del constructor trabaja para el constructor, no para ti.</p><p>Las reventas suelen costar menos de entrada, y el dinero se mueve a otra columna. Fíjate bien en el techo, el aire, el calentador de agua, y el panel eléctrico. En casas de los ochenta y noventa, esos cuatro elementos pueden sumar dinero serio dentro de un par de años después del cierre. Una inspección a fondo no es opcional aquí.</p><p>Yo trabajo ambos lados de esto de forma regular y te puedo decir, sobre cualquier casa específica, qué preguntas hacer antes de que te encariñes con ella.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d4">
-          <h2>Servicios de Agua, el Distrito de Servicios, y Qué Verificar Antes de Ofertar</h2>
-          <p>Marion Oaks tiene algunas particularidades que sorprenden a compradores que vienen de comunidades suburbanas más nuevas.</p><p>No hay HOA obligatoria en la mayor parte de Marion Oaks. Las amenidades y servicios comunitarios se financian a través de un distrito de servicios municipales que aparece en tu factura de impuestos de propiedad, no como una cuota mensual de HOA. Para compradores que específicamente no quieren una asociación diciéndoles de qué color pintar la puerta, esa es una de las mayores ventajas del vecindario. Verifica las aportaciones exactas de cualquier propiedad específica, porque no son uniformes.</p><p>Los servicios varían de calle en calle. Algunas secciones tienen agua y drenaje del condado, otras funcionan con pozo y séptico, y algunas casas combinan los dos sistemas. Eso es normal aquí, y cambia tu lista de inspección, tu conversación de seguro, y tu presupuesto de mantenimiento a largo plazo. Nunca asumas basándote en la casa de al lado. Confirma qué tiene la casa específica que te interesa.</p><p>El internet y la señal de celular generalmente funcionan bien, y de todas formas vale la pena confirmarlo en la dirección exacta si trabajas desde casa.</p><p>Nada de esto es razón para evitar Marion Oaks. Es simplemente la tarea local, y es exactamente el tipo de tarea que un agente que trabaja esta zona puede hacer antes de que gastes dinero en inspecciones.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d5">
-          <h2>Quién Compra en Marion Oaks, y Si Te Conviene a Ti</h2>
-          <p>Tres grupos forman la mayoría de los compradores que veo aquí.</p><p>Los compradores primerizos llegan porque este es uno de los últimos lugares del centro de Florida donde una casa de entrada en un lote real todavía está a su alcance. Muchos quedaron fuera del mercado de Orlando y descubren que la base de empleo de Ocala, junto con el trabajo remoto, hace que la mudanza sea práctica.</p><p>Los jubilados y las personas que se mudan desde el noreste o el medio oeste compran por la misma matemática que mueve al resto del condado: venden caro en un estado costoso, compran aquí, y se quedan con la diferencia. El trazado tranquilo y espacioso le sirve a quienes quieren espacio sin cargar con un terreno que tienen que mantener.</p><p>Los inversionistas vienen por el bajo costo de entrada y la demanda constante de renta en todo el condado. Si tú estás comprando tu residencia principal, esto te afecta sobre todo porque podrías estar compitiendo con una oferta sin contingencia de financiamiento, así que estar preaprobado y listo para moverte de verdad cuenta.</p><p>La verificación honesta es esta: Marion Oaks premia a compradores que quieren espacio y accesibilidad y no necesitan un restaurante justo a la vuelta. Los mandados diarios significan un viaje corto hasta el corredor de la SR 200 o hasta la CR 484. Si esa combinación te suena bien, Marion Oaks puede darte buen valor por tu dinero. Si te suena a un sacrificio que vas a resentir en un año, dímelo ahora y buscamos en otro lado.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>Lo que Aporta un Agente que Conoce Esta Zona</h2>
-          <p>Marion Oaks es un vecindario donde el conocimiento local se traduce directamente en dinero, más que en la mayoría de los lugares donde trabajo.</p><p>Empieza por el terreno mismo. Qué secciones están en servicios del condado y cuáles no, no es algo que puedas saber con solo mirar, y la respuesta cambia el alcance de tu inspección y tu conversación de seguro. Las aportaciones difieren de propiedad en propiedad. Las restricciones de escritura varían de manzana en manzana, porque esto se trazó en etapas a lo largo de décadas.</p><p>Después están los lotes de al lado. En una comunidad con terrenos vacíos dispersos por todas partes, importa si los lotes vacíos alrededor de una casa son propiedad de un constructor y están destinados a construcción, o si han estado sin tocar por treinta años. Una situación significa que vas a vivir al lado de una obra en construcción por un tiempo y vas a tener ventas comparables nuevas cerca. La otra significa que el lindero se queda tranquilo. Ninguna de las dos es mala. Que te agarre por sorpresa sí lo es.</p><p>Luego está el pie cuadrado que no coincide con el registro del condado, casi siempre porque alguien terminó un espacio sin sacar permiso. Eso afecta lo que vale la casa, contra qué se puede comparar, y si el tasador del prestamista va a contar ese espacio o no. Detectar eso antes de hacer una oferta es mucho más fácil que discutirlo dos semanas antes del cierre.</p><p>Y luego está la parte sencilla del trabajo: decirte cuándo una casa no te conviene, y ser específico sobre por qué. Yo represento tu lado de la transacción, no la casa ni al vendedor.</p>
-        </div>
-              <ul class='benefit-list'>
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">En pocas palabras</p>
+        <ul class="benefit-list">
           <li>Agente que trabaja Marion Oaks de cerca, no a distancia</li>
           <li>Respuestas directas sobre servicios de agua, el distrito de servicios, y nueva construcción</li>
           <li>Sé qué preguntar en una reventa de los años ochenta comparada con una casa nueva</li>
@@ -575,6 +688,67 @@
           <li>Agente de bienes raíces con licencia, afiliado con Taylor Apartment Locator</li>
           <li>Sirvo a Marion Oaks y todo el condado de Marion</li>
         </ul>
+      </div>
+      <nav class="toc-m" aria-label="En esta página">
+        <details>
+          <summary>En esta página</summary>
+          <ol>
+            <li><a href="#como-es-marion-oaks">Cómo Es Marion Oaks</a></li>
+            <li><a href="#cuanto-cuestan-las-casas-en-marion-oaks">Cuánto Cuestan las Casas en Marion Oaks</a></li>
+            <li><a href="#nueva-construccion-o-reventa-la-decision-real">Nueva Construcción o Reventa: la Decisión Real</a></li>
+            <li><a href="#servicios-de-agua-el-distrito-de-servicios-y-que-verificar-antes">Servicios de Agua, el Distrito de Servicios, y Qué Verificar Antes de Ofertar</a></li>
+            <li><a href="#quien-compra-en-marion-oaks-y-si-te-conviene-a-ti">Quién Compra en Marion Oaks, y Si Te Conviene a Ti</a></li>
+            <li><a href="#lo-que-aporta-un-agente-que-conoce-esta-zona">Lo que Aporta un Agente que Conoce Esta Zona</a></li>
+          </ol>
+        </details>
+      </nav>
+      <div class="section-label reveal">Guía</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2 id="como-es-marion-oaks">Cómo Es Marion Oaks</h2>
+          <p>Marion Oaks es una comunidad planificada grande en el suroeste del condado de Marion, al sur del centro de Ocala con acceso a la I-75 por la CR 484. Se trazó hace décadas, uno de los grandes desarrollos maestros de Florida de esa época, lo que significa que la cuadrícula de calles, el mapa de lotes, y los espacios comunitarios se diseñaron décadas antes de que se construyera la mayoría de las casas.</p><p>Esa historia se nota apenas manejas por ahí. Casas de los años ochenta y noventa están al lado de construcciones nuevas, con lotes vacíos todavía dispersos entre ellas. Marion Oaks ha sido una de las zonas de nueva construcción más activas del condado por años, precisamente porque esos lotes ya trazados dejan a los constructores levantar casas una por una en vez de desarrollar toda una subdivisión desde cero.</p><p>La comunidad tiene sus propias amenidades, incluyendo un centro comunitario y parques, financiados a través de un distrito de servicios municipales del condado, no de una asociación de propietarios tradicional.</p><p>Lo que esto significa para ti como comprador es simple. Marion Oaks ofrece casas unifamiliares en lotes reales de un cuarto de acre a algunos de los precios de entrada más bajos del centro de Florida, con inventario nuevo llegando de forma constante en vez de por oleadas.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2 id="cuanto-cuestan-las-casas-en-marion-oaks">Cuánto Cuestan las Casas en Marion Oaks</h2>
+          <p>Marion Oaks es un mercado de nivel de entrada según los estándares de Florida, y eso ha sido cierto de forma consistente por mucho tiempo. Lo que cuesta una casa aquí depende sobre todo de su edad, su tamaño, y si alguien le ha tocado el techo y el aire acondicionado en esta década.</p><p>El hecho que importa es la brecha, no el número exacto. Una casa que resulta accesible en Marion Oaks costaría muchísimo más en Orlando, Tampa, o Miami, y esa diferencia es la razón completa por la que la gente busca aquí en primer lugar.</p><p>Esto es lo que le digo a cada comprador que llega a Marion Oaks, y pesa más que cualquier rango de precio que te pueda dar de entrada. El costo por pie cuadrado varía más aquí que en casi cualquier otro vecindario donde trabajo, porque el inventario de casas abarca cinco décadas en las mismas calles. Una casa barata no es automáticamente un buen negocio.</p><p>Una construcción nueva en la parte alta del rango tampoco está automáticamente sobrevalorada. Comparar una reventa de 1988 con una casa terminada el año pasado, a dos puertas de distancia, requiere contexto local y una mirada honesta a lo que cada una te va a costar en seguro y mantenimiento.</p><p>Esa comparación es el trabajo de verdad. Cualquiera te puede leer un precio de lista.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2 id="nueva-construccion-o-reventa-la-decision-real">Nueva Construcción o Reventa: la Decisión Real</h2>
+          <p>Como todavía hay tantos lotes trazados esperando construcción, Marion Oaks le da al comprador una opción real entre casa nueva y reventa, a precios que se traslapan. Eso no es común, y cada lado tiene ventajas y desventajas reales.</p><p>Las casas nuevas vienen con techo nuevo, aire nuevo, y todo nuevo, lo cual importa más en Florida de lo que la mayoría de la gente que viene de otros estados se imagina, porque la suscripción de seguros depende muchísimo de la edad del techo. Un techo nuevo puede ser la diferencia entre una prima manejable y una complicada. Las desventajas son árboles más pequeños, construcción activa en lotes cercanos por un tiempo, y contratos de constructora que no se parecen en nada a un contrato de reventa estándar.</p><p>Si compras nueva construcción, sigues necesitando tu propio agente revisando el trato. El representante de ventas del constructor trabaja para el constructor, no para ti.</p><p>Las reventas suelen costar menos de entrada, y el dinero se mueve a otra columna. Fíjate bien en el techo, el aire, el calentador de agua, y el panel eléctrico. En casas de los ochenta y noventa, esos cuatro elementos pueden sumar dinero serio dentro de un par de años después del cierre. Una inspección a fondo no es opcional aquí.</p><p>Yo trabajo ambos lados de esto de forma regular y te puedo decir, sobre cualquier casa específica, qué preguntas hacer antes de que te encariñes con ella.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2 id="servicios-de-agua-el-distrito-de-servicios-y-que-verificar-antes">Servicios de Agua, el Distrito de Servicios, y Qué Verificar Antes de Ofertar</h2>
+          <p>Marion Oaks tiene algunas particularidades que sorprenden a compradores que vienen de comunidades suburbanas más nuevas.</p><p>No hay HOA obligatoria en la mayor parte de Marion Oaks. Las amenidades y servicios comunitarios se financian a través de un distrito de servicios municipales que aparece en tu factura de impuestos de propiedad, no como una cuota mensual de HOA. Para compradores que específicamente no quieren una asociación diciéndoles de qué color pintar la puerta, esa es una de las mayores ventajas del vecindario. Verifica las aportaciones exactas de cualquier propiedad específica, porque no son uniformes.</p><p>Los servicios varían de calle en calle. Algunas secciones tienen agua y drenaje del condado, otras funcionan con pozo y séptico, y algunas casas combinan los dos sistemas. Eso es normal aquí, y cambia tu lista de inspección, tu conversación de seguro, y tu presupuesto de mantenimiento a largo plazo.</p><p>Nunca asumas basándote en la casa de al lado. Confirma qué tiene la casa específica que te interesa.</p><p>El internet y la señal de celular generalmente funcionan bien, y de todas formas vale la pena confirmarlo en la dirección exacta si trabajas desde casa.</p><p>Nada de esto es razón para evitar Marion Oaks. Es simplemente la tarea local, y es exactamente el tipo de tarea que un agente que trabaja esta zona puede hacer antes de que gastes dinero en inspecciones.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2 id="quien-compra-en-marion-oaks-y-si-te-conviene-a-ti">Quién Compra en Marion Oaks, y Si Te Conviene a Ti</h2>
+          <p>Tres grupos forman la mayoría de los compradores que veo aquí.</p><p>Los compradores primerizos llegan porque este es uno de los últimos lugares del centro de Florida donde una casa de entrada en un lote real todavía está a su alcance. Muchos quedaron fuera del mercado de Orlando y descubren que la base de empleo de Ocala, junto con el trabajo remoto, hace que la mudanza sea práctica.</p><p>Los jubilados y las personas que se mudan desde el noreste o el medio oeste compran por la misma matemática que mueve al resto del condado: venden caro en un estado costoso, compran aquí, y se quedan con la diferencia. El trazado tranquilo y espacioso le sirve a quienes quieren espacio sin cargar con un terreno que tienen que mantener.</p><p>Los inversionistas vienen por el bajo costo de entrada y la demanda constante de renta en todo el condado. Si tú estás comprando tu residencia principal, esto te afecta sobre todo porque podrías estar compitiendo con una oferta sin contingencia de financiamiento, así que estar preaprobado y listo para moverte de verdad cuenta.</p><p>La verificación honesta es esta: Marion Oaks premia a compradores que quieren espacio y accesibilidad y no necesitan un restaurante justo a la vuelta. Los mandados diarios significan un viaje corto hasta el corredor de la SR 200 o hasta la CR 484. Si esa combinación te suena bien, Marion Oaks puede darte buen valor por tu dinero. Si te suena a un sacrificio que vas a resentir en un año, dímelo ahora y buscamos en otro lado.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="lo-que-aporta-un-agente-que-conoce-esta-zona">Lo que Aporta un Agente que Conoce Esta Zona</h2>
+          <p>Marion Oaks es un vecindario donde el conocimiento local se traduce directamente en dinero, más que en la mayoría de los lugares donde trabajo.</p><p>Empieza por el terreno mismo. Qué secciones están en servicios del condado y cuáles no, no es algo que puedas saber con solo mirar, y la respuesta cambia el alcance de tu inspección y tu conversación de seguro. Las aportaciones difieren de propiedad en propiedad. Las restricciones de escritura varían de manzana en manzana, porque esto se trazó en etapas a lo largo de décadas.</p><p>Después están los lotes de al lado. En una comunidad con terrenos vacíos dispersos por todas partes, importa si los lotes vacíos alrededor de una casa son propiedad de un constructor y están destinados a construcción, o si han estado sin tocar por treinta años. Una situación significa que vas a vivir al lado de una obra en construcción por un tiempo y vas a tener ventas comparables nuevas cerca.</p><p>La otra significa que el lindero se queda tranquilo. Ninguna de las dos es mala. Que te agarre por sorpresa sí lo es.</p><p>Luego está el pie cuadrado que no coincide con el registro del condado, casi siempre porque alguien terminó un espacio sin sacar permiso. Eso afecta lo que vale la casa, contra qué se puede comparar, y si el tasador del prestamista va a contar ese espacio o no. Detectar eso antes de hacer una oferta es mucho más fácil que discutirlo dos semanas antes del cierre.</p><p>Y luego está la parte sencilla del trabajo: decirte cuándo una casa no te conviene, y ser específico sobre por qué. Yo represento tu lado de la transacción, no la casa ni al vendedor.</p>
+        </div>
+      
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">En esta página</p>
+          <ol>
+            <li><a href="#como-es-marion-oaks">Cómo Es Marion Oaks</a></li>
+            <li><a href="#cuanto-cuestan-las-casas-en-marion-oaks">Cuánto Cuestan las Casas en Marion Oaks</a></li>
+            <li><a href="#nueva-construccion-o-reventa-la-decision-real">Nueva Construcción o Reventa: la Decisión Real</a></li>
+            <li><a href="#servicios-de-agua-el-distrito-de-servicios-y-que-verificar-antes">Servicios de Agua, el Distrito de Servicios, y Qué Verificar Antes de Ofertar</a></li>
+            <li><a href="#quien-compra-en-marion-oaks-y-si-te-conviene-a-ti">Quién Compra en Marion Oaks, y Si Te Conviene a Ti</a></li>
+            <li><a href="#lo-que-aporta-un-agente-que-conoce-esta-zona">Lo que Aporta un Agente que Conoce Esta Zona</a></li>
+          </ol>
+        </nav>
+        <a href="/es?intent=buy#home" class="rail-cta" data-cta="hero-cta-rail">Empieza Mi Búsqueda de Casa</a>
+      </div>
     </div>
   </main>
 
@@ -585,74 +759,50 @@
           <h2 class="section-h2 reveal">Preguntas comunes</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Es buena idea comprar una casa en Marion Oaks?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">¿Es buena idea comprar una casa en Marion Oaks?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>Para compradores enfocados en la accesibilidad, Marion Oaks es una de las jugadas de valor más fuertes del centro de Florida. Consigues casas unifamiliares en lotes de un cuarto de acre a algunos de los precios de entrada más bajos de la región, con nueva construcción activa que sigue agregando inventario en vez de que el vecindario ya esté completamente desarrollado. La contraparte es un trazado que depende del carro y un viaje corto hasta las tiendas y restaurantes sobre la SR 200 o la CR 484.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Cuánto cuestan las casas en Marion Oaks?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cuánto cuestan las casas en Marion Oaks?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>Marion Oaks está en el extremo de entrada del mercado de Florida, y dentro del vecindario mismo el rango es amplio porque el inventario de casas abarca cinco décadas en las mismas calles. La edad, el tamaño, y el estado del techo y el aire mueven el precio tanto como la ubicación. En vez de darte un rango que se vuelve viejo en unos meses, cuéntame qué estás buscando y te saco ventas comparables actuales para las secciones específicas que te interesan.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Marion Oaks tiene HOA?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">¿Marion Oaks tiene HOA?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>La mayor parte de Marion Oaks no tiene HOA obligatoria. Las amenidades y servicios comunitarios se financian a través de un distrito de servicios municipales del condado que aparece en tu factura de impuestos de propiedad, no como cuota mensual de HOA. Siempre verifica las aportaciones exactas y cualquier restricción de escritura de la propiedad específica que te interesa, porque no son uniformes en toda la comunidad.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Marion Oaks tiene agua de la ciudad o funciona con pozo y séptico?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">¿Marion Oaks tiene agua de la ciudad o funciona con pozo y séptico?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>Varía de calle en calle. Algunas secciones tienen agua y drenaje del condado, otras usan pozo y séptico, y algunas casas tienen una combinación de los dos. Confirma qué tiene la casa específica antes de hacer una oferta, porque eso afecta el alcance de tu inspección, tu seguro, y tu presupuesto de mantenimiento.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Qué tan lejos está Marion Oaks de Ocala y de Orlando?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">¿Qué tan lejos está Marion Oaks de Ocala y de Orlando?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Marion Oaks está al sur del centro de Ocala, con acceso rápido a la I-75 por la CR 484. Orlando queda más lejos, hacia el noreste por la Florida Turnpike y la I-4, lo cual explica por qué el vecindario le sirve mucho mejor a quien trabaja remoto, a quien viaja localmente, o a un jubilado, que a alguien que tendría que ir a Orlando todos los días.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Todavía hay lotes vacíos en Marion Oaks, y puedo construir?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6" onclick="toggleFaq(this)"><span class="faq-q-text">¿Todavía hay lotes vacíos en Marion Oaks, y puedo construir?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-6">
               <p>Sí, todavía hay lotes vacíos trazados por toda la comunidad, y por eso la construcción en esos espacios se ha mantenido activa por años. Comprar un lote y construir es una opción real, y es una transacción distinta a comprar una casa ya construida, con su propio calendario, su propio camino de financiamiento, y sus propios riesgos alrededor de las conexiones de servicios y la preparación del terreno. Antes de comprometerte con un lote, confirma qué servicios lo sirven, qué permiten las restricciones de retiro y de escritura, y qué preparación necesita el terreno de verdad. Esas respuestas cambian de lote en lote, aún dentro de la misma sección.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Debo comprar casa nueva o una reventa en Marion Oaks?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-7" aria-expanded="false" aria-controls="faq-a-7" onclick="toggleFaq(this)"><span class="faq-q-text">¿Debo comprar casa nueva o una reventa en Marion Oaks?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-7">
               <p>Depende de qué te preocupa más. Una casa nueva te da techo y aire nuevos, lo que ayuda con el seguro, pero árboles más pequeños y quizás construcción activa cerca por un tiempo. Una reventa suele costar menos de entrada, pero el techo, el aire, el calentador de agua, y el panel eléctrico se vuelven tu responsabilidad si tienen años, así que una inspección a fondo no es opcional. Yo puedo ver una casa específica contigo y decirte, con honestidad, qué preguntas hacer antes de que te encariñes con ella.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Quién compra en Marion Oaks normalmente?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-8" aria-expanded="false" aria-controls="faq-a-8" onclick="toggleFaq(this)"><span class="faq-q-text">¿Quién compra en Marion Oaks normalmente?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-8">
               <p>Veo sobre todo tres grupos: compradores primerizos que quedaron fuera del mercado de Orlando, jubilados y personas que se mudan desde estados con un costo de vida más alto, e inversionistas atraídos por el bajo costo de entrada y la demanda constante de renta en el condado. Si compras como residencia principal, es útil saber que podrías estar compitiendo con ofertas sin contingencia de financiamiento, así que llegar preaprobado cuenta más de lo que parece.</p>
             </div>
           </div>
@@ -674,12 +824,12 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Fuentes</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.marionfl.org/agencies-departments/departments-facilities-offices/municipal-services/marion-oaks-mstu" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.marionfl.org</a>
-      </div>
+      <div class="section-label">Fuentes</div>
+      <ul class="src-list">
+        <li><a href="https://www.marionfl.org/agencies-departments/departments-facilities-offices/municipal-services/marion-oaks-mstu" target="_blank" rel="noopener">www.marionfl.org</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -732,6 +882,11 @@
     &copy; 2026 Willy Lopez. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/es?intent=buy#home" class="sticky-cta-btn" data-cta="hero-cta-sticky">Empieza Mi Búsqueda de Casa</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -739,17 +894,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

@@ -187,6 +187,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -211,6 +216,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -220,7 +236,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -244,7 +260,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -266,7 +282,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -301,7 +318,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -317,94 +334,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -417,7 +483,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -430,7 +496,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -438,11 +504,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -450,42 +516,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -527,58 +668,96 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
-      <div class="section-label reveal">Guide</div>
-      
-        <div class="section-block reveal reveal-d1">
-          <h2>What Hometown Heroes Money Can Cover</h2>
-          <p>The Florida Hometown Heroes program is run by Florida Housing Finance Corporation, the state's housing finance agency, and it does one narrow job. It puts money toward the down payment and closing costs of a home purchase for first-time buyers working in a set of occupations the state decided it wanted to keep living here rather than commuting in from somewhere cheaper.</p><p>Florida Housing sets the assistance at up to 5% of the first mortgage loan amount, with a floor of $10,000 and a ceiling of $35,000.</p><p>Read that as a range with hard stops on both ends. A modest loan does not shrink your assistance below the minimum. A large one does not push it past the maximum. And because the calculation runs off the first mortgage amount rather than the sale price, two buyers on the same street can land on different numbers depending on how their financing is structured.</p><p>The money is for the down payment, closing costs, and prepaid items. Not a furniture budget, not a renovation fund, not a cushion sitting in your account the week after closing.</p><p>Now the part that gets skipped in almost every conversation I have about this program. It is not a grant. Florida Housing describes it as a 0%, non-amortizing, 30-year deferred second mortgage. Every word in that phrase is carrying weight, and the next section takes them apart one at a time, because a lien goes on your house and buyers should understand that before they sign rather than after.</p><p>I am not writing that to scare anyone off. Understood properly, this is a useful tool for a Florida buyer whose income comfortably supports a monthly payment but whose savings do not yet cover the cash it takes to get to the closing table. Misunderstood, it turns into an unpleasant surprise years later when you sell or try to refinance.</p><p>The occupational list is worth reading as a statement of intent. Florida wrote this around the jobs that keep a county functioning day to day, the people who staff the hospital, the school, the fire station, and the child care center. In a market where housing costs have moved faster than public sector and health care pay, that is the gap the program was built to close.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d2">
-          <h2>How the Deferred Second Mortgage Works</h2>
-          <p>Take the phrase apart and it stops being intimidating.</p><p>Zero percent means no interest accrues. The balance you repay is the balance you received, however many years later that turns out to be. In a state where insurance and taxes have both been moving in one direction, an obligation that charges no interest and never grows is genuinely valuable.</p><p>Non-amortizing means the balance does not shrink either. You are not chipping away at it every month, because there is no monthly payment on it at all.</p><p>Thirty-year deferred means it sits quietly behind your first mortgage instead of showing up in your payment.</p><p>Second mortgage means exactly what it says. It is recorded against the property, in second position behind your primary loan. It is a lien on your house, not a gift certificate.</p><p>So when does it come due? Florida Housing is specific: in full, upon sale of the property, refinancing of the first mortgage, transfer of the deed, or if you no longer occupy the home as your primary residence.</p><p>Read the refinance trigger twice, because that is the one that catches people. Rates move. Five years from now you may very much want to refinance your first mortgage into a better one, and doing that triggers repayment of the second. Whether any accommodation exists in that situation is a question for Florida Housing and your lender at the time, not something a web page should be answering for you. What you should take away is simple: the assistance is a claim against your future equity, and the moment you touch the first mortgage, that claim comes to the front of the line.</p><p>The practical version. If you buy, stay, and sell in year twelve with real appreciation behind you, the payoff comes out of your proceeds and you barely feel it. If you buy and sell in year three in a flat market, that same payoff can eat a meaningful share of whatever equity you built. Neither outcome is hidden. Both are knowable before you sign.</p><p>This is a different shape of help than a USDA loan, which is the other financing question Marion County buyers bring me most. USDA solves the down payment by not requiring one. Hometown Heroes hands you money for the down payment and closing costs and records a lien for it. One removes the requirement, the other funds it. There is a full USDA page linked at the bottom of this one if that comparison matters for where you are shopping.</p><p>On stacking, since the assistance is a second, it sits behind a first mortgage originated by a participating lender. Which first mortgage products it can pair with is set by Florida Housing and administered through its approved lender network, and those details can differ between funding cycles. Ask a participating lender what pairings are approved for the round you are applying under instead of trusting the structure described in an article written two cycles ago.</p><p>The mechanics of the reservation itself are worth knowing before you talk to a lender. A participating lender reserves the assistance for you through a system called eHousingPlus, at the point your first mortgage rate locks, not before. From there you have 60 days to reach underwriter certification, or the reservation cancels automatically and the money goes back into the pool for someone else. The lender also needs to see a minimum 640 credit score and confirm you have completed FHFC-approved homebuyer education before that reservation can be made. If you are buying new construction, the home needs its certificate of occupancy before a reservation can be placed on it. The program pairs with FHA, VA, RD, and Conventional first mortgages. None of this is something I control or verify. The lender is the one who actually qualifies you, and I hand off to one rather than guessing on your behalf.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d3">
-          <h2>Who Qualifies, by Job and by Ownership History</h2>
-          <p>Florida Housing limits the program to borrowers employed full-time by a Florida-based employer as a health care worker, school staff member, first responder, public safety or court employee, or child care worker. Military service members and reserves are eligible, as are veterans employed full-time by a Florida-based employer.</p><p>Two words in that sentence do more filtering than the job titles do.</p><p>Full-time. Part-time work in a qualifying role is a different conversation, and it is one to have with a lender before you build a plan around the program.</p><p>Florida-based employer. Florida has a lot of people living here on paychecks issued somewhere else. If you work remotely for a company headquartered in another state, do not assume you are in and do not assume you are out. Ask directly, early, and get the answer from someone who reserves these funds for a living.</p><p>On the occupational categories themselves, the language is broader than the job title most people picture. School staff member is not a synonym for classroom teacher. A hospital employs far more people than the ones wearing scrubs. If your role sits inside a qualifying institution but is not the obvious face of it, that is worth asking about rather than quietly ruling yourself out over.</p><p>Then there is the first-time buyer requirement, which surprises more people than any other part of this program.</p><p>Housing finance programs of this type generally treat you as a first-time buyer if you have not owned and occupied a home as your primary residence in the previous three years. I am giving you that as the general standard rather than as a verdict on your situation, and the hedge is deliberate. The definition gets applied by a lender against your actual ownership history, and the edge cases are where it gets settled.</p><p>Real situations that turn on details: you inherited a house you never lived in. You own a rental you have never occupied. You divorced and the home went to your former spouse. Every one of those has a real answer, and none of those answers should come from a page like this one. They come from a participating lender reading your file.</p><p>If you have served, ask specifically whether the first-time requirement applies to you the same way. Do not assume in either direction based on something you read online, this page included.</p><p>The useful takeaway is that plenty of people who have owned a home before still qualify, and a lot of them never find out because they read the words first-time buyer and stopped.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d4">
-          <h2>Income and Price Limits, and Why No Numbers Appear Here</h2>
-          <p>There is a ceiling on household income and a ceiling on purchase price. Both are set by county. I am not printing either figure on this page, and I want to explain why rather than leave you wondering whether I just did not look it up.</p><p>County limits get republished. A page that quotes a Marion County income cap accurately today reads as authoritative and is quietly wrong eighteen months from now, by which point it has been indexed, linked, and screenshotted into somebody's notes. A buyer who talks themselves out of a program because of a stale number I published is a far worse outcome than a buyer who has to make one phone call to get a current one.</p><p>Where the real figures live: Florida Housing publishes income and purchase price limits by county on its own site, and any participating lender can pull the current numbers for your county and household size in about the time it takes to open a file. Ask for both, and ask for them in writing.</p><p>Two things worth understanding before you make that call.</p><p>County variation here is not a rounding difference. Florida spans counties with wildly different income and price profiles, and the ceiling governing a purchase in Marion County is not the ceiling governing one in Broward or Monroe. If your search crosses a county line, you may be working against two different sets of limits at once, which is a real planning problem and not a technicality.</p><p>The second thing matters more. Do not disqualify yourself on a mental estimate. Whose income counts, which income counts, and what gets deducted before the comparison is made are all technical questions with real answers, and the gross number on your pay stub is rarely the figure that decides it. People rule themselves out of assistance programs in their own heads, on arithmetic they did in the car, and never make the call that would have corrected them. That is a bad way to lose something you were entitled to.</p><p>The purchase price cap deserves the same treatment for a different reason. It shapes what is worth touring. Finding out about it after you have fallen for a house is how a promising Saturday turns into a wasted month.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d5">
-          <h2>First Come, First Served, and What That Really Means</h2>
-          <p>This is the part of the program that decides outcomes, and it is the part almost every article about it gets quietly wrong by the time you find it.</p><p>Hometown Heroes funding arrives in cycles. The Legislature appropriates money, Florida Housing makes it available, participating lenders reserve it for individual buyers as loans get locked, and when a round is committed, it is committed. First come, first served, with the reservations happening at lender level in real time.</p><p>What the record shows about the pace. Rounds have moved at very different speeds. Some have been fully committed within a few weeks of opening; others have taken most of a year to work through. Funds are limited, a participating lender reserves them for you the moment your loan is locked, and a round can close without any public announcement. Florida Housing Finance Corporation publishes current program status on its own site, and that is the only number worth trusting on the day you are reading this, not a figure printed on an article that may be months or years old.</p><p>Line those up and the conclusion writes itself. These rounds do not sit open for months waiting for you to get organized. A round can be fully claimed before most eligible buyers in the state have heard that it opened.</p><p>So I am going to do something unusual for a real estate page and decline to tell you whether money is available as you read this. I have no idea when you are reading it. This page might be a day old or three years old, and the honest answer changes by the week. Availability shifts without notice, nobody announces it to you personally, and the only two sources worth trusting are Florida Housing Finance Corporation directly and a participating lender who can see reservation status today. Any other answer, including a confident one, is a guess wearing a suit.</p><p>That reality should change your strategy completely. When a program gets claimed in weeks, the buyers who land it are not the ones who start when it opens. They are the ones who finished the slow parts months earlier and only had to make one call.</p><p>Being ready looks like this.</p><p>Pre-approved with a lender who participates in Florida Housing's programs, not just any lender who answered the phone. Not every loan officer works these files, and hunting for one after a round opens burns the days that actually mattered.</p><p>Documentation gathered in advance. Verification of full-time employment in a qualifying role, income history, and a clear answer on your ownership history for the last three years.</p><p>Your county's current income and purchase price limits confirmed in writing.</p><p>Homebuyer education handled if the round requires it. Ask whether it does, because a course you have not taken is a poor thing to discover on a deadline.</p><p>A property you can go under contract on, or at minimum a search narrow enough that you could move within days.</p><p>If you check and a round is closed, that is information, not a verdict. Appropriations have come back in past cycles. Getting your file assembled during a closed stretch costs you nothing and puts you near the front when funding returns. One thing I will say flatly: never structure a purchase around assistance nobody has confirmed in writing is reserved for you. Contracts have dates. Funding rounds do not care about them.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>The Realtor Fee Cap on a Hometown Heroes Deal</h2>
-          <p>Buyers ask about this less than they should, so I am putting it on the page unprompted.</p><p>Realtor commission cannot be paid out of the down payment assistance funds themselves. On top of that, Florida Housing's current lender guide for this program caps any realtor fee you pay directly at $500. That is not a typo and it is not a negotiable line item a lender can talk their way around.</p><p>What that means in practice is that your offer needs to be structured with this in mind from the start, whether that means seller concessions built into the contract or a cooperative fee offered on the listing side. The buyer-broker agreement you sign should reflect that from the outset, not get adjusted after the fact.</p><p>I would rather you understand exactly how this piece works before you write an offer than have it become a surprise at the closing table.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>Three Steps If You Want to Move on This</h2>
-          <p>Step one. Tap the button on this page to send me your name and number, or call me directly. Tell me your occupation, your rough timeline, and whether you have owned a home in the last three years. That is enough for a first read on whether this program fits you.</p><p>Step two. I connect you with a lender who actually participates in Florida Housing's programs, and they run your pre-qualification. This is the step that matters most, because the lender confirms your credit, your income against the current county limits, and whether a round has room for you right now. I do not skip you past this step, because nobody can promise you funding without it.</p><p>Step three. Once you are pre-qualified, we tour homes in Ocala or Marion Oaks that fit your price range and the program's purchase price limit for your county. From there it is a normal purchase, just one with a second mortgage attached that you now understand.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>When This Is the Wrong Tool, and Where I Fit</h2>
-          <p>I would rather talk a buyer out of chasing this program in week one than watch a deal built on it fall apart in week six. Here is when it is not the answer.</p><p>Your occupation is not on the list. That one is binary, and there is no creative way around it. Florida Housing runs other homebuyer assistance programs that are not gated on occupation, so the right move is to ask a participating lender what else you qualify for rather than treating this as your only shot.</p><p>You need to move soon and the round is closed. Waiting on a future appropriation is not a timeline. If you have a lease ending or a job starting, buy on financing that exists today.</p><p>You expect to sell or refinance quickly. The second mortgage comes due on both events. If your honest guess is that you are out of this house in two or three years, run the payoff against your likely equity before you take the assistance, not after.</p><p>You are buying an investment property or a second home. Occupancy as your primary residence is a condition of the deferral, so the moment the property stops being where you live, the balance is due.</p><p>You do not understand what you are signing. Not knowing is fine and normal. Signing anyway is the problem. Ask until the lien, the payoff triggers, and your county's limits are all clear to you in plain language.</p><p>And if you are buying in southwest Marion County specifically, compare this against USDA before you commit to either. They solve different problems, they are not automatically interchangeable, and the right one depends on your address, your household, and how long you plan to stay. Have someone put both against your actual file rather than picking whichever one you heard about first.</p><p>Now where I fit, stated plainly.</p><p>I represent buyers in Ocala and Marion Oaks. That is where I am the one walking the house with you, reading the disclosures with you, and writing the offer. Hometown Heroes is a statewide program, so a lot of people reading this are buying somewhere I do not work, and I am not going to pretend otherwise to keep you on the page.</p><p>I also do not keep a roster of agents around the state to hand you off to, and you should be skeptical of anyone who claims they do. What I can do is help you work out what you actually need from an agent in your market, including whether they have closed a purchase using state assistance before, which is a more useful filter than a name pulled off somebody's referral list.</p><p>If you are looking in Marion County, send me your occupation, your rough timeline, and whether you have owned a home in the last three years. That is enough for me to tell you straight whether this program is worth your energy and what the next call should be.</p>
-        </div>
-              <ul class='benefit-list'>
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">The short version</p>
+        <ul class="benefit-list">
           <li>Down payment and closing cost assistance of up to 5% of the first mortgage, minimum $10,000 and maximum $35,000</li>
           <li>Structured by Florida Housing as a 0% deferred second mortgage, not a grant</li>
           <li>Eligible occupations include health care, school staff, first responders, public safety and court employees, child care, military and veterans, working full-time for a Florida-based employer</li>
           <li>Your lender needs a minimum 640 credit score and FHFC-approved homebuyer education to reserve the funds</li>
           <li>Funding runs in first-come first-served rounds that have historically been claimed in weeks to months</li>
-          <li>A realtor fee you pay directly is capped at $500 on an HTH deal, which shapes how your offer needs to be structured</li>
           <li>No stale income limits printed here, only where to get the figure that is current on the day you apply</li>
           <li>Licensed with Taylor Apartment Locator, representing buyers in Ocala and Marion Oaks</li>
         </ul>
+      </div>
+      <nav class="toc-m" aria-label="On this page">
+        <details>
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#what-hometown-heroes-money-can-cover">What Hometown Heroes Money Can Cover</a></li>
+            <li><a href="#how-the-deferred-second-mortgage-works">How the Deferred Second Mortgage Works</a></li>
+            <li><a href="#who-qualifies-by-job-and-by-ownership-history">Who Qualifies, by Job and by Ownership History</a></li>
+            <li><a href="#income-and-price-limits-and-why-no-numbers-appear-here">Income and Price Limits, and Why No Numbers Appear Here</a></li>
+            <li><a href="#first-come-first-served-and-what-that-really-means">First Come, First Served, and What That Really Means</a></li>
+            <li><a href="#the-realtor-fee-cap-on-a-hometown-heroes-deal">The Realtor Fee Cap on a Hometown Heroes Deal</a></li>
+            <li><a href="#three-steps-if-you-want-to-move-on-this">Three Steps If You Want to Move on This</a></li>
+            <li><a href="#when-this-is-the-wrong-tool-and-where-i-fit">When This Is the Wrong Tool, and Where I Fit</a></li>
+          </ol>
+        </details>
+      </nav>
+      <div class="section-label reveal">Guide</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2 id="what-hometown-heroes-money-can-cover">What Hometown Heroes Money Can Cover</h2>
+          <p>The Florida Hometown Heroes program is run by Florida Housing Finance Corporation, the state's housing finance agency, and it does one narrow job. It puts money toward the down payment and closing costs of a home purchase for first-time buyers working in a set of occupations the state decided it wanted to keep living here rather than commuting in from somewhere cheaper.</p><p class="fact">Florida Housing sets the assistance at up to 5% of the first mortgage loan amount, with a floor of $10,000 and a ceiling of $35,000.</p><p>Read that as a range with hard stops on both ends. A modest loan does not shrink your assistance below the minimum. A large one does not push it past the maximum. And because the calculation runs off the first mortgage amount rather than the sale price, two buyers on the same street can land on different numbers depending on how their financing is structured.</p><p>The money is for the down payment, closing costs, and prepaid items. Not a furniture budget, not a renovation fund, not a cushion sitting in your account the week after closing.</p><p>Now the part that gets skipped in almost every conversation I have about this program. It is not a grant. Florida Housing describes it as a 0%, non-amortizing, 30-year deferred second mortgage. Every word in that phrase is carrying weight, and the next section takes them apart one at a time, because a lien goes on your house and buyers should understand that before they sign rather than after.</p><p>I am not writing that to scare anyone off. Understood properly, this is a useful tool for a Florida buyer whose income comfortably supports a monthly payment but whose savings do not yet cover the cash it takes to get to the closing table. Misunderstood, it turns into an unpleasant surprise years later when you sell or try to refinance.</p><p>The occupational list is worth reading as a statement of intent. Florida wrote this around the jobs that keep a county functioning day to day, the people who staff the hospital, the school, the fire station, and the child care center. In a market where housing costs have moved faster than public sector and health care pay, that is the gap the program was built to close.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2 id="how-the-deferred-second-mortgage-works">How the Deferred Second Mortgage Works</h2>
+          <p>Take the phrase apart and it stops being intimidating.</p><p>Zero percent means no interest accrues. The balance you repay is the balance you received, however many years later that turns out to be. In a state where insurance and taxes have both been moving in one direction, an obligation that charges no interest and never grows is genuinely valuable.</p><p>Non-amortizing means the balance does not shrink either. You are not chipping away at it every month, because there is no monthly payment on it at all.</p><p>Thirty-year deferred means it sits quietly behind your first mortgage instead of showing up in your payment.</p><p>Second mortgage means exactly what it says. It is recorded against the property, in second position behind your primary loan. It is a lien on your house, not a gift certificate.</p><p>So when does it come due? Florida Housing is specific: in full, upon sale of the property, refinancing of the first mortgage, transfer of the deed, or if you no longer occupy the home as your primary residence.</p><p>Read the refinance trigger twice, because that is the one that catches people. Rates move. Five years from now you may very much want to refinance your first mortgage into a better one, and doing that triggers repayment of the second.</p><p>Whether any accommodation exists in that situation is a question for Florida Housing and your lender at the time, not something a web page should be answering for you. What you should take away is simple: the assistance is a claim against your future equity, and the moment you touch the first mortgage, that claim comes to the front of the line.</p><p>The practical version. If you buy, stay, and sell in year twelve with real appreciation behind you, the payoff comes out of your proceeds and you barely feel it. If you buy and sell in year three in a flat market, that same payoff can eat a meaningful share of whatever equity you built.</p><p>Neither outcome is hidden. Both are knowable before you sign.</p><p>This is a different shape of help than a USDA loan, which is the other financing question Marion County buyers bring me most. USDA solves the down payment by not requiring one. Hometown Heroes hands you money for the down payment and closing costs and records a lien for it.</p><p>One removes the requirement, the other funds it. There is a full USDA page linked at the bottom of this one if that comparison matters for where you are shopping.</p><p>On stacking, since the assistance is a second, it sits behind a first mortgage originated by a participating lender. Which first mortgage products it can pair with is set by Florida Housing and administered through its approved lender network, and those details can differ between funding cycles. Ask a participating lender what pairings are approved for the round you are applying under instead of trusting the structure described in an article written two cycles ago.</p><p>The mechanics of the reservation itself are worth knowing before you talk to a lender. A participating lender reserves the assistance for you through a system called eHousingPlus, at the point your first mortgage rate locks, not before. From there you have 60 days to reach underwriter certification, or the reservation cancels automatically and the money goes back into the pool for someone else.</p><p class="fact">The lender also needs to see a minimum 640 credit score and confirm you have completed FHFC-approved homebuyer education before that reservation can be made. If you are buying new construction, the home needs its certificate of occupancy before a reservation can be placed on it. The program pairs with FHA, VA, RD, and Conventional first mortgages.</p><p>None of this is something I control or verify. The lender is the one who actually qualifies you, and I hand off to one rather than guessing on your behalf.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2 id="who-qualifies-by-job-and-by-ownership-history">Who Qualifies, by Job and by Ownership History</h2>
+          <p>Florida Housing limits the program to borrowers employed full-time by a Florida-based employer as a health care worker, school staff member, first responder, public safety or court employee, or child care worker. Military service members and reserves are eligible, as are veterans employed full-time by a Florida-based employer.</p><p>Two words in that sentence do more filtering than the job titles do.</p><p>Full-time. Part-time work in a qualifying role is a different conversation, and it is one to have with a lender before you build a plan around the program.</p><p>Florida-based employer. Florida has a lot of people living here on paychecks issued somewhere else. If you work remotely for a company headquartered in another state, do not assume you are in and do not assume you are out. Ask directly, early, and get the answer from someone who reserves these funds for a living.</p><p>On the occupational categories themselves, the language is broader than the job title most people picture. School staff member is not a synonym for classroom teacher. A hospital employs far more people than the ones wearing scrubs. If your role sits inside a qualifying institution but is not the obvious face of it, that is worth asking about rather than quietly ruling yourself out over.</p><p>Then there is the first-time buyer requirement, which surprises more people than any other part of this program.</p><p>Housing finance programs of this type generally treat you as a first-time buyer if you have not owned and occupied a home as your primary residence in the previous three years. I am giving you that as the general standard rather than as a verdict on your situation, and the hedge is deliberate. The definition gets applied by a lender against your actual ownership history, and the edge cases are where it gets settled.</p><p>Real situations that turn on details: you inherited a house you never lived in. You own a rental you have never occupied. You divorced and the home went to your former spouse.</p><p>Every one of those has a real answer, and none of those answers should come from a page like this one. They come from a participating lender reading your file.</p><p>If you have served, ask specifically whether the first-time requirement applies to you the same way. Do not assume in either direction based on something you read online, this page included.</p><p>The useful takeaway is that plenty of people who have owned a home before still qualify, and a lot of them never find out because they read the words first-time buyer and stopped.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2 id="income-and-price-limits-and-why-no-numbers-appear-here">Income and Price Limits, and Why No Numbers Appear Here</h2>
+          <p>There is a ceiling on household income and a ceiling on purchase price. Both are set by county. I am not printing either figure on this page, and I want to explain why rather than leave you wondering whether I just did not look it up.</p><p>County limits get republished. A page that quotes a Marion County income cap accurately today reads as authoritative and is quietly wrong eighteen months from now, by which point it has been indexed, linked, and screenshotted into somebody's notes. A buyer who talks themselves out of a program because of a stale number I published is a far worse outcome than a buyer who has to make one phone call to get a current one.</p><p>Where the real figures live: Florida Housing publishes income and purchase price limits by county on its own site, and any participating lender can pull the current numbers for your county and household size in about the time it takes to open a file. Ask for both, and ask for them in writing.</p><p>Two things worth understanding before you make that call.</p><p>County variation here is not a rounding difference. Florida spans counties with wildly different income and price profiles, and the ceiling governing a purchase in Marion County is not the ceiling governing one in Broward or Monroe. If your search crosses a county line, you may be working against two different sets of limits at once, which is a real planning problem and not a technicality.</p><p>The second thing matters more. Do not disqualify yourself on a mental estimate. Whose income counts, which income counts, and what gets deducted before the comparison is made are all technical questions with real answers, and the gross number on your pay stub is rarely the figure that decides it.</p><p>People rule themselves out of assistance programs in their own heads, on arithmetic they did in the car, and never make the call that would have corrected them. That is a bad way to lose something you were entitled to.</p><p>The purchase price cap deserves the same treatment for a different reason. It shapes what is worth touring. Finding out about it after you have fallen for a house is how a promising Saturday turns into a wasted month.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2 id="first-come-first-served-and-what-that-really-means">First Come, First Served, and What That Really Means</h2>
+          <p>This is the part of the program that decides outcomes, and it is the part almost every article about it gets quietly wrong by the time you find it.</p><p>Hometown Heroes funding arrives in cycles. The Legislature appropriates money, Florida Housing makes it available, participating lenders reserve it for individual buyers as loans get locked, and when a round is committed, it is committed. First come, first served, with the reservations happening at lender level in real time.</p><p>What the record shows about the pace. Rounds have moved at very different speeds. Some have been fully committed within a few weeks of opening; others have taken most of a year to work through.</p><p>Funds are limited, a participating lender reserves them for you the moment your loan is locked, and a round can close without any public announcement. Florida Housing Finance Corporation publishes current program status on its own site, and that is the only number worth trusting on the day you are reading this, not a figure printed on an article that may be months or years old.</p><p>Line those up and the conclusion writes itself. These rounds do not sit open for months waiting for you to get organized. A round can be fully claimed before most eligible buyers in the state have heard that it opened.</p><p>So I am going to do something unusual for a real estate page and decline to tell you whether money is available as you read this. I have no idea when you are reading it. This page might be a day old or three years old, and the honest answer changes by the week.</p><p>Availability shifts without notice, nobody announces it to you personally, and the only two sources worth trusting are Florida Housing Finance Corporation directly and a participating lender who can see reservation status today. Any other answer, including a confident one, is a guess wearing a suit.</p><p>That reality should change your strategy completely. When a program gets claimed in weeks, the buyers who land it are not the ones who start when it opens. They are the ones who finished the slow parts months earlier and only had to make one call.</p><p>Being ready looks like this.</p><p>Pre-approved with a lender who participates in Florida Housing's programs, not just any lender who answered the phone. Not every loan officer works these files, and hunting for one after a round opens burns the days that actually mattered.</p><p>Documentation gathered in advance. Verification of full-time employment in a qualifying role, income history, and a clear answer on your ownership history for the last three years.</p><p>Your county's current income and purchase price limits confirmed in writing.</p><p>Homebuyer education handled if the round requires it. Ask whether it does, because a course you have not taken is a poor thing to discover on a deadline.</p><p>A property you can go under contract on, or at minimum a search narrow enough that you could move within days.</p><p>If you check and a round is closed, that is information, not a verdict. Appropriations have come back in past cycles. Getting your file assembled during a closed stretch costs you nothing and puts you near the front when funding returns.</p><p>One thing I will say flatly: never structure a purchase around assistance nobody has confirmed in writing is reserved for you. Contracts have dates. Funding rounds do not care about them.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="the-realtor-fee-cap-on-a-hometown-heroes-deal">The Realtor Fee Cap on a Hometown Heroes Deal</h2>
+          <p>Buyers ask about this less than they should, so I am putting it on the page unprompted.</p><p>Realtor commission cannot be paid out of the down payment assistance funds themselves. On top of that, Florida Housing's current lender guide for this program caps any realtor fee you pay directly at $500. That is not a typo and it is not a negotiable line item a lender can talk their way around.</p><p>What that means in practice is that your offer needs to be structured with this in mind from the start, whether that means seller concessions built into the contract or a cooperative fee offered on the listing side. The buyer-broker agreement you sign should reflect that from the outset, not get adjusted after the fact.</p><p>I would rather you understand exactly how this piece works before you write an offer than have it become a surprise at the closing table.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="three-steps-if-you-want-to-move-on-this">Three Steps If You Want to Move on This</h2>
+          <p>Step one. Tap the button on this page to send me your name and number, or call me directly. Tell me your occupation, your rough timeline, and whether you have owned a home in the last three years. That is enough for a first read on whether this program fits you.</p><p>Step two. I connect you with a lender who actually participates in Florida Housing's programs, and they run your pre-qualification. This is the step that matters most, because the lender confirms your credit, your income against the current county limits, and whether a round has room for you right now. I do not skip you past this step, because nobody can promise you funding without it.</p><p>Step three. Once you are pre-qualified, we tour homes in Ocala or Marion Oaks that fit your price range and the program's purchase price limit for your county. From there it is a normal purchase, just one with a second mortgage attached that you now understand.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="when-this-is-the-wrong-tool-and-where-i-fit">When This Is the Wrong Tool, and Where I Fit</h2>
+          <p>I would rather talk a buyer out of chasing this program in week one than watch a deal built on it fall apart in week six. Here is when it is not the answer.</p><p>Your occupation is not on the list. That one is binary, and there is no creative way around it. Florida Housing runs other homebuyer assistance programs that are not gated on occupation, so the right move is to ask a participating lender what else you qualify for rather than treating this as your only shot.</p><p>You need to move soon and the round is closed. Waiting on a future appropriation is not a timeline. If you have a lease ending or a job starting, buy on financing that exists today.</p><p>You expect to sell or refinance quickly. The second mortgage comes due on both events. If your honest guess is that you are out of this house in two or three years, run the payoff against your likely equity before you take the assistance, not after.</p><p>You are buying an investment property or a second home. Occupancy as your primary residence is a condition of the deferral, so the moment the property stops being where you live, the balance is due.</p><p>You do not understand what you are signing. Not knowing is fine and normal. Signing anyway is the problem. Ask until the lien, the payoff triggers, and your county's limits are all clear to you in plain language.</p><p>And if you are buying in southwest Marion County specifically, compare this against USDA before you commit to either. They solve different problems, they are not automatically interchangeable, and the right one depends on your address, your household, and how long you plan to stay. Have someone put both against your actual file rather than picking whichever one you heard about first.</p><p>Now where I fit, stated plainly.</p><p>I represent buyers in Ocala and Marion Oaks. That is where I am the one walking the house with you, reading the disclosures with you, and writing the offer. Hometown Heroes is a statewide program, so a lot of people reading this are buying somewhere I do not work, and I am not going to pretend otherwise to keep you on the page.</p><p>I also do not keep a roster of agents around the state to hand you off to, and you should be skeptical of anyone who claims they do. What I can do is help you work out what you actually need from an agent in your market, including whether they have closed a purchase using state assistance before, which is a more useful filter than a name pulled off somebody's referral list.</p><p>If you are looking in Marion County, send me your occupation, your rough timeline, and whether you have owned a home in the last three years. That is enough for me to tell you straight whether this program is worth your energy and what the next call should be.</p>
+        </div>
+              <ul class='benefit-list'>
+          <li>A realtor fee you pay directly is capped at $500 on an HTH deal, which shapes how your offer needs to be structured</li>
+        </ul>
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">On this page</p>
+          <ol>
+            <li><a href="#what-hometown-heroes-money-can-cover">What Hometown Heroes Money Can Cover</a></li>
+            <li><a href="#how-the-deferred-second-mortgage-works">How the Deferred Second Mortgage Works</a></li>
+            <li><a href="#who-qualifies-by-job-and-by-ownership-history">Who Qualifies, by Job and by Ownership History</a></li>
+            <li><a href="#income-and-price-limits-and-why-no-numbers-appear-here">Income and Price Limits, and Why No Numbers Appear Here</a></li>
+            <li><a href="#first-come-first-served-and-what-that-really-means">First Come, First Served, and What That Really Means</a></li>
+            <li><a href="#the-realtor-fee-cap-on-a-hometown-heroes-deal">The Realtor Fee Cap on a Hometown Heroes Deal</a></li>
+            <li><a href="#three-steps-if-you-want-to-move-on-this">Three Steps If You Want to Move on This</a></li>
+            <li><a href="#when-this-is-the-wrong-tool-and-where-i-fit">When This Is the Wrong Tool, and Where I Fit</a></li>
+          </ol>
+        </nav>
+        <a href="/?intent=buy#home" class="rail-cta" data-cta="hero-cta-rail">See If It Fits My Situation</a>
+      </div>
     </div>
   </main>
 
@@ -589,65 +768,44 @@
           <h2 class="section-h2 reveal">Common Questions</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What is the Florida Hometown Heroes program?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">What is the Florida Hometown Heroes program?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>It is a down payment and closing cost assistance program run by Florida Housing Finance Corporation for first-time homebuyers working in eligible occupations. Florida Housing sets the assistance at up to 5% of the first mortgage loan amount, with a minimum of $10,000 and a maximum of $35,000. It is not a grant. The money comes as a 0%, non-amortizing, 30-year deferred second mortgage recorded against the property, which means no interest and no monthly payment on it, but a balance that becomes due later.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Do I have to pay back Hometown Heroes assistance?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">Do I have to pay back Hometown Heroes assistance?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>Yes. Florida Housing describes the assistance as a 0%, non-amortizing, 30-year deferred second mortgage that becomes due and payable in full upon sale of the property, refinancing of the first mortgage, transfer of the deed, or if you no longer occupy the home as your primary residence. Deferred is not the same as forgiven. Nothing is charged for holding the money, since the rate is zero and the balance never grows, but the amount you received is a lien on your house and it gets settled at one of those events. Anyone telling you it simply disappears is telling you something Florida Housing does not say.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Who qualifies for Hometown Heroes by occupation?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">Who qualifies for Hometown Heroes by occupation?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>Florida Housing limits the program to borrowers employed full-time by a Florida-based employer as a health care worker, school staff member, first responder, public safety or court employee, or child care worker, along with military service members and reserves, and veterans employed full-time by a Florida-based employer. Two conditions carry more weight than people expect: the work has to be full-time, and the employer has to be Florida-based, which is worth asking about if you live here but your paycheck comes from a company headquartered elsewhere. The occupational categories are also broader than the job titles people assume, so a support role inside a school or a hospital is worth asking a participating lender about instead of ruling yourself out.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Is Hometown Heroes funding available right now?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">Is Hometown Heroes funding available right now?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>I cannot answer that honestly on a page you might be reading a year from now, and neither can anyone else writing in advance. Funding comes in rounds that are first come, first served, and lenders reserve it for individual buyers in real time. Rounds have run at very different speeds, some fully committed within weeks, others taking most of a year. Availability changes without notice, so check with Florida Housing Finance Corporation directly or ask a participating lender for reservation status on the day you are asking.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What credit score do I need to qualify for Hometown Heroes?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">What credit score do I need to qualify for Hometown Heroes?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Florida Housing requires a minimum 640 credit score before a participating lender can reserve Hometown Heroes assistance for you, and the lender also needs to confirm you have completed FHFC-approved homebuyer education first. Meeting that minimum does not guarantee funding on its own, since your county's income and purchase price limits and how much money is left in the current round also decide it, but 640 is the credit threshold Florida Housing sets before a reservation can be made.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Do I have to be a first-time buyer to use Hometown Heroes?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6" onclick="toggleFaq(this)"><span class="faq-q-text">Do I have to be a first-time buyer to use Hometown Heroes?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-6">
               <p>The program is written for first-time homebuyers, and housing finance programs of this type generally count you as first-time if you have not owned and occupied a home as your primary residence in the previous three years. I am giving you that as the general standard rather than as a promise about your file, because a lender applies the definition against your specific ownership history and the edge cases are where it gets decided. Inherited property you never lived in, a rental you have owned but never occupied, or a home that went to a former spouse in a divorce all turn on details. If you have served in the military, ask specifically whether the first-time requirement applies to you the same way rather than assuming an answer.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What are the income and purchase price limits for Hometown Heroes?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-7" aria-expanded="false" aria-controls="faq-a-7" onclick="toggleFaq(this)"><span class="faq-q-text">What are the income and purchase price limits for Hometown Heroes?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-7">
               <p>Both exist and both are set by county, and I do not publish either figure here on purpose. Limits get republished, and a number that is correct today becomes a wrong number sitting on an indexed page later, which is exactly how eligible buyers talk themselves out of a program they qualified for. Florida Housing publishes the limits by county, and any participating lender can pull the current figure for your county and household size on request. Get both the income limit and the purchase price limit in writing before you start touring, because the price cap changes which homes are worth your time.</p>
             </div>
           </div>
@@ -669,15 +827,15 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Sources</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.floridahousing.org/programs/homebuyer-overview-page/hometown-heroes" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.floridahousing.org</a>
-      <a href="https://www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/2026-hometown-heroes-limits-rev-7-13-2026.pdf" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.floridahousing.org</a>
-      <a href="https://www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/hth-eligible-occupations-list-7-13-26.pdf" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.floridahousing.org</a>
-      <a href="https://www.ehousingplus.com/wp-content/uploads/FHFC-HTH-TBA-Guide-FNMA-Removed-08-01-25.pdf" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.ehousingplus.com</a>
-      </div>
+      <div class="section-label">Sources</div>
+      <ul class="src-list">
+        <li><a href="https://www.floridahousing.org/programs/homebuyer-overview-page/hometown-heroes" target="_blank" rel="noopener">www.floridahousing.org/programs/homebuyer-overview-page/hometown-heroes</a></li>
+        <li><a href="https://www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/2026-hometown-heroes-limits-rev-7-13-2026.pdf" target="_blank" rel="noopener">www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/2026-hometown-heroes-limits-rev-7-13-2026.pdf</a></li>
+        <li><a href="https://www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/hth-eligible-occupations-list-7-13-26.pdf" target="_blank" rel="noopener">www.floridahousing.org/docs/default-source/programs/homebuyers/hometown-heroes/hth-eligible-occupations-list-7-13-26.pdf</a></li>
+        <li><a href="https://www.ehousingplus.com/wp-content/uploads/FHFC-HTH-TBA-Guide-FNMA-Removed-08-01-25.pdf" target="_blank" rel="noopener">www.ehousingplus.com</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -730,6 +888,11 @@
     &copy; 2026 Willy Lopez. All rights reserved.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/?intent=buy#home" class="sticky-cta-btn" data-cta="hero-cta-sticky">See If It Fits My Situation</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -737,17 +900,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

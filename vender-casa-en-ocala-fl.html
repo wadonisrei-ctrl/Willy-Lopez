@@ -195,6 +195,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -219,6 +224,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -228,7 +244,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -252,7 +268,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -274,7 +290,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -309,7 +326,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -325,94 +342,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -425,7 +491,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -438,7 +504,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -446,11 +512,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -458,42 +524,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -535,46 +676,80 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
-      <div class="section-label reveal">Guía</div>
-      
-        <div class="section-block reveal reveal-d1">
-          <h2>El Mercado de Vendedores en Ocala</h2>
-          <p>Ocala ha sido un mercado favorable para vendedores durante varios años seguidos. Según las estimaciones de población Vintage 2025 de la Oficina del Censo de Estados Unidos (publicadas en marzo de 2026), el área metropolitana de Ocala creció 3.4 por ciento entre julio de 2024 y julio de 2025, la tasa más alta de cualquier área metropolitana de Estados Unidos en ese periodo, y ese crecimiento ha sostenido una demanda constante de casas en todos los niveles de precio.</p><p>Lo que valía tu casa cuando la compraste y lo que vale hoy pueden ser números muy distintos; te doy la lectura real con ventas comparables cuando hablemos. El equity que tienes ahora depende de cuándo compraste y en qué vecindario, no de un promedio general del mercado. Si compraste en Silver Springs Shores, en Marion Oaks, o en cualquier otro vecindario de Ocala, lo que tu casa vale hoy puede ser muy distinto de lo que pagaste entonces, para bien o para mal. Puedo revisar las ventas comparables reales de tu calle específica cuando hablemos.</p><p>Las casas bien valoradas en Ocala todavía se mueven relativamente rápido. Las casas sobrevaloradas se quedan sentadas semana tras semana. La diferencia casi siempre está en cómo se le puso el precio al principio, y eso significa mirar ventas comparables reales y recientes, no una estimación automática que no toma en cuenta la condición específica de tu casa ni su ubicación exacta dentro del vecindario.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d2">
-          <h2>Cómo Funciona el Proceso de Venta en Florida</h2>
-          <p>Vender una casa en Florida sigue una secuencia estándar, pero hay detalles específicos del estado que vale la pena conocer antes de poner tu casa en el mercado.</p><p>Bajo Johnson v. Davis (Fla. 1985), los tribunales de Florida exigen que los vendedores declaren los defectos materiales conocidos de la propiedad. Esto no es opcional. Si sabes de un problema en el techo, un problema de plomería, un historial de inundaciones, o cualquier otro defecto material, va en la declaración. Esto te protege legalmente y genera confianza con el comprador desde el principio.</p><p>El impuesto de sellos documentales sobre la escritura es un costo del vendedor en Florida. Es aparte de la comisión y aparece en tus costos de cierre. Te doy el número exacto para tu venta específica cuando hablemos, en vez de darte una cifra genérica que puede no aplicar a tu caso.</p><p>En el condado de Marion, por costumbre, el vendedor paga la póliza del dueño y el comprador paga la póliza del prestamista; unos pocos condados de Florida siguen la costumbre contraria, y el contrato decide en cada caso. Esto también aparece en tus costos de cierre, y te explico cómo se calcula cuando revisemos los números de tu venta.</p><p>El tiempo entre una oferta aceptada y el cierre normalmente corre entre 30 y 45 días con un comprador que financia, o entre 10 y 21 días con un comprador de contado. Las ofertas de contado son comunes en el mercado de Ocala, sobre todo en casas de nivel de entrada y en las que atraen al comprador jubilado.</p><p>Te explico cada paso del proceso antes de que te comprometas a nada.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d3">
-          <h2>Cómo le Pongo Precio a tu Casa</h2>
-          <p>Ponerle precio a tu casa es la decisión más importante en toda la venta. Si el precio es correcto, consigues varias visitas y una oferta rápida. Si el precio está muy alto, la casa se queda ahí, acumula días en el mercado, y termina vendiéndose por menos de lo que hubiera conseguido con el precio correcto desde el primer día.</p><p>Le pongo precio a las casas usando ventas comparables recientes dentro del mismo vecindario, ajustando por metros cuadrados, condición, mejoras, y características del terreno. No uso una estimación automática de un sitio web como punto de partida. Miro lo que los compradores realmente pagaron por casas parecidas a la tuya en los últimos 90 a 120 días.</p><p>Te doy el número con honestidad, aunque sea más bajo de lo que esperabas. Un precio correcto vende tu casa. Un precio inflado te da semanas de visitas que no llegan a ninguna oferta.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d4">
-          <h2>Qué Hace un Agente de Bienes Raíces por Ti Como Vendedor</h2>
-          <p>Vender una casa no es solo poner un letrero en el jardín y esperar a ver qué pasa. Antes de listar, reviso tu casa contigo y te digo con claridad qué vale la pena arreglar y qué no, qué fotos y qué presentación van a atraer al comprador correcto, y en qué plataformas se anuncia tu casa además del MLS.</p><p>Cuando llegan las ofertas, las reviso contigo una por una. No todas las ofertas son iguales aunque el número parezca similar. El tipo de financiamiento, el plazo de cierre, y las contingencias pesan tanto como el precio ofrecido. Negocio de tu lado, no del lado del comprador.</p><p>Manejo la parte de papeleo y cumplimiento, incluyendo la declaración de defectos materiales que exige la ley de Florida, para que no se te pase un detalle que después se convierta en un problema legal. Y si algo en la inspección amenaza con tumbar el trato, negocio esa parte también en vez de dejarte solo frente al comprador.</p><p>La meta no es cerrar lo más rápido posible. Es cerrar con el mejor resultado que el mercado realmente te puede dar, sin sorpresas a mitad de camino.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d5">
-          <h2>Cómo Funciona la Comisión</h2>
-          <p>Mi comisión se paga del cierre, de los fondos de la venta. No hay costo por adelantado para ti.</p><p>Desde el acuerdo de la NAR de agosto de 2024, la compensación del agente del vendedor y la del agente del comprador se negocian por separado. Te explico exactamente cómo funciona esto para tu situación específica antes de que firmes un contrato de listado. La estructura típica en el centro de Florida incluye una comisión para mi lado y, en algunos casos, una oferta de compensación al agente del comprador, pero los detalles se negocian según tus metas y el mercado en el momento de tu venta.</p><p>No escondo esto en letra pequeña. Hablamos de la compensación con claridad antes de que firmes nada.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>Vecindarios de Ocala que Conozco Bien</h2>
-          <p>Cada vecindario de Ocala se vende diferente, y conocer esas diferencias importa a la hora de ponerle precio y de anunciar tu casa.</p><p>Silver Springs Shores tiene alta rotación y demanda constante de compradores. Compradores primerizos, inversionistas, y gente que se muda desde otros estados buscan en esta zona. Las casas bien valoradas aquí suelen tardar menos días en el mercado que en otros vecindarios de Ocala.</p><p>Marion Oaks, al suroeste de Ocala, atrae un perfil de comprador parecido. La demanda de nivel de entrada y de inversionistas es fuerte. Los compradores de contado son más comunes aquí que en los niveles de precio más altos.</p><p>El sureste de Ocala, sobre el corredor de la calle 17, atrae a trabajadores de salud y profesionales más jóvenes. La construcción nueva le mete algo de competencia, pero las casas de reventa con mejoras se venden bien.</p><p>Paddock Park y el noroeste de Ocala pasan más días en el mercado comparado con las zonas de entrada, pero las casas ahí se venden a precios más altos y atraen a un comprador más establecido. Anunciar a compradores de fuera del estado suele funcionar bien en este nivel.</p><p>Los condominios y townhomes del centro de Ocala tienen un grupo de compradores más reducido pero activo. Lo que se vende aquí es la posibilidad de caminar a todo y las comodidades urbanas.</p>
-        </div>
-              <ul class='benefit-list'>
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">En pocas palabras</p>
+        <ul class="benefit-list">
           <li>Agente de bienes raíces con licencia, en el condado de Marion y el área metro de Orlando</li>
           <li>Sé qué vecindarios de Ocala se están moviendo más rápido</li>
-          <li>La comisión se paga del cierre, de los fondos de la venta</li>
           <li>Honesto sobre el precio, los tiempos, y lo que puedes esperar</li>
           <li>Con licencia bajo Taylor Apartment Locator</li>
           <li>Sin presión, sin compromiso, para una primera conversación</li>
         </ul>
+      </div>
+      <nav class="toc-m" aria-label="En esta página">
+        <details>
+          <summary>En esta página</summary>
+          <ol>
+            <li><a href="#el-mercado-de-vendedores-en-ocala">El Mercado de Vendedores en Ocala</a></li>
+            <li><a href="#como-funciona-el-proceso-de-venta-en-florida">Cómo Funciona el Proceso de Venta en Florida</a></li>
+            <li><a href="#como-le-pongo-precio-a-tu-casa">Cómo le Pongo Precio a tu Casa</a></li>
+            <li><a href="#que-hace-un-agente-de-bienes-raices-por-ti-como-vendedor">Qué Hace un Agente de Bienes Raíces por Ti Como Vendedor</a></li>
+            <li><a href="#como-funciona-la-comision">Cómo Funciona la Comisión</a></li>
+            <li><a href="#vecindarios-de-ocala-que-conozco-bien">Vecindarios de Ocala que Conozco Bien</a></li>
+          </ol>
+        </details>
+      </nav>
+      <div class="section-label reveal">Guía</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2 id="el-mercado-de-vendedores-en-ocala">El Mercado de Vendedores en Ocala</h2>
+          <p class="fact">Ocala ha sido un mercado favorable para vendedores durante varios años seguidos. Según las estimaciones de población Vintage 2025 de la Oficina del Censo de Estados Unidos (publicadas en marzo de 2026), el área metropolitana de Ocala creció 3.4 por ciento entre julio de 2024 y julio de 2025, la tasa más alta de cualquier área metropolitana de Estados Unidos en ese periodo, y ese crecimiento ha sostenido una demanda constante de casas en todos los niveles de precio.</p><p>Lo que valía tu casa cuando la compraste y lo que vale hoy pueden ser números muy distintos; te doy la lectura real con ventas comparables cuando hablemos. El equity que tienes ahora depende de cuándo compraste y en qué vecindario, no de un promedio general del mercado. Si compraste en Silver Springs Shores, en Marion Oaks, o en cualquier otro vecindario de Ocala, lo que tu casa vale hoy puede ser muy distinto de lo que pagaste entonces, para bien o para mal. Puedo revisar las ventas comparables reales de tu calle específica cuando hablemos.</p><p>Las casas bien valoradas en Ocala todavía se mueven relativamente rápido. Las casas sobrevaloradas se quedan sentadas semana tras semana. La diferencia casi siempre está en cómo se le puso el precio al principio, y eso significa mirar ventas comparables reales y recientes, no una estimación automática que no toma en cuenta la condición específica de tu casa ni su ubicación exacta dentro del vecindario.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2 id="como-funciona-el-proceso-de-venta-en-florida">Cómo Funciona el Proceso de Venta en Florida</h2>
+          <p>Vender una casa en Florida sigue una secuencia estándar, pero hay detalles específicos del estado que vale la pena conocer antes de poner tu casa en el mercado.</p><p>Bajo Johnson v. Davis (Fla. 1985), los tribunales de Florida exigen que los vendedores declaren los defectos materiales conocidos de la propiedad. Esto no es opcional.</p><p>Si sabes de un problema en el techo, un problema de plomería, un historial de inundaciones, o cualquier otro defecto material, va en la declaración. Esto te protege legalmente y genera confianza con el comprador desde el principio.</p><p>El impuesto de sellos documentales sobre la escritura es un costo del vendedor en Florida. Es aparte de la comisión y aparece en tus costos de cierre. Te doy el número exacto para tu venta específica cuando hablemos, en vez de darte una cifra genérica que puede no aplicar a tu caso.</p><p>En el condado de Marion, por costumbre, el vendedor paga la póliza del dueño y el comprador paga la póliza del prestamista; unos pocos condados de Florida siguen la costumbre contraria, y el contrato decide en cada caso. Esto también aparece en tus costos de cierre, y te explico cómo se calcula cuando revisemos los números de tu venta.</p><p>El tiempo entre una oferta aceptada y el cierre normalmente corre entre 30 y 45 días con un comprador que financia, o entre 10 y 21 días con un comprador de contado. Las ofertas de contado son comunes en el mercado de Ocala, sobre todo en casas de nivel de entrada y en las que atraen al comprador jubilado.</p><p>Te explico cada paso del proceso antes de que te comprometas a nada.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2 id="como-le-pongo-precio-a-tu-casa">Cómo le Pongo Precio a tu Casa</h2>
+          <p>Ponerle precio a tu casa es la decisión más importante en toda la venta. Si el precio es correcto, consigues varias visitas y una oferta rápida. Si el precio está muy alto, la casa se queda ahí, acumula días en el mercado, y termina vendiéndose por menos de lo que hubiera conseguido con el precio correcto desde el primer día.</p><p>Le pongo precio a las casas usando ventas comparables recientes dentro del mismo vecindario, ajustando por metros cuadrados, condición, mejoras, y características del terreno. No uso una estimación automática de un sitio web como punto de partida. Miro lo que los compradores realmente pagaron por casas parecidas a la tuya en los últimos 90 a 120 días.</p><p>Te doy el número con honestidad, aunque sea más bajo de lo que esperabas. Un precio correcto vende tu casa. Un precio inflado te da semanas de visitas que no llegan a ninguna oferta.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2 id="que-hace-un-agente-de-bienes-raices-por-ti-como-vendedor">Qué Hace un Agente de Bienes Raíces por Ti Como Vendedor</h2>
+          <p>Vender una casa no es solo poner un letrero en el jardín y esperar a ver qué pasa. Antes de listar, reviso tu casa contigo y te digo con claridad qué vale la pena arreglar y qué no, qué fotos y qué presentación van a atraer al comprador correcto, y en qué plataformas se anuncia tu casa además del MLS.</p><p>Cuando llegan las ofertas, las reviso contigo una por una. No todas las ofertas son iguales aunque el número parezca similar. El tipo de financiamiento, el plazo de cierre, y las contingencias pesan tanto como el precio ofrecido. Negocio de tu lado, no del lado del comprador.</p><p>Manejo la parte de papeleo y cumplimiento, incluyendo la declaración de defectos materiales que exige la ley de Florida, para que no se te pase un detalle que después se convierta en un problema legal. Y si algo en la inspección amenaza con tumbar el trato, negocio esa parte también en vez de dejarte solo frente al comprador.</p><p>La meta no es cerrar lo más rápido posible. Es cerrar con el mejor resultado que el mercado realmente te puede dar, sin sorpresas a mitad de camino.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2 id="como-funciona-la-comision">Cómo Funciona la Comisión</h2>
+          <p>Mi comisión se paga del cierre, de los fondos de la venta. No hay costo por adelantado para ti.</p><p>Desde el acuerdo de la NAR de agosto de 2024, la compensación del agente del vendedor y la del agente del comprador se negocian por separado. Te explico exactamente cómo funciona esto para tu situación específica antes de que firmes un contrato de listado. La estructura típica en el centro de Florida incluye una comisión para mi lado y, en algunos casos, una oferta de compensación al agente del comprador, pero los detalles se negocian según tus metas y el mercado en el momento de tu venta.</p><p>No escondo esto en letra pequeña. Hablamos de la compensación con claridad antes de que firmes nada.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="vecindarios-de-ocala-que-conozco-bien">Vecindarios de Ocala que Conozco Bien</h2>
+          <p>Cada vecindario de Ocala se vende diferente, y conocer esas diferencias importa a la hora de ponerle precio y de anunciar tu casa.</p><p>Silver Springs Shores tiene alta rotación y demanda constante de compradores. Compradores primerizos, inversionistas, y gente que se muda desde otros estados buscan en esta zona. Las casas bien valoradas aquí suelen tardar menos días en el mercado que en otros vecindarios de Ocala.</p><p>Marion Oaks, al suroeste de Ocala, atrae un perfil de comprador parecido. La demanda de nivel de entrada y de inversionistas es fuerte. Los compradores de contado son más comunes aquí que en los niveles de precio más altos.</p><p>El sureste de Ocala, sobre el corredor de la calle 17, atrae a trabajadores de salud y profesionales más jóvenes. La construcción nueva le mete algo de competencia, pero las casas de reventa con mejoras se venden bien.</p><p>Paddock Park y el noroeste de Ocala pasan más días en el mercado comparado con las zonas de entrada, pero las casas ahí se venden a precios más altos y atraen a un comprador más establecido. Anunciar a compradores de fuera del estado suele funcionar bien en este nivel.</p><p>Los condominios y townhomes del centro de Ocala tienen un grupo de compradores más reducido pero activo. Lo que se vende aquí es la posibilidad de caminar a todo y las comodidades urbanas.</p>
+        </div>
+              <ul class='benefit-list'>
+          <li>La comisión se paga del cierre, de los fondos de la venta</li>
+        </ul>
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">En esta página</p>
+          <ol>
+            <li><a href="#el-mercado-de-vendedores-en-ocala">El Mercado de Vendedores en Ocala</a></li>
+            <li><a href="#como-funciona-el-proceso-de-venta-en-florida">Cómo Funciona el Proceso de Venta en Florida</a></li>
+            <li><a href="#como-le-pongo-precio-a-tu-casa">Cómo le Pongo Precio a tu Casa</a></li>
+            <li><a href="#que-hace-un-agente-de-bienes-raices-por-ti-como-vendedor">Qué Hace un Agente de Bienes Raíces por Ti Como Vendedor</a></li>
+            <li><a href="#como-funciona-la-comision">Cómo Funciona la Comisión</a></li>
+            <li><a href="#vecindarios-de-ocala-que-conozco-bien">Vecindarios de Ocala que Conozco Bien</a></li>
+          </ol>
+        </nav>
+        <a href="/contacto?type=sell" class="rail-cta" data-cta="hero-cta-rail">Empezar</a>
+      </div>
     </div>
   </main>
 
@@ -585,74 +760,50 @@
           <h2 class="section-h2 reveal">Preguntas comunes</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Cuánto tiempo toma vender una casa en Ocala, FL?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cuánto tiempo toma vender una casa en Ocala, FL?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>Depende del vecindario y de qué tan bien esté valorada la casa desde el principio. Las casas de nivel de entrada en zonas como Silver Springs Shores o Marion Oaks tienden a moverse más rápido que las de Paddock Park o el noroeste de Ocala. Una vez que aceptas una oferta, cerrar con un comprador que financia toma entre 30 y 45 días; con un comprador de contado, entre 10 y 21 días.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Cómo le pones precio a mi casa sin usar una estimación automática?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cómo le pones precio a mi casa sin usar una estimación automática?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>Reviso ventas comparables recientes en tu mismo vecindario, no en toda la ciudad, y las ajusto por metros cuadrados, condición, mejoras, y el terreno específico de tu propiedad. Una estimación automática de un sitio web no sabe si remodelaste la cocina ni si tu calle es más deseada que la de al lado. Cuando hablemos, te doy un análisis basado en lo que los compradores realmente pagaron, no en un número genérico.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Qué hace un agente de bienes raíces por mí cuando vendo mi casa?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">¿Qué hace un agente de bienes raíces por mí cuando vendo mi casa?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>Te ayudo a decidir qué reparar antes de listar y qué dejar así, preparo la presentación y las fotos, anuncio tu casa más allá del MLS, y reviso cada oferta contigo para que entiendas no solo el precio sino el financiamiento, el plazo, y las contingencias detrás de cada una. Manejo la declaración de defectos materiales que exige la ley de Florida y negocio de tu lado si algo sale en la inspección.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Cómo funciona tu comisión?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">¿Cómo funciona tu comisión?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>Mi comisión se paga del cierre, de los fondos de la venta. No hay costo por adelantado para ti. Te explico exactamente cómo funciona esto, incluyendo los cambios desde el acuerdo de la NAR de agosto de 2024 sobre cómo se negocia la compensación del agente del comprador, antes de que firmes un contrato de listado.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Debo vender mi casa por mi cuenta (FSBO) o con un agente de bienes raíces?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">¿Debo vender mi casa por mi cuenta (FSBO) o con un agente de bienes raíces?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Depende de cuánto tiempo tienes y de qué tan cómodo estás negociando directamente con un comprador o con el agente del comprador. Vender por tu cuenta puede funcionar si ya conoces el mercado y tienes tiempo para manejar visitas, papeleo, y negociación tú mismo. La mayoría de los vendedores que intentan FSBO subestiman cuánto trabajo es fijar el precio correcto, filtrar compradores serios de curiosos, y manejar una inspección sin alguien de su lado. Te digo con honestidad cuál camino tiene más sentido para tu situación.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Tengo que declarar problemas de mi casa al venderla en Florida?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6" onclick="toggleFaq(this)"><span class="faq-q-text">¿Tengo que declarar problemas de mi casa al venderla en Florida?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-6">
               <p>Sí. Bajo Johnson v. Davis (Fla. 1985), los tribunales de Florida exigen que los vendedores declaren los defectos materiales conocidos que afectan el valor o lo deseable de la propiedad y que no son fáciles de ver para un comprador. Esto incluye cosas como el estado del techo, problemas de plomería conocidos, historial de inundaciones, daño de plagas, y disputas con la asociación de vecinos. La declaración te protege legalmente y no es opcional.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Debo hacer reparaciones antes de poner mi casa en el mercado?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-7" aria-expanded="false" aria-controls="faq-a-7" onclick="toggleFaq(this)"><span class="faq-q-text">¿Debo hacer reparaciones antes de poner mi casa en el mercado?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-7">
               <p>Depende del problema y de tu tiempo. Algunas reparaciones valen la pena porque abren la puerta a una mejor oferta o evitan una reducción de precio después de la inspección. Otras es mejor manejarlas como un crédito al comprador en vez de arreglarlas tú mismo. Reviso tu casa antes de listar y te doy una recomendación clara sobre qué vale la pena arreglar y qué dejar como está.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              ¿Puedes ayudarme a vender mi casa si también necesito comprar otra?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-8" aria-expanded="false" aria-controls="faq-a-8" onclick="toggleFaq(this)"><span class="faq-q-text">¿Puedes ayudarme a vender mi casa si también necesito comprar otra?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-8">
               <p>Sí. Ayudo con la venta y con la compra al mismo tiempo, algo común en Ocala. Ya sea que compres localmente o te mudes a otra zona, puedo coordinar los dos lados. Si vas a comprar en otro mercado, te conecto con un agente allá.</p>
             </div>
           </div>
@@ -674,16 +825,16 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Fuentes</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.census.gov/newsroom/press-releases/2026/2025-popest-metro-micro-counties.html" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.census.gov</a>
-      <a href="https://law.justia.com/cases/florida/supreme-court/1985/65330-0.html" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">law.justia.com</a>
-      <a href="https://floridarevenue.com/taxes/taxesfees/Pages/doc_stamp.aspx" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">floridarevenue.com</a>
-      <a href="https://flsenate.gov/Laws/Statutes/2023/627.782" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">flsenate.gov</a>
-      <a href="https://www.nar.realtor/the-facts-about-the-nar-settlement" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.nar.realtor</a>
-      </div>
+      <div class="section-label">Fuentes</div>
+      <ul class="src-list">
+        <li><a href="https://www.census.gov/newsroom/press-releases/2026/2025-popest-metro-micro-counties.html" target="_blank" rel="noopener">www.census.gov</a></li>
+        <li><a href="https://law.justia.com/cases/florida/supreme-court/1985/65330-0.html" target="_blank" rel="noopener">law.justia.com</a></li>
+        <li><a href="https://floridarevenue.com/taxes/taxesfees/Pages/doc_stamp.aspx" target="_blank" rel="noopener">floridarevenue.com</a></li>
+        <li><a href="https://flsenate.gov/Laws/Statutes/2023/627.782" target="_blank" rel="noopener">flsenate.gov</a></li>
+        <li><a href="https://www.nar.realtor/the-facts-about-the-nar-settlement" target="_blank" rel="noopener">www.nar.realtor</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -736,6 +887,11 @@
     &copy; 2026 Willy Lopez. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/contacto?type=sell" class="sticky-cta-btn" data-cta="hero-cta-sticky">Empezar</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -743,17 +899,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

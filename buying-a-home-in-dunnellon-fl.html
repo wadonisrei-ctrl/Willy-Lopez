@@ -184,6 +184,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -208,6 +213,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -217,7 +233,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -241,7 +257,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -263,7 +279,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -298,7 +315,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -314,94 +331,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -414,7 +480,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -427,7 +493,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -435,11 +501,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -447,42 +513,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -523,39 +664,11 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
-      <div class="section-label reveal">Guide</div>
-      
-        <div class="section-block reveal reveal-d1">
-          <h2>Who Dunnellon Fits, and Who It Doesn't</h2>
-          <p>Dunnellon is a small city in southwest Marion County built around two rivers, the Rainbow and the Withlacoochee, and it draws a specific kind of buyer. If you want river access, a slower pace than Ocala or the coast, and you are fine with a 25-to-35-mile drive for a bigger grocery store or a hospital, this is worth a serious look.</p><p>If you need to be near a large employer, want new-build subdivisions with a long amenity list, or want the walkability of a bigger downtown, Dunnellon will frustrate you. Dunnellon is a small town and it behaves like one: fewer big-box stores, fewer restaurant chains, and a housing stock that skews older and more varied than a planned Central Florida subdivision.</p><p>I tell buyers this upfront because the wrong fit here shows up fast. Someone who needs a short commute to a hospital job in Ocala is not going to be happy on a well way out in the county. Someone who wants river frontage and quiet, and does not mind driving for groceries, usually loves it within a month.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d2">
-          <h2>Where Dunnellon Sits: Between Ocala and the Gulf</h2>
-          <p>Dunnellon sits in the southwest corner of Marion County, on US 41, close to where the Rainbow River meets the Withlacoochee River before the combined flow heads toward the Gulf of Mexico. That location is the whole story for a lot of buyers.</p><p>Ocala, the county seat and the region's job and healthcare center, is about 25 miles east on US 41/SR 200. Crystal River, on the Gulf coast in Citrus County, is closer, about 15 miles west on US 41. Both are close enough to reach for work, appointments, or a bigger shopping trip, but neither is close enough to call a short commute.</p><p>That middle position is why Dunnellon draws people who want river living without paying coastal prices, and retirees who want to be near the Gulf without living directly on it. It also means you are trading a shorter drive for a quieter street. Decide which one matters more to you before you get attached to a specific house.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d3">
-          <h2>Daily Life in Dunnellon</h2>
-          <p>The Town of Dunnellon was formed in 1890, according to the City of Dunnellon's own history. It grew up fast after the discovery of hard-rock phosphate nearby, which is where the old nickname &quot;Boomtown&quot; comes from, and a walk through the historic downtown still shows buildings from that era.</p><p>The city runs its own parks along both rivers. Blue Run of Dunnellon Park sits on the Rainbow River and is a common put-in and take-out point for kayaking and tubing, with walking trails and a pond. Centennial Park and the city boat ramp are on the Withlacoochee River, with a floating dock and picnic areas.</p><p>Just north of the city on US 41, Rainbow Springs State Park is built around a first-magnitude spring, according to Florida State Parks, and is set up for swimming, hiking, and picnicking rather than for tubing, which happens downstream on the river itself.</p><p>Day to day, Dunnellon runs slower than Ocala. Expect a real downtown with local businesses, two rivers you can actually use on a weekday afternoon, and a drive for anything beyond the basics.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d4">
-          <h2>The Buying Process I Run Here</h2>
-          <p>The process itself follows the same sequence as anywhere in Florida: offer, inspection period, financing, closing. What changes in Dunnellon is what I am checking for along the way.</p><p>I look at whether a lot sits on county water and sewer or on a private well and septic system, since a real share of the housing stock here relies on the second. I check flood zone designation on river-adjacent and low-lying lots using FEMA's Flood Map Service Center before you fall in love with a view. I pull comparable sales carefully, since Dunnellon's housing stock ranges from turn-of-the-century downtown buildings to recent construction, and two houses a block apart can be nothing alike underneath.</p><p>I will also tell you when a house is wrong for you, even after you have already pictured yourself on the porch. That is the least comfortable part of the job and the most useful.</p><p>If you are buying from out of town, I send video walkthroughs and give you an honest read on what the camera does not show, the same way I would for any buyer working from a distance.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d5">
-          <h2>Programs That Can Help You Buy in Dunnellon</h2>
-          <p>A few programs come up often with buyers looking at Dunnellon, and it is worth knowing what each one actually does before you rule yourself in or out.</p><p>Florida's Hometown Heroes program offers down payment and closing cost assistance to income-qualified first-time buyers working in eligible community-service occupations: teachers, nurses, first responders, active military among them. Income and purchase price limits change with funding cycles, so the current terms need to come from the program itself, not from a guess on my part.</p><p>USDA loans are worth checking here specifically because Dunnellon is a small, low-density city. Many addresses around Dunnellon fall inside USDA's eligible area for its zero-down rural housing loans, but eligibility is address-specific and changes at the edges of town, so the lender confirms it with USDA's own tool rather than a rule of thumb.</p><p>If this is your first home anywhere, not just in Dunnellon, my first-time buyer guide walks through the basics that apply statewide, from pre-approval to what a Florida closing actually looks like. Tell me your situation and I will tell you honestly which of these, if any, apply to you.</p>
-        </div>
-
-        <div class="section-block reveal reveal-d6">
-          <h2>What to Watch Before You Buy in Dunnellon</h2>
-          <p>A few things deserve real attention here, more than in a typical Central Florida subdivision.</p><p>Flood zones near the rivers. Riverfront and low-lying lots can carry flood zone designations that affect both insurance cost and what you are allowed to build or rebuild. Check FEMA's Flood Map Service Center for the specific address before you get attached to a view.</p><p>Well and septic systems. A real share of homes outside the city core run on private wells and septic rather than county water and sewer. Both need their own inspection, separate from the general home inspection, and both carry maintenance costs a house on city utilities does not have.</p><p>Older housing stock and inspections. Downtown Dunnellon dates back to the 1890s boomtown era, and even the newer homes in the surrounding area vary widely in age and condition. A full inspection matters more here than in a subdivision where every house was built the same year.</p><p>Distance to hospitals. There is no hospital inside Dunnellon itself. The nearest hospitals sit in the Ocala and Crystal River areas, each roughly 25 to 35 miles away. If you or someone in your household needs to be closer than that, factor it in before you buy.</p>
-        </div>
-              <ul class='benefit-list'>
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">The short version</p>
+        <ul class="benefit-list">
           <li>Licensed Florida agent covering southwest Marion County</li>
           <li>I know the difference between Dunnellon's river lots and its inland streets</li>
           <li>I will tell you when a house is wrong for you</li>
@@ -563,6 +676,67 @@
           <li>Licensed with Taylor Apartment Locator</li>
           <li>Serving Dunnellon, Marion County, and the surrounding area</li>
         </ul>
+      </div>
+      <nav class="toc-m" aria-label="On this page">
+        <details>
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#who-dunnellon-fits-and-who-it-doesn-t">Who Dunnellon Fits, and Who It Doesn't</a></li>
+            <li><a href="#where-dunnellon-sits-between-ocala-and-the-gulf">Where Dunnellon Sits: Between Ocala and the Gulf</a></li>
+            <li><a href="#daily-life-in-dunnellon">Daily Life in Dunnellon</a></li>
+            <li><a href="#the-buying-process-i-run-here">The Buying Process I Run Here</a></li>
+            <li><a href="#programs-that-can-help-you-buy-in-dunnellon">Programs That Can Help You Buy in Dunnellon</a></li>
+            <li><a href="#what-to-watch-before-you-buy-in-dunnellon">What to Watch Before You Buy in Dunnellon</a></li>
+          </ol>
+        </details>
+      </nav>
+      <div class="section-label reveal">Guide</div>
+      
+        <div class="section-block reveal reveal-d1">
+          <h2 id="who-dunnellon-fits-and-who-it-doesn-t">Who Dunnellon Fits, and Who It Doesn't</h2>
+          <p>Dunnellon is a small city in southwest Marion County built around two rivers, the Rainbow and the Withlacoochee, and it draws a specific kind of buyer. If you want river access, a slower pace than Ocala or the coast, and you are fine with a 25-to-35-mile drive for a bigger grocery store or a hospital, this is worth a serious look.</p><p>If you need to be near a large employer, want new-build subdivisions with a long amenity list, or want the walkability of a bigger downtown, Dunnellon will frustrate you. Dunnellon is a small town and it behaves like one: fewer big-box stores, fewer restaurant chains, and a housing stock that skews older and more varied than a planned Central Florida subdivision.</p><p>I tell buyers this upfront because the wrong fit here shows up fast. Someone who needs a short commute to a hospital job in Ocala is not going to be happy on a well way out in the county. Someone who wants river frontage and quiet, and does not mind driving for groceries, usually loves it within a month.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d2">
+          <h2 id="where-dunnellon-sits-between-ocala-and-the-gulf">Where Dunnellon Sits: Between Ocala and the Gulf</h2>
+          <p>Dunnellon sits in the southwest corner of Marion County, on US 41, close to where the Rainbow River meets the Withlacoochee River before the combined flow heads toward the Gulf of Mexico. That location is the whole story for a lot of buyers.</p><p>Ocala, the county seat and the region's job and healthcare center, is about 25 miles east on US 41/SR 200. Crystal River, on the Gulf coast in Citrus County, is closer, about 15 miles west on US 41. Both are close enough to reach for work, appointments, or a bigger shopping trip, but neither is close enough to call a short commute.</p><p>That middle position is why Dunnellon draws people who want river living without paying coastal prices, and retirees who want to be near the Gulf without living directly on it. It also means you are trading a shorter drive for a quieter street. Decide which one matters more to you before you get attached to a specific house.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d3">
+          <h2 id="daily-life-in-dunnellon">Daily Life in Dunnellon</h2>
+          <p>The Town of Dunnellon was formed in 1890, according to the City of Dunnellon's own history. It grew up fast after the discovery of hard-rock phosphate nearby, which is where the old nickname &quot;Boomtown&quot; comes from, and a walk through the historic downtown still shows buildings from that era.</p><p>The city runs its own parks along both rivers. Blue Run of Dunnellon Park sits on the Rainbow River and is a common put-in and take-out point for kayaking and tubing, with walking trails and a pond. Centennial Park and the city boat ramp are on the Withlacoochee River, with a floating dock and picnic areas.</p><p>Just north of the city on US 41, Rainbow Springs State Park is built around a first-magnitude spring, according to Florida State Parks, and is set up for swimming, hiking, and picnicking rather than for tubing, which happens downstream on the river itself.</p><p>Day to day, Dunnellon runs slower than Ocala. Expect a real downtown with local businesses, two rivers you can actually use on a weekday afternoon, and a drive for anything beyond the basics.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d4">
+          <h2 id="the-buying-process-i-run-here">The Buying Process I Run Here</h2>
+          <p>The process itself follows the same sequence as anywhere in Florida: offer, inspection period, financing, closing. What changes in Dunnellon is what I am checking for along the way.</p><p>I look at whether a lot sits on county water and sewer or on a private well and septic system, since a real share of the housing stock here relies on the second. I check flood zone designation on river-adjacent and low-lying lots using FEMA's Flood Map Service Center before you fall in love with a view. I pull comparable sales carefully, since Dunnellon's housing stock ranges from turn-of-the-century downtown buildings to recent construction, and two houses a block apart can be nothing alike underneath.</p><p>I will also tell you when a house is wrong for you, even after you have already pictured yourself on the porch. That is the least comfortable part of the job and the most useful.</p><p>If you are buying from out of town, I send video walkthroughs and give you an honest read on what the camera does not show, the same way I would for any buyer working from a distance.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d5">
+          <h2 id="programs-that-can-help-you-buy-in-dunnellon">Programs That Can Help You Buy in Dunnellon</h2>
+          <p>A few programs come up often with buyers looking at Dunnellon, and it is worth knowing what each one actually does before you rule yourself in or out.</p><p>Florida's Hometown Heroes program offers down payment and closing cost assistance to income-qualified first-time buyers working in eligible community-service occupations: teachers, nurses, first responders, active military among them. Income and purchase price limits change with funding cycles, so the current terms need to come from the program itself, not from a guess on my part.</p><p>USDA loans are worth checking here specifically because Dunnellon is a small, low-density city. Many addresses around Dunnellon fall inside USDA's eligible area for its zero-down rural housing loans, but eligibility is address-specific and changes at the edges of town, so the lender confirms it with USDA's own tool rather than a rule of thumb.</p><p>If this is your first home anywhere, not just in Dunnellon, my first-time buyer guide walks through the basics that apply statewide, from pre-approval to what a Florida closing actually looks like. Tell me your situation and I will tell you honestly which of these, if any, apply to you.</p>
+        </div>
+
+        <div class="section-block reveal reveal-d6">
+          <h2 id="what-to-watch-before-you-buy-in-dunnellon">What to Watch Before You Buy in Dunnellon</h2>
+          <p>A few things deserve real attention here, more than in a typical Central Florida subdivision.</p><p>Flood zones near the rivers. Riverfront and low-lying lots can carry flood zone designations that affect both insurance cost and what you are allowed to build or rebuild. Check FEMA's Flood Map Service Center for the specific address before you get attached to a view.</p><p>Well and septic systems. A real share of homes outside the city core run on private wells and septic rather than county water and sewer. Both need their own inspection, separate from the general home inspection, and both carry maintenance costs a house on city utilities does not have.</p><p>Older housing stock and inspections. Downtown Dunnellon dates back to the 1890s boomtown era, and even the newer homes in the surrounding area vary widely in age and condition. A full inspection matters more here than in a subdivision where every house was built the same year.</p><p>Distance to hospitals. There is no hospital inside Dunnellon itself. The nearest hospitals sit in the Ocala and Crystal River areas, each roughly 25 to 35 miles away. If you or someone in your household needs to be closer than that, factor it in before you buy.</p>
+        </div>
+      
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">On this page</p>
+          <ol>
+            <li><a href="#who-dunnellon-fits-and-who-it-doesn-t">Who Dunnellon Fits, and Who It Doesn't</a></li>
+            <li><a href="#where-dunnellon-sits-between-ocala-and-the-gulf">Where Dunnellon Sits: Between Ocala and the Gulf</a></li>
+            <li><a href="#daily-life-in-dunnellon">Daily Life in Dunnellon</a></li>
+            <li><a href="#the-buying-process-i-run-here">The Buying Process I Run Here</a></li>
+            <li><a href="#programs-that-can-help-you-buy-in-dunnellon">Programs That Can Help You Buy in Dunnellon</a></li>
+            <li><a href="#what-to-watch-before-you-buy-in-dunnellon">What to Watch Before You Buy in Dunnellon</a></li>
+          </ol>
+        </nav>
+        <a href="/?intent=buy#home" class="rail-cta" data-cta="hero-cta-rail">Start My Home Search</a>
+      </div>
     </div>
   </main>
 
@@ -573,65 +747,44 @@
           <h2 class="section-h2 reveal">Common Questions</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Is Dunnellon a good place to buy a home?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">Is Dunnellon a good place to buy a home?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>For the right buyer, yes. It suits people who want river access and a slower pace and do not mind a 25-to-35-mile drive to Ocala or Crystal River for work, a hospital, or a bigger store. It is a poor fit if you need a short commute to a large employer or want new-build subdivisions with a long amenity list.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              How far is Dunnellon from Ocala and from the Gulf coast?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">How far is Dunnellon from Ocala and from the Gulf coast?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>Ocala is about 25 miles east on US 41/SR 200. Crystal River, on the Gulf coast, is closer, about 15 miles west on US 41. Dunnellon sits almost exactly between the two.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Do most homes in Dunnellon use well water and septic?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">Do most homes in Dunnellon use well water and septic?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>A real share of the housing stock outside the city core does, especially the further you get from downtown. Both systems need their own inspection separate from the general home inspection, and I flag this on every property where it applies before you write an offer.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Are there flood zones I need to worry about near the rivers?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">Are there flood zones I need to worry about near the rivers?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>Some riverfront and low-lying lots carry flood zone designations that affect insurance and what you can build. FEMA's Flood Map Service Center shows the designation for a specific address, and I check it before you get attached to a waterfront lot.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What programs can help me buy a home in Dunnellon?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">What programs can help me buy a home in Dunnellon?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Florida's Hometown Heroes program offers down payment help to income-qualified buyers in eligible community-service jobs. Many addresses around Dunnellon also fall inside USDA's eligible area for zero-down rural loans, though your lender needs to confirm that with USDA's own tool for the specific address. If this is your first home, ask about first-time buyer options too.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What schools serve Dunnellon?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-6" aria-expanded="false" aria-controls="faq-a-6" onclick="toggleFaq(this)"><span class="faq-q-text">What schools serve Dunnellon?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-6">
               <p>Dunnellon is served by Marion County Public Schools, with Dunnellon Elementary, Dunnellon Middle, and Dunnellon High School all located in the city. Your specific zoned school depends on the address, which the district confirms.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d6">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Do I need to be pre-approved before you can help me?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-7" aria-expanded="false" aria-controls="faq-a-7" onclick="toggleFaq(this)"><span class="faq-q-text">Do I need to be pre-approved before you can help me?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-7">
               <p>Not for a first conversation. Once you are ready to look at homes seriously, get pre-approved first. Sellers here expect a pre-approval letter with any offer, and it keeps you from touring houses that were never going to work for your budget.</p>
             </div>
           </div>
@@ -653,18 +806,18 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Sources</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.dunnellon.org/visitors/history-of-dunnellon" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.dunnellon.org</a>
-      <a href="https://www.dunnellon.org/community/parks-facilities" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.dunnellon.org</a>
-      <a href="https://www.floridastateparks.org/parks-and-trails/rainbow-springs-state-park" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.floridastateparks.org</a>
-      <a href="https://www.floridahousing.org/programs/homebuyer-overview-page/hometown-heroes" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.floridahousing.org</a>
-      <a href="https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">eligibility.sc.egov.usda.gov</a>
-      <a href="https://msc.fema.gov/portal/home" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">msc.fema.gov</a>
-      <a href="https://www.marionschools.net/" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.marionschools.net</a>
-      </div>
+      <div class="section-label">Sources</div>
+      <ul class="src-list">
+        <li><a href="https://www.dunnellon.org/visitors/history-of-dunnellon" target="_blank" rel="noopener">www.dunnellon.org/visitors/history-of-dunnellon</a></li>
+        <li><a href="https://www.dunnellon.org/community/parks-facilities" target="_blank" rel="noopener">www.dunnellon.org/community/parks-facilities</a></li>
+        <li><a href="https://www.floridastateparks.org/parks-and-trails/rainbow-springs-state-park" target="_blank" rel="noopener">www.floridastateparks.org</a></li>
+        <li><a href="https://www.floridahousing.org/programs/homebuyer-overview-page/hometown-heroes" target="_blank" rel="noopener">www.floridahousing.org</a></li>
+        <li><a href="https://eligibility.sc.egov.usda.gov/eligibility/welcomeAction.do" target="_blank" rel="noopener">eligibility.sc.egov.usda.gov</a></li>
+        <li><a href="https://msc.fema.gov/portal/home" target="_blank" rel="noopener">msc.fema.gov</a></li>
+        <li><a href="https://www.marionschools.net/" target="_blank" rel="noopener">www.marionschools.net</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -717,6 +870,11 @@
     &copy; 2026 Willy Lopez. All rights reserved.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/?intent=buy#home" class="sticky-cta-btn" data-cta="hero-cta-sticky">Start My Home Search</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -724,17 +882,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {

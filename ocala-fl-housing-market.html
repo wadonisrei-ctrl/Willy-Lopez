@@ -168,6 +168,11 @@
       --sans:     'Inter', -apple-system, sans-serif;
       --g-gold:   linear-gradient(135deg, #A07828 0%, #C8943A 45%, #E8B870 75%, #C8943A 100%);
       --g-hero:   linear-gradient(160deg, #08111E 0%, #0D1C30 35%, #091422 65%, #0C1A2C 100%);
+      --body:     #374151;
+      --muted-2:  #5F6574;
+      --tint-gold: #F7EDDD;
+      --tint-navy: #E7E9EC;
+      --col:      608px;
     }
 
     html { scroll-behavior: smooth; }
@@ -192,6 +197,17 @@
     .reveal-d4 { transition-delay: 0.32s; }
     .reveal-d5 { transition-delay: 0.40s; }
     .reveal-d6 { transition-delay: 0.48s; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px;
+    }
+    .hero a:focus-visible, .cta-strip a:focus-visible, footer a:focus-visible, .sticky-cta a:focus-visible {
+      outline-color: var(--gold-lt);
+    }
 
     .gt {
       background: var(--g-gold);
@@ -201,7 +217,7 @@
     }
 
     /* NAV */
-    nav {
+    body > nav {
       position: sticky; top: 0; z-index: 400;
       background: rgba(255,255,255,0.94);
       backdrop-filter: blur(24px);
@@ -225,7 +241,7 @@
       font-weight: 800;
     }
     .nav-btn {
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
       text-transform: uppercase; padding: 14px 20px;
       border-radius: var(--r); border: none; text-decoration: none;
@@ -247,7 +263,8 @@
       padding: 80px 40px 80px;
       text-align: center;
     }
-    .inner { max-width: 800px; margin: 0 auto; }
+    .inner { max-width: var(--col); margin: 0 auto; }
+    .hero .inner, .cta-strip .inner { max-width: 800px; }
     .hero-tag {
       display: inline-block;
       font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
@@ -282,7 +299,7 @@
     }
     .hero-cta {
       display: inline-block;
-      background: var(--g-gold); color: white;
+      background: var(--g-gold); color: var(--char);
       font-weight: 700; font-size: 13px;
       letter-spacing: 0.8px; text-transform: uppercase;
       padding: 16px 36px; border-radius: var(--r);
@@ -298,94 +315,143 @@
       padding: 10px 40px;
     }
     .breadcrumb-in {
-      max-width: 800px; margin: 0 auto;
+      max-width: var(--col); margin: 0 auto;
       font-size: 12px; color: var(--muted);
     }
     .breadcrumb a { color: var(--muted); text-decoration: none; }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { margin: 0 6px; }
 
-    /* CONTENT */
+    /* CONTENT (design-1 reading scale: body 17/18px, H2 25/31px, 68-character column) */
     .content {
       background: var(--white);
-      padding: 64px 40px;
+      padding: 56px 40px 64px;
     }
     .section-label {
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
       text-transform: uppercase; color: var(--gold-text);
       margin-bottom: 12px;
     }
     .section-h2 {
-      font-family: var(--serif); font-size: clamp(24px, 3.5vw, 36px);
-      font-weight: 800; color: var(--text); line-height: 1.2;
-      margin-bottom: 40px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 8px;
     }
     .section-block {
-      margin-bottom: 48px;
-      padding-bottom: 48px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-    .section-block:last-child { border-bottom: none; }
+    .section-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .section-block h2 {
-      font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 700; color: var(--text); line-height: 1.25;
-      margin-bottom: 16px;
+      font-family: var(--serif); font-size: 25px;
+      font-weight: 700; color: var(--char); line-height: 1.2; letter-spacing: -0.2px;
+      margin-bottom: 14px; scroll-margin-top: 100px;
     }
-    .section-block p {
-      font-size: 16px; color: #374151;
-      line-height: 1.75; margin-bottom: 16px;
+    .section-block p, .section-block li {
+      font-size: 17px; color: var(--body); line-height: 1.7;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+    .section-block p { margin-bottom: 1em; }
+    .section-block > :last-child { margin-bottom: 0; }
+    .section-block p.fact {
+      background: var(--tint-gold); color: var(--text);
+      border-left: 3px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      padding: 14px 18px;
+    }
+    ol.steps { margin: 0 0 1em; padding-left: 1.5em; }
+    ol.steps li { margin-bottom: 10px; padding-left: 4px; }
+    ol.steps li::marker { color: var(--gold-text); font-weight: 700; }
 
-    /* BULLETS */
-    .benefit-list {
-      list-style: none;
-      margin: 24px 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
+    /* THE SHORT VERSION (config bullets, or verbatim short_version sentences) */
+    .tldr {
+      background: var(--cream); border: 1px solid var(--border);
+      border-top: 3px solid var(--gold); border-radius: var(--r-lg);
+      padding: 20px 20px 18px; margin-bottom: 16px;
     }
+    .tldr-h, .toc-h {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 12px;
+    }
+    .benefit-list { list-style: none; display: grid; gap: 8px; }
     .benefit-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 15px; color: var(--text); line-height: 1.5;
-      padding: 14px 16px;
-      background: var(--cream); border-radius: var(--r);
-      border: 1px solid var(--border);
+      position: relative; padding-left: 28px;
+      font-size: 15.5px; line-height: 1.5; color: var(--text);
     }
     .benefit-list li::before {
-      content: "";
-      width: 6px; height: 6px; min-width: 6px;
-      background: var(--g-gold); border-radius: 50%;
-      margin-top: 6px;
+      content: ""; position: absolute; left: 5px; top: 4px;
+      width: 6px; height: 11px;
+      border: solid var(--gold-dk); border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
     }
+    .content .inner > .benefit-list, .article > .benefit-list { margin-top: 32px; }
+
+    /* ON THIS PAGE: <details> in the flow under 1100px, sticky rail at 1100px and up */
+    .toc-m { margin-bottom: 40px; }
+    .toc-m details { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--white); }
+    .toc-m summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 52px; padding: 0 18px;
+      font-size: 15px; font-weight: 600; color: var(--char);
+    }
+    .toc-m summary::-webkit-details-marker { display: none; }
+    .toc-m summary::after {
+      content: ""; width: 8px; height: 8px; margin-top: -4px;
+      border: solid var(--gold-dk); border-width: 0 2px 2px 0;
+      transform: rotate(45deg); transition: transform 0.2s;
+    }
+    .toc-m details[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+    .toc-m ol, .toc-d ol { list-style: none; counter-reset: toc; }
+    .toc-m ol { padding: 2px 18px 8px; border-top: 1px solid var(--border); }
+    .toc-m li { counter-increment: toc; }
+    .toc-m li + li { border-top: 1px solid var(--tint-navy); }
+    .toc-m li a {
+      display: flex; align-items: baseline; gap: 12px;
+      min-height: 44px; padding: 11px 0;
+      font-size: 15px; line-height: 1.4; color: var(--body); text-decoration: none;
+    }
+    .toc-m li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 12px; font-weight: 700; color: var(--gold-text); font-variant-numeric: tabular-nums;
+    }
+    .rail, .sticky-cta { display: none; }
 
     /* FAQ */
     .faq-section {
       background: var(--cream);
-      padding: 64px 40px;
+      padding: 56px 40px;
       border-top: 1px solid var(--border);
     }
-    .faq-list { margin-top: 32px; }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .faq-list { margin-top: 24px; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
     .faq-q {
-      width: 100%; background: none; border: none;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer;
-      font-family: var(--sans); font-size: 16px; font-weight: 600;
-      color: var(--text); text-align: left; gap: 16px;
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      min-height: 56px; padding: 16px 0;
+      font-family: var(--sans); font-size: 17px; font-weight: 600; line-height: 1.4;
+      color: var(--char); text-align: left;
     }
+    @media (hover: hover) { .faq-q:hover { color: var(--gold-text); } }
     .faq-icon {
-      font-size: 20px; font-weight: 400; color: var(--gold);
-      min-width: 20px; transition: transform 0.2s;
+      position: relative; flex: 0 0 28px; width: 28px; height: 28px;
+      border-radius: 50%; border: 1.5px solid var(--gold);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-icon::before, .faq-icon::after {
+      content: ""; position: absolute; left: 50%; top: 50%;
+      width: 11px; height: 2px; margin: -1px 0 0 -5.5px;
+      background: var(--gold-dk); transition: transform 0.2s;
+    }
+    .faq-icon::after { transform: rotate(90deg); }
+    .faq-q.open .faq-icon { background: var(--char); border-color: var(--char); }
+    .faq-q.open .faq-icon::before, .faq-q.open .faq-icon::after { background: #FFFFFF; }
+    .faq-q.open .faq-icon::after { transform: rotate(0deg); }
     .faq-a {
-      display: none; padding-bottom: 20px;
+      display: none; margin: 0 0 20px; padding: 2px 0 2px 16px;
+      border-left: 3px solid var(--gold);
     }
     .faq-a.on { display: block; }
-    .faq-a p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-a p { font-size: 16px; color: var(--body); line-height: 1.7; }
 
     /* CTA STRIP */
     .cta-strip {
@@ -398,7 +464,7 @@
       font-weight: 800; color: white; margin-bottom: 14px;
     }
     .cta-strip p {
-      font-size: 16px; color: rgba(255,255,255,0.65);
+      font-size: 16px; color: rgba(255,255,255,0.72);
       max-width: 480px; margin: 0 auto 32px; line-height: 1.6;
     }
 
@@ -411,7 +477,7 @@
     }
     .author-card {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 28px; background: var(--white);
+      padding: 24px 24px 22px; background: var(--white);
       border: 1px solid var(--border); border-radius: var(--r-lg);
       border-left: 4px solid var(--gold);
     }
@@ -419,11 +485,11 @@
       font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
     }
     .author-creds {
-      font-size: 12px; font-weight: 600; color: var(--gold-text);
-      letter-spacing: 0.3px; margin-bottom: 12px;
+      font-size: 13px; font-weight: 600; color: var(--gold-text);
+      letter-spacing: 0.2px; margin-bottom: 12px; line-height: 1.5;
     }
     .author-bio {
-      font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0;
+      font-size: 15px; color: var(--muted-2); line-height: 1.7; margin: 0;
     }
 
     /* FOOTER */
@@ -431,42 +497,117 @@
       background: #060D18; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 32px 40px; text-align: center;
     }
-    .footer-links { margin-bottom: 14px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links { margin-bottom: 10px; display: flex; gap: 4px 20px; justify-content: center; flex-wrap: wrap; }
+    .footer-links a { display: inline-block; padding: 8px 2px; font-size: 13px; color: rgba(255,255,255,0.72); text-decoration: none; }
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.64); line-height: 1.7; }
     footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
     footer p a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
+      .hero { padding: 44px 20px 48px; }
       .breadcrumb { padding: 10px 20px; }
-      .content { padding: 48px 20px; }
-      .faq-section { padding: 48px 20px; }
+      .content { padding: 32px 20px 48px; }
+      .faq-section { padding: 44px 20px; }
       .author-section { padding: 32px 20px; }
       .cta-strip { padding: 48px 20px; }
       footer { padding: 28px 20px; }
     }
-    .rel-section { background: var(--cream); padding: 48px 20px; border-top: 1px solid var(--border); }
-    .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
+    .rel-section { background: var(--cream); padding: 40px 20px; border-top: 1px solid var(--border); }
+    .rel-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .rel-link { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; line-height: 1.35; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
 
-    /* CLIENT WORDS */
-    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
-    .proof-in { max-width: 800px; margin: 0 auto; }
-    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
-    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
-    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
-    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
-    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    /* SOURCES: reference material, quiet */
+    .source-section { background: var(--white); padding: 32px 20px; border-top: 1px solid var(--border); }
+    .src-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0 22px; }
+    .src-list a {
+      display: inline-block; padding: 6px 0;
+      font-size: 14px; line-height: 1.45; color: var(--muted-2);
+      text-decoration: underline; text-decoration-color: #C4C9D2; text-underline-offset: 3px;
+      overflow-wrap: anywhere;
+    }
+    .src-list a:hover { color: var(--char); text-decoration-color: var(--gold); }
+
+    /* STICKY DOOR CTA, under 1100px only. Fixed and moved with transform, so it never
+       shifts content (no CLS); visibility keeps it out of the tab order while hidden. */
+    @media (max-width: 1099px) {
+      .sticky-cta {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 350;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(11,22,40,0.97); border-top: 1px solid rgba(232,184,112,0.28);
+        box-shadow: 0 -8px 24px rgba(6,13,24,0.18);
+        transform: translateY(110%); visibility: hidden;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+      }
+      .sticky-cta.show { transform: none; visibility: visible; transition: transform 0.25s ease; }
+    }
+    .sticky-cta-btn {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      width: 100%; max-width: 520px; min-height: 44px; margin: 0 auto; padding: 10px 16px;
+      background: var(--g-gold); color: var(--char); border-radius: var(--r);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-block h2, .section-h2 { font-size: 31px; }
+      .section-block p, .section-block li { font-size: 18px; }
+      .section-block { margin-bottom: 36px; padding-bottom: 36px; }
+      .benefit-list { grid-template-columns: 1fr 1fr; column-gap: 28px; }
+      .tldr { padding: 24px 26px 22px; }
+    }
+
+    /* DESKTOP: 608px article (about 68 characters) + 248px sticky rail; every block
+       below the hero shares the article's left edge. */
+    @media (min-width: 1100px) {
+      :root { --col: 920px; }
+      .layout {
+        display: grid; grid-template-columns: minmax(0, 608px) 248px;
+        column-gap: 64px; align-items: start;
+      }
+      .toc-m { display: none; }
+      .rail {
+        display: block; position: sticky; top: 96px;
+        max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 4px;
+      }
+      .toc-d ol { border-left: 1px solid var(--border); }
+      .toc-d li a {
+        display: block; margin-left: -1px; padding: 7px 0 7px 16px;
+        border-left: 2px solid transparent;
+        font-size: 14px; line-height: 1.45; color: var(--muted-2); text-decoration: none;
+      }
+      .toc-d li a:hover { color: var(--char); }
+      .toc-d li a[aria-current="location"] { color: var(--char); font-weight: 600; border-left-color: var(--gold); }
+      .rail-cta {
+        display: flex; align-items: center; justify-content: center; text-align: center;
+        min-height: 48px; margin-top: 24px; padding: 12px 16px;
+        background: var(--g-gold); color: var(--char); border-radius: var(--r);
+        font-size: 12px; font-weight: 700; letter-spacing: 0.6px; line-height: 1.35;
+        text-transform: uppercase; text-decoration: none;
+        box-shadow: 0 4px 16px rgba(168,120,40,0.25);
+      }
+      .rail-cta:hover { opacity: 0.9; }
+      .faq-list, .author-card, .faq-section .section-h2 { max-width: 608px; }
+      .proof-section .proof-in { max-width: var(--col); }
+    }
+
+    /* CLIENT WORDS (design-1: secondary styling, a quote rule instead of a filled card) */
+    .proof-section { background: #FFFFFF; padding: 48px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 680px; margin: 0 auto; }
+    .proof-label { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #86621E; margin-bottom: 8px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 6px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 22px; }
+    .proof-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    .proof-card { margin: 0; padding: 2px 0 2px 16px; border-left: 2px solid #E3CFA6; }
+    .proof-card blockquote { margin: 0 0 8px; font-size: 15px; line-height: 1.65; color: #374151; }
     .proof-card blockquote::before { content: "“"; }
     .proof-card blockquote::after { content: "”"; }
-    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
-    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
-    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
+    .proof-card figcaption { font-size: 13px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 600; }
+    @media (min-width: 760px) { .proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; } }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-card blockquote { font-size: 14.5px; } }
   </style>
 </head>
 <body>
@@ -507,34 +648,71 @@
 
   <!-- CONTENT -->
   <main class="content" id="content">
-    <div class="inner">
+    <div class="inner layout">
+      <div class="article">
+      <div class="tldr" data-short-version>
+        <p class="tldr-h">The short version</p>
+        <ul class="benefit-list">
+          <li>The split in this market is not really about price. It is about condition.</li>
+          <li>What all of that means practically: the competition is concentrated in clean, move-in-ready houses at the affordable end.</li>
+          <li>Insurance underwriting has made roof age the loudest question in every Florida transaction, and a house that is hard to insure is a house that is hard to sell.</li>
+          <li>If you are buying a primary home you plan to hold for five years or more, the fundamentals here support acting when you find the right house rather than trying to time the market.</li>
+          <li>If your timeline is under three years, be much more careful.</li>
+        </ul>
+      </div>
+      <nav class="toc-m" aria-label="On this page">
+        <details>
+          <summary>On this page</summary>
+          <ol>
+            <li><a href="#what-is-holding-ocala-prices-where-they-are">What Is Holding Ocala Prices Where They Are</a></li>
+            <li><a href="#where-the-demand-is-coming-from">Where the Demand Is Coming From</a></li>
+            <li><a href="#what-is-selling-and-what-is-sitting">What Is Selling and What Is Sitting</a></li>
+            <li><a href="#how-interest-rates-move-this-market">How Interest Rates Move This Market</a></li>
+            <li><a href="#should-you-buy-in-ocala-now-or-wait">Should You Buy in Ocala Now or Wait?</a></li>
+          </ol>
+        </details>
+      </nav>
       <div class="section-label reveal">Guide</div>
       
         <div class="section-block reveal reveal-d1">
-          <h2>What Is Holding Ocala Prices Where They Are</h2>
-          <p>Any median price you read about Marion County will be out of date before you act on it, and different sources will hand you different numbers for the same month depending on what they count. So instead of a figure, here is what actually sets the level, which does not change nearly as fast.</p><p>Start with the base. Ocala entered this decade as a relatively affordable place to buy in Florida, and starting low is why it never had the kind of correction that hit markets which ran up hardest. There was less air in the price to begin with.</p><p>Then demand. According to the U.S. Census Bureau's Vintage 2025 population estimates (released March 2026), the Ocala metro, which is Marion County, grew 3.4 percent between July 2024 and July 2025, the fastest rate of any U.S. metro area for that period and the second year in a row it ranked first. Those people need somewhere to live.</p><p>Against that, supply. Existing owners holding low fixed mortgage rates have very little reason to sell and take on a much higher one, so a chunk of the county's housing stock is effectively frozen. Fewer listings from existing owners means less choice for you, and it also means prices hold up even in stretches when buyer demand softens.</p><p>The pressure valve is new construction. Marion County has a lot of platted, unbuilt lots, especially in the southwest, and builders have been working through them steadily. That new supply is the main reason this market has stayed relatively sane rather than spiraling on scarcity.</p><p>And then insurance, which quietly functions as a ceiling. When premiums climb, they eat into what a buyer can qualify for at any given price. A market can want to appreciate and still be held back by what it costs to insure the houses in it.</p>
+          <h2 id="what-is-holding-ocala-prices-where-they-are">What Is Holding Ocala Prices Where They Are</h2>
+          <p>Any median price you read about Marion County will be out of date before you act on it, and different sources will hand you different numbers for the same month depending on what they count. So instead of a figure, here is what actually sets the level, which does not change nearly as fast.</p><p>Start with the base. Ocala entered this decade as a relatively affordable place to buy in Florida, and starting low is why it never had the kind of correction that hit markets which ran up hardest. There was less air in the price to begin with.</p><p class="fact">Then demand. According to the U.S. Census Bureau's Vintage 2025 population estimates (released March 2026), the Ocala metro, which is Marion County, grew 3.4 percent between July 2024 and July 2025, the fastest rate of any U.S. metro area for that period and the second year in a row it ranked first. Those people need somewhere to live.</p><p>Against that, supply. Existing owners holding low fixed mortgage rates have very little reason to sell and take on a much higher one, so a chunk of the county's housing stock is effectively frozen. Fewer listings from existing owners means less choice for you, and it also means prices hold up even in stretches when buyer demand softens.</p><p>The pressure valve is new construction. Marion County has a lot of platted, unbuilt lots, especially in the southwest, and builders have been working through them steadily. That new supply is the main reason this market has stayed relatively sane rather than spiraling on scarcity.</p><p>And then insurance, which quietly functions as a ceiling. When premiums climb, they eat into what a buyer can qualify for at any given price. A market can want to appreciate and still be held back by what it costs to insure the houses in it.</p>
         </div>
 
         <div class="section-block reveal reveal-d2">
-          <h2>Where the Demand Is Coming From</h2>
+          <h2 id="where-the-demand-is-coming-from">Where the Demand Is Coming From</h2>
           <p>Growth statistics tell you a market is expanding. They do not tell you who you are competing against, which is what actually matters when you write an offer.</p><p>Much of the pressure comes from in-migration by people who are not constrained by local wages. Buyers selling a house in a high-cost state arrive with proceeds that make Marion County pricing look like a rounding error, and they can often skip financing altogether. That is why an entry-level listing in good condition can attract an offer you cannot beat on terms, no matter how solid your pre-approval is.</p><p>Retirees are the deepest part of that group, and the county's large 55-plus communities have been drawing from the Northeast and Midwest for decades. It is a steady, rate-insensitive source of demand, because a buyer paying cash does not care what the mortgage market is doing this quarter.</p><p>Healthcare is the anchor on the working-age side. The county's two large hospital systems employ thousands between them, and clinical staff relocating for a position arrive on a schedule, need housing quickly, and tend to be well qualified.</p><p>Remote workers changed the math after 2020 and have not gone away. When your income is set by an employer somewhere else and your housing cost is set here, the arbitrage is obvious, and it puts those buyers in a stronger position than local incomes alone would support.</p><p>Investors stay active at the low end because entry costs are low and county rental demand is consistent.</p><p>What all of that means practically: the competition is concentrated in clean, move-in-ready houses at the affordable end. Higher up the price ladder, and on anything needing work, you have far more room than the growth headlines suggest.</p>
         </div>
 
         <div class="section-block reveal reveal-d3">
-          <h2>What Is Selling and What Is Sitting</h2>
+          <h2 id="what-is-selling-and-what-is-sitting">What Is Selling and What Is Sitting</h2>
           <p>The split in this market is not really about price. It is about condition.</p><p>Well-priced, move-in-ready homes at the affordable end move quickly and can still draw more than one offer. That is the most competitive segment in the county and it has been for years.</p><p>What sits: anything that needs work, anything priced off an owner's opinion rather than recent comparable sales, and above all, anything with an aging roof. Insurance underwriting has made roof age the loudest question in every Florida transaction, and a house that is hard to insure is a house that is hard to sell. Sellers frequently do not understand why their listing is not moving, and the answer is sitting on top of it.</p><p>New construction is its own lane. Builders have inventory across the county, which gives you an alternative to competing on resales, and they will often move on incentives, closing cost contributions, or a rate buydown before they will move on the headline price, because the headline price protects the comparable sales for everything else they still have to sell. Knowing that changes what you ask for.</p><p>The upper end of the county moves slowly, and always has. Smaller buyer pool, more selective buyers, longer listing periods. If you are buying there, patience works in your favor. If you are selling there, it is a longer project than people expect.</p>
         </div>
 
         <div class="section-block reveal reveal-d4">
-          <h2>How Interest Rates Move This Market</h2>
+          <h2 id="how-interest-rates-move-this-market">How Interest Rates Move This Market</h2>
           <p>Rates get discussed as though they set prices. They do something more specific than that: they set payments, and payments are what most buyers are actually shopping.</p><p>Using round numbers purely to show the shape of the math, not as a market reading or a quote: on a $250,000 loan over 30 years, a one-percentage-point move in the rate changes principal and interest by roughly $165 a month. Run that against your own numbers and you will see why a rate move can reprice what you qualify for faster than the market can reprice houses.</p><p>The second effect is the one people miss. High rates do not just cool buyers, they freeze sellers. An owner holding a low fixed rate would have to give it up to move, so they stay, listings stay scarce, and scarcity props up prices exactly when you would expect them to fall. That is why softer demand has not translated into the price drops buyers keep waiting for.</p><p>So the tradeoff runs in both directions. Higher rates mean a higher payment and less competition per listing. Lower rates mean a cheaper payment and a crowd. Buyers who wait for the cheaper payment usually find they have traded a rate problem for a competition problem, and competition costs you in ways that cannot be refinanced away later.</p><p>Marion County has one structural advantage in all of this. Because the underlying prices are lower than most of Florida, a given rate move does less damage here in absolute dollars than it does in a metro where the loan amounts are far larger.</p>
         </div>
 
         <div class="section-block reveal reveal-d5">
-          <h2>Should You Buy in Ocala Now or Wait?</h2>
+          <h2 id="should-you-buy-in-ocala-now-or-wait">Should You Buy in Ocala Now or Wait?</h2>
           <p>This is the question I get most, and my honest answer depends entirely on the person asking.</p><p>Waiting for a specific rate is a gamble on two things at once: that rates come down, and that prices stay put while they do. Historically those have not happened together. When borrowing gets cheaper, buyers come off the sidelines into the same limited inventory, and what you save on the rate you often hand back in price and in the terms you have to accept to win.</p><p>If you are buying a primary home you plan to hold for five years or more, the fundamentals here support acting when you find the right house rather than trying to time the market. Sustained population growth, a healthcare sector that keeps hiring, and a price base that is still low relative to the rest of the state all point the same direction over that horizon.</p><p>If your timeline is under three years, be much more careful. The costs of buying and then selling take real money out of the trade on both ends, and you need either appreciation or time to work through that. On a short hold, renting is frequently the better financial decision, and I will say so.</p><p>And if your budget only works at the absolute edge of what a lender will approve, wait. Not because of the market, but because Florida insurance and property taxes have a habit of moving after you close, and a payment with no room in it becomes a problem you cannot negotiate your way out of.</p><p>The useful version of this conversation is not about the market in general. It is about your timeline, your reserves, and what you would do if the roof needed replacing in year two. Tell me those and I will give you a straight answer, including when that answer is not yet.</p>
         </div>
       
+      </div>
+      <div class="rail">
+        <nav class="toc-d" aria-labelledby="toc-d-h">
+          <p class="toc-h" id="toc-d-h">On this page</p>
+          <ol>
+            <li><a href="#what-is-holding-ocala-prices-where-they-are">What Is Holding Ocala Prices Where They Are</a></li>
+            <li><a href="#where-the-demand-is-coming-from">Where the Demand Is Coming From</a></li>
+            <li><a href="#what-is-selling-and-what-is-sitting">What Is Selling and What Is Sitting</a></li>
+            <li><a href="#how-interest-rates-move-this-market">How Interest Rates Move This Market</a></li>
+            <li><a href="#should-you-buy-in-ocala-now-or-wait">Should You Buy in Ocala Now or Wait?</a></li>
+          </ol>
+        </nav>
+        <a href="/?intent=buy#home" class="rail-cta" data-cta="hero-cta-rail">Start My Home Search</a>
+      </div>
     </div>
   </main>
 
@@ -545,47 +723,32 @@
           <h2 class="section-h2 reveal">Common Questions</h2>
           <div class="faq-list">
           <div class="faq-item reveal reveal-d1">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Is Ocala FL real estate a good investment?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1" onclick="toggleFaq(this)"><span class="faq-q-text">Is Ocala FL real estate a good investment?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-1">
               <p>The fundamentals are solid for a long hold. According to the U.S. Census Bureau's Vintage 2025 population estimates (released March 2026), the Ocala metro grew 3.4 percent between July 2024 and July 2025, the fastest rate of any U.S. metro area for that period and the second year in a row it ranked first. Healthcare employment keeps expanding, retiree migration into the county has been consistent for decades, and prices remain low relative to the rest of Florida. It is not a flip market and it never has been. For a primary home or a long-term rental hold, the case is strong.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d2">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Will Ocala home prices go up or down in 2026?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2" onclick="toggleFaq(this)"><span class="faq-q-text">Will Ocala home prices go up or down in 2026?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-2">
               <p>Nobody can tell you that honestly, and be skeptical of anyone who does. What can be said is which forces are pulling each way. Population growth and tight resale inventory push up. High borrowing costs, steady new construction, and rising insurance premiums push down. Those have been roughly offsetting, which is why this market has been moving sideways rather than swinging hard in either direction. Sideways is a reasonable base case until one of those forces changes materially.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d3">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              Is Ocala more affordable than Orlando?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3" onclick="toggleFaq(this)"><span class="faq-q-text">Is Ocala more affordable than Orlando?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-3">
               <p>Yes, substantially, and that gap is the main reason buyers look here. Per the Orlando Regional Realtor Association's March 2026 market report, the Orlando metro median sale price was $385,000. Marion County sits well below that. For remote workers, retirees, and buyers priced out of the metro, the difference is usually the deciding factor, with the tradeoff being a smaller local job market and roughly 80 miles between Ocala and downtown Orlando.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d4">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              How long are homes sitting on the market in Ocala?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4" onclick="toggleFaq(this)"><span class="faq-q-text">How long are homes sitting on the market in Ocala?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-4">
               <p>It depends almost entirely on condition and pricing rather than on the market as a whole. Clean, move-in-ready homes at the affordable end still go quickly and can draw competing offers. Houses that need work, that are priced off an owner's expectations instead of recent comparable sales, or that carry an aging roof can sit for months. The upper end of the county always moves slower because the buyer pool is smaller.</p>
             </div>
           </div>
           <div class="faq-item reveal reveal-d5">
-            <button class="faq-q" onclick="toggleFaq(this)">
-              What should I look for when buying a home in Ocala?
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
+            <button class="faq-q" type="button" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5" onclick="toggleFaq(this)"><span class="faq-q-text">What should I look for when buying a home in Ocala?</span><span class="faq-icon" aria-hidden="true"></span></button>
+            <div class="faq-a" id="faq-a-5">
               <p>Roof age first. In Florida a roof past about 15 years can make insurance expensive or hard to get at all, and that single item derails more deals here than anything else. Check the flood zone designation for the specific address, since it varies more within the county than people assume. Confirm whether the property is on county water and sewer or on well and septic. Find out what any HOA or municipal service district assessment costs and what it covers. And get the age and condition of the HVAC and water heater in writing, because Florida heat retires both faster than the manufacturer's estimate suggests.</p>
             </div>
           </div>
@@ -607,13 +770,13 @@
   </section>
 
   
-  <section class="rel-section source-section">
+  <section class="source-section">
     <div class="inner">
-      <div class="section-label reveal">Sources</div>
-      <div class="rel-links reveal reveal-d1">
-      <a href="https://www.census.gov/newsroom/press-releases/2026/2025-popest-metro-micro-counties.html" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.census.gov</a>
-      <a href="https://www.orlandorealtors.org/clientuploads/Market%20Statistics/Monthly%20Market%20Reports/2026/3.March/State_of_the_Market_2026.03_Mar.pdf" class="rel-link" style="font-size:.75rem;padding:6px 14px;" target="_blank" rel="noopener">www.orlandorealtors.org</a>
-      </div>
+      <div class="section-label">Sources</div>
+      <ul class="src-list">
+        <li><a href="https://www.census.gov/newsroom/press-releases/2026/2025-popest-metro-micro-counties.html" target="_blank" rel="noopener">www.census.gov</a></li>
+        <li><a href="https://www.orlandorealtors.org/clientuploads/Market%20Statistics/Monthly%20Market%20Reports/2026/3.March/State_of_the_Market_2026.03_Mar.pdf" target="_blank" rel="noopener">www.orlandorealtors.org</a></li>
+      </ul>
     </div>
   </section>
   <section class="rel-section">
@@ -666,6 +829,11 @@
     &copy; 2026 Willy Lopez. All rights reserved.</p>
   </footer>
 
+  <!-- STICKY DOOR CTA (under 1100px; shown between the hero and the closing strip) -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="/?intent=buy#home" class="sticky-cta-btn" data-cta="hero-cta-sticky">Start My Home Search</a>
+  </div>
+
   <script>
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
@@ -673,17 +841,53 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // FAQ toggle
+    // FAQ toggle: one answer open at a time, state exposed through aria-expanded
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = answer.classList.contains('on');
       document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('on'));
-      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); });
       if (!isOpen) {
         answer.classList.add('on');
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
       }
     }
+
+    // Sticky door CTA: visible only once the hero has left the screen and before the
+    // closing CTA strip arrives, so it never doubles up with another CTA in view.
+    (function () {
+      var bar = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var strip = document.querySelector('.cta-strip');
+      if (!bar || !hero || !strip || !('IntersectionObserver' in window)) return;
+      var heroIn = true, stripIn = false;
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.target === hero) heroIn = e.isIntersecting;
+          else stripIn = e.isIntersecting || e.boundingClientRect.top < 0;
+        });
+        bar.classList.toggle('show', !heroIn && !stripIn);
+      });
+      io.observe(hero);
+      io.observe(strip);
+    })();
+
+    // Desktop rail: mark the section being read
+    (function () {
+      var links = document.querySelectorAll('.toc-d a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting || !byId[e.target.id]) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          byId[e.target.id].setAttribute('aria-current', 'location');
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      document.querySelectorAll('.section-block h2[id]').forEach(function (h) { io.observe(h); });
+    })();
   </script>
   <script>
   try {
