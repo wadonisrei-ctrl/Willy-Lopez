@@ -1971,6 +1971,19 @@
       .tile-arrow { top: 8px; right: 10px; font-size: 15px; }
       .front-legal { font-size: 11px; line-height: 1.3; }
     }
+      /* design-1 (2026-09-27): tile feedback and reduced motion, structure untouched */
+    .tile-arrow { transition: transform 0.15s; }
+    @media (hover: hover) { .tile:hover .tile-arrow { transform: translateX(3px); } }
+    .tile:active { transform: scale(0.99); }
+    .tile--primary:focus-visible { outline-color: #F0E8D8; }
+    .step-card p { font-size: 14px; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #A07828; outline-offset: 3px; }
+    .front a:focus-visible, .fin-cta a:focus-visible, footer a:focus-visible { outline-color: #E8B870; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
