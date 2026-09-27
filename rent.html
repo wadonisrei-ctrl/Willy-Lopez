@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W"></script>
+  <!-- Google tag (gtag.js), library injected after window load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-CE30FSTB4W');
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W';
+      document.head.appendChild(s);
+    });
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Apartment Shortlist - Willy Lopez</title>
   <meta name="description" content="Get a free personalized apartment shortlist for Central Florida. No cost to you, ever." />
   <meta name="robots" content="noindex, nofollow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/fonts/fraunces.woff2) format('woff2'); }
+    @font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 700; font-display: swap; src: url(/fonts/fraunces-italic.woff2) format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/fonts/inter.woff2) format('woff2'); }
+  </style>
   <style>
     :root {
       --cream: #FAF8F4;
@@ -179,6 +191,7 @@
       padding-bottom: 18px;
       border-bottom: 1px solid var(--border);
     }
+    .whoami picture { display: block; flex-shrink: 0; line-height: 0; }
     .whoami img {
       width: 56px;
       height: 56px;
@@ -246,7 +259,7 @@
   <div class="wrap">
     <div class="card" id="formCard">
       <div class="whoami">
-        <img src="images/willy.jpg" alt="Willy Lopez, Licensed Apartment Locator" />
+        <picture><source srcset="/images/willy-112.webp" type="image/webp" /><img src="/images/willy-112.jpg" alt="Willy Lopez, Licensed Apartment Locator" width="56" height="56" /></picture>
         <p><strong>Willy Lopez</strong><br>I'll personally handle your search, no call center, no bot.</p>
       </div>
       <form id="intakeForm" onsubmit="return false;" data-form-id="rent_page" data-lead-type="renter" data-lang="en">

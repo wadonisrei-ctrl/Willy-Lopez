@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W"></script>
+  <!-- Google tag (gtag.js), library injected after window load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-CE30FSTB4W');
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W';
+      document.head.appendChild(s);
+    });
   </script>
   <meta charset="UTF-8" />
   <script>document.documentElement.className += ' js';</script>
@@ -98,9 +103,15 @@
   <meta name="twitter:title" content="Agente de Bienes Raíces en Florida | Willy Lopez" />
   <meta name="twitter:description" content="Agente de bienes raíces con licencia en Florida, con base en Ocala. Represento a compradores y vendedores en cualquier parte de Florida, coloco inquilinos para propietarios, y manejo un servicio gratis de localización de apartamentos." />
   <meta name="twitter:image" content="https://willy-lopez.vercel.app/images/willy.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/fonts/fraunces.woff2) format('woff2'); }
+    @font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 700; font-display: swap; src: url(/fonts/fraunces-italic.woff2) format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/fonts/inter.woff2) format('woff2'); }
+  </style>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1426,7 +1437,7 @@
     }
     .fin-cta > p {
       font-size: 15px;
-      color: rgba(240,232,216,0.45);
+      color: rgba(240,232,216,0.66);
       max-width: 400px;
       margin: 0 auto 44px;
       line-height: 1.78;
@@ -1473,7 +1484,7 @@
     .btn-fin:hover { opacity: 0.88; transform: translateY(-1px); }
     .fin-note { font-size: 10px; color: rgba(240,232,216,0.4); margin-bottom: 36px; position: relative; }
     .fin-note a { color: rgba(240,232,216,0.55); }
-    .fin-divider { font-size: 9px; color: rgba(240,232,216,0.35); margin-bottom: 14px; position: relative; text-transform: uppercase; letter-spacing: 2px; }
+    .fin-divider { font-size: 9px; color: rgba(240,232,216,0.6); margin-bottom: 14px; position: relative; text-transform: uppercase; letter-spacing: 2px; }
     .fin-phone-link {
       display: inline-flex;
       align-items: center;
@@ -1520,39 +1531,39 @@
       gap: 40px;
       align-items: start;
     }
-    .foot-brand .logo { color: rgba(240,232,216,0.4); display: block; margin-bottom: 10px; }
+    .foot-brand .logo { color: rgba(240,232,216,0.82); display: block; margin-bottom: 10px; }
     .foot-brand .logo b {
       background: var(--g-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .foot-tagline { font-size: 11px; color: rgba(240,232,216,0.2); line-height: 1.7; }
+    .foot-tagline { font-size: 11px; color: rgba(240,232,216,0.62); line-height: 1.7; }
     .foot-links { display: flex; flex-direction: column; gap: 10px; list-style: none; }
     .foot-links a {
       text-decoration: none;
       font-size: 11px;
-      color: rgba(240,232,216,0.45);
+      color: rgba(240,232,216,0.66);
       transition: color 0.15s;
     }
-    .foot-links a:hover { color: rgba(240,232,216,0.7); }
+    .foot-links a:hover { color: rgba(240,232,216,0.9); }
     .foot-contact { text-align: right; }
     .foot-contact a {
       display: block;
       text-decoration: none;
       font-size: 11px;
-      color: rgba(240,232,216,0.45);
+      color: rgba(240,232,216,0.66);
       transition: color 0.15s;
       margin-bottom: 8px;
     }
-    .foot-contact a:hover { color: rgba(240,232,216,0.7); }
+    .foot-contact a:hover { color: rgba(240,232,216,0.9); }
     .foot-legal {
       max-width: 1200px;
       margin: 32px auto 0;
       padding-top: 24px;
       border-top: 1px solid rgba(240,232,216,0.06);
       font-size: 10px;
-      color: rgba(240,232,216,0.35);
+      color: rgba(240,232,216,0.6);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1562,11 +1573,11 @@
     }
     .foot-legal-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
     .foot-legal-links a {
-      color: rgba(240,232,216,0.35);
+      color: rgba(240,232,216,0.6);
       text-decoration: none;
       transition: color 0.15s;
     }
-    .foot-legal-links a:hover { color: rgba(240,232,216,0.5); }
+    .foot-legal-links a:hover { color: rgba(240,232,216,0.85); }
 
     .foot-sitemap {
       max-width: 1200px;
@@ -1577,12 +1588,12 @@
       grid-template-columns: 1.8fr 1fr 1fr;
       gap: 32px;
     }
-    .foot-sitemap h4 {
+    .foot-sitemap .foot-h {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: rgba(200,148,58,0.55);
+      color: #C8943A;
       margin-bottom: 14px;
     }
     .foot-sitemap ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
@@ -1595,10 +1606,10 @@
     .foot-sitemap a {
       text-decoration: none;
       font-size: 11px;
-      color: rgba(240,232,216,0.45);
+      color: rgba(240,232,216,0.66);
       transition: color 0.15s;
     }
-    .foot-sitemap a:hover { color: rgba(240,232,216,0.6); }
+    .foot-sitemap a:hover { color: rgba(240,232,216,0.9); }
     @media (max-width: 640px) {
       .foot-sitemap { grid-template-columns: 1fr; gap: 20px; }
       .foot-sitemap .rental-list { column-count: 1; }
@@ -1848,6 +1859,7 @@
       font-size: 14px; line-height: 1.5; color: rgba(240,232,216,0.7);
     }
     .front-id strong { color: #F0E8D8; font-weight: 600; }
+    .front-id picture { display: block; flex-shrink: 0; line-height: 0; }
     .front-id img {
       width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
       object-fit: cover; object-position: center top;
@@ -1907,7 +1919,7 @@
     .faq-more { margin-top: 28px; }
     .faq-more > summary {
       cursor: pointer; list-style: none;
-      font-size: 13px; font-weight: 600; color: var(--gold-dk);
+      font-size: 13px; font-weight: 600; color: #86621E;
       padding: 6px 0 18px;
     }
     .faq-more > summary::-webkit-details-marker { display: none; }
@@ -1915,7 +1927,7 @@
     .faq-more[open] > summary::after { content: ' \2212'; }
     .fin-mail { position: relative; margin-top: 18px; font-size: 14px; }
     .fin-mail a { color: rgba(240,232,216,0.75); }
-    .fin-legal { position: relative; margin-top: 28px; font-size: 11px; color: rgba(240,232,216,0.45); }
+    .fin-legal { position: relative; margin-top: 28px; font-size: 11px; color: rgba(240,232,216,0.66); }
 
     @media (max-width: 900px) {
       .nav-list { display: flex; gap: 18px; }
@@ -1977,12 +1989,14 @@
   </div>
 </nav>
 
+<main id="main">
+
 <!-- FRONT DOOR -->
 <section class="hero front" id="top">
   <div class="hero-glow"></div>
   <div class="hero-line"></div>
   <div class="front-in">
-    <p class="front-id"><img src="images/willy.jpg" alt="Willy Lopez" width="44" height="44" /><span><strong>Willy Lopez</strong>, agente de bienes ra&iacute;ces con licencia en Florida, con base en Ocala. Ingl&eacute;s y espa&ntilde;ol.</span></p>
+    <p class="front-id"><picture><source srcset="/images/willy-88.webp" type="image/webp" /><img src="/images/willy-88.jpg" alt="Willy Lopez" width="44" height="44" /></picture><span><strong>Willy Lopez</strong>, agente de bienes ra&iacute;ces con licencia en Florida, con base en Ocala. Ingl&eacute;s y espa&ntilde;ol.</span></p>
     <h1>&iquest;En qu&eacute; te puedo ayudar?</h1>
     <div class="tiles" role="group" aria-label="En qué te puedo ayudar">
       <a href="/es?intent=buy#home" class="tile tile--primary" data-cta="tile-buy" data-door="buy">
@@ -2446,6 +2460,8 @@
   <p class="fin-legal">Willy Lopez, Lic. SL3617612. Bajo la correduría de Taylor Apartment Locator.</p>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
@@ -2472,7 +2488,7 @@
     </div>
     <div class="foot-sitemap">
       <div>
-        <h4>Áreas de Renta</h4>
+        <p class="foot-h">Áreas de Renta</p>
         <ul class="rental-list">
           <li><a href="/how-free-apartment-locator-works">How a Free Locator Works (en inglés)</a></li>
           <li><a href="/ocala-fl-apartments">Apartments in Ocala (en inglés)</a></li>
@@ -2497,7 +2513,7 @@
         </ul>
       </div>
       <div>
-        <h4>Comprar una Casa</h4>
+        <p class="foot-h">Comprar una Casa</p>
         <ul>
           <li><a href="/programa-hometown-heroes-florida">Programa Hometown Heroes de Florida</a></li>
           <li><a href="/buying-a-home-in-orlando-fl">Buying a Home in Orlando (en inglés)</a></li>
@@ -2509,7 +2525,7 @@
         </ul>
       </div>
       <div>
-        <h4>Vender y Propietarios</h4>
+        <p class="foot-h">Vender y Propietarios</p>
         <ul>
           <li><a href="/propietarios">Colocación de Inquilinos en el Condado de Marion</a></li>
           <li><a href="/selling-a-home-in-ocala-fl">Selling a Home in Ocala (en inglés)</a></li>

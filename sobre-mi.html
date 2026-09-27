@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W"></script>
+  <!-- Google tag (gtag.js), library injected after window load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-CE30FSTB4W');
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W';
+      document.head.appendChild(s);
+    });
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,9 +32,15 @@
   <meta name="twitter:title" content="Sobre Willy Lopez | Agente de Bienes Raíces en Ocala" />
   <meta name="twitter:description" content="Agente de bienes raíces con licencia en Florida, en el condado de Marion, bilingüe en inglés y español." />
   <meta name="twitter:image" content="https://willy-lopez.vercel.app/images/willy.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/fonts/fraunces.woff2) format('woff2'); }
+    @font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 700; font-display: swap; src: url(/fonts/fraunces-italic.woff2) format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/fonts/inter.woff2) format('woff2'); }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -126,6 +137,7 @@
     .content { max-width: 760px; margin: 0 auto; padding: 64px 32px 40px; }
     .profile-row { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 48px; flex-wrap: wrap; }
     .profile-photo { width: 160px; height: 200px; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; }
+    .profile-photo picture { display: block; width: 100%; height: 100%; }
     .profile-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
     .profile-id { flex: 1; min-width: 220px; }
     .profile-name { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
@@ -148,9 +160,10 @@
 
     footer { background: #060D18; padding: 32px 40px; text-align: center; }
     .footer-links { margin-bottom: 14px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; }
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.25); line-height: 1.6; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
 
     @media (max-width: 640px) {
       .nav-in { padding: 0 20px; }
@@ -186,11 +199,11 @@
   <p class="lang-switch"><a href="/about">Read in English &rarr;</a></p>
 </div>
 
-<div class="content">
+<main class="content" id="main">
 
   <div class="profile-row">
     <div class="profile-photo">
-      <img src="images/willy.jpg" alt="Willy Lopez, Agente de Bienes Raíces con Licencia" />
+      <picture><source srcset="/images/willy-320x400.webp" type="image/webp" /><img src="/images/willy-320x400.jpg" alt="Willy Lopez, Agente de Bienes Raíces con Licencia" width="160" height="200" /></picture>
     </div>
     <div class="profile-id">
       <p class="profile-name">Willy Lopez</p>
@@ -226,7 +239,7 @@
     <p>Dondequiera que estés en el proceso, comprando tu primera casa, decidiendo si alquilar o vender una propiedad, o buscando apartamento, contáctame y te digo con claridad cómo se ven tus opciones.</p>
   </div>
 
-</div>
+</main>
 
 <section class="cta-strip">
   <h2>Hablemos de lo que necesitas.</h2>

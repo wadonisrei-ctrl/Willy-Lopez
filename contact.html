@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W"></script>
+  <!-- Google tag (gtag.js), library injected after window load -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-CE30FSTB4W');
+    window.addEventListener('load', function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-CE30FSTB4W';
+      document.head.appendChild(s);
+    });
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,9 +29,15 @@
   <meta name="twitter:title" content="Contact Willy Lopez | Ocala Real Estate Agent" />
   <meta name="twitter:description" content="Reach Willy Lopez by phone, text, email, or the form below. He responds within 24 business hours." />
   <meta name="twitter:image" content="https://willy-lopez.vercel.app/images/willy.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/fonts/fraunces.woff2) format('woff2'); }
+    @font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 700; font-display: swap; src: url(/fonts/fraunces-italic.woff2) format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/fonts/inter.woff2) format('woff2'); }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -88,7 +99,7 @@
     .contact-info p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
     .info-pill { display: flex; align-items: center; gap: 8px; background: var(--cream); border: 1px solid var(--border); color: var(--text); padding: 10px 14px; border-radius: var(--r); font-size: 13px; font-weight: 500; text-decoration: none; margin-bottom: 10px; }
     .info-pill:hover { border-color: var(--gold); color: var(--gold-dk); }
-    .lic-line { font-size: 12px; color: var(--subtle); margin-top: 18px; line-height: 1.6; }
+    .lic-line { font-size: 12px; color: var(--muted); margin-top: 18px; line-height: 1.6; }
 
     .contact-form { background: var(--cream); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 28px 26px; }
     .fg { margin-bottom: 14px; }
@@ -101,7 +112,7 @@
     .fg textarea { resize: vertical; }
     .consent-row { display: flex; align-items: flex-start; gap: 9px; margin: 16px 0; }
     .consent-row input[type="checkbox"] { margin-top: 3px; width: 15px; height: 15px; flex-shrink: 0; }
-    .consent-row label { font-size: 11px; color: var(--subtle); line-height: 1.6; }
+    .consent-row label { font-size: 11px; color: var(--muted); line-height: 1.6; }
     .consent-row a { color: var(--muted); }
     .btn-submit {
       display: block; width: 100%; background: var(--g-gold); color: white; border: none; padding: 14px;
@@ -110,7 +121,7 @@
     }
     .btn-submit:hover { opacity: 0.9; }
     .btn-submit:disabled { opacity: 0.6; cursor: default; }
-    .form-note { font-size: 11px; color: var(--subtle); margin-top: 10px; text-align: center; }
+    .form-note { font-size: 11px; color: var(--muted); margin-top: 10px; text-align: center; }
     .form-success { display: none; text-align: center; padding: 20px 0; }
     .form-success.on { display: block; }
     .form-success p:first-child { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 6px; }
@@ -120,9 +131,10 @@
 
     footer { background: #060D18; padding: 32px 40px; text-align: center; }
     .footer-links { margin-bottom: 14px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; }
-    .footer-links a:hover { color: rgba(255,255,255,0.7); }
-    footer p { font-size: 11px; color: rgba(255,255,255,0.25); line-height: 1.6; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.68); text-decoration: none; }
+    .footer-links a:hover { color: rgba(255,255,255,0.9); }
+    footer p { font-size: 11px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer p a { color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 2px; }
 
     @media (max-width: 700px) {
       .content { grid-template-columns: 1fr; padding: 40px 20px 64px; gap: 32px; }
@@ -153,7 +165,7 @@
   <p>Buying, selling, looking for an apartment, or sitting on an empty rental. Tell me what is going on and I will tell you what I would do. Call, text, email, or send the form below. I respond within 24 business hours.</p>
 </div>
 
-<div class="content">
+<main class="content" id="main">
 
   <div class="contact-info">
     <h2>Reach Me Directly</h2>
@@ -209,7 +221,7 @@
     </div>
   </div>
 
-</div>
+</main>
 
 <footer>
   <div class="footer-links">

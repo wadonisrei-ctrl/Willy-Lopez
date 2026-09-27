@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | Willy Lopez</title>
   <meta name="robots" content="noindex, follow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 400 800; font-display: swap; src: url(/fonts/fraunces.woff2) format('woff2'); }
+    @font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 700; font-display: swap; src: url(/fonts/fraunces-italic.woff2) format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/fonts/inter.woff2) format('woff2'); }
+  </style>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -160,9 +166,10 @@
     }
     footer .logo { color: rgba(255,255,255,0.6); display: inline-block; margin-bottom: 10px; }
     footer .logo b { color: var(--gold); }
-    footer p { font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.6; }
-    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
-    footer a:hover { color: rgba(255,255,255,0.7); }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.62); line-height: 1.6; }
+    footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+    footer p a { text-decoration: underline; text-underline-offset: 2px; }
+    footer a:hover { color: #FFFFFF; }
 
     @media (max-width: 640px) {
       .content { padding: 48px 20px 72px; }
@@ -175,12 +182,12 @@
 
 <nav>
   <div class="nav-in">
-    <a href="index.html" class="logo">Willy <b>Lopez</b></a>
+    <a href="/" class="logo">Willy <b>Lopez</b></a>
     <div style="display:flex;align-items:center;gap:20px;">
       <a href="/about" class="nav-back" style="gap:0;">About</a>
       <a href="/landlords" class="nav-back" style="gap:0;">Landlords</a>
       <a href="/contact" class="nav-back" style="gap:0;">Contact</a>
-      <a href="index.html" class="nav-back">
+      <a href="/" class="nav-back">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Home
       </a>
@@ -294,9 +301,9 @@
 </div>
 
 <footer>
-  <a href="index.html" class="logo">Willy <b>Lopez</b></a>
+  <a href="/" class="logo">Willy <b>Lopez</b></a>
   <p>&#169; 2026 Willy Lopez &middot; Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Serving Central Florida.</p>
-  <p style="margin-top:8px;"><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="/about">About</a> &nbsp;&middot;&nbsp; <a href="/landlords">Landlords</a> &nbsp;&middot;&nbsp; <a href="/contact">Contact</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Service</a></p>
+  <p style="margin-top:8px;"><a href="/">Home</a> &nbsp;&middot;&nbsp; <a href="/about">About</a> &nbsp;&middot;&nbsp; <a href="/landlords">Landlords</a> &nbsp;&middot;&nbsp; <a href="/contact">Contact</a> &nbsp;&middot;&nbsp; <a href="/terms">Terms of Service</a></p>
 </footer>
 
 </body>
