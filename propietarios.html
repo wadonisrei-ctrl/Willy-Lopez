@@ -51,7 +51,7 @@
     "@type": "Person",
     "name": "Willy Lopez",
     "jobTitle": "Licensed Real Estate Agent",
-    "description": "Licensed Florida real estate agent based in Marion County. Represents buyers and sellers in Ocala and Marion Oaks, places tenants for landlords, and locates apartments in Greater Orlando and Ocala. Lic. SL3617612. Taylor Apartment Locator.",
+    "description": "Licensed Florida real estate agent based in Ocala. Represents buyers and sellers anywhere in Florida and knows Ocala and Marion Oaks best. Places tenants for landlords in Marion County and helps renters in Greater Orlando and Ocala. Lic. SL3617612. Taylor Apartment Locator.",
     "telephone": "+17186350140",
     "email": "wadonisrei@gmail.com",
     "url": "https://willy-lopez.vercel.app",
@@ -138,7 +138,7 @@
   "@type": "Person",
   "name": "Willy Lopez",
   "jobTitle": "Licensed Real Estate Agent",
-  "description": "Licensed Florida real estate agent based in Marion County. Represents buyers and sellers in Ocala and Marion Oaks, places tenants for landlords, and locates apartments in Greater Orlando and Ocala. Lic. SL3617612. Taylor Apartment Locator.",
+  "description": "Licensed Florida real estate agent based in Ocala. Represents buyers and sellers anywhere in Florida and knows Ocala and Marion Oaks best. Places tenants for landlords in Marion County and helps renters in Greater Orlando and Ocala. Lic. SL3617612. Taylor Apartment Locator.",
   "telephone": "+17186350140",
   "email": "wadonisrei@gmail.com",
   "url": "https://willy-lopez.vercel.app",
@@ -463,6 +463,21 @@
     .rel-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
     .rel-link { display: inline-block; padding: 10px 20px; background: var(--white); border: 1.5px solid var(--border); border-radius: var(--r); color: var(--char); font-size: .875rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s; }
     .rel-link:hover { border-color: var(--gold); color: var(--gold-dk); }
+
+    /* CLIENT WORDS */
+    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 800px; margin: 0 auto; }
+    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
+    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
+    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    .proof-card blockquote::before { content: "“"; }
+    .proof-card blockquote::after { content: "”"; }
+    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -477,7 +492,7 @@
           <a href="/propietarios">Propietarios</a>
           <a href="/contacto">Contacto</a>
         </div>
-        <a href="/es#home" class="nav-btn" data-cta="nav-get-started">Empezar</a>
+        <a href="/contacto?type=landlord" class="nav-btn" data-cta="nav-get-started">Alquila Mi Propiedad</a>
       </div>
     </div>
   </nav>
@@ -606,9 +621,9 @@
     <div class="inner">
       <div class="author-card reveal">
         <div class="author-info">
-          <div class="author-name">Escrito por <a href="/about" style="color:inherit;">Willy Lopez</a></div>
+          <div class="author-name">Escrito por <a href="/sobre-mi" style="color:inherit;">Willy Lopez</a></div>
           <div class="author-creds">Agente de bienes raíces con licencia &middot; Lic. SL3617612 &middot; Taylor Apartment Locator &middot; <a href="tel:+17186350140" style="color:inherit;" data-cta="author-phone">(718) 635-0140</a></div>
-          <p class="author-bio">Willy Lopez es agente de bienes raíces con licencia en Florida y vive en el condado de Marion. Representa a compradores y vendedores en Ocala y Marion Oaks, coloca inquilinos para propietarios y ayuda a inquilinos en el área de Orlando y Ocala, en español y en inglés.</p>
+          <p class="author-bio">Willy Lopez es agente de bienes raíces con licencia en Florida, con base en Ocala. Representa a compradores y vendedores en cualquier parte de Florida, y las zonas que mejor conoce son Ocala y Marion Oaks. También coloca inquilinos para propietarios en el condado de Marion y ayuda a inquilinos en el área de Orlando y Ocala, en español y en inglés.</p>
         </div>
       </div>
     </div>
@@ -622,6 +637,21 @@
       <a href="/selling-a-home-in-ocala-fl" class="rel-link">Selling a Home in Ocala, FL (en inglés)</a>
       <a href="/ocala-fl-housing-market" class="rel-link">Ocala FL Housing Market (en inglés)</a>
       <a href="/primera-casa-ocala-fl" class="rel-link">Tu Primera Casa en Ocala, FL</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT WORDS (verbatim, see TESTIMONIALS) -->
+  <section class="proof-section" data-proof="testimonials" aria-labelledby="proof-h">
+    <div class="proof-in">
+      <div class="proof-label">Palabras de clientes</div>
+      <h2 class="proof-h" id="proof-h">Lo que dicen los clientes</h2>
+      <p class="proof-note">Cuatro personas con las que he trabajado, en sus propias palabras. Reseñas mostradas en su idioma original.</p>
+      <div class="proof-grid">
+      <figure class="proof-card"><blockquote>Willy was incredibly easy to work with. He answered every question I had, kept me updated throughout the whole process, and never made me feel like I was just another client. If you're looking for someone who actually has your back, he's your guy.</blockquote><figcaption><strong>Jostin Lopez</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>Working with Willy took all the stress out of what could have been a really overwhelming process. He was patient, super responsive, and genuinely cared about finding the right fit. I'd recommend him to anyone without hesitation.</blockquote><figcaption><strong>Ashley Reinoso</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>Willy walked me through everything step by step. I never felt confused or left in the dark. He's honest, thorough, and you can tell he actually wants to help you, not just close a deal. Really appreciate the work he put in.</blockquote><figcaption><strong>Ibsen Rodriguez</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>From the first call, Willy made me feel like I was in good hands. He was upfront about everything, checked in regularly, and made the whole experience way less stressful than I expected. I'll definitely reach out again for my next move.</blockquote><figcaption><strong>Jeannie Guzman</strong>, Cliente, Florida Central</figcaption></figure>
       </div>
     </div>
   </section>

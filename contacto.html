@@ -143,19 +143,38 @@
       .hero { padding: 48px 20px 44px; }
       footer { padding: 28px 20px; }
     }
+    .hero-lang { font-size: 13px; margin-top: 16px; }
+    .hero-lang a { color: #E8B870; text-decoration: none; border-bottom: 1px solid rgba(232,184,112,0.35); }
+    .hero-lang a:hover { color: #FFFFFF; border-color: rgba(255,255,255,0.6); }
+
+    /* CLIENT WORDS */
+    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 800px; margin: 0 auto; }
+    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
+    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
+    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    .proof-card blockquote::before { content: "“"; }
+    .proof-card blockquote::after { content: "”"; }
+    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-in">
-    <a href="/" class="logo">Willy <b>Lopez</b></a>
+    <a href="/es" class="logo">Willy <b>Lopez</b></a>
     <div style="display:flex;align-items:center;gap:24px;">
       <div class="nav-links">
-        <a href="/about">Sobre mí</a>
-        <a href="/landlords">Propietarios</a>
+        <a href="/sobre-mi">Sobre mí</a>
+        <a href="/propietarios">Propietarios</a>
+        <a href="/contact" data-lang-switch="es-to-en">In English</a>
       </div>
-      <a href="/#home" class="nav-btn" data-cta="nav-get-started">Empezar</a>
+      <a href="#contactForm" class="nav-btn" data-cta="nav-get-started">Escríbeme</a>
     </div>
   </div>
 </nav>
@@ -164,6 +183,7 @@
   <p class="tag">Contacto</p>
   <h1>Recibe una Respuesta Directa</h1>
   <p>Comprando, vendiendo, buscando apartamento, o con una renta vacía. Cuéntame tu situación y te digo qué haría yo. Llama, escribe un mensaje de texto o un correo, o manda el formulario de abajo. Respondo dentro de 24 horas hábiles.</p>
+  <p class="hero-lang"><a href="/contact" data-lang-switch="es-to-en">In English &rarr;</a></p>
 </div>
 
 <main class="content" id="main">
@@ -225,15 +245,31 @@
 
 </main>
 
+  <!-- CLIENT WORDS (verbatim, see TESTIMONIALS) -->
+  <section class="proof-section" data-proof="testimonials" aria-labelledby="proof-h">
+    <div class="proof-in">
+      <div class="proof-label">Palabras de clientes</div>
+      <h2 class="proof-h" id="proof-h">Lo que dicen los clientes</h2>
+      <p class="proof-note">Cuatro personas con las que he trabajado, en sus propias palabras. Reseñas mostradas en su idioma original.</p>
+      <div class="proof-grid">
+      <figure class="proof-card"><blockquote>Willy was incredibly easy to work with. He answered every question I had, kept me updated throughout the whole process, and never made me feel like I was just another client. If you're looking for someone who actually has your back, he's your guy.</blockquote><figcaption><strong>Jostin Lopez</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>Working with Willy took all the stress out of what could have been a really overwhelming process. He was patient, super responsive, and genuinely cared about finding the right fit. I'd recommend him to anyone without hesitation.</blockquote><figcaption><strong>Ashley Reinoso</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>Willy walked me through everything step by step. I never felt confused or left in the dark. He's honest, thorough, and you can tell he actually wants to help you, not just close a deal. Really appreciate the work he put in.</blockquote><figcaption><strong>Ibsen Rodriguez</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>From the first call, Willy made me feel like I was in good hands. He was upfront about everything, checked in regularly, and made the whole experience way less stressful than I expected. I'll definitely reach out again for my next move.</blockquote><figcaption><strong>Jeannie Guzman</strong>, Cliente, Florida Central</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
 <footer>
   <div class="footer-links">
-    <a href="/">Inicio</a>
-    <a href="/about">Sobre mí</a>
-    <a href="/landlords">Propietarios</a>
+    <a href="/es">Inicio</a>
+    <a href="/sobre-mi">Sobre mí</a>
+    <a href="/propietarios">Propietarios</a>
+    <a href="/contact" data-lang-switch="es-to-en">In English</a>
     <a href="/privacy">Política de Privacidad</a>
     <a href="/terms">Términos del Servicio</a>
   </div>
-  <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Sirviendo a Ocala, Marion Oaks y el Centro de Florida<br>
+  <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Sirviendo a Florida, con base en Ocala<br>
   &copy; 2026 Willy Lopez. Todos los derechos reservados.</p>
 </footer>
 

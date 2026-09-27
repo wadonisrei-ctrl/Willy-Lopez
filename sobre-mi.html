@@ -17,20 +17,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sobre Willy Lopez | Agente de Bienes Raíces en Ocala</title>
-  <meta name="description" content="Willy Lopez, agente de bienes raíces con licencia en Florida, condado de Marion, bilingüe, ayuda a compradores, vendedores e inquilinos." />
+  <meta name="description" content="Willy Lopez, agente de bienes raíces con licencia en Florida, con base en Ocala, bilingüe, ayuda a compradores, vendedores e inquilinos." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://willy-lopez.vercel.app/sobre-mi" />
   <link rel="alternate" hreflang="en" href="https://willy-lopez.vercel.app/about" />
   <link rel="alternate" hreflang="es" href="https://willy-lopez.vercel.app/sobre-mi" />
   <link rel="alternate" hreflang="x-default" href="https://willy-lopez.vercel.app/about" />
   <meta property="og:title" content="Sobre Willy Lopez | Agente de Bienes Raíces en Ocala" />
-  <meta property="og:description" content="Agente de bienes raíces con licencia en Florida, en el condado de Marion, bilingüe en inglés y español. Representación de compradores y vendedores, colocación de inquilinos, y localización de apartamentos." />
+  <meta property="og:description" content="Agente de bienes raíces con licencia en Florida, con base en Ocala, bilingüe en inglés y español. Representación de compradores y vendedores en cualquier parte de Florida, colocación de inquilinos, y localización de apartamentos." />
   <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://willy-lopez.vercel.app/sobre-mi" />
   <meta property="og:image" content="https://willy-lopez.vercel.app/images/willy.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sobre Willy Lopez | Agente de Bienes Raíces en Ocala" />
-  <meta name="twitter:description" content="Agente de bienes raíces con licencia en Florida, en el condado de Marion, bilingüe en inglés y español." />
+  <meta name="twitter:description" content="Agente de bienes raíces con licencia en Florida, con base en Ocala, bilingüe en inglés y español." />
   <meta name="twitter:image" content="https://willy-lopez.vercel.app/images/willy.jpg" />
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -48,7 +48,7 @@
     "@type": "Person",
     "name": "Willy Lopez",
     "jobTitle": "Licensed Real Estate Agent",
-    "description": "Agente de bienes raíces con licencia en Florida, con base en el condado de Marion, que atiende a Ocala y Orlando. Bilingüe en inglés y español.",
+    "description": "Agente de bienes raíces con licencia en Florida, con base en Ocala. Representa a compradores y vendedores en cualquier parte de Florida, y las zonas que mejor conoce son Ocala y Marion Oaks. Coloca inquilinos para propietarios en el condado de Marion y ayuda a inquilinos en el área de Orlando y Ocala. Bilingüe en inglés y español.",
     "telephone": "+17186350140",
     "email": "wadonisrei@gmail.com",
     "url": "https://willy-lopez.vercel.app/sobre-mi",
@@ -78,6 +78,7 @@
     "image": "https://willy-lopez.vercel.app/images/willy.jpg",
     "inLanguage": "es",
     "areaServed": [
+      {"@type": "State", "name": "Florida"},
       {"@type": "City", "name": "Ocala, FL"},
       {"@type": "City", "name": "Marion Oaks, FL"},
       {"@type": "City", "name": "Orlando, FL"},
@@ -173,6 +174,21 @@
       .profile-contact { justify-content: center; }
       footer { padding: 28px 20px; }
     }
+
+    /* CLIENT WORDS */
+    .proof-section { background: #FFFFFF; padding: 56px 40px; border-top: 1px solid #E2E6EE; }
+    .proof-in { max-width: 800px; margin: 0 auto; }
+    .proof-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #86621E; margin-bottom: 10px; }
+    .proof-h { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #1A1F2E; line-height: 1.25; margin-bottom: 8px; }
+    .proof-note { font-size: 14px; color: #5F6574; line-height: 1.6; margin-bottom: 24px; }
+    .proof-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .proof-card { margin: 0; padding: 20px 20px 18px; background: #FAF8F4; border: 1px solid #E2E6EE; border-radius: 12px; }
+    .proof-card blockquote { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: #1A1F2E; }
+    .proof-card blockquote::before { content: "“"; }
+    .proof-card blockquote::after { content: "”"; }
+    .proof-card figcaption { font-size: 12px; color: #5F6574; line-height: 1.5; }
+    .proof-card figcaption strong { color: #1A1F2E; font-weight: 700; }
+    @media (max-width: 640px) { .proof-section { padding: 40px 20px; } .proof-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -187,7 +203,7 @@
         <a href="/propietarios">Propietarios</a>
         <a href="/contacto">Contacto</a>
       </div>
-      <a href="/es#home" class="nav-btn">Empezar</a>
+      <a href="/es" class="nav-btn">Cómo Te Ayudo</a>
     </div>
   </div>
 </nav>
@@ -195,7 +211,7 @@
 <div class="hero">
   <p class="tag">Sobre mí</p>
   <h1>Willy Lopez, Agente de Bienes Raíces</h1>
-  <p>Agente de bienes raíces en Florida, Ocala y Orlando, en inglés y español.</p>
+  <p>Agente de bienes raíces en Florida, con base en Ocala, para compradores y vendedores en cualquier parte de Florida. En inglés y español.</p>
   <p class="lang-switch"><a href="/about">Read in English &rarr;</a></p>
 </div>
 
@@ -207,7 +223,7 @@
     </div>
     <div class="profile-id">
       <p class="profile-name">Willy Lopez</p>
-      <p class="profile-title">Agente de Bienes Raíces con Licencia, Condado de Marion y Gran Orlando</p>
+      <p class="profile-title">Agente de Bienes Raíces con Licencia en Florida, con base en Ocala</p>
       <div class="profile-lic">Lic. SL3617612 &middot; Taylor Apartment Locator</div>
       <div class="profile-contact">
         <a href="tel:+17186350140">(718) 635-0140</a>
@@ -219,13 +235,13 @@
 
   <div class="section">
     <h2>Quién Soy</h2>
-    <p>Soy Willy Lopez, agente de bienes raíces con licencia en Florida, con base en el condado de Marion. Trabajo directamente con compradores y vendedores en Ocala y Marion Oaks, y ayudo a inquilinos a encontrar apartamento en el área de Orlando y Ocala.</p>
+    <p>Soy Willy Lopez, agente de bienes raíces con licencia en Florida, con base en Ocala. Represento a compradores y vendedores en cualquier parte de Florida, y las zonas que mejor conozco son Ocala y Marion Oaks. También coloco inquilinos para propietarios en el condado de Marion y ayudo a inquilinos en el área de Orlando y Ocala.</p>
     <p>Soy bilingüe, inglés y español, y hablo con cada cliente en el idioma en que se sienta más cómodo. Mucha de la gente con la que trabajo está en medio de su primera compra de casa, una mudanza a Florida, o una renta que está decidiendo si conservar o vender, y prefiero explicar las cosas con claridad que hablarle por encima a nadie.</p>
     <p>Para compradores, me encargo de la investigación, coordino cada visita, y manejo la comunicación con los agentes de los vendedores, y te digo con claridad cuando una propiedad no es la indicada para ti. Para vendedores, te doy una opinión honesta del valor de tu casa y no te voy a presionar a poner tu propiedad en venta antes de que tenga sentido. Respondo a cada consulta dentro de 24 horas hábiles y sigo contigo hasta el cierre.</p>
   </div>
 
   <div class="section">
-    <h2>Educación y Licencia</h2>
+    <h2>Licencia</h2>
     <ul>
       <li>Agente de bienes raíces con licencia en Florida, Lic. SL3617612, bajo la correduría de Taylor Apartment Locator</li>
       <li>Bilingüe, inglés y español</li>
@@ -235,16 +251,31 @@
   <div class="section">
     <h2>Cómo Trabajo</h2>
     <p>Respondo a cada consulta dentro de 24 horas hábiles. Te doy una respuesta directa, incluyendo cuando no creo que una propiedad, un programa, o una decisión sea la correcta para ti.</p>
-    <p>Para compradores, te represento directamente en Ocala y Marion Oaks, y ayudo a compradores primerizos a entender programas como Florida Hometown Heroes antes de comprometerse a algo. Para vendedores, te doy una opinión honesta sobre precio y momento en vez del número que me consigue el listado a mí. Para propietarios, coloco un inquilino calificado en una renta del condado de Marion por un mes de renta, que se debe solo cuando se firma el contrato. También manejo un servicio aparte de localización de apartamentos para inquilinos en el área de Orlando y Ocala, gratis para el inquilino porque la comunidad paga la tarifa.</p>
-    <p>Dondequiera que estés en el proceso, comprando tu primera casa, decidiendo si alquilar o vender una propiedad, o buscando apartamento, contáctame y te digo con claridad cómo se ven tus opciones.</p>
+    <p>Para compradores, te represento en cualquier parte de Florida, y ayudo a compradores primerizos a entender programas como Florida Hometown Heroes antes de comprometerse a algo. Para vendedores, te doy una opinión honesta sobre precio y momento en vez del número que me consigue el listado a mí. Para propietarios, coloco un inquilino calificado en una renta del condado de Marion por un mes de renta, que se debe solo cuando se firma el contrato. También manejo un servicio aparte de localización de apartamentos para inquilinos en el área de Orlando y Ocala, gratis para el inquilino porque la comunidad paga la tarifa.</p>
+    <p>Dondequiera que estés en el proceso, comprando tu primera casa, decidiendo si alquilar o vender una propiedad, o buscando apartamento, contáctame y te digo con claridad qué opciones tienes.</p>
   </div>
 
 </main>
 
+  <!-- CLIENT WORDS (verbatim, see TESTIMONIALS) -->
+  <section class="proof-section" data-proof="testimonials" aria-labelledby="proof-h">
+    <div class="proof-in">
+      <div class="proof-label">Palabras de clientes</div>
+      <h2 class="proof-h" id="proof-h">Lo que dicen los clientes</h2>
+      <p class="proof-note">Cuatro personas con las que he trabajado, en sus propias palabras. Reseñas mostradas en su idioma original.</p>
+      <div class="proof-grid">
+      <figure class="proof-card"><blockquote>Willy was incredibly easy to work with. He answered every question I had, kept me updated throughout the whole process, and never made me feel like I was just another client. If you're looking for someone who actually has your back, he's your guy.</blockquote><figcaption><strong>Jostin Lopez</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>Working with Willy took all the stress out of what could have been a really overwhelming process. He was patient, super responsive, and genuinely cared about finding the right fit. I'd recommend him to anyone without hesitation.</blockquote><figcaption><strong>Ashley Reinoso</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>Willy walked me through everything step by step. I never felt confused or left in the dark. He's honest, thorough, and you can tell he actually wants to help you, not just close a deal. Really appreciate the work he put in.</blockquote><figcaption><strong>Ibsen Rodriguez</strong>, Cliente, Florida Central</figcaption></figure>
+      <figure class="proof-card"><blockquote>From the first call, Willy made me feel like I was in good hands. He was upfront about everything, checked in regularly, and made the whole experience way less stressful than I expected. I'll definitely reach out again for my next move.</blockquote><figcaption><strong>Jeannie Guzman</strong>, Cliente, Florida Central</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
 <section class="cta-strip">
   <h2>Hablemos de lo que necesitas.</h2>
   <p>Llama, escribe, o usa el formulario de contacto. Respondo dentro de 24 horas hábiles.</p>
-  <a href="/contacto" class="btn">Contacta a Willy</a>
+  <a href="/contacto" class="btn">Escríbeme</a>
 </section>
 
 <footer>
@@ -255,7 +286,7 @@
     <a href="/privacy">Política de Privacidad</a>
     <a href="/terms">Términos del Servicio</a>
   </div>
-  <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Sirviendo a Ocala, Marion Oaks y Florida Central<br>
+  <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Sirviendo a Florida, con base en Ocala<br>
   &copy; 2026 Willy Lopez. Todos los derechos reservados.</p>
 </footer>
 
