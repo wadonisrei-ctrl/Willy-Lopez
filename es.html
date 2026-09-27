@@ -2691,17 +2691,31 @@
         idioma: 'es'
       };
 
-      fetch(RENT_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      function submitToOldRentIntake() {
+        fetch(RENT_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+          .then(function(res) {
+            if (!res.ok) throw new Error('bad response');
+            trackLead('home_rent', 'rent', 'es');
+            showSuccess();
+          })
+          .catch(function(err) {
+            console.error('Renter intake error:', err);
+            btn.classList.remove('btn-loading');
+            btn.textContent = 'Intentar de Nuevo';
+            alert('No se envió. Intenta otra vez, o escríbeme o llámame al (718) 635-0140 y yo sigo desde ahí.');
+          });
+      }
+
+      var rentV2Payload = Object.assign({}, payload, { lang: 'es' });
+      fetch(LEAD_INTAKE_V2_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(rentV2Payload) })
         .then(function(res) {
           if (!res.ok) throw new Error('bad response');
           trackLead('home_rent', 'rent', 'es');
           showSuccess();
         })
         .catch(function(err) {
-          console.error('Renter intake error:', err);
-          btn.classList.remove('btn-loading');
-          btn.textContent = 'Intentar de Nuevo';
-          alert('No se envió. Intenta otra vez, o escríbeme o llámame al (718) 635-0140 y yo sigo desde ahí.');
+          console.error('Lead intake v2 error, falling back to old renter intake:', err);
+          submitToOldRentIntake();
         });
       return;
     }

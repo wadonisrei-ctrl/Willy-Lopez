@@ -371,6 +371,7 @@
 
   <script>
     var INTAKE_URL = "https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake";
+    var LEAD_INTAKE_V2_URL = "https://wadonisrei--willy-lead-intake-v2-web.modal.run/lead-intake";
 
     function sourceLabel() {
       var src = new URLSearchParams(window.location.search).get('src');
@@ -407,25 +408,50 @@
         source: sourceLabel()
       };
 
-      fetch(INTAKE_URL, {
+      function showIntakeSuccess() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', { form_id: 'rent_page', lead_type: 'renter', lang: 'en', source: sourceLabel() });
+        }
+        var firstName = name.split(' ')[0];
+        document.getElementById('successHeading').textContent = 'Thanks, ' + firstName + '!';
+        document.getElementById('intakeForm').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      }
+
+      function showIntakeError() {
+        btn.disabled = false;
+        btn.textContent = 'Get Your Free List';
+        document.getElementById('errMsg').style.display = 'block';
+      }
+
+      function submitToOldIntake() {
+        fetch(INTAKE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function(res) {
+            if (!res.ok) throw new Error('bad response');
+            showIntakeSuccess();
+          })
+          .catch(function() {
+            showIntakeError();
+          });
+      }
+
+      var v2Payload = Object.assign({}, payload, { lang: 'en' });
+      fetch(LEAD_INTAKE_V2_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(v2Payload)
       })
         .then(function(res) {
           if (!res.ok) throw new Error('bad response');
-          if (typeof gtag === 'function') {
-            gtag('event', 'generate_lead', { form_id: 'rent_page', lead_type: 'renter', lang: 'en', source: sourceLabel() });
-          }
-          var firstName = name.split(' ')[0];
-          document.getElementById('successHeading').textContent = 'Thanks, ' + firstName + '!';
-          document.getElementById('intakeForm').style.display = 'none';
-          document.getElementById('successMsg').style.display = 'block';
+          showIntakeSuccess();
         })
-        .catch(function() {
-          btn.disabled = false;
-          btn.textContent = 'Get Your Free List';
-          document.getElementById('errMsg').style.display = 'block';
+        .catch(function(err) {
+          console.error('Lead intake v2 error, falling back to old renter intake:', err);
+          submitToOldIntake();
         });
     }
   </script>
