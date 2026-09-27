@@ -252,6 +252,8 @@
   });
 
   var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
+  var LEAD_INTAKE_V2_URL = 'https://wadonisrei--willy-lead-intake-v2-web.modal.run/lead-intake';
+  var LEAD_TYPE_MAP = { Buyer: 'buy', Seller: 'sell', Renter: 'renter', Landlord: 'landlord' };
 
   document.getElementById('contactForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -297,7 +299,7 @@
       }).catch(onBothFailed);
     }
 
-    if (leadType === 'Buyer' || leadType === 'Seller') {
+    function submitToOldIntake() {
       var intakeData = {
         name: data.name,
         phone: data.phone,
@@ -316,9 +318,32 @@
       }).then(function (res) {
         if (res.ok) { onSuccess(); } else { submitToFormspree(); }
       }).catch(submitToFormspree);
-    } else {
-      submitToFormspree();
     }
+
+    function fallbackFromV2() {
+      if (leadType === 'Buyer' || leadType === 'Seller') { submitToOldIntake(); } else { submitToFormspree(); }
+    }
+
+    var v2Data = {
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      lead_type: LEAD_TYPE_MAP[leadType] || '',
+      area: '',
+      timeline: '',
+      price_range: '',
+      home_type: '',
+      notes: '[contact page ES] ' + message,
+      lang: 'es',
+      source: 'contacto'
+    };
+    fetch(LEAD_INTAKE_V2_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(v2Data)
+    }).then(function (res) {
+      if (res.ok) { onSuccess(); } else { fallbackFromV2(); }
+    }).catch(fallbackFromV2);
   });
 </script>
 <script>

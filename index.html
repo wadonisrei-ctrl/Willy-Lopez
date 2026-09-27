@@ -2656,6 +2656,7 @@
   };
   var RENT_INTAKE_URL = 'https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake';
   var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
+  var LEAD_INTAKE_V2_URL = 'https://wadonisrei--willy-lead-intake-v2-web.modal.run/lead-intake';
 
   function trackLead(formId, leadType, lang) {
     try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { form_id: formId, lead_type: leadType, lang: lang }); } catch (e) {}
@@ -2734,19 +2735,37 @@
         });
     }
 
-    fetch(BUYER_SELLER_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    function submitToOldIntake() {
+      fetch(BUYER_SELLER_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function(res) {
+          if (res.ok) {
+            trackLead('home_' + type, type, 'en');
+            showSuccess();
+          } else {
+            console.error('Buyer/seller intake error: bad response, falling back to Formspree');
+            submitToFormspree();
+          }
+        })
+        .catch(function(err) {
+          console.error('Buyer/seller intake network error, falling back to Formspree:', err);
+          submitToFormspree();
+        });
+    }
+
+    var v2Data = Object.assign({}, data, { lang: 'en', source: 'home_' + type });
+    fetch(LEAD_INTAKE_V2_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(v2Data) })
       .then(function(res) {
         if (res.ok) {
           trackLead('home_' + type, type, 'en');
           showSuccess();
         } else {
-          console.error('Buyer/seller intake error: bad response, falling back to Formspree');
-          submitToFormspree();
+          console.error('Lead intake v2 error: bad response, falling back to old buyer/seller intake');
+          submitToOldIntake();
         }
       })
       .catch(function(err) {
-        console.error('Buyer/seller intake network error, falling back to Formspree:', err);
-        submitToFormspree();
+        console.error('Lead intake v2 network error, falling back to old buyer/seller intake:', err);
+        submitToOldIntake();
       });
   }
 
