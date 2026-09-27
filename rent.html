@@ -358,15 +358,15 @@
 
         <button type="submit" class="submit" id="submitBtn" onclick="submitIntake()">Get Your Free List</button>
         <div class="err-msg" id="errMsg">Something went wrong. Please try again, or text/call (718) 635-0140 directly.</div>
-        <p class="talk-line">Prefer to talk? Text or call <a href="tel:17186350140" data-cta="rent-talk-line-phone">(718) 635-0140</a>.</p>
-        <div class="fineprint">Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator. Paid by the complex, never by you.</div>
+        <p class="talk-line">Prefer to talk? <a href="sms:+17186350140" data-cta="rent-talk-line-phone-sms">Text me</a> or <a href="tel:17186350140" data-cta="rent-talk-line-phone">call</a>: (718) 635-0140.</p>
+        <div class="fineprint">Willy Lopez, Lic. SL3617612. Brokered by Platinum Advantage Realty. Paid by the complex, never by you.</div>
         <p class="tcpa-note">By submitting, you agree to be contacted by Willy Lopez at the number provided, including by text. Msg &amp; data rates may apply. See our <a href="/privacy">Privacy Policy</a>.</p>
       </form>
 
       <div class="success" id="successMsg">
         <h2 id="successHeading">Thanks!</h2>
         <p>Check your email, I just sent you the details (peek in spam just in case).</p>
-        <p>I'll call or text you shortly, usually the same business day.</p>
+        <p>I'll text you shortly, usually the same business day.</p>
         <p>Questions before then? Text me directly: (718) 635-0140.</p>
         <p style="margin-top:14px;font-weight:600;color:var(--char-2);">Willy Lopez</p>
       </div>
@@ -406,7 +406,10 @@
   </div>
 
   <script>
-    var INTAKE_URL = "https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake";
+    // 2026-09-27: the old willy-renter-intake app is no longer in the fallback chain
+    // (its deployed image still emails leads under the retired brokerage name, and
+    // per the never-redeploy rule it can't be fixed in place) -- see
+    // directives/brokerage_change.md. Chain is now v2 -> Formspree.
     var LEAD_INTAKE_V2_URL = "https://wadonisrei--willy-lead-intake-v2-web.modal.run/lead-intake";
 
     function sourceLabel() {
@@ -460,11 +463,12 @@
         document.getElementById('errMsg').style.display = 'block';
       }
 
-      function submitToOldIntake() {
-        fetch(INTAKE_URL, {
+      function submitToRentFormspree() {
+        var formspreePayload = Object.assign({}, payload, { lead_type: 'rent' });
+        fetch('https://formspree.io/f/xrewybvz', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(formspreePayload)
         })
           .then(function(res) {
             if (!res.ok) throw new Error('bad response');
@@ -486,8 +490,8 @@
           showIntakeSuccess();
         })
         .catch(function(err) {
-          console.error('Lead intake v2 error, falling back to old renter intake:', err);
-          submitToOldIntake();
+          console.error('Lead intake v2 error, falling back to Formspree:', err);
+          submitToRentFormspree();
         });
     }
   </script>

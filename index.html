@@ -46,7 +46,7 @@
       "@type": "Person",
       "name": "Willy Lopez",
       "jobTitle": "Licensed Real Estate Agent",
-      "worksFor": {"@type": "Organization", "name": "Taylor Apartment Locator"}
+      "worksFor": {"@type": "Organization", "name": "Platinum Advantage Realty"}
     }
   }
   </script>
@@ -1498,7 +1498,19 @@
       transition: color 0.15s;
     }
     .fin-phone-link:hover { color: var(--gold-lt); }
-    .fin-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; position: relative; }
+    .fin-call-link {
+      display: inline-flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(240,232,216,0.55);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      align-self: center;
+      transition: color 0.15s;
+    }
+    .fin-call-link:hover { color: rgba(240,232,216,0.85); }
+    .fin-actions { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; position: relative; }
     .fin-wa {
       display: inline-flex;
       align-items: center;
@@ -1628,26 +1640,38 @@
       box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
     }
     .sb-call {
-      flex: 1;
+      flex: 1.4;
       display: flex; align-items: center; justify-content: center;
       gap: 7px;
       background: var(--g-gold);
       color: white;
-      padding: 14px;
+      padding: 14px 8px;
       border-radius: var(--r);
       font-size: 13px;
       font-weight: 700;
       text-decoration: none;
       box-shadow: 0 4px 14px rgba(168,120,40,0.3);
     }
+    .sb-tel {
+      flex: 0.7;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      color: var(--text-soft, #5B5548);
+      padding: 14px 6px;
+      border-radius: var(--r);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
     .sb-wa {
-      flex: 1;
+      flex: 1.2;
       display: flex; align-items: center; justify-content: center;
       gap: 7px;
       background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
       border: 1px solid rgba(37,211,102,0.25);
       color: #16A34A;
-      padding: 14px;
+      padding: 14px 8px;
       border-radius: var(--r);
       font-size: 13px;
       font-weight: 700;
@@ -2032,7 +2056,7 @@
         <span class="tile-arrow" aria-hidden="true">&rarr;</span>
       </a>
     </div>
-    <p class="front-legal">Willy Lopez, Lic. SL3617612 &middot; Brokered by Taylor Apartment Locator &middot; <a href="tel:+17186350140" data-cta="front-phone">(718) 635-0140</a></p>
+    <p class="front-legal">Willy Lopez, Lic. SL3617612 &middot; Brokered by Platinum Advantage Realty &middot; <a href="sms:+17186350140" data-cta="front-phone-sms">Text me: (718) 635-0140</a> <a href="tel:+17186350140" data-cta="front-phone" style="opacity:0.75;">or call</a></p>
   </div>
 </section>
 
@@ -2333,8 +2357,8 @@
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <p style="font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:700;color:#1C1916;margin-bottom:8px;letter-spacing:-0.3px;">Got it.</p>
-          <p style="font-size:13px;color:#7A7060;line-height:1.7;margin-bottom:16px;">I read every one of these myself. I'll call or text you back within 24 business hours. Nothing else for you to do right now.</p>
-          <p style="font-size:11px;color:#B0A490;">Need me sooner? Text or call <a href="tel:+17186350140" style="color:#7A7060;font-weight:500;" data-cta="success-phone">(718) 635-0140</a></p>
+          <p style="font-size:13px;color:#7A7060;line-height:1.7;margin-bottom:16px;">I read every one of these myself. I'll text you back within 24 business hours. Nothing else for you to do right now.</p>
+          <p style="font-size:11px;color:#B0A490;">Need me sooner? <a href="sms:+17186350140" style="color:#7A7060;font-weight:500;" data-cta="success-phone-sms">Text me</a> at <a href="tel:+17186350140" style="color:#B0A490;font-weight:400;" data-cta="success-phone">(718) 635-0140</a></p>
         </div>
 
       </div>
@@ -2384,7 +2408,7 @@
         </div>
       </div>
     </div>
-    <p class="rev-lic">Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator.</p>
+    <p class="rev-lic">Willy Lopez, Lic. SL3617612. Brokered by Platinum Advantage Realty.</p>
   </div>
 </section>
 
@@ -2404,7 +2428,7 @@
       <div class="step-card reveal reveal-d2">
         <div class="step-num">02</div>
         <h3>I get back to you</h3>
-        <p>I read every request myself and call or text you back within 24 business hours.</p>
+        <p>I read every request myself and text you back within 24 business hours.</p>
       </div>
       <div class="step-card reveal reveal-d3">
         <div class="step-num">03</div>
@@ -2460,20 +2484,21 @@
 
 <!-- CONTACT -->
 <section class="fin-cta" id="contact">
-  <h2 class="reveal">Rather talk it through?<br /><em>Call or text me.</em></h2>
+  <h2 class="reveal">Rather talk it through?<br /><em>Text or call me.</em></h2>
   <p class="reveal reveal-d1">I answer in English or Spanish, within 24 business hours.</p>
   <div class="fin-actions reveal reveal-d2">
-    <a href="tel:+17186350140" class="fin-phone-link" data-cta="fin-phone">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      (718) 635-0140
+    <a href="sms:+17186350140" class="fin-phone-link" data-cta="fin-phone-sms">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      Text me: (718) 635-0140
     </a>
+    <a href="tel:+17186350140" class="fin-call-link" data-cta="fin-phone">or call</a>
     <a href="https://wa.me/17186350140" class="fin-wa" target="_blank" rel="noopener">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Message on WhatsApp
     </a>
   </div>
   <p class="fin-mail reveal reveal-d3"><a href="mailto:wadonisrei@gmail.com" data-cta="fin-email">wadonisrei@gmail.com</a></p>
-  <p class="fin-legal">Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator.</p>
+  <p class="fin-legal">Willy Lopez, Lic. SL3617612. Brokered by Platinum Advantage Realty.</p>
 </section>
 
 </main>
@@ -2484,7 +2509,7 @@
     <div class="foot-in">
       <div class="foot-brand">
         <a href="/" class="logo">Willy <b>Lopez</b></a>
-        <p class="foot-tagline">Representing buyers and sellers anywhere in Florida, based in Ocala. Tenant placement for landlords in Marion County. Apartment locating in Greater Orlando and Ocala, free to renters.<br />Willy Lopez, Lic. SL3617612. Brokered by Taylor Apartment Locator.</p>
+        <p class="foot-tagline">Representing buyers and sellers anywhere in Florida, based in Ocala. Tenant placement for landlords in Marion County. Apartment locating in Greater Orlando and Ocala, free to renters.<br />Willy Lopez, Lic. SL3617612. Brokered by Platinum Advantage Realty.</p>
       </div>
       <ul class="foot-links">
         <li><a href="#top">Services</a></li>
@@ -2496,7 +2521,8 @@
         <li><a href="/contact">Contact</a></li>
       </ul>
       <div class="foot-contact">
-        <a href="tel:+17186350140" data-cta="footer-phone">(718) 635-0140</a>
+        <a href="sms:+17186350140" data-cta="footer-phone-sms">Text: (718) 635-0140</a>
+        <a href="tel:+17186350140" data-cta="footer-phone" style="opacity:0.7;">or call</a>
         <a href="mailto:wadonisrei@gmail.com" data-cta="footer-email">wadonisrei@gmail.com</a>
         <a href="https://wa.me/17186350140" target="_blank" rel="noopener">WhatsApp</a>
         <a href="#home" data-cta="footer-get-started">Get Started</a>
@@ -2551,7 +2577,7 @@
       </div>
     </div>
     <div class="foot-legal">
-      <span>&#169; 2026 Willy Lopez &middot; Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Serving Florida, based in Ocala.</span>
+      <span>&#169; 2026 Willy Lopez &middot; Lic. SL3617612 &middot; Platinum Advantage Realty &middot; Serving Florida, based in Ocala.</span>
       <div class="foot-legal-links">
         <span>
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:3px;"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Equal Housing Opportunity
@@ -2565,10 +2591,11 @@
 
 <!-- MOBILE STICKY -->
 <div class="sticky-bar" id="stickyBar">
-  <a href="tel:+17186350140" class="sb-call" data-cta="sticky-bar-call">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.54a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-    Call Willy
+  <a href="sms:+17186350140" class="sb-call" data-cta="sticky-bar-text-sms">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    Text
   </a>
+  <a href="tel:+17186350140" class="sb-tel" data-cta="sticky-bar-call">Call</a>
   <a href="https://wa.me/17186350140" class="sb-wa" target="_blank" rel="noopener">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     WhatsApp
@@ -2687,8 +2714,10 @@
     '2 Bedrooms': '2BR',
     '3 or more': '3BR+'
   };
-  var RENT_INTAKE_URL = 'https://wadonisrei--willy-renter-intake-web.modal.run/renter-intake';
-  var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
+  // 2026-09-27: the old willy-renter-intake and willy-buyer-seller-intake apps are
+  // no longer in the fallback chain (their deployed image still emails leads under
+  // the retired brokerage name, and per the never-redeploy rule they can't be fixed
+  // in place) -- see directives/brokerage_change.md. Chain is now v2 -> Formspree.
   var LEAD_INTAKE_V2_URL = 'https://wadonisrei--willy-lead-intake-v2-web.modal.run/lead-intake';
 
   function trackLead(formId, leadType, lang) {
@@ -2718,15 +2747,16 @@
         notes: document.getElementById('r-notes').value.trim()
       };
 
-      function submitToOldRentIntake() {
-        fetch(RENT_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      function submitToRentFormspree() {
+        var rentFormspreePayload = Object.assign({}, payload, { lead_type: 'rent' });
+        fetch('https://formspree.io/f/xrewybvz', { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(rentFormspreePayload) })
           .then(function(res) {
             if (!res.ok) throw new Error('bad response');
             trackLead('home_rent', 'rent', 'en');
             showSuccess();
           })
           .catch(function(err) {
-            console.error('Renter intake error:', err);
+            console.error('Formspree error:', err);
             btn.classList.remove('btn-loading');
             btn.textContent = 'Try Again';
             alert('That did not send. Try once more, or text or call me at (718) 635-0140 and I will take it from there.');
@@ -2741,8 +2771,8 @@
           showSuccess();
         })
         .catch(function(err) {
-          console.error('Lead intake v2 error, falling back to old renter intake:', err);
-          submitToOldRentIntake();
+          console.error('Lead intake v2 error, falling back to Formspree:', err);
+          submitToRentFormspree();
         });
       return;
     }
@@ -2782,23 +2812,6 @@
         });
     }
 
-    function submitToOldIntake() {
-      fetch(BUYER_SELLER_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-        .then(function(res) {
-          if (res.ok) {
-            trackLead('home_' + type, type, 'en');
-            showSuccess();
-          } else {
-            console.error('Buyer/seller intake error: bad response, falling back to Formspree');
-            submitToFormspree();
-          }
-        })
-        .catch(function(err) {
-          console.error('Buyer/seller intake network error, falling back to Formspree:', err);
-          submitToFormspree();
-        });
-    }
-
     var v2Data = Object.assign({}, data, { lang: 'en', source: 'home_' + type });
     fetch(LEAD_INTAKE_V2_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(v2Data) })
       .then(function(res) {
@@ -2806,13 +2819,13 @@
           trackLead('home_' + type, type, 'en');
           showSuccess();
         } else {
-          console.error('Lead intake v2 error: bad response, falling back to old buyer/seller intake');
-          submitToOldIntake();
+          console.error('Lead intake v2 error: bad response, falling back to Formspree');
+          submitToFormspree();
         }
       })
       .catch(function(err) {
-        console.error('Lead intake v2 network error, falling back to old buyer/seller intake:', err);
-        submitToOldIntake();
+        console.error('Lead intake v2 network error, falling back to Formspree:', err);
+        submitToFormspree();
       });
   }
 

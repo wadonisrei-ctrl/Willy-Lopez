@@ -51,7 +51,7 @@
       "name": "Willy Lopez",
       "telephone": "+17186350140",
       "email": "wadonisrei@gmail.com",
-      "memberOf": {"@type": "Organization", "name": "Taylor Apartment Locator"}
+      "memberOf": {"@type": "Organization", "name": "Platinum Advantage Realty"}
     }
   }
   </script>
@@ -206,7 +206,7 @@
 <div class="hero">
   <p class="tag">Contacto</p>
   <h1>Recibe una Respuesta Directa</h1>
-  <p>Comprando, vendiendo, buscando apartamento, o con una renta vacía. Cuéntame tu situación y te digo qué haría yo. Llama, escribe un mensaje de texto o un correo, o manda el formulario de abajo. Respondo dentro de 24 horas hábiles.</p>
+  <p>Comprando, vendiendo, buscando apartamento, o con una renta vacía. Cuéntame tu situación y te digo qué haría yo. Escríbeme un mensaje de texto, llama, envía un correo, o manda el formulario de abajo. Respondo dentro de 24 horas hábiles.</p>
   <p class="hero-lang"><a href="/contact" data-lang-switch="es-to-en">In English &rarr;</a></p>
 </div>
 
@@ -214,11 +214,12 @@
 
   <div class="contact-info">
     <h2>Contáctame Directamente</h2>
-    <a href="tel:+17186350140" class="info-pill" data-cta="contact-info-phone">(718) 635-0140</a>
+    <a href="sms:+17186350140" class="info-pill" data-cta="contact-info-phone-sms">Escríbeme: (718) 635-0140</a>
+    <a href="tel:+17186350140" class="info-pill" data-cta="contact-info-phone" style="opacity:0.7;">o llama</a>
     <a href="mailto:wadonisrei@gmail.com" class="info-pill" data-cta="contact-info-email">wadonisrei@gmail.com</a>
     <a href="https://wa.me/17186350140" class="info-pill" target="_blank" rel="noopener">WhatsApp</a>
     <p>Ya sea que estés comprando, vendiendo, buscando un apartamento para rentar, o decidiendo qué hacer con una propiedad de renta, cuéntame tu situación y te doy una respuesta directa. Respondo dentro de 24 horas hábiles.</p>
-    <p class="lic-line">Willy Lopez, Lic. SL3617612<br />Taylor Apartment Locator</p>
+    <p class="lic-line">Willy Lopez, Lic. SL3617612<br />Platinum Advantage Realty</p>
   </div>
 
   <div class="contact-form">
@@ -229,7 +230,7 @@
         <span id="c-name-err" class="field-err" role="alert" hidden>Agrega tu nombre para saber con quién hablo.</span>
       </div>
       <div class="fg">
-        <label for="c-phone">Teléfono</label>
+        <label for="c-phone">Mejor número para escribirte por texto</label>
         <input type="tel" id="c-phone" required />
         <span id="c-phone-err" class="field-err" role="alert" hidden>Agrega el mejor número para llamarte o escribirte.</span>
       </div>
@@ -263,7 +264,7 @@
     </form>
     <div class="form-success" id="c-success">
       <p>Listo.</p>
-      <p>Yo los leo personalmente, y te contesto por llamada, mensaje o correo dentro de 24 horas hábiles. Si me necesitas antes, llama o escribe al (718) 635-0140.</p>
+      <p>Yo los leo personalmente, y te contesto por mensaje de texto o correo dentro de 24 horas hábiles. Si me necesitas antes, escríbeme por texto al (718) 635-0140.</p>
     </div>
   </div>
 
@@ -293,7 +294,7 @@
     <a href="/privacy">Política de Privacidad</a>
     <a href="/terms">Términos del Servicio</a>
   </div>
-  <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Sirviendo a Florida, con base en Ocala<br>
+  <p>Willy Lopez, Lic. SL3617612 &middot; Platinum Advantage Realty &middot; Sirviendo a Florida, con base en Ocala<br>
   &copy; 2026 Willy Lopez. Todos los derechos reservados.</p>
 </footer>
 
@@ -323,7 +324,10 @@
     });
   });
 
-  var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
+  // 2026-09-27: the old willy-buyer-seller-intake app is no longer in the fallback
+  // chain (its deployed image still emails leads under the retired brokerage name,
+  // and per the never-redeploy rule it can't be fixed in place) -- see
+  // directives/brokerage_change.md. Chain is now v2 -> Formspree for every lead type.
   var LEAD_INTAKE_V2_URL = 'https://wadonisrei--willy-lead-intake-v2-web.modal.run/lead-intake';
   var LEAD_TYPE_MAP = { Buyer: 'buy', Seller: 'sell', Renter: 'renter', Landlord: 'landlord' };
 
@@ -371,29 +375,8 @@
       }).catch(onBothFailed);
     }
 
-    function submitToOldIntake() {
-      var intakeData = {
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        lead_type: leadType === 'Buyer' ? 'buy' : 'sell',
-        area: '',
-        timeline: '',
-        price_range: '',
-        home_type: '',
-        notes: '[contact page ES] ' + message
-      };
-      fetch(BUYER_SELLER_INTAKE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(intakeData)
-      }).then(function (res) {
-        if (res.ok) { onSuccess(); } else { submitToFormspree(); }
-      }).catch(submitToFormspree);
-    }
-
     function fallbackFromV2() {
-      if (leadType === 'Buyer' || leadType === 'Seller') { submitToOldIntake(); } else { submitToFormspree(); }
+      submitToFormspree();
     }
 
     var v2Data = {

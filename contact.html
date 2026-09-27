@@ -50,7 +50,7 @@
       "name": "Willy Lopez",
       "telephone": "+17186350140",
       "email": "wadonisrei@gmail.com",
-      "memberOf": {"@type": "Organization", "name": "Taylor Apartment Locator"}
+      "memberOf": {"@type": "Organization", "name": "Platinum Advantage Realty"}
     }
   }
   </script>
@@ -205,7 +205,7 @@
 <div class="hero">
   <p class="tag">Contact</p>
   <h1>Get a Straight Answer</h1>
-  <p>Buying, selling, looking for an apartment, or sitting on an empty rental. Tell me what is going on and I will tell you what I would do. Call, text, email, or send the form below. I respond within 24 business hours.</p>
+  <p>Buying, selling, looking for an apartment, or sitting on an empty rental. Tell me what is going on and I will tell you what I would do. Text, call, email, or send the form below. I respond within 24 business hours.</p>
   <p class="hero-lang"><a href="/contacto" data-lang-switch="en-to-es">En español &rarr;</a></p>
 </div>
 
@@ -213,11 +213,12 @@
 
   <div class="contact-info">
     <h2>Reach Me Directly</h2>
-    <a href="tel:+17186350140" class="info-pill" data-cta="contact-info-phone">(718) 635-0140</a>
+    <a href="sms:+17186350140" class="info-pill" data-cta="contact-info-phone-sms">Text: (718) 635-0140</a>
+    <a href="tel:+17186350140" class="info-pill" data-cta="contact-info-phone" style="opacity:0.7;">or call</a>
     <a href="mailto:wadonisrei@gmail.com" class="info-pill" data-cta="contact-info-email">wadonisrei@gmail.com</a>
     <a href="https://wa.me/17186350140" class="info-pill" target="_blank" rel="noopener">WhatsApp</a>
     <p>Whether you're buying, selling, renting an apartment, or trying to figure out what to do with a rental property, tell me what's going on and I'll give you a straight answer. I respond within 24 business hours.</p>
-    <p class="lic-line">Willy Lopez, Lic. SL3617612<br />Taylor Apartment Locator</p>
+    <p class="lic-line">Willy Lopez, Lic. SL3617612<br />Platinum Advantage Realty</p>
   </div>
 
   <div class="contact-form">
@@ -228,7 +229,7 @@
         <span id="c-name-err" class="field-err" role="alert" hidden>Please add your name so I know who I'm talking to.</span>
       </div>
       <div class="fg">
-        <label for="c-phone">Phone</label>
+        <label for="c-phone">Best number to text you back on</label>
         <input type="tel" id="c-phone" required />
         <span id="c-phone-err" class="field-err" role="alert" hidden>Add the best number to text or call you back on.</span>
       </div>
@@ -261,7 +262,7 @@
     </form>
     <div class="form-success" id="c-success">
       <p>Got it.</p>
-      <p>I read these myself, and I will call, text, or email you back within 24 business hours. If you need me sooner, call or text (718) 635-0140.</p>
+      <p>I read these myself, and I will text or email you back within 24 business hours. If you need me sooner, text me at (718) 635-0140.</p>
     </div>
   </div>
 
@@ -290,7 +291,7 @@
     <a href="/privacy">Privacy Policy</a>
     <a href="/terms">Terms of Service</a>
   </div>
-  <p>Willy Lopez, Lic. SL3617612 &middot; Taylor Apartment Locator &middot; Serving Florida, based in Ocala<br>
+  <p>Willy Lopez, Lic. SL3617612 &middot; Platinum Advantage Realty &middot; Serving Florida, based in Ocala<br>
   &copy; 2026 Willy Lopez. All rights reserved.</p>
 </footer>
 
@@ -320,7 +321,10 @@
     });
   });
 
-  var BUYER_SELLER_INTAKE_URL = 'https://wadonisrei--willy-buyer-seller-intake-web.modal.run/buyer-seller-intake';
+  // 2026-09-27: the old willy-buyer-seller-intake app is no longer in the fallback
+  // chain (its deployed image still emails leads under the retired brokerage name,
+  // and per the never-redeploy rule it can't be fixed in place) -- see
+  // directives/brokerage_change.md. Chain is now v2 -> Formspree for every lead type.
   var LEAD_INTAKE_V2_URL = 'https://wadonisrei--willy-lead-intake-v2-web.modal.run/lead-intake';
   var LEAD_TYPE_MAP = { Buyer: 'buy', Seller: 'sell', Renter: 'renter', Landlord: 'landlord' };
 
@@ -367,29 +371,8 @@
       }).catch(onBothFailed);
     }
 
-    function submitToOldIntake() {
-      var intakeData = {
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        lead_type: leadType === 'Buyer' ? 'buy' : 'sell',
-        area: '',
-        timeline: '',
-        price_range: '',
-        home_type: '',
-        notes: '[contact page EN] ' + message
-      };
-      fetch(BUYER_SELLER_INTAKE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(intakeData)
-      }).then(function (res) {
-        if (res.ok) { onSuccess(); } else { submitToFormspree(); }
-      }).catch(submitToFormspree);
-    }
-
     function fallbackFromV2() {
-      if (leadType === 'Buyer' || leadType === 'Seller') { submitToOldIntake(); } else { submitToFormspree(); }
+      submitToFormspree();
     }
 
     var v2Data = {
